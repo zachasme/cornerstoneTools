@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.6 - 2017-05-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.6 - 2017-05-23 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("Hammer"));
@@ -14819,6 +14819,21 @@ Object.defineProperty(exports, 'zoomTouchDrag', {
          }
 });
 
+var _index3 = __webpack_require__(112);
+
+Object.defineProperty(exports, 'regionsThreshold', {
+         enumerable: true,
+         get: function get() {
+                  return _index3.regionsThreshold;
+         }
+});
+Object.defineProperty(exports, 'regionsGrow', {
+         enumerable: true,
+         get: function get() {
+                  return _index3.regionsGrow;
+         }
+});
+
 var _version = __webpack_require__(103);
 
 Object.defineProperty(exports, 'version', {
@@ -15052,6 +15067,327 @@ exports.default = tool;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_111__;
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _thresholding = __webpack_require__(113);
+
+Object.defineProperty(exports, 'regionsThreshold', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_thresholding).default;
+  }
+});
+
+var _grow = __webpack_require__(114);
+
+Object.defineProperty(exports, 'regionsGrow', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_grow).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _toolState = __webpack_require__(0);
+
+var toolType = 'thresholding';
+
+var CALCIUM_THRESHOLD_HU = 130;
+var LABEL_SIZE_BYTES = 8;
+var REGION_COLORS_RGBA = [[255, 10, 255], // Unused?
+[255, 100, 100], [100, 100, 255], [100, 255, 255], [255, 100, 255]];
+
+/**
+ * Perform the thresholding on a stack
+ */
+function performThresholding(stack, callback) {
+    var width = void 0,
+        height = void 0;
+    var imageIds = stack.imageIds;
+    var slices = imageIds.length;
+
+    // get slope and intercept
+    return cornerstone.loadImage(imageIds[0]).then(function (image) {
+        width = image.width;
+        height = image.height;
+
+        var length = width * height * slices * LABEL_SIZE_BYTES;
+        var buffer = new ArrayBuffer(length);
+        var view = new Uint8Array(buffer);
+
+        // thresholding promises
+        var promises = imageIds.map(function (imageId, imageIdx) {
+
+            return cornerstone.loadImage(imageId).then(function (image) {
+                var slope = image.slope;
+                var intercept = image.intercept;
+                var pixelData = image.getPixelData();
+                var n = width * height;
+                for (var i = 0; i < n; i++) {
+                    var pixel = pixelData[i];
+                    var hu = pixel * slope + intercept;
+                    var label = hu >= CALCIUM_THRESHOLD_HU ? 1 : 0;
+                    var viewIdx = imageIdx * n + i;
+                    view[viewIdx] = label;
+                }
+            });
+        });
+
+        // callback with buffer
+        return Promise.all(promises).then(function () {
+            var result = { buffer: buffer, width: width, height: height };
+            if (callback) callback(result);
+            return result;
+        });
+    });
+}
+
+/**
+ * Draw regions on image
+ */
+function onImageRendered(e, eventData) {
+    var element = eventData.element;
+    var stackData = cornerstoneTools.getToolState(element, 'stack');
+    var thresholdingData = cornerstoneTools.getToolState(element, 'regions');
+    if (!thresholdingData || !thresholdingData.data || !thresholdingData.data.length) {
+        return;
+    }
+
+    var slice = stackData.data[0].currentImageIdIndex;
+    var buffer = thresholdingData.data[0].buffer;
+    var context = eventData.canvasContext;
+    var enabledElement = eventData.enabledElement;
+    var image = eventData.image;
+    var width = image.width;
+    var height = image.height;
+
+    var doubleBuffer = document.createElement('canvas');
+    doubleBuffer.width = width;
+    doubleBuffer.height = height;
+    var doubleBufferContext = doubleBuffer.getContext('2d');
+    var imgdata = doubleBufferContext.createImageData(width, height);
+    var pixels = imgdata.data;
+
+    var sliceSize = width * height;
+    var sliceOffset = slice * sliceSize;
+    var view = new Uint8Array(buffer, sliceOffset, sliceSize);
+    for (var i = 0; i < view.length; i += 1) {
+        var label = view[i];
+        if (label) {
+            var pi = i * 4;
+            var color = REGION_COLORS_RGBA[label - 1];
+            pixels[pi + 0] = color[0];
+            pixels[pi + 1] = color[1];
+            pixels[pi + 2] = color[2];
+            pixels[pi + 3] = 0.5 * 255;
+        }
+    }
+    doubleBufferContext.putImageData(imgdata, 0, 0);
+
+    cornerstone.setToPixelCoordinateSystem(enabledElement, context);
+    context.drawImage(doubleBuffer, 0, 0);
+}
+
+function enable(element) {
+    // First check that there is stack data available
+    var stackData = (0, _toolState.getToolState)(element, 'stack');
+    if (!stackData || !stackData.data || !stackData.data.length) {
+        return;
+    }
+
+    var initialThresholdingData = {
+        enabled: 1,
+        buffer: null,
+        width: null,
+        height: null
+    };
+    (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
+
+    var stack = stackData.data[0];
+    performThresholding(stack, function (regions) {
+        // add threshold data to tool state
+        var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+        thresholdingData.data[0].buffer = regions.buffer;
+        thresholdingData.data[0].width = regions.width;
+        thresholdingData.data[0].height = regions.height;
+        // draw regions on image
+        $(element).on('CornerstoneImageRendered', onImageRendered);
+    });
+}
+
+function disable(element) {
+    var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+    // If there is actually something to disable, disable it
+    if (thresholdingData && thresholdingData.data.length) {
+        thresholdingData.data[0].enabled = false;
+    }
+}
+
+// module/private exports
+exports.default = {
+    activate: enable,
+    deactivate: disable,
+    enable: enable,
+    disable: disable
+};
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _toolState = __webpack_require__(0);
+
+var _isMouseButtonEnabled = __webpack_require__(1);
+
+var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var toolType = 'regionsGrow';
+
+var REGION_VALUE = 2;
+
+// Get neighbour linear indices
+function linearNeighbours(width, height, index) {
+  var sliceSize = width * height;
+
+  return [index - 1, index + 1, index - width, index + width, index - sliceSize, index + sliceSize];
+}
+
+function regionGrowing(regions, slices, point, nextValue) {
+  var width = regions.width,
+      height = regions.height,
+      buffer = regions.buffer;
+
+  var _point = _slicedToArray(point, 3),
+      x = _point[0],
+      y = _point[1],
+      slice = _point[2];
+
+  var view = new Uint8Array(buffer);
+
+  // Calculate linear indices and offsets
+  var sliceSize = width * height;
+  var sliceOffset = sliceSize * slice;
+  var clickIndex = y * width + x;
+  var linearIndex = sliceOffset + clickIndex;
+  var fromValue = view[linearIndex];
+
+  // Only continue if we clicked in thresholded area in different color
+  if (fromValue === 0 || fromValue === nextValue) {
+    return;
+  }
+
+  // Growing starts at clicked voxel
+  var activeVoxels = [linearIndex];
+
+  // While activeVoxels is not empty
+  while (activeVoxels.length !== 0) {
+    // Set the active voxels to nextValue
+    activeVoxels.forEach(function (i) {
+      view[i] = nextValue;
+    });
+
+    // The new active voxels are neighbours of curent active voxels
+    var nextVoxels = activeVoxels.map(function (i) {
+      return linearNeighbours(width, height, i);
+    }).reduce( // Flatten the array of arrays to array of indices
+    function (acc, cur) {
+      return acc.concat(cur);
+    }, []).filter( // Remove duplicates
+    function (value, index, self) {
+      return self.indexOf(value) === index;
+    }).filter( // Remove voxels that does not have the correct fromValue
+    function (i) {
+      return view[i] === fromValue;
+    });
+
+    activeVoxels = nextVoxels;
+  }
+
+  return buffer;
+}
+
+function onMouseDown(e, eventData) {
+  var element = eventData.element;
+
+
+  if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
+    var _getToolState$data = _slicedToArray((0, _toolState.getToolState)(element, 'stack').data, 1),
+        stackData = _getToolState$data[0];
+
+    var _getToolState$data2 = _slicedToArray((0, _toolState.getToolState)(element, 'regions').data, 1),
+        regionsData = _getToolState$data2[0];
+
+    var currentImageIdIndex = stackData.currentImageIdIndex,
+        imageIds = stackData.imageIds;
+    var _eventData$currentPoi = eventData.currentPoints.image,
+        x = _eventData$currentPoi.x,
+        y = _eventData$currentPoi.y;
+
+
+    var point = [Math.round(x), Math.round(y), currentImageIdIndex];
+
+    regionGrowing(regionsData, imageIds.length, point, REGION_VALUE);
+
+    // Redraw image
+    cornerstone.updateImage(element);
+  }
+}
+
+function enable(element, mouseButtonMask) {
+  var stackData = (0, _toolState.getToolState)(element, 'stack');
+  var regionsData = (0, _toolState.getToolState)(element, 'regions');
+
+  // First check that there is stack/regions data available
+  if (!stackData || !stackData.data || !stackData.data.length || !regionsData || !regionsData.data || !regionsData.data.length) {
+    return;
+  }
+
+  $(element).on('CornerstoneToolsMouseDown', { mouseButtonMask: mouseButtonMask }, onMouseDown);
+}
+
+function disable(element) {
+  $(element).off('CornerstoneToolsMouseDown', onMouseDown);
+}
+
+exports.default = {
+  enable: enable,
+  disable: disable,
+  activate: enable,
+  deactivate: disable
+};
 
 /***/ })
 /******/ ]);
