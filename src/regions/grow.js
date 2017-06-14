@@ -40,8 +40,7 @@ function regionGrowing (regions, slices, point, nextValue) {
   // Growing starts at clicked voxel
   let activeVoxels = [linearIndex];
 
-  // While activeVoxels is not empty
-  while (activeVoxels.length !== 0) {
+  function chunk () {
     // Set the active voxels to nextValue
     activeVoxels.forEach((i) => {
       view[i] = nextValue;
@@ -58,10 +57,13 @@ function regionGrowing (regions, slices, point, nextValue) {
       (i) => view[i] === fromValue
     );
 
-    activeVoxels = nextVoxels;
+    return nextVoxels;
   }
 
-  return buffer;
+  // While activeVoxels is not empty
+  while (activeVoxels.length !== 0) {
+    chunk();
+  }
 }
 
 function onMouseDown (e, eventData) {

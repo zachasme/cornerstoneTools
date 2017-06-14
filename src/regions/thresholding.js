@@ -24,7 +24,7 @@ function performThresholding (stack, callback) {
     return cornerstone.loadImage(imageIds[0]).then(function(image) {
         width = image.width;
         height = image.height;
-        imgdata = doubleBufferContext.createImageData(width, height);
+
         var length = width * height * slices * LABEL_SIZE_BYTES;
         var buffer = new ArrayBuffer(length);
         var view = new Uint8Array(buffer);
@@ -56,7 +56,7 @@ function performThresholding (stack, callback) {
 
     })
 }
-const imgdata = null;
+var imgdata = null;
 /**
  * Draw regions on image
  */
@@ -80,7 +80,7 @@ function onImageRendered(e, eventData) {
     doubleBuffer.width = width;
     doubleBuffer.height = height;
     var doubleBufferContext = doubleBuffer.getContext('2d');
-    //const imgdata = doubleBufferContext.createImageData(width, height);
+    imgdata = imagedata || doubleBufferContext.createImageData(width, height);
     const pixels = imgdata.data
 
     const sliceSize = width * height;
@@ -88,13 +88,15 @@ function onImageRendered(e, eventData) {
     const view = new Uint8Array(buffer, sliceOffset, sliceSize);
     for (let i = 0; i < view.length; i += 1) {
         const label = view[i];
+        const pi = i * 4;
         if (label) {
-            const pi = i * 4;
             const color = REGION_COLORS_RGBA[label - 1];
             pixels[pi + 0] = color[0];
             pixels[pi + 1] = color[1];
             pixels[pi + 2] = color[2];
             pixels[pi + 3] = 0.5 * 255;
+        } else {
+          pixels[pi + 3] = 0;
         }
     }
     doubleBufferContext.putImageData(imgdata, 0, 0);
