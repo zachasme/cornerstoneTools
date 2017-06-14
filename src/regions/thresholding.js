@@ -24,7 +24,7 @@ function performThresholding (stack, callback) {
     return cornerstone.loadImage(imageIds[0]).then(function(image) {
         width = image.width;
         height = image.height;
-
+        imgdata = doubleBufferContext.createImageData(width, height);
         var length = width * height * slices * LABEL_SIZE_BYTES;
         var buffer = new ArrayBuffer(length);
         var view = new Uint8Array(buffer);
@@ -56,7 +56,7 @@ function performThresholding (stack, callback) {
 
     })
 }
-
+const imgdata = null;
 /**
  * Draw regions on image
  */
@@ -80,7 +80,7 @@ function onImageRendered(e, eventData) {
     doubleBuffer.width = width;
     doubleBuffer.height = height;
     var doubleBufferContext = doubleBuffer.getContext('2d');
-    const imgdata = doubleBufferContext.createImageData(width, height);
+    //const imgdata = doubleBufferContext.createImageData(width, height);
     const pixels = imgdata.data
 
     const sliceSize = width * height;
