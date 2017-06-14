@@ -15129,7 +15129,7 @@ var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var toolType = 'regionsDraw';
+var toolType = 'drawing';
 
 var REGION_VALUE = 4;
 var LAYERS_ABOVE = 0;

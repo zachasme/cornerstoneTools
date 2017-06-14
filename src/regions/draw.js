@@ -1,7 +1,7 @@
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 
-const toolType = 'regionsDraw';
+const toolType = 'drawing';
 
 const REGION_VALUE = 4;
 const LAYERS_ABOVE = 0;
