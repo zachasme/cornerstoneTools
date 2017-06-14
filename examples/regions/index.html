@@ -95,8 +95,9 @@ is used by our example image loader-->
         cornerstoneTools.addToolState(element, 'stack', stack);
 
         // Enable all tools we want to use with this element
-        cornerstoneTools.regionsThreshold.activate(element, 1);
+        cornerstoneTools.regionsThreshold.activate(element);
         cornerstoneTools.regionsGrow.activate(element, 4);
+        cornerstoneTools.regionsDraw.activate(element, 1);
         cornerstoneTools.stackScrollWheel.activate(element);
 
         cornerstoneTools.scrollIndicator.enable(element);

@@ -1,3 +1,6 @@
+import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+
 const toolType = 'regionsDraw';
 
 const REGION_VALUE = 4;
@@ -26,12 +29,13 @@ function isInside (point, vs) {
 
 // Draw regions on the canvas
 function onImageRendered (e, eventData) {
-  const { canvasContext, enabledElement } = eventData;
+  const { canvasContext, enabledElement, element } = eventData;
 
-  // set the canvas context to the image coordinate system
+  // Set the canvas context to the image coordinate system
   cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
-  // points
-  const drawingData = cornerstoneTools.getToolState(enabledElement, toolType);
+
+  // Points
+  const drawingData = getToolState(element, toolType);
   const context = eventData.canvasContext;
   const points = drawingData.data[0].points;
 
@@ -39,9 +43,9 @@ function onImageRendered (e, eventData) {
     return;
   }
 
-  var first = points[0];
-  var xFirst = first[0];
-  var yFirst = first[1]
+  const first = points[0];
+  const xFirst = first[0];
+  const yFirst = first[1]
 
   context.fillStyle = 'rgba(255,255,255,.2)';
   context.strokeStyle = 'white';
@@ -55,38 +59,39 @@ function onImageRendered (e, eventData) {
   context.fill();
 }
 
-function updateRegions(value, layersAbove, layersBelow) {
-  // get tool data
-  var stackData = cornerstoneTools.getToolState(element, 'stack');
-  var thresholdingData = cornerstoneTools.getToolState(element, 'regions');
-  var drawingData = cornerstoneTools.getToolState(element, toolType);
+function updateRegions (element, value, layersAbove, layersBelow) {
+  // Get tool data
+  const stackData = getToolState(element, 'stack');
+  const thresholdingData = getToolState(element, 'regions');
+  const drawingData = getToolState(element, toolType);
 
-  // extract tool data
-  var slice = stackData.data[0].currentImageIdIndex;
-  var numSlices = stackData.data[0].imageIds.length;
-  var regions = thresholdingData.data[0];
-  var points = drawingData.data[0].points;
+  // Extract tool data
+  const slice = stackData.data[0].currentImageIdIndex;
+  const numSlices = stackData.data[0].imageIds.length;
+  const regions = thresholdingData.data[0];
+  const points = drawingData.data[0].points;
 
-  // extract region data
-  var buffer = regions.buffer;
-  var width = regions.width;
-  var height = regions.height;
+  // Extract region data
+  const buffer = regions.buffer;
+  const width = regions.width;
+  const height = regions.height;
 
-  // find operation bounds
-  var startSlice = Math.max(0, slice - layersAbove)
-  var endSlice = Math.min(numSlices, slice + layersBelow)
+  // Find operation bounds
+  const startSlice = Math.max(0, slice - layersAbove)
+  const endSlice = Math.min(numSlices, slice + layersBelow)
 
-  // setup view into buffer
+  // Setup view into buffer
   const sliceSize = width * height;
   const sliceOffset = startSlice * sliceSize;
   const view = new Uint8Array(buffer, sliceOffset);
 
-  // mark points inside
+  // Mark points inside
   for (let dslice = 0; dslice <= endSlice - slice; dslice += 1) {
     for (let x = 0; x < width; x += 1) {
       for (let y = 0; y < height; y += 1) {
         const index = x + (y * width) + (dslice * sliceSize);
         const prevValue = view[index];
+
         if (prevValue > 0 && isInside([x, y], points)) {
           view[index] = value;
         }
@@ -95,18 +100,18 @@ function updateRegions(value, layersAbove, layersBelow) {
   }
 }
 
-// disable drawing and tracking on mouse up also update regions
+// Disable drawing and tracking on mouse up also update regions
 function mouseUpCallback (e, eventData) {
   $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
   $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
   $(eventData.element).off('CornerstoneImageRendered', onImageRendered);
-  updateRegions(REGION_VALUE, LAYERS_ABOVE, LAYERS_BELOW);
+  updateRegions(eventData.element, REGION_VALUE, LAYERS_ABOVE, LAYERS_BELOW);
   cornerstone.updateImage(eventData.element);
 }
 
 function mouseDownCallback (e, eventData) {
-  if (cornerstoneTools.isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
-    const toolData = cornerstoneTools.getToolState(e.currentTarget, toolType);
+  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
+    const toolData = getToolState(e.currentTarget, toolType);
     toolData.data[0].points = [];
 
     $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
@@ -121,7 +126,7 @@ function mouseDragCallback (e, eventData) {
   e.stopImmediatePropagation(); // Prevent CornerstoneToolsTouchStartActive from killing any press events
 
     // If we have no toolData for this element, return immediately as there is nothing to do
-  const toolData = cornerstoneTools.getToolState(e.currentTarget, toolType);
+  const toolData = getToolState(e.currentTarget, toolType);
 
   if (!toolData) {
     return;
@@ -140,9 +145,9 @@ function enable (element, mouseButtonMask) {
   };
 
     // Clear any currently existing toolData
-  cornerstoneTools.clearToolState(element, toolType);
+  clearToolState(element, toolType);
 
-  cornerstoneTools.addToolState(element, toolType, {
+  addToolState(element, toolType, {
     points: [],
   });
 
@@ -156,9 +161,10 @@ function disable (element) {
 }
 
 // Module/private exports
-cornerstoneTools.regionsDraw = {
-  activate: enable,
-  deactivate: disable,
+
+export default {
   enable,
-  disable
+  disable,
+  activate: enable,
+  deactivate: disable
 };

@@ -148,6 +148,6 @@ export { zoom,
          zoomTouchPinch,
          zoomTouchDrag } from './imageTools/zoom';
 
-export { regionsThreshold, regionsGrow } from './regions/index.js';
+export { regionsThreshold, regionsGrow, regionsDraw } from './regions/index.js';
 
 export { default as version } from './version';
