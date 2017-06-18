@@ -20,51 +20,60 @@ function linearNeighbours (width, height, index) {
   ];
 }
 
-function regionGrowing (regions, slices, point, nextValue) {
-  const { width, height, buffer } = regions;
-  const [x, y, slice] = point;
+function regionGrowing (element, regions, slices, point, nextValue) {
+  return new Promise(function (resolve) {
+    const { width, height, buffer } = regions;
+    const [x, y, slice] = point;
 
-  const view = new Uint8Array(buffer);
+    const view = new Uint8Array(buffer);
 
-  // Calculate linear indices and offsets
-  const sliceSize = width * height;
-  const sliceOffset = sliceSize * slice;
-  const clickIndex = (y * width) + x;
-  const linearIndex = sliceOffset + clickIndex;
-  const fromValue = view[linearIndex];
+    // Calculate linear indices and offsets
+    const sliceSize = width * height;
+    const sliceOffset = sliceSize * slice;
+    const clickIndex = (y * width) + x;
+    const linearIndex = sliceOffset + clickIndex;
+    const fromValue = view[linearIndex];
 
-  // Only continue if we clicked in thresholded area in different color
-  if (fromValue === 0 || fromValue === nextValue) {
-    return;
-  }
+    // Only continue if we clicked in thresholded area in different color
+    if (fromValue === 0 || fromValue === nextValue) {
+      return;
+    }
 
-  // Growing starts at clicked voxel
-  let activeVoxels = [linearIndex];
+    // Growing starts at clicked voxel
+    let activeVoxels = [linearIndex];
+    const ITERATIONS = 1;
 
-  function chunk () {
-    // Set the active voxels to nextValue
-    activeVoxels.forEach((i) => {
-      view[i] = nextValue;
-    });
+    function chunk () {
+      for(let i = 0; i < ITERATIONS; i++) {
+        // While activeVoxels is not empty
+        if (activeVoxels.length === 0) {
+          return resolve();
+        }
 
-    // The new active voxels are neighbours of curent active voxels
-    const nextVoxels = activeVoxels.map(
-      (i) => linearNeighbours(width, height, i)
-    ).reduce( // Flatten the array of arrays to array of indices
-      (acc, cur) => acc.concat(cur), []
-    ).filter( // Remove duplicates
-      (value, index, self) => self.indexOf(value) === index
-    ).filter( // Remove voxels that does not have the correct fromValue
-      (i) => view[i] === fromValue
-    );
+        // Set the active voxels to nextValue
+        activeVoxels.forEach((i) => {
+          view[i] = nextValue;
+        });
 
-    activeVoxels = nextVoxels;
-  }
+        // The new active voxels are neighbours of curent active voxels
+        const nextVoxels = activeVoxels.map(
+          (i) => linearNeighbours(width, height, i)
+        ).reduce( // Flatten the array of arrays to array of indices
+          (acc, cur) => acc.concat(cur), []
+        ).filter( // Remove duplicates
+          (value, index, self) => self.indexOf(value) === index
+        ).filter( // Remove voxels that does not have the correct fromValue
+          (i) => view[i] === fromValue
+        );
 
-  // While activeVoxels is not empty
-  while (activeVoxels.length !== 0) {
+        activeVoxels = nextVoxels;
+      }
+      cornerstone.updateImage(element);
+      setTimeout(chunk, 0);
+    }
+
     chunk();
-  }
+  });
 }
 
 function onMouseDown (e, eventData) {
@@ -78,10 +87,7 @@ function onMouseDown (e, eventData) {
 
     const point = [Math.round(x), Math.round(y), currentImageIdIndex];
 
-    regionGrowing(regionsData, imageIds.length, point, REGION_VALUE);
-
-    // Redraw image
-    cornerstone.updateImage(element);
+    regionGrowing(element, regionsData, imageIds.length, point, REGION_VALUE);
   }
 }
 

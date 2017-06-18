@@ -214,7 +214,10 @@
 169
 170
 171
-172</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+172
+173
+174
+175</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -329,30 +332,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -433,15 +439,15 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 &nbsp;
   const first = <span class="cstat-no" title="statement not covered" >points[0];</span>
   const xFirst = <span class="cstat-no" title="statement not covered" >first[0];</span>
-  const yFirst = <span class="cstat-no" title="statement not covered" >first[1]</span>
+  const yFirst = <span class="cstat-no" title="statement not covered" >first[1];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  context.fillStyle = 'rgba(255,255,255,.2)';</span>
 <span class="cstat-no" title="statement not covered" >  context.strokeStyle = 'white';</span>
 <span class="cstat-no" title="statement not covered" >  context.beginPath();</span>
 <span class="cstat-no" title="statement not covered" >  context.moveTo(xFirst, yFirst);</span>
-<span class="cstat-no" title="statement not covered" >  points.slice(1).forEach(function(point) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >  points.slice(1).forEach(function (point) <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >    context.lineTo(point[0], point[1]);</span>
-  })
+  });
 <span class="cstat-no" title="statement not covered" >  context.closePath();</span>
 <span class="cstat-no" title="statement not covered" >  context.stroke();</span>
 <span class="cstat-no" title="statement not covered" >  context.fill();</span>
@@ -465,8 +471,8 @@ function updateRegions (element, value, layersAbove, layersBelow) <span class="f
   const height = <span class="cstat-no" title="statement not covered" >regions.height;</span>
 &nbsp;
   // Find operation bounds
-  const startSlice = <span class="cstat-no" title="statement not covered" >Math.max(0, slice - layersAbove)</span>
-  const endSlice = <span class="cstat-no" title="statement not covered" >Math.min(numSlices, slice + layersBelow)</span>
+  const startSlice = <span class="cstat-no" title="statement not covered" >Math.max(0, slice - layersAbove);</span>
+  const endSlice = <span class="cstat-no" title="statement not covered" >Math.min(numSlices, slice + layersBelow);</span>
 &nbsp;
   // Setup view into buffer
   const sliceSize = <span class="cstat-no" title="statement not covered" >width * height;</span>
@@ -500,6 +506,7 @@ function mouseUpCallback (e, eventData) <span class="fstat-no" title="function n
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
     const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    toolData.data[0].points = [];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
@@ -520,23 +527,25 @@ function mouseDragCallback (e, eventData) <span class="fstat-no" title="function
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-  var point = <span class="cstat-no" title="statement not covered" >eventData.currentPoints.image;</span>
+  const point = <span class="cstat-no" title="statement not covered" >eventData.currentPoints.image;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  toolData.data[0].points.push([point.x, point.y]);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
 }
 &nbsp;
 function enable (element, mouseButtonMask) <span class="fstat-no" title="function not covered" >{</span>
-  var eventData = <span class="cstat-no" title="statement not covered" >{</span>
-    mouseButtonMask: mouseButtonMask,
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    mouseButtonMask
   };
 &nbsp;
     // Clear any currently existing toolData
 <span class="cstat-no" title="statement not covered" >  clearToolState(element, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  addToolState(element, toolType, {</span>
-    points: [],
+    points: []
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
@@ -562,7 +571,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 16:43:06 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

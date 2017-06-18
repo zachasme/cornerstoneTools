@@ -15844,60 +15844,69 @@ function linearNeighbours(width, height, index) {
   return [index - 1, index + 1, index - width, index + width, index - sliceSize, index + sliceSize];
 }
 
-function regionGrowing(regions, slices, point, nextValue) {
-  var width = regions.width,
-      height = regions.height,
-      buffer = regions.buffer;
+function regionGrowing(element, regions, slices, point, nextValue) {
+  return new Promise(function (resolve) {
+    var width = regions.width,
+        height = regions.height,
+        buffer = regions.buffer;
 
-  var _point = _slicedToArray(point, 3),
-      x = _point[0],
-      y = _point[1],
-      slice = _point[2];
+    var _point = _slicedToArray(point, 3),
+        x = _point[0],
+        y = _point[1],
+        slice = _point[2];
 
-  var view = new Uint8Array(buffer);
+    var view = new Uint8Array(buffer);
 
-  // Calculate linear indices and offsets
-  var sliceSize = width * height;
-  var sliceOffset = sliceSize * slice;
-  var clickIndex = y * width + x;
-  var linearIndex = sliceOffset + clickIndex;
-  var fromValue = view[linearIndex];
+    // Calculate linear indices and offsets
+    var sliceSize = width * height;
+    var sliceOffset = sliceSize * slice;
+    var clickIndex = y * width + x;
+    var linearIndex = sliceOffset + clickIndex;
+    var fromValue = view[linearIndex];
 
-  // Only continue if we clicked in thresholded area in different color
-  if (fromValue === 0 || fromValue === nextValue) {
-    return;
-  }
+    // Only continue if we clicked in thresholded area in different color
+    if (fromValue === 0 || fromValue === nextValue) {
+      return;
+    }
 
-  // Growing starts at clicked voxel
-  var activeVoxels = [linearIndex];
+    // Growing starts at clicked voxel
+    var activeVoxels = [linearIndex];
+    var ITERATIONS = 1;
 
-  function chunk() {
-    // Set the active voxels to nextValue
-    activeVoxels.forEach(function (i) {
-      view[i] = nextValue;
-    });
+    function chunk() {
+      for (var i = 0; i < ITERATIONS; i++) {
+        // While activeVoxels is not empty
+        if (activeVoxels.length === 0) {
+          return resolve();
+        }
 
-    // The new active voxels are neighbours of curent active voxels
-    var nextVoxels = activeVoxels.map(function (i) {
-      return linearNeighbours(width, height, i);
-    }).reduce( // Flatten the array of arrays to array of indices
-    function (acc, cur) {
-      return acc.concat(cur);
-    }, []).filter( // Remove duplicates
-    function (value, index, self) {
-      return self.indexOf(value) === index;
-    }).filter( // Remove voxels that does not have the correct fromValue
-    function (i) {
-      return view[i] === fromValue;
-    });
+        // Set the active voxels to nextValue
+        activeVoxels.forEach(function (i) {
+          view[i] = nextValue;
+        });
 
-    activeVoxels = nextVoxels;
-  }
+        // The new active voxels are neighbours of curent active voxels
+        var nextVoxels = activeVoxels.map(function (i) {
+          return linearNeighbours(width, height, i);
+        }).reduce( // Flatten the array of arrays to array of indices
+        function (acc, cur) {
+          return acc.concat(cur);
+        }, []).filter( // Remove duplicates
+        function (value, index, self) {
+          return self.indexOf(value) === index;
+        }).filter( // Remove voxels that does not have the correct fromValue
+        function (i) {
+          return view[i] === fromValue;
+        });
 
-  // While activeVoxels is not empty
-  while (activeVoxels.length !== 0) {
+        activeVoxels = nextVoxels;
+      }
+      cornerstone.updateImage(element);
+      setTimeout(chunk, 0);
+    }
+
     chunk();
-  }
+  });
 }
 
 function onMouseDown(e, eventData) {
@@ -15920,10 +15929,7 @@ function onMouseDown(e, eventData) {
 
     var point = [Math.round(x), Math.round(y), currentImageIdIndex];
 
-    regionGrowing(regionsData, imageIds.length, point, REGION_VALUE);
-
-    // Redraw image
-    cornerstone.updateImage(element);
+    regionGrowing(element, regionsData, imageIds.length, point, REGION_VALUE);
   }
 }
 
