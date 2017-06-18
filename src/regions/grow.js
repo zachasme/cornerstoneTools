@@ -2,7 +2,7 @@ import * as cornerstone from 'cornerstone-core';
 import { getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 
-const toolType = 'regionsGrow';
+// UNUSED const toolType = 'regionsGrow';
 
 const REGION_VALUE = 2;
 
@@ -58,7 +58,7 @@ function regionGrowing (regions, slices, point, nextValue) {
       (i) => view[i] === fromValue
     );
 
-    return nextVoxels;
+    activeVoxels = nextVoxels;
   }
 
   // While activeVoxels is not empty

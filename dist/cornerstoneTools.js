@@ -15746,6 +15746,7 @@ function mouseUpCallback(e, eventData) {
 function mouseDownCallback(e, eventData) {
   if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
     var toolData = (0, _toolState.getToolState)(e.currentTarget, toolType);
+
     toolData.data[0].points = [];
 
     $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
@@ -15767,9 +15768,11 @@ function mouseDragCallback(e, eventData) {
   }
 
   var point = eventData.currentPoints.image;
+
   toolData.data[0].points.push([point.x, point.y]);
 
   cornerstone.updateImage(eventData.element);
+
   return false; // False = causes jquery to preventDefault() and stopPropagation() this event
 }
 
@@ -15830,7 +15833,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var toolType = 'regionsGrow';
+// UNUSED const toolType = 'regionsGrow';
 
 var REGION_VALUE = 2;
 
@@ -15888,7 +15891,7 @@ function regionGrowing(regions, slices, point, nextValue) {
       return view[i] === fromValue;
     });
 
-    return nextVoxels;
+    activeVoxels = nextVoxels;
   }
 
   // While activeVoxels is not empty
@@ -15966,7 +15969,7 @@ var _toolState = __webpack_require__(1);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var toolType = 'thresholding';
+// UNUSED const toolType = 'thresholding';
 
 var CALCIUM_THRESHOLD_HU = 130;
 var LABEL_SIZE_BYTES = 8;
@@ -15976,7 +15979,7 @@ var REGION_COLORS_RGBA = [[255, 10, 255], // Unused?
 /**
  * Perform the thresholding on a stack
  */
-function performThresholding(stack, callback) {
+function performThresholding(stack, afterwards) {
   var width = void 0,
       height = void 0;
   var imageIds = stack.imageIds;
@@ -16019,8 +16022,8 @@ function performThresholding(stack, callback) {
         height: height
       };
 
-      if (callback) {
-        callback(result);
+      if (afterwards) {
+        afterwards(result);
       }
 
       return result;
@@ -16086,6 +16089,7 @@ function onImageRendered(e, eventData) {
 function enable(element) {
   // First check that there is stack data available
   var stackData = (0, _toolState.getToolState)(element, 'stack');
+
   if (!stackData || !stackData.data || !stackData.data.length) {
     return;
   }
@@ -16096,16 +16100,19 @@ function enable(element) {
     width: null,
     height: null
   };
+
   (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
 
   var stack = stackData.data[0];
+
   performThresholding(stack, function (regions) {
-    // add threshold data to tool state
+    // Add threshold data to tool state
     var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+
     thresholdingData.data[0].buffer = regions.buffer;
     thresholdingData.data[0].width = regions.width;
     thresholdingData.data[0].height = regions.height;
-    // draw regions on image
+    // Draw regions on image
     $(element).on('CornerstoneImageRendered', onImageRendered);
 
     // Update the element to apply the viewport and tool changes
@@ -16115,13 +16122,14 @@ function enable(element) {
 
 function disable(element) {
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+
   // If there is actually something to disable, disable it
   if (thresholdingData && thresholdingData.data.length) {
     thresholdingData.data[0].enabled = false;
   }
 }
 
-// module/private exports
+// Module/private exports
 exports.default = {
   activate: enable,
   deactivate: disable,

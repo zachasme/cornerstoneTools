@@ -46,15 +46,15 @@ function onImageRendered (e, eventData) {
 
   const first = points[0];
   const xFirst = first[0];
-  const yFirst = first[1]
+  const yFirst = first[1];
 
   context.fillStyle = 'rgba(255,255,255,.2)';
   context.strokeStyle = 'white';
   context.beginPath();
   context.moveTo(xFirst, yFirst);
-  points.slice(1).forEach(function(point) {
+  points.slice(1).forEach(function (point) {
     context.lineTo(point[0], point[1]);
-  })
+  });
   context.closePath();
   context.stroke();
   context.fill();
@@ -78,8 +78,8 @@ function updateRegions (element, value, layersAbove, layersBelow) {
   const height = regions.height;
 
   // Find operation bounds
-  const startSlice = Math.max(0, slice - layersAbove)
-  const endSlice = Math.min(numSlices, slice + layersBelow)
+  const startSlice = Math.max(0, slice - layersAbove);
+  const endSlice = Math.min(numSlices, slice + layersBelow);
 
   // Setup view into buffer
   const sliceSize = width * height;
@@ -113,6 +113,7 @@ function mouseUpCallback (e, eventData) {
 function mouseDownCallback (e, eventData) {
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
     const toolData = getToolState(e.currentTarget, toolType);
+
     toolData.data[0].points = [];
 
     $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
@@ -133,23 +134,25 @@ function mouseDragCallback (e, eventData) {
     return;
   }
 
-  var point = eventData.currentPoints.image;
+  const point = eventData.currentPoints.image;
+
   toolData.data[0].points.push([point.x, point.y]);
 
   cornerstone.updateImage(eventData.element);
+
   return false; // False = causes jquery to preventDefault() and stopPropagation() this event
 }
 
 function enable (element, mouseButtonMask) {
-  var eventData = {
-    mouseButtonMask: mouseButtonMask,
+  const eventData = {
+    mouseButtonMask
   };
 
     // Clear any currently existing toolData
   clearToolState(element, toolType);
 
   addToolState(element, toolType, {
-    points: [],
+    points: []
   });
 
   $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
