@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/imageTools/wwwc.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/imageTools/</a> wwwc.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.76% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.76% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import simpleMouseButtonTool from './simpleMouseButtonTool.js';
+import touchDragTool from './touchDragTool.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+&nbsp;
+function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+}
+&nbsp;
+function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+  }
+}
+&nbsp;
+function defaultStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
+    // Here we normalize the ww/wc adjustments so the same number of on screen pixels
+    // Adjusts the same percentage of the dynamic range of the image.  This is needed to
+    // Provide consistency for the ww/wc tool regardless of the dynamic range (e.g. an 8 bit
+    // Image will feel the same as a 16 bit image would)
+  const maxVOI = <span class="cstat-no" title="statement not covered" >eventData.image.maxPixelValue * eventData.image.slope + eventData.image.intercept;</span>
+  const minVOI = <span class="cstat-no" title="statement not covered" >eventData.image.minPixelValue * eventData.image.slope + eventData.image.intercept;</span>
+  const imageDynamicRange = <span class="cstat-no" title="statement not covered" >maxVOI - minVOI;</span>
+  const multiplier = <span class="cstat-no" title="statement not covered" >imageDynamicRange / 1024;</span>
+&nbsp;
+  const deltaX = <span class="cstat-no" title="statement not covered" >eventData.deltaPoints.page.x * multiplier;</span>
+  const deltaY = <span class="cstat-no" title="statement not covered" >eventData.deltaPoints.page.y * multiplier;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  eventData.viewport.voi.windowWidth += (deltaX);</span>
+<span class="cstat-no" title="statement not covered" >  eventData.viewport.voi.windowCenter += (deltaY);</span>
+}
+&nbsp;
+function mouseDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  wwwc.strategy(eventData);</span>
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, eventData.viewport);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
+}
+&nbsp;
+function touchDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  e.stopImmediatePropagation(); </span>// Prevent CornerstoneToolsTouchStartActive from killing any press events
+  const dragData = <span class="cstat-no" title="statement not covered" >eventData;</span>
+&nbsp;
+  const maxVOI = <span class="cstat-no" title="statement not covered" >dragData.image.maxPixelValue * dragData.image.slope + dragData.image.intercept;</span>
+  const minVOI = <span class="cstat-no" title="statement not covered" >dragData.image.minPixelValue * dragData.image.slope + dragData.image.intercept;</span>
+  const imageDynamicRange = <span class="cstat-no" title="statement not covered" >maxVOI - minVOI;</span>
+  const multiplier = <span class="cstat-no" title="statement not covered" >imageDynamicRange / 1024;</span>
+  const deltaX = <span class="cstat-no" title="statement not covered" >dragData.deltaPoints.page.x * multiplier;</span>
+  const deltaY = <span class="cstat-no" title="statement not covered" >dragData.deltaPoints.page.y * multiplier;</span>
+&nbsp;
+  const config = <span class="cstat-no" title="statement not covered" >wwwc.getConfiguration();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (config.orientation) {</span>
+<span class="cstat-no" title="statement not covered" >    if (config.orientation === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      dragData.viewport.voi.windowWidth += (deltaX);</span>
+<span class="cstat-no" title="statement not covered" >      dragData.viewport.voi.windowCenter += (deltaY);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      dragData.viewport.voi.windowWidth += (deltaY);</span>
+<span class="cstat-no" title="statement not covered" >      dragData.viewport.voi.windowCenter += (deltaX);</span>
+    }
+  } else {
+<span class="cstat-no" title="statement not covered" >    dragData.viewport.voi.windowWidth += (deltaX);</span>
+<span class="cstat-no" title="statement not covered" >    dragData.viewport.voi.windowCenter += (deltaY);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(dragData.element, dragData.viewport);</span>
+}
+&nbsp;
+const wwwc = simpleMouseButtonTool(mouseDownCallback);
+&nbsp;
+wwwc.strategies = {
+  default: defaultStrategy
+};
+&nbsp;
+wwwc.strategy = defaultStrategy;
+&nbsp;
+const wwwcTouchDrag = touchDragTool(touchDragCallback);
+&nbsp;
+export {
+  wwwc,
+  wwwcTouchDrag
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

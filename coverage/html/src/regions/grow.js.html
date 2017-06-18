@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/regions/grow.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/regions/</a> grow.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/40</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import { getToolState } from '../stateManagement/toolState';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+&nbsp;
+const toolType = 'regionsGrow';
+&nbsp;
+const REGION_VALUE = 2;
+&nbsp;
+// Get neighbour linear indices
+function linearNeighbours (width, height, index) <span class="fstat-no" title="function not covered" >{</span>
+  const sliceSize = <span class="cstat-no" title="statement not covered" >width * height;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return [</span>
+    index - 1,
+    index + 1,
+    index - width,
+    index + width,
+    index - sliceSize,
+    index + sliceSize
+  ];
+}
+&nbsp;
+function regionGrowing (regions, slices, point, nextValue) <span class="fstat-no" title="function not covered" >{</span>
+  const { width, height, buffer } = <span class="cstat-no" title="statement not covered" >regions;</span>
+  const [x, y, slice] = <span class="cstat-no" title="statement not covered" >point;</span>
+&nbsp;
+  const view = <span class="cstat-no" title="statement not covered" >new Uint8Array(buffer);</span>
+&nbsp;
+  // Calculate linear indices and offsets
+  const sliceSize = <span class="cstat-no" title="statement not covered" >width * height;</span>
+  const sliceOffset = <span class="cstat-no" title="statement not covered" >sliceSize * slice;</span>
+  const clickIndex = <span class="cstat-no" title="statement not covered" >(y * width) + x;</span>
+  const linearIndex = <span class="cstat-no" title="statement not covered" >sliceOffset + clickIndex;</span>
+  const fromValue = <span class="cstat-no" title="statement not covered" >view[linearIndex];</span>
+&nbsp;
+  // Only continue if we clicked in thresholded area in different color
+<span class="cstat-no" title="statement not covered" >  if (fromValue === 0 || fromValue === nextValue) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  // Growing starts at clicked voxel
+  let activeVoxels = <span class="cstat-no" title="statement not covered" >[linearIndex];</span>
+&nbsp;
+  function chunk () <span class="fstat-no" title="function not covered" >{</span>
+    // Set the active voxels to nextValue
+<span class="cstat-no" title="statement not covered" >    activeVoxels.forEach((i) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      view[i] = nextValue;</span>
+    });
+&nbsp;
+    // The new active voxels are neighbours of curent active voxels
+    const nextVoxels = <span class="cstat-no" title="statement not covered" >activeVoxels.map(</span>
+      (i) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >linearNeighbours(width, height, i)</span></span>
+    ).reduce( // Flatten the array of arrays to array of indices
+      (acc, cur) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >acc.concat(cur),</span></span> []
+    ).filter( // Remove duplicates
+      (value, index, self) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >self.indexOf(value) === index</span></span>
+    ).filter( // Remove voxels that does not have the correct fromValue
+      (i) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >view[i] === fromValue</span></span>
+    );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return nextVoxels;</span>
+  }
+&nbsp;
+  // While activeVoxels is not empty
+<span class="cstat-no" title="statement not covered" >  while (activeVoxels.length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >    chunk();</span>
+  }
+}
+&nbsp;
+function onMouseDown (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const { element } = <span class="cstat-no" title="statement not covered" >eventData;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
+    const [stackData] = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack').data;</span>
+    const [regionsData] = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions').data;</span>
+    const { currentImageIdIndex, imageIds } = <span class="cstat-no" title="statement not covered" >stackData;</span>
+    const { x, y } = <span class="cstat-no" title="statement not covered" >eventData.currentPoints.image;</span>
+&nbsp;
+    const point = <span class="cstat-no" title="statement not covered" >[Math.round(x), Math.round(y), currentImageIdIndex];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    regionGrowing(regionsData, imageIds.length, point, REGION_VALUE);</span>
+&nbsp;
+    // Redraw image
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+  }
+}
+&nbsp;
+function enable (element, mouseButtonMask) <span class="fstat-no" title="function not covered" >{</span>
+  const stackData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
+  const regionsData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
+&nbsp;
+  // First check that there is stack/regions data available
+<span class="cstat-no" title="statement not covered" >  if (!stackData || !stackData.data || !stackData.data.length ||</span>
+      !regionsData || !regionsData.data || !regionsData.data.length) {
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);</span>
+}
+&nbsp;
+function disable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', onMouseDown);</span>
+}
+&nbsp;
+export default {
+  enable,
+  disable,
+  activate: enable,
+  deactivate: disable
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/imageTools/magnify.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/imageTools/</a> magnify.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.44% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/90</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.44% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/90</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import touchDragTool from './touchDragTool.js';
+import { getBrowserInfo } from '../util/getMaxSimultaneousRequests.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+&nbsp;
+let configuration = {
+  magnifySize: 100,
+  magnificationLevel: 2
+};
+&nbsp;
+let browserName;
+&nbsp;
+let currentPoints;
+&nbsp;
+/** Remove the magnifying glass when the mouse event ends */
+function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >  hideTool(eventData);</span>
+}
+&nbsp;
+function hideTool (eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).find('.magnifyTool').hide();</span>
+    // Re-enable the mouse cursor
+<span class="cstat-no" title="statement not covered" >  document.body.style.cursor = 'default';</span>
+}
+&nbsp;
+/** Draw the magnifying glass on mouseDown, and begin tracking mouse movements */
+function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseDrag', eventData, dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseUp', eventData, mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseClick', eventData, mouseUpCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    currentPoints = eventData.currentPoints;</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneNewImage', eventData, newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >    drawMagnificationTool(eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+  }
+}
+&nbsp;
+function newImageCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  eventData.currentPoints = currentPoints;</span>
+<span class="cstat-no" title="statement not covered" >  drawMagnificationTool(eventData);</span>
+}
+&nbsp;
+function dragEndCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsDragEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsTouchEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >  hideTool(eventData);</span>
+}
+&nbsp;
+/** Drag callback is triggered by both the touch and mouse magnify tools */
+function dragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  currentPoints = eventData.currentPoints;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  drawMagnificationTool(eventData);</span>
+<span class="cstat-no" title="statement not covered" >  if (eventData.isTouchEvent === true) {</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsDragEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsTouchEnd', dragEndCallback);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+}
+&nbsp;
+/** Draws the magnifying glass */
+function drawMagnificationTool (eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const magnifyCanvas = <span class="cstat-no" title="statement not covered" >$(eventData.element).find('.magnifyTool').get(0);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!magnifyCanvas) {</span>
+<span class="cstat-no" title="statement not covered" >    createMagnificationCanvas(eventData.element);</span>
+  }
+&nbsp;
+  const config = <span class="cstat-no" title="statement not covered" >magnify.getConfiguration();</span>
+&nbsp;
+  const magnifySize = <span class="cstat-no" title="statement not covered" >config.magnifySize;</span>
+  const magnificationLevel = <span class="cstat-no" title="statement not covered" >config.magnificationLevel;</span>
+&nbsp;
+    // The 'not' magnifyTool class here is necessary because cornerstone places
+    // No classes of it's own on the canvas we want to select
+  const canvas = <span class="cstat-no" title="statement not covered" >$(eventData.element).find('canvas').not('.magnifyTool').get(0);</span>
+  const context = <span class="cstat-no" title="statement not covered" >canvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
+&nbsp;
+  const zoomCtx = <span class="cstat-no" title="statement not covered" >magnifyCanvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  zoomCtx.setTransform(1, 0, 0, 1, 0, 0);</span>
+&nbsp;
+  const getSize = <span class="cstat-no" title="statement not covered" >magnifySize / magnificationLevel;</span>
+&nbsp;
+    // Calculate the on-canvas location of the mouse pointer / touch
+  const canvasLocation = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(eventData.element, eventData.currentPoints.image);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (eventData.isTouchEvent === true) {</span>
+<span class="cstat-no" title="statement not covered" >    canvasLocation.y -= 1.25 * getSize;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  canvasLocation.x = Math.max(canvasLocation.x, 0);</span>
+<span class="cstat-no" title="statement not covered" >  canvasLocation.x = Math.min(canvasLocation.x, canvas.width);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  canvasLocation.y = Math.max(canvasLocation.y, 0);</span>
+<span class="cstat-no" title="statement not covered" >  canvasLocation.y = Math.min(canvasLocation.y, canvas.height);</span>
+&nbsp;
+    // Clear the rectangle
+<span class="cstat-no" title="statement not covered" >  zoomCtx.clearRect(0, 0, magnifySize, magnifySize);</span>
+<span class="cstat-no" title="statement not covered" >  zoomCtx.fillStyle = 'transparent';</span>
+&nbsp;
+    // Fill it with the pixels that the mouse is clicking on
+<span class="cstat-no" title="statement not covered" >  zoomCtx.fillRect(0, 0, magnifySize, magnifySize);</span>
+&nbsp;
+  const copyFrom = <span class="cstat-no" title="statement not covered" >{</span>
+    x: canvasLocation.x - 0.5 * getSize,
+    y: canvasLocation.y - 0.5 * getSize
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (browserName === 'Safari') {</span>
+        // Safari breaks when trying to copy pixels with negative indices
+        // This prevents proper Magnify usage
+<span class="cstat-no" title="statement not covered" >    copyFrom.x = Math.max(copyFrom.x, 0);</span>
+<span class="cstat-no" title="statement not covered" >    copyFrom.y = Math.max(copyFrom.y, 0);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  copyFrom.x = Math.min(copyFrom.x, canvas.width);</span>
+<span class="cstat-no" title="statement not covered" >  copyFrom.y = Math.min(copyFrom.y, canvas.height);</span>
+&nbsp;
+  const scaledMagnify = <span class="cstat-no" title="statement not covered" >{</span>
+    x: (canvas.width - copyFrom.x) * magnificationLevel,
+    y: (canvas.height - copyFrom.y) * magnificationLevel
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  zoomCtx.drawImage(canvas, copyFrom.x, copyFrom.y, canvas.width - copyFrom.x, canvas.height - copyFrom.y, 0, 0, scaledMagnify.x, scaledMagnify.y);</span>
+&nbsp;
+    // Place the magnification tool at the same location as the pointer
+<span class="cstat-no" title="statement not covered" >  magnifyCanvas.style.top = `${canvasLocation.y - 0.5 * magnifySize}px`;</span>
+<span class="cstat-no" title="statement not covered" >  magnifyCanvas.style.left = `${canvasLocation.x - 0.5 * magnifySize}px`;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  magnifyCanvas.style.display = 'block';</span>
+&nbsp;
+    // Hide the mouse cursor, so the user can see better
+<span class="cstat-no" title="statement not covered" >  document.body.style.cursor = 'none';</span>
+}
+&nbsp;
+/** Creates the magnifying glass canvas */
+function createMagnificationCanvas (element) <span class="fstat-no" title="function not covered" >{</span>
+    // If the magnifying glass canvas doesn't already exist
+<span class="cstat-no" title="statement not covered" >  if ($(element).find('.magnifyTool').length === 0) {</span>
+        // Create a canvas and append it as a child to the element
+    const magnifyCanvas = <span class="cstat-no" title="statement not covered" >document.createElement('canvas');</span>
+        // The magnifyTool class is used to find the canvas later on
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    magnifyCanvas.classList.add('magnifyTool');</span>
+&nbsp;
+    const config = <span class="cstat-no" title="statement not covered" >magnify.getConfiguration();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    magnifyCanvas.width = config.magnifySize;</span>
+<span class="cstat-no" title="statement not covered" >    magnifyCanvas.height = config.magnifySize;</span>
+&nbsp;
+        // Make sure position is absolute so the canvas can follow the mouse / touch
+<span class="cstat-no" title="statement not covered" >    magnifyCanvas.style.position = 'absolute';</span>
+<span class="cstat-no" title="statement not covered" >    element.appendChild(magnifyCanvas);</span>
+  }
+}
+&nbsp;
+/** Find the magnifying glass canvas and remove it */
+function removeMagnificationCanvas (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(element).find('.magnifyTool').remove();</span>
+}
+&nbsp;
+// --- Mouse tool activate / disable --- //
+function disable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  removeMagnificationCanvas(element);</span>
+}
+&nbsp;
+function enable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (!browserName) {</span>
+    const infoString = <span class="cstat-no" title="statement not covered" >getBrowserInfo();</span>
+    const info = <span class="cstat-no" title="statement not covered" >infoString.split(' ');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    browserName = info[0];</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  createMagnificationCanvas(element);</span>
+}
+&nbsp;
+function activate (element, mouseButtonMask) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    mouseButtonMask
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  createMagnificationCanvas(element);</span>
+}
+&nbsp;
+// --- Touch tool activate / disable --- //
+function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return configuration;</span>
+}
+&nbsp;
+function setConfiguration (config) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  configuration = config;</span>
+}
+&nbsp;
+// Module exports
+const magnify = {
+  enable,
+  activate,
+  deactivate: disable,
+  disable,
+  getConfiguration,
+  setConfiguration
+};
+&nbsp;
+const options = {
+  fireOnTouchStart: true,
+  activateCallback: createMagnificationCanvas,
+  disableCallback: removeMagnificationCanvas
+};
+&nbsp;
+const magnifyTouchDrag = touchDragTool(dragCallback, options);
+&nbsp;
+export {
+  magnify,
+  magnifyTouchDrag
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

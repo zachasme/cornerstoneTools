@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/stackTools/playClip.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/stackTools/</a> playClip.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.1% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/91</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/68</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.1% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/91</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint no-bitwise:0 */
+import * as cornerstone from 'cornerstone-core';
+import loadHandlerManager from '../stateManagement/loadHandlerManager';
+import { addToolState, getToolState } from '../stateManagement/toolState';
+&nbsp;
+const toolType = 'playClip';
+&nbsp;
+/**
+ * [private] Turns a Frame Time Vector (0018,1065) array into a normalized array of timeouts. Each element
+ * ... of the resulting array represents the amount of time each frame will remain on the screen.
+ * @param {Array} vector A Frame Time Vector (0018,1065) as specified in section C.7.6.5.1.2 of DICOM standard.
+ * @param {Number} speed A speed factor which will be applied to each element of the resulting array.
+ * @return {Array} An array with timeouts for each animation frame.
+ */
+function getPlayClipTimeouts (vector, speed) <span class="fstat-no" title="function not covered" >{</span>
+&nbsp;
+  let i;
+  let sample;
+  let delay;
+  let sum = <span class="cstat-no" title="statement not covered" >0;</span>
+  const limit = <span class="cstat-no" title="statement not covered" >vector.length;</span>
+  const timeouts = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+    // Initialize time varying to false
+<span class="cstat-no" title="statement not covered" >  timeouts.isTimeVarying = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof speed !== 'number' || speed &lt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >    speed = 1;</span>
+  }
+&nbsp;
+    // First element of a frame time vector must be discarded
+<span class="cstat-no" title="statement not covered" >  for (i = 1; i &lt; limit; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    delay = (Number(vector[i]) / speed) | 0; </span>// Integral part only
+<span class="cstat-no" title="statement not covered" >    timeouts.push(delay);</span>
+<span class="cstat-no" title="statement not covered" >    if (i === 1) { // Use first item as a sample for comparison</span>
+<span class="cstat-no" title="statement not covered" >      sample = delay;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (delay !== sample) {</span>
+<span class="cstat-no" title="statement not covered" >      timeouts.isTimeVarying = true;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    sum += delay;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (timeouts.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >    if (timeouts.isTimeVarying) {</span>
+            // If it's a time varying vector, make the last item an average...
+<span class="cstat-no" title="statement not covered" >      delay = (sum / timeouts.length) | 0;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      delay = timeouts[0];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    timeouts.push(delay);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return timeouts;</span>
+&nbsp;
+}
+&nbsp;
+/**
+ * [private] Performs the heavy lifting of stopping an ongoing animation.
+ * @param {Object} playClipData The data from playClip that needs to be stopped.
+ * @return void
+ */
+function stopClipWithData (playClipData) <span class="fstat-no" title="function not covered" >{</span>
+  const id = <span class="cstat-no" title="statement not covered" >playClipData.intervalId;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof id !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    playClipData.intervalId = undefined;</span>
+<span class="cstat-no" title="statement not covered" >    if (playClipData.usingFrameTimeVector) {</span>
+<span class="cstat-no" title="statement not covered" >      clearTimeout(id);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      clearInterval(id);</span>
+    }
+  }
+}
+&nbsp;
+/**
+ * [private] Trigger playClip tool stop event.
+ * @param element
+ * @return void
+ */
+function triggerStopEvent (element) <span class="fstat-no" title="function not covered" >{</span>
+  const eventDetail = <span class="cstat-no" title="statement not covered" >{</span>
+    element
+  };
+&nbsp;
+  const event = <span class="cstat-no" title="statement not covered" >$.Event('CornerstoneToolsClipStopped', eventDetail);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).trigger(event, eventDetail);</span>
+}
+&nbsp;
+/**
+ * Starts playing a clip or adjusts the frame rate of an already playing clip.  framesPerSecond is
+ * optional and defaults to 30 if not specified.  A negative framesPerSecond will play the clip in reverse.
+ * The element must be a stack of images
+ * @param element
+ * @param framesPerSecond
+ */
+function playClip (element, framesPerSecond) <span class="fstat-no" title="function not covered" >{</span>
+  let playClipData;
+  let playClipTimeouts;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (element === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('playClip: element must not be undefined');</span>
+  }
+&nbsp;
+  const stackToolData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const stackData = <span class="cstat-no" title="statement not covered" >stackToolData.data[0];</span>
+&nbsp;
+  const playClipToolData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!playClipToolData || !playClipToolData.data || !playClipToolData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    playClipData = {</span>
+      intervalId: undefined,
+      framesPerSecond: 30,
+      lastFrameTimeStamp: undefined,
+      frameRate: 0,
+      frameTimeVector: undefined,
+      ignoreFrameTimeVector: false,
+      usingFrameTimeVector: false,
+      speed: 1,
+      reverse: false,
+      loop: true
+    };
+<span class="cstat-no" title="statement not covered" >    addToolState(element, toolType, playClipData);</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    playClipData = playClipToolData.data[0];</span>
+        // Make sure the specified clip is not running before any property update
+<span class="cstat-no" title="statement not covered" >    stopClipWithData(playClipData);</span>
+  }
+&nbsp;
+    // If a framesPerSecond is specified and is valid, update the playClipData now
+<span class="cstat-no" title="statement not covered" >  if (framesPerSecond &lt; 0 || framesPerSecond &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >    playClipData.framesPerSecond = Number(framesPerSecond);</span>
+<span class="cstat-no" title="statement not covered" >    playClipData.reverse = playClipData.framesPerSecond &lt; 0;</span>
+        // If framesPerSecond is given, frameTimeVector will be ignored...
+<span class="cstat-no" title="statement not covered" >    playClipData.ignoreFrameTimeVector = true;</span>
+  }
+&nbsp;
+    // Determine if frame time vector should be used instead of a fixed frame rate...
+<span class="cstat-no" title="statement not covered" >  if (</span>
+        playClipData.ignoreFrameTimeVector !== true &amp;&amp;
+        playClipData.frameTimeVector &amp;&amp;
+        playClipData.frameTimeVector.length === stackData.imageIds.length
+    ) {
+<span class="cstat-no" title="statement not covered" >    playClipTimeouts = getPlayClipTimeouts(playClipData.frameTimeVector, playClipData.speed);</span>
+  }
+&nbsp;
+    // This function encapsulates the frame rendering logic...
+  const playClipAction = <span class="cstat-no" title="statement not covered" >() =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+&nbsp;
+        // Hoisting of context variables
+    let loader,
+      viewport,
+      startLoadingHandler,
+      endLoadingHandler,
+      errorLoadingHandler,
+      newImageIdIndex = <span class="cstat-no" title="statement not covered" >stackData.currentImageIdIndex;</span>
+&nbsp;
+    const imageCount = <span class="cstat-no" title="statement not covered" >stackData.imageIds.length;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (playClipData.reverse) {</span>
+<span class="cstat-no" title="statement not covered" >      newImageIdIndex--;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      newImageIdIndex++;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!playClipData.loop &amp;&amp; (newImageIdIndex &lt; 0 || newImageIdIndex &gt;= imageCount)) {</span>
+<span class="cstat-no" title="statement not covered" >      stopClipWithData(playClipData);</span>
+<span class="cstat-no" title="statement not covered" >      triggerStopEvent(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+        // Loop around if we go outside the stack
+<span class="cstat-no" title="statement not covered" >    if (newImageIdIndex &gt;= imageCount) {</span>
+<span class="cstat-no" title="statement not covered" >      newImageIdIndex = 0;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (newImageIdIndex &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      newImageIdIndex = imageCount - 1;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (newImageIdIndex !== stackData.currentImageIdIndex) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      startLoadingHandler = loadHandlerManager.getStartLoadHandler();</span>
+<span class="cstat-no" title="statement not covered" >      endLoadingHandler = loadHandlerManager.getEndLoadHandler();</span>
+<span class="cstat-no" title="statement not covered" >      errorLoadingHandler = loadHandlerManager.getErrorLoadingHandler();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (startLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >        startLoadingHandler(element);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      viewport = cornerstone.getViewport(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (stackData.preventCache === true) {</span>
+<span class="cstat-no" title="statement not covered" >        loader = cornerstone.loadImage(stackData.imageIds[newImageIdIndex]);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        loader = cornerstone.loadAndCacheImage(stackData.imageIds[newImageIdIndex]);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      loader.then(function (image) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        stackData.currentImageIdIndex = newImageIdIndex;</span>
+<span class="cstat-no" title="statement not covered" >        cornerstone.displayImage(element, image, viewport);</span>
+<span class="cstat-no" title="statement not covered" >        if (endLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >          endLoadingHandler(element, image);</span>
+        }
+      }, function (error) <span class="fstat-no" title="function not covered" >{</span>
+        const imageId = <span class="cstat-no" title="statement not covered" >stackData.imageIds[newImageIdIndex];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (errorLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >          errorLoadingHandler(element, imageId, error);</span>
+        }
+      });
+&nbsp;
+    }
+&nbsp;
+  };
+&nbsp;
+    // If playClipTimeouts array is available, not empty and its elements are NOT uniform ...
+    // ... (at least one timeout is different from the others), use alternate setTimeout implementation
+<span class="cstat-no" title="statement not covered" >  if (playClipTimeouts &amp;&amp; playClipTimeouts.length &gt; 0 &amp;&amp; playClipTimeouts.isTimeVarying) {</span>
+<span class="cstat-no" title="statement not covered" >    playClipData.usingFrameTimeVector = true;</span>
+<span class="cstat-no" title="statement not covered" >    playClipData.intervalId = setTimeout(function playClipTimeoutHandler () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      playClipData.intervalId = setTimeout(playClipTimeoutHandler, playClipTimeouts[stackData.currentImageIdIndex]);</span>
+<span class="cstat-no" title="statement not covered" >      playClipAction();</span>
+    }, 0);
+  } else {
+        // ... otherwise user setInterval implementation which is much more efficient.
+<span class="cstat-no" title="statement not covered" >    playClipData.usingFrameTimeVector = false;</span>
+<span class="cstat-no" title="statement not covered" >    playClipData.intervalId = setInterval(playClipAction, 1000 / Math.abs(playClipData.framesPerSecond));</span>
+  }
+&nbsp;
+}
+&nbsp;
+/**
+ * Stops an already playing clip.
+ * * @param element
+ */
+function stopClip (element) <span class="fstat-no" title="function not covered" >{</span>
+&nbsp;
+  const playClipToolData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!playClipToolData || !playClipToolData.data || !playClipToolData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  stopClipWithData(playClipToolData.data[0]);</span>
+&nbsp;
+}
+&nbsp;
+export {
+    playClip,
+    stopClip
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

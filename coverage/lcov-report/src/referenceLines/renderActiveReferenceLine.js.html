@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/referenceLines/renderActiveReferenceLine.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/referenceLines/</a> renderActiveReferenceLine.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/32</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import calculateReferenceLine from './calculateReferenceLine.js';
+import toolColors from '../stateManagement/toolColors.js';
+import toolStyle from '../stateManagement/toolStyle.js';
+&nbsp;
+// Renders the active reference line
+export default function (context, eventData, targetElement, referenceElement) <span class="fstat-no" title="function not covered" >{</span>
+  const targetImage = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(targetElement).image;</span>
+  const referenceImage = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(referenceElement).image;</span>
+&nbsp;
+    // Make sure the images are actually loaded for the target and reference
+<span class="cstat-no" title="statement not covered" >  if (!targetImage || !referenceImage) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const targetImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', targetImage.imageId);</span>
+  const referenceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', referenceImage.imageId);</span>
+&nbsp;
+    // Make sure the target and reference actually have image plane metadata
+<span class="cstat-no" title="statement not covered" >  if (!targetImagePlane ||</span>
+        !referenceImagePlane ||
+        !targetImagePlane.rowCosines ||
+        !targetImagePlane.columnCosines ||
+        !targetImagePlane.imagePositionPatient ||
+        !referenceImagePlane.rowCosines ||
+        !referenceImagePlane.columnCosines ||
+        !referenceImagePlane.imagePositionPatient) {
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+    // The image planes must be in the same frame of reference
+<span class="cstat-no" title="statement not covered" >  if (targetImagePlane.frameOfReferenceUID !== referenceImagePlane.frameOfReferenceUID) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+    // The image plane normals must be &gt; 30 degrees apart
+  const targetNormal = <span class="cstat-no" title="statement not covered" >targetImagePlane.rowCosines.clone().cross(targetImagePlane.columnCosines);</span>
+  const referenceNormal = <span class="cstat-no" title="statement not covered" >referenceImagePlane.rowCosines.clone().cross(referenceImagePlane.columnCosines);</span>
+  let angleInRadians = <span class="cstat-no" title="statement not covered" >targetNormal.angleTo(referenceNormal);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  angleInRadians = Math.abs(angleInRadians);</span>
+<span class="cstat-no" title="statement not covered" >  if (angleInRadians &lt; 0.5) { // 0.5 radians = ~30 degrees</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const referenceLine = <span class="cstat-no" title="statement not covered" >calculateReferenceLine(targetImagePlane, referenceImagePlane);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!referenceLine) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const refLineStartCanvas = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(eventData.element, referenceLine.start);</span>
+  const refLineEndCanvas = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(eventData.element, referenceLine.end);</span>
+&nbsp;
+  const color = <span class="cstat-no" title="statement not covered" >toolColors.getActiveColor();</span>
+  const lineWidth = <span class="cstat-no" title="statement not covered" >toolStyle.getToolWidth();</span>
+&nbsp;
+    // Draw the referenceLines
+<span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.save();</span>
+<span class="cstat-no" title="statement not covered" >  context.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >  context.strokeStyle = color;</span>
+<span class="cstat-no" title="statement not covered" >  context.lineWidth = lineWidth;</span>
+<span class="cstat-no" title="statement not covered" >  context.moveTo(refLineStartCanvas.x, refLineStartCanvas.y);</span>
+<span class="cstat-no" title="statement not covered" >  context.lineTo(refLineEndCanvas.x, refLineEndCanvas.y);</span>
+<span class="cstat-no" title="statement not covered" >  context.stroke();</span>
+<span class="cstat-no" title="statement not covered" >  context.restore();</span>
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

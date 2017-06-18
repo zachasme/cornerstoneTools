@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/timeSeriesTools/incrementTimePoint.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/timeSeriesTools/</a> incrementTimePoint.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/35</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import { getToolState } from '../stateManagement/toolState';
+import loadHandlerManager from '../stateManagement/loadHandlerManager';
+&nbsp;
+export default function (element, timePoints, wrap) <span class="fstat-no" title="function not covered" >{</span>
+  const toolData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'timeSeries');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!toolData || !toolData.data || !toolData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const timeSeriesData = <span class="cstat-no" title="statement not covered" >toolData.data[0];</span>
+  const currentStack = <span class="cstat-no" title="statement not covered" >timeSeriesData.stacks[timeSeriesData.currentStackIndex];</span>
+  const currentImageIdIndex = <span class="cstat-no" title="statement not covered" >currentStack.currentImageIdIndex;</span>
+  let newStackIndex = <span class="cstat-no" title="statement not covered" >timeSeriesData.currentStackIndex + timePoints;</span>
+&nbsp;
+    // Loop around if we go outside the stack
+<span class="cstat-no" title="statement not covered" >  if (wrap) {</span>
+<span class="cstat-no" title="statement not covered" >    if (newStackIndex &gt;= timeSeriesData.stacks.length) {</span>
+<span class="cstat-no" title="statement not covered" >      newStackIndex = 0;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (newStackIndex &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      newStackIndex = timeSeriesData.stacks.length - 1;</span>
+    }
+  } else {
+<span class="cstat-no" title="statement not covered" >    newStackIndex = Math.min(timeSeriesData.stacks.length - 1, newStackIndex);</span>
+<span class="cstat-no" title="statement not covered" >    newStackIndex = Math.max(0, newStackIndex);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (newStackIndex !== timeSeriesData.currentStackIndex) {</span>
+    const viewport = <span class="cstat-no" title="statement not covered" >cornerstone.getViewport(element);</span>
+    const newStack = <span class="cstat-no" title="statement not covered" >timeSeriesData.stacks[newStackIndex];</span>
+&nbsp;
+    const startLoadingHandler = <span class="cstat-no" title="statement not covered" >loadHandlerManager.getStartLoadHandler();</span>
+    const endLoadingHandler = <span class="cstat-no" title="statement not covered" >loadHandlerManager.getEndLoadHandler();</span>
+    const errorLoadingHandler = <span class="cstat-no" title="statement not covered" >loadHandlerManager.getErrorLoadingHandler();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (startLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >      startLoadingHandler(element);</span>
+    }
+&nbsp;
+    let loader;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (newStack.preventCache === true) {</span>
+<span class="cstat-no" title="statement not covered" >      loader = cornerstone.loadImage(newStack.imageIds[currentImageIdIndex]);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      loader = cornerstone.loadAndCacheImage(newStack.imageIds[currentImageIdIndex]);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    loader.then(function (image) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      if (timeSeriesData.currentImageIdIndex !== currentImageIdIndex) {</span>
+<span class="cstat-no" title="statement not covered" >        newStack.currentImageIdIndex = currentImageIdIndex;</span>
+<span class="cstat-no" title="statement not covered" >        timeSeriesData.currentStackIndex = newStackIndex;</span>
+<span class="cstat-no" title="statement not covered" >        cornerstone.displayImage(element, image, viewport);</span>
+<span class="cstat-no" title="statement not covered" >        if (endLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >          endLoadingHandler(element, image);</span>
+        }
+      }
+    }, function (error) <span class="fstat-no" title="function not covered" >{</span>
+      const imageId = <span class="cstat-no" title="statement not covered" >newStack.imageIds[currentImageIdIndex];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (errorLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >        errorLoadingHandler(element, imageId, error);</span>
+      }
+    });
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,14 +1,14 @@
-/*! cornerstone-tools - 0.8.6 - 2017-06-14 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-06-18 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("Hammer"));
+		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
 	else if(typeof define === 'function' && define.amd)
-		define("cornerstoneTools", ["Hammer"], factory);
+		define("cornerstoneTools", ["cornerstone-core", "cornerstone-math", "hammerjs"], factory);
 	else if(typeof exports === 'object')
-		exports["cornerstoneTools"] = factory(require("Hammer"));
+		exports["cornerstoneTools"] = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
 	else
-		root["cornerstoneTools"] = factory(root["Hammer"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_115__) {
+		root["cornerstoneTools"] = factory(root["cornerstone"], root["cornerstoneMath"], root["Hammer"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_117__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -74,11 +74,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 106);
+/******/ 	return __webpack_require__(__webpack_require__.s = 108);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,7 +95,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getElementToolStateManager = exports.setElementToolStateManager = exports.clearToolState = exports.removeToolState = exports.getToolState = exports.addToolState = undefined;
 
-var _imageIdSpecificStateManager = __webpack_require__(14);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _imageIdSpecificStateManager = __webpack_require__(16);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function getElementToolStateManager(element) {
   var enabledImage = cornerstone.getEnabledElement(element);
@@ -179,7 +191,7 @@ exports.setElementToolStateManager = setElementToolStateManager;
 exports.getElementToolStateManager = getElementToolStateManager;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -196,7 +208,13 @@ exports.default = function (which, mouseButtonMask) {
 };
 
 /***/ }),
-/* 2 */
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -251,7 +269,7 @@ var toolColors = {
 exports.default = toolColors;
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -289,7 +307,7 @@ var toolStyle = {
 exports.default = toolStyle;
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -371,14 +389,14 @@ exports.default = function (context, textLines, x, y, color, options) {
   return boundingBox;
 };
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -423,16 +441,22 @@ exports.default = function (context, renderData, handles, color, options) {
   });
 };
 
-var _toolStyle = __webpack_require__(3);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 var handleRadius = 6;
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -769,44 +793,50 @@ exports.default = function (mouseToolInterface) {
   return toolInterface;
 };
 
-var _toolCoordinates = __webpack_require__(26);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolCoordinates = __webpack_require__(29);
 
 var _toolCoordinates2 = _interopRequireDefault(_toolCoordinates);
 
-var _getHandleNearImagePoint = __webpack_require__(13);
+var _getHandleNearImagePoint = __webpack_require__(15);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _handleActivator = __webpack_require__(23);
+var _handleActivator = __webpack_require__(26);
 
 var _handleActivator2 = _interopRequireDefault(_handleActivator);
 
-var _moveHandle = __webpack_require__(19);
+var _moveHandle = __webpack_require__(21);
 
 var _moveHandle2 = _interopRequireDefault(_moveHandle);
 
-var _moveNewHandle = __webpack_require__(20);
+var _moveNewHandle = __webpack_require__(22);
 
 var _moveNewHandle2 = _interopRequireDefault(_moveNewHandle);
 
-var _moveAllHandles = __webpack_require__(24);
+var _moveAllHandles = __webpack_require__(27);
 
 var _moveAllHandles2 = _interopRequireDefault(_moveAllHandles);
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -816,29 +846,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _getHandleNearImagePoint = __webpack_require__(13);
+var _getHandleNearImagePoint = __webpack_require__(15);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _touchMoveHandle = __webpack_require__(40);
+var _touchMoveHandle = __webpack_require__(44);
 
 var _touchMoveHandle2 = _interopRequireDefault(_touchMoveHandle);
 
-var _moveNewHandleTouch = __webpack_require__(21);
+var _moveNewHandleTouch = __webpack_require__(23);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
-var _touchMoveAllHandles = __webpack_require__(39);
+var _touchMoveAllHandles = __webpack_require__(43);
 
 var _touchMoveAllHandles2 = _interopRequireDefault(_touchMoveAllHandles);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function deactivateAllHandles(handles) {
   Object.keys(handles).forEach(function (name) {
@@ -1217,7 +1253,7 @@ function touchTool(touchToolInterface) {
 exports.default = touchTool;
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1266,7 +1302,7 @@ var loadHandlerManager = {
 exports.default = loadHandlerManager;
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1321,7 +1357,7 @@ exports.default = function (touchDragCallback, options) {
 };
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1357,8 +1393,14 @@ exports.default = function (renderData, handles) {
   return handleOutsideImage;
 };
 
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1402,7 +1444,7 @@ exports.default = function (mouseDownCallback) {
 };
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1451,7 +1493,7 @@ var textStyle = {
 exports.default = textStyle;
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1498,14 +1540,24 @@ exports.default = function (element, handles, coords, distanceThreshold) {
   return nearbyHandle;
 };
 
-var _pointInsideBoundingBox = __webpack_require__(16);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _pointInsideBoundingBox = __webpack_require__(18);
 
 var _pointInsideBoundingBox2 = _interopRequireDefault(_pointInsideBoundingBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1514,6 +1566,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.globalImageIdSpecificToolStateManager = exports.newImageIdSpecificToolStateManager = undefined;
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 // This implements an imageId specific tool state management strategy.  This means that
 // Measurements data is tied to a specific imageId and only visible for enabled elements
 // That are displaying that imageId.
@@ -1618,7 +1678,7 @@ exports.newImageIdSpecificToolStateManager = newImageIdSpecificToolStateManager;
 exports.globalImageIdSpecificToolStateManager = globalImageIdSpecificToolStateManager;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1676,13 +1736,19 @@ exports.default = function (image, storedPixelValue) {
   return suv;
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 // Returns a decimal value given a fractional value
 function fracToDec(fractionalValue) {
   return parseFloat('.' + fractionalValue);
 }
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1700,8 +1766,14 @@ exports.default = function (handle, coords) {
   return cornerstoneMath.point.insideRect(coords, handle.boundingBox);
 };
 
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1734,8 +1806,14 @@ exports.default = function (onImageRendered) {
   return toolInterface;
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1768,7 +1846,7 @@ exports.default = function (mouseWheelCallback) {
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1832,8 +1910,14 @@ exports.default = function (mouseEventData, toolType, data, handle, doneMovingCa
   $(element).on('CornerstoneToolsMouseClick', mouseUpCallback);
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1926,8 +2010,14 @@ exports.default = function (mouseEventData, toolType, data, handle, doneMovingCa
   }
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2051,8 +2141,122 @@ exports.default = function (eventData, toolType, data, handle, doneMovingCallbac
   $(element).on('CornerstoneToolsToolDeactivated', toolDeactivatedCallback);
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 22 */
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var configMaxSimultaneousRequests = void 0;
+
+// Maximum concurrent connections to the same server
+// Information from http://sgdev-blog.blogspot.fr/2014/01/maximum-concurrent-connection-to-same.html
+var maxSimultaneousRequests = {
+  default: 6,
+  IE: {
+    9: 6,
+    10: 8,
+    default: 8
+  },
+  Firefox: {
+    default: 6
+  },
+  Opera: {
+    10: 8,
+    11: 6,
+    12: 6,
+    default: 6
+  },
+  Chrome: {
+    default: 6
+  },
+  Safari: {
+    default: 6
+  }
+};
+
+// Browser name / version detection
+// http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
+function getBrowserInfo() {
+  var ua = navigator.userAgent;
+  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+  var tem = void 0;
+
+  if (/trident/i.test(M[1])) {
+    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+
+    return 'IE ' + (tem[1] || '');
+  }
+
+  if (M[1] === 'Chrome') {
+    tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+    if (tem !== null) {
+      return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    }
+  }
+
+  M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+  if ((tem = ua.match(/version\/(\d+)/i)) !== null) {
+    M.splice(1, 1, tem[1]);
+  }
+
+  return M.join(' ');
+}
+
+function setMaxSimultaneousRequests(newMaxSimultaneousRequests) {
+  configMaxSimultaneousRequests = newMaxSimultaneousRequests;
+}
+
+function getMaxSimultaneousRequests() {
+  if (configMaxSimultaneousRequests) {
+    return configMaxSimultaneousRequests;
+  }
+
+  return getDefaultSimultaneousRequests();
+}
+
+function getDefaultSimultaneousRequests() {
+  var infoString = getBrowserInfo();
+  var info = infoString.split(' ');
+  var browserName = info[0];
+  var browserVersion = info[1];
+  var browserData = maxSimultaneousRequests[browserName];
+
+  if (!browserData) {
+    return maxSimultaneousRequests.default;
+  }
+
+  if (!browserData[browserVersion]) {
+    return browserData.default;
+  }
+
+  return browserData[browserVersion];
+}
+
+function isMobileDevice() {
+  var pattern = new RegExp('Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini');
+
+  return pattern.test(navigator.userAgent);
+}
+
+exports.getDefaultSimultaneousRequests = getDefaultSimultaneousRequests;
+exports.getMaxSimultaneousRequests = getMaxSimultaneousRequests;
+exports.setMaxSimultaneousRequests = setMaxSimultaneousRequests;
+exports.getBrowserInfo = getBrowserInfo;
+exports.isMobileDevice = isMobileDevice;
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2114,7 +2318,7 @@ exports.default = function (touchDragCallback, options) {
 };
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2147,7 +2351,7 @@ exports.default = function (element, handles, canvasPoint, distanceThreshold) {
   return false;
 };
 
-var _getHandleNearImagePoint = __webpack_require__(13);
+var _getHandleNearImagePoint = __webpack_require__(15);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
@@ -2170,7 +2374,7 @@ function getActiveHandle(handles) {
 }
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2246,16 +2450,22 @@ exports.default = function (mouseEventData, data, toolData, toolType, options, d
   return true;
 };
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2265,7 +2475,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getMaxSimultaneousRequests = __webpack_require__(29);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _getMaxSimultaneousRequests = __webpack_require__(24);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var requestPool = {
   interaction: [],
@@ -2469,7 +2685,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2496,7 +2712,7 @@ var toolCoordinates = {
 exports.default = toolCoordinates;
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2571,16 +2787,22 @@ exports.default = function (element, timePoints, wrap) {
   }
 };
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _loadHandlerManager = __webpack_require__(8);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2604,120 +2826,14 @@ exports.default = function (points) {
   };
 };
 
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
+var _cornerstoneMath = __webpack_require__(3);
 
-"use strict";
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.isMobileDevice = exports.getBrowserInfo = exports.getMaxSimultaneousRequests = exports.getDefaultSimultaneousRequests = undefined;
-
-var _stackPrefetch = __webpack_require__(42);
-
-var _stackPrefetch2 = _interopRequireDefault(_stackPrefetch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Maximum concurrent connections to the same server
-// Information from http://sgdev-blog.blogspot.fr/2014/01/maximum-concurrent-connection-to-same.html
-var maxSimultaneousRequests = {
-  default: 6,
-  IE: {
-    9: 6,
-    10: 8,
-    default: 8
-  },
-  Firefox: {
-    default: 6
-  },
-  Opera: {
-    10: 8,
-    11: 6,
-    12: 6,
-    default: 6
-  },
-  Chrome: {
-    default: 6
-  },
-  Safari: {
-    default: 6
-  }
-};
-
-// Browser name / version detection
-// http://stackoverflow.com/questions/2400935/browser-detection-in-javascript
-function getBrowserInfo() {
-  var ua = navigator.userAgent;
-  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-  var tem = void 0;
-
-  if (/trident/i.test(M[1])) {
-    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-
-    return 'IE ' + (tem[1] || '');
-  }
-
-  if (M[1] === 'Chrome') {
-    tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
-    if (tem !== null) {
-      return tem.slice(1).join(' ').replace('OPR', 'Opera');
-    }
-  }
-
-  M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-  if ((tem = ua.match(/version\/(\d+)/i)) !== null) {
-    M.splice(1, 1, tem[1]);
-  }
-
-  return M.join(' ');
-}
-
-function getMaxSimultaneousRequests() {
-  var config = _stackPrefetch2.default.getConfiguration();
-
-  // Give preference to user-chosen values
-  if (config.maxSimultaneousRequests) {
-    return config.maxSimultaneousRequests;
-  }
-
-  return getDefaultSimultaneousRequests();
-}
-
-function getDefaultSimultaneousRequests() {
-  var infoString = getBrowserInfo();
-  var info = infoString.split(' ');
-  var browserName = info[0];
-  var browserVersion = info[1];
-  var browserData = maxSimultaneousRequests[browserName];
-
-  if (!browserData) {
-    return maxSimultaneousRequests.default;
-  }
-
-  if (!browserData[browserVersion]) {
-    return browserData.default;
-  }
-
-  return browserData[browserVersion];
-}
-
-function isMobileDevice() {
-  var pattern = new RegExp('Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini');
-
-  return pattern.test(navigator.userAgent);
-}
-
-exports.getDefaultSimultaneousRequests = getDefaultSimultaneousRequests;
-exports.getMaxSimultaneousRequests = getMaxSimultaneousRequests;
-exports.getBrowserInfo = getBrowserInfo;
-exports.isMobileDevice = isMobileDevice;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2762,8 +2878,14 @@ exports.default = function (element, x, y, width, height) {
   return storedPixelData;
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2789,7 +2911,7 @@ exports.default = function (e) {
 };
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2828,7 +2950,7 @@ exports.default = function (ellipse, location) {
 };
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2840,6 +2962,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.projectPatientPointToImagePlane = projectPatientPointToImagePlane;
 exports.imagePointToPatientPoint = imagePointToPatientPoint;
 exports.planePlaneIntersection = planePlaneIntersection;
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 // Projects a patient point to an image point
 function projectPatientPointToImagePlane(patientPoint, imagePlane) {
   var point = patientPoint.clone().sub(imagePlane.imagePositionPatient);
@@ -2960,7 +3089,7 @@ function planePlaneIntersection(targetImagePlane, referenceImagePlane) {
 }
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2977,7 +3106,43 @@ exports.default = function (value, precision) {
 };
 
 /***/ }),
-/* 35 */
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (element, images) {
+  var toolData = (0, _toolState.getToolState)(element, 'stack');
+
+  if (!toolData || !toolData.data || !toolData.data.length) {
+    return;
+  }
+
+  var stackData = toolData.data[0];
+
+  var newImageIdIndex = stackData.currentImageIdIndex + images;
+
+  newImageIdIndex = Math.min(stackData.imageIds.length - 1, newImageIdIndex);
+  newImageIdIndex = Math.max(0, newImageIdIndex);
+
+  (0, _scrollToIndex2.default)(element, newImageIdIndex);
+};
+
+var _scrollToIndex = __webpack_require__(52);
+
+var _scrollToIndex2 = _interopRequireDefault(_scrollToIndex);
+
+var _toolState = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3010,7 +3175,46 @@ exports.default = function (doubleTapCallback) {
 };
 
 /***/ }),
-/* 36 */
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (keyDownCallback) {
+  var configuration = {};
+
+  var toolInterface = {
+    activate: function activate(element) {
+      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
+      $(element).on('CornerstoneToolsKeyDown', keyDownCallback);
+    },
+    disable: function disable(element) {
+      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
+    },
+    enable: function enable(element) {
+      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
+    },
+    deactivate: function deactivate(element) {
+      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
+    },
+    getConfiguration: function getConfiguration() {
+      return configuration;
+    },
+    setConfiguration: function setConfiguration(config) {
+      configuration = config;
+    }
+  };
+
+  return toolInterface;
+};
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3229,40 +3433,46 @@ exports.default = function (mouseToolInterface, preventHandleOutsideImage) {
   return toolInterface;
 };
 
-var _toolCoordinates = __webpack_require__(26);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolCoordinates = __webpack_require__(29);
 
 var _toolCoordinates2 = _interopRequireDefault(_toolCoordinates);
 
-var _getHandleNearImagePoint = __webpack_require__(13);
+var _getHandleNearImagePoint = __webpack_require__(15);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _handleActivator = __webpack_require__(23);
+var _handleActivator = __webpack_require__(26);
 
 var _handleActivator2 = _interopRequireDefault(_handleActivator);
 
-var _moveHandle = __webpack_require__(19);
+var _moveHandle = __webpack_require__(21);
 
 var _moveHandle2 = _interopRequireDefault(_moveHandle);
 
-var _moveAllHandles = __webpack_require__(24);
+var _moveAllHandles = __webpack_require__(27);
 
 var _moveAllHandles2 = _interopRequireDefault(_moveAllHandles);
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 37 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3295,7 +3505,7 @@ exports.default = function (touchPinchCallback) {
 };
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3379,7 +3589,7 @@ var preventGhostClick = {
 exports.default = preventGhostClick;
 
 /***/ }),
-/* 39 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3454,16 +3664,22 @@ exports.default = function (touchEventData, data, toolData, toolType, deleteIfHa
   return true;
 };
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 40 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3554,6 +3770,12 @@ exports.default = function (touchEventData, toolType, data, handle, doneMovingCa
   animate(time, handle, runAnimation, enabledElement, targetLocation);
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /*
 * Define the runAnimation boolean as an object
 * so that it can be modified by reference
@@ -3602,7 +3824,7 @@ function animate(lastTime, handle, runAnimation, enabledElement, targetLocation)
 }
 
 /***/ }),
-/* 41 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3612,11 +3834,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getOrientationString = __webpack_require__(109);
+var _getOrientationString = __webpack_require__(111);
 
 var _getOrientationString2 = _interopRequireDefault(_getOrientationString);
 
-var _invertOrientationString = __webpack_require__(110);
+var _invertOrientationString = __webpack_require__(112);
 
 var _invertOrientationString2 = _interopRequireDefault(_invertOrientationString);
 
@@ -3630,338 +3852,7 @@ var orientation = {
 exports.default = orientation;
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _requestPoolManager = __webpack_require__(25);
-
-var _requestPoolManager2 = _interopRequireDefault(_requestPoolManager);
-
-var _loadHandlerManager = __webpack_require__(8);
-
-var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
-
-var _toolState = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var toolType = 'stackPrefetch';
-var requestType = 'prefetch';
-
-var configuration = {};
-
-var resetPrefetchTimeout = void 0;
-var resetPrefetchDelay = 300;
-
-function range(lowEnd, highEnd) {
-  // Javascript version of Python's range function
-  // http://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-an-array-based-on-suppl
-  lowEnd = Math.round(lowEnd) || 0;
-  highEnd = Math.round(highEnd) || 0;
-
-  var arr = [];
-  var c = highEnd - lowEnd + 1;
-
-  if (c <= 0) {
-    return arr;
-  }
-
-  while (c--) {
-    arr[c] = highEnd--;
-  }
-
-  return arr;
-}
-
-var max = function max(arr) {
-  return Math.max.apply(null, arr);
-};
-
-var min = function min(arr) {
-  return Math.min.apply(null, arr);
-};
-
-function nearestIndex(arr, x) {
-  // Return index of nearest values in array
-  // http://stackoverflow.com/questions/25854212/return-index-of-nearest-values-in-an-array
-  var l = [];
-  var h = [];
-
-  arr.forEach(function (v) {
-    if (v < x) {
-      l.push(v);
-    } else if (v > x) {
-      h.push(v);
-    }
-  });
-
-  return {
-    low: arr.indexOf(max(l)),
-    high: arr.indexOf(min(h))
-  };
-}
-
-function prefetch(element) {
-  // Check to make sure stack data exists
-  var stackData = (0, _toolState.getToolState)(element, 'stack');
-
-  if (!stackData || !stackData.data || !stackData.data.length) {
-    return;
-  }
-
-  var stack = stackData.data[0];
-
-  // Get the stackPrefetch tool data
-  var stackPrefetchData = (0, _toolState.getToolState)(element, toolType);
-
-  if (!stackPrefetchData) {
-    return;
-  }
-
-  var stackPrefetch = stackPrefetchData.data[0];
-
-  // If all the requests are complete, disable the stackPrefetch tool
-  if (!stackPrefetch || !stackPrefetch.indicesToRequest || !stackPrefetch.indicesToRequest.length) {
-    stackPrefetch.enabled = false;
-  }
-
-  // Make sure the tool is still enabled
-  if (stackPrefetch.enabled === false) {
-    return;
-  }
-
-  // Remove an imageIdIndex from the list of indices to request
-  // This fires when the individual image loading deferred is resolved
-  function removeFromList(imageIdIndex) {
-    var index = stackPrefetch.indicesToRequest.indexOf(imageIdIndex);
-
-    if (index > -1) {
-      // Don't remove last element if imageIdIndex not found
-      stackPrefetch.indicesToRequest.splice(index, 1);
-    }
-  }
-
-  // Remove all already cached images from the
-  // IndicesToRequest array
-  stackPrefetchData.data[0].indicesToRequest.sort(function (a, b) {
-    return a - b;
-  });
-  var indicesToRequestCopy = stackPrefetch.indicesToRequest.slice();
-
-  indicesToRequestCopy.forEach(function (imageIdIndex) {
-    var imageId = stack.imageIds[imageIdIndex];
-
-    if (!imageId) {
-      return;
-    }
-
-    var imagePromise = cornerstone.imageCache.getImagePromise(imageId);
-
-    if (imagePromise && imagePromise.state() === 'resolved') {
-      removeFromList(imageIdIndex);
-    }
-  });
-
-  // Stop here if there are no images left to request
-  // After those in the cache have been removed
-  if (!stackPrefetch.indicesToRequest.length) {
-    return;
-  }
-
-  // Clear the requestPool of prefetch requests
-  _requestPoolManager2.default.clearRequestStack(requestType);
-
-  // Identify the nearest imageIdIndex to the currentImageIdIndex
-  var nearest = nearestIndex(stackPrefetch.indicesToRequest, stack.currentImageIdIndex);
-
-  var imageId = void 0;
-  var nextImageIdIndex = void 0;
-  var preventCache = false;
-
-  function doneCallback(image) {
-    // Console.log('prefetch done: ' + image.imageId);
-    var imageIdIndex = stack.imageIds.indexOf(image.imageId);
-
-    removeFromList(imageIdIndex);
-  }
-
-  // Retrieve the errorLoadingHandler if one exists
-  var errorLoadingHandler = _loadHandlerManager2.default.getErrorLoadingHandler();
-
-  function failCallback(error) {
-    console.log('prefetch errored: ' + error);
-    if (errorLoadingHandler) {
-      errorLoadingHandler(element, imageId, error, 'stackPrefetch');
-    }
-  }
-
-  // Prefetch images around the current image (before and after)
-  var lowerIndex = nearest.low;
-  var higherIndex = nearest.high;
-
-  while (lowerIndex > 0 || higherIndex < stackPrefetch.indicesToRequest.length) {
-    if (lowerIndex >= 0) {
-      nextImageIdIndex = stackPrefetch.indicesToRequest[lowerIndex--];
-      imageId = stack.imageIds[nextImageIdIndex];
-      _requestPoolManager2.default.addRequest(element, imageId, requestType, preventCache, doneCallback, failCallback);
-    }
-
-    if (higherIndex < stackPrefetch.indicesToRequest.length) {
-      nextImageIdIndex = stackPrefetch.indicesToRequest[higherIndex++];
-      imageId = stack.imageIds[nextImageIdIndex];
-      _requestPoolManager2.default.addRequest(element, imageId, requestType, preventCache, doneCallback, failCallback);
-    }
-  }
-
-  // Try to start the requestPool's grabbing procedure
-  // In case it isn't already running
-  _requestPoolManager2.default.startGrabbing();
-}
-
-function promiseRemovedHandler(e, eventData) {
-  // When an imagePromise has been pushed out of the cache, re-add its index
-  // It to the indicesToRequest list so that it will be retrieved later if the
-  // CurrentImageIdIndex is changed to an image nearby
-  var element = e.data.element;
-  var stackData = void 0;
-
-  try {
-    // It will throw an exception in some cases (eg: thumbnails)
-    stackData = (0, _toolState.getToolState)(element, 'stack');
-  } catch (error) {
-    return;
-  }
-
-  if (!stackData || !stackData.data || !stackData.data.length) {
-    return;
-  }
-
-  var stack = stackData.data[0];
-  var imageIdIndex = stack.imageIds.indexOf(eventData.imageId);
-
-  // Make sure the image that was removed is actually in this stack
-  // Before adding it to the indicesToRequest array
-  if (imageIdIndex < 0) {
-    return;
-  }
-
-  var stackPrefetchData = (0, _toolState.getToolState)(element, toolType);
-
-  if (!stackPrefetchData || !stackPrefetchData.data || !stackPrefetchData.data.length) {
-    return;
-  }
-
-  stackPrefetchData.data[0].indicesToRequest.push(imageIdIndex);
-}
-
-function onImageUpdated(e) {
-  // Start prefetching again (after a delay)
-  // When the user has scrolled to a new image
-  clearTimeout(resetPrefetchTimeout);
-  resetPrefetchTimeout = setTimeout(function () {
-    var element = e.target;
-
-    // If playClip is enabled and the user loads a different series in the viewport
-    // An exception will be thrown because the element will not be enabled anymore
-    try {
-      prefetch(element);
-    } catch (error) {
-      return;
-    }
-  }, resetPrefetchDelay);
-}
-
-function enable(element) {
-  // Clear old prefetch data. Skipping this can cause problems when changing the series inside an element
-  var stackPrefetchDataArray = (0, _toolState.getToolState)(element, toolType);
-
-  stackPrefetchDataArray.data = [];
-
-  // First check that there is stack data available
-  var stackData = (0, _toolState.getToolState)(element, 'stack');
-
-  if (!stackData || !stackData.data || !stackData.data.length) {
-    return;
-  }
-
-  var stack = stackData.data[0];
-
-  // Check if we are allowed to cache images in this stack
-  if (stack.preventCache === true) {
-    console.warn('A stack that should not be cached was given the stackPrefetch');
-
-    return;
-  }
-
-  // Use the currentImageIdIndex from the stack as the initalImageIdIndex
-  var stackPrefetchData = {
-    indicesToRequest: range(0, stack.imageIds.length - 1),
-    enabled: true,
-    direction: 1
-  };
-
-  // Remove the currentImageIdIndex from the list to request
-  var indexOfCurrentImage = stackPrefetchData.indicesToRequest.indexOf(stack.currentImageIdIndex);
-
-  stackPrefetchData.indicesToRequest.splice(indexOfCurrentImage, 1);
-
-  (0, _toolState.addToolState)(element, toolType, stackPrefetchData);
-
-  prefetch(element);
-
-  $(element).off('CornerstoneNewImage', onImageUpdated);
-  $(element).on('CornerstoneNewImage', onImageUpdated);
-
-  $(cornerstone).off('CornerstoneImageCachePromiseRemoved', promiseRemovedHandler);
-  $(cornerstone).on('CornerstoneImageCachePromiseRemoved', {
-    element: element
-  }, promiseRemovedHandler);
-}
-
-function disable(element) {
-  clearTimeout(resetPrefetchTimeout);
-  $(element).off('CornerstoneNewImage', onImageUpdated);
-
-  $(cornerstone).off('CornerstoneImageCachePromiseRemoved', promiseRemovedHandler);
-
-  var stackPrefetchData = (0, _toolState.getToolState)(element, toolType);
-  // If there is actually something to disable, disable it
-
-  if (stackPrefetchData && stackPrefetchData.data.length) {
-    stackPrefetchData.data[0].enabled = false;
-
-    // Clear current prefetch requests from the requestPool
-    _requestPoolManager2.default.clearRequestStack(requestType);
-  }
-}
-
-function getConfiguration() {
-  return configuration;
-}
-
-function setConfiguration(config) {
-  configuration = config;
-}
-
-// Module/private exports
-var stackPrefetch = {
-  enable: enable,
-  disable: disable,
-  getConfiguration: getConfiguration,
-  setConfiguration: setConfiguration
-};
-
-exports.default = stackPrefetch;
-
-/***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3972,31 +3863,31 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.stackScrollMultiTouch = exports.stackScrollTouchDrag = exports.stackScrollWheel = exports.stackScroll = undefined;
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _multiTouchDragTool = __webpack_require__(22);
+var _multiTouchDragTool = __webpack_require__(25);
 
 var _multiTouchDragTool2 = _interopRequireDefault(_multiTouchDragTool);
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _mouseWheelTool = __webpack_require__(18);
+var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _scroll = __webpack_require__(49);
+var _scroll = __webpack_require__(37);
 
 var _scroll2 = _interopRequireDefault(_scroll);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4096,7 +3987,7 @@ exports.stackScrollTouchDrag = stackScrollTouchDrag;
 exports.stackScrollMultiTouch = stackScrollMultiTouch;
 
 /***/ }),
-/* 44 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4151,14 +4042,14 @@ exports.default = function (sp, ellipse) {
   };
 };
 
-var _pointInEllipse = __webpack_require__(32);
+var _pointInEllipse = __webpack_require__(34);
 
 var _pointInEllipse2 = _interopRequireDefault(_pointInEllipse);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4203,7 +4094,7 @@ exports.default = function (context, start, end, color, lineWidth) {
 };
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4224,7 +4115,7 @@ exports.default = function (context, start, color, lineWidth) {
 };
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4259,7 +4150,7 @@ exports.default = function (context, x, y, w, h) {
 };
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4308,44 +4199,14 @@ exports.default = function (element, x, y, width, height) {
   return luminance;
 };
 
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
+var _cornerstoneCore = __webpack_require__(0);
 
-"use strict";
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (element, images) {
-  var toolData = (0, _toolState.getToolState)(element, 'stack');
-
-  if (!toolData || !toolData.data || !toolData.data.length) {
-    return;
-  }
-
-  var stackData = toolData.data[0];
-
-  var newImageIdIndex = stackData.currentImageIdIndex + images;
-
-  newImageIdIndex = Math.min(stackData.imageIds.length - 1, newImageIdIndex);
-  newImageIdIndex = Math.max(0, newImageIdIndex);
-
-  (0, _scrollToIndex2.default)(element, newImageIdIndex);
-};
-
-var _scrollToIndex = __webpack_require__(50);
-
-var _scrollToIndex2 = _interopRequireDefault(_scrollToIndex);
-
-var _toolState = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4448,22 +4309,28 @@ exports.default = function (element, newImageIdIndex) {
   $(element).trigger('CornerstoneStackScroll', eventData);
 };
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _requestPoolManager = __webpack_require__(25);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _requestPoolManager = __webpack_require__(28);
 
 var _requestPoolManager2 = _interopRequireDefault(_requestPoolManager);
 
-var _loadHandlerManager = __webpack_require__(8);
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
-var _stackScroll = __webpack_require__(43);
+var _stackScroll = __webpack_require__(46);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4489,8 +4356,14 @@ exports.default = function (enabledElement, context, fontSize) {
   };
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4513,10 +4386,10 @@ exports.default = function (targetImagePlane, referenceImagePlane) {
   };
 };
 
-var _pointProjector = __webpack_require__(33);
+var _pointProjector = __webpack_require__(35);
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4584,22 +4457,28 @@ exports.default = function (context, eventData, targetElement, referenceElement)
   context.restore();
 };
 
-var _calculateReferenceLine = __webpack_require__(52);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _calculateReferenceLine = __webpack_require__(54);
 
 var _calculateReferenceLine2 = _interopRequireDefault(_calculateReferenceLine);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4610,41 +4489,51 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.angleTouch = exports.angle = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _roundToDecimal = __webpack_require__(34);
+var _roundToDecimal = __webpack_require__(36);
 
 var _roundToDecimal2 = _interopRequireDefault(_roundToDecimal);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'angle';
 
@@ -4814,7 +4703,7 @@ exports.angle = angle;
 exports.angleTouch = angleTouch;
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4825,64 +4714,73 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.arrowAnnotateTouch = exports.arrowAnnotate = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawArrow = __webpack_require__(45);
+var _drawArrow = __webpack_require__(48);
 
 var _drawArrow2 = _interopRequireDefault(_drawArrow);
 
-var _moveNewHandle = __webpack_require__(20);
+var _moveNewHandle = __webpack_require__(22);
 
 var _moveNewHandle2 = _interopRequireDefault(_moveNewHandle);
 
-var _moveNewHandleTouch = __webpack_require__(21);
+var _moveNewHandleTouch = __webpack_require__(23);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _pointInsideBoundingBox = __webpack_require__(16);
+var _pointInsideBoundingBox = __webpack_require__(18);
 
 var _pointInsideBoundingBox2 = _interopRequireDefault(_pointInsideBoundingBox);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint no-alert:0 */
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+/* eslint no-alert:0 */
 var toolType = 'arrowAnnotate';
 
 // Define a callback to get your text annotation
@@ -5337,7 +5235,7 @@ exports.arrowAnnotate = arrowAnnotate;
 exports.arrowAnnotateTouch = arrowAnnotateTouch;
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5348,19 +5246,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.crosshairsTouch = exports.crosshairs = undefined;
 
-var _loadHandlerManager = __webpack_require__(8);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _pointProjector = __webpack_require__(33);
+var _pointProjector = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'crosshairs';
 
@@ -5564,7 +5468,7 @@ exports.crosshairs = crosshairs;
 exports.crosshairsTouch = crosshairsTouch;
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5574,11 +5478,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _doubleTapTool = __webpack_require__(35);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _doubleTapTool = __webpack_require__(38);
 
 var _doubleTapTool2 = _interopRequireDefault(_doubleTapTool);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function fitToWindowStrategy(eventData) {
   cornerstone.fitToWindow(eventData.element);
@@ -5601,7 +5511,7 @@ doubleTapZoom.strategy = fitToWindowStrategy;
 exports.default = doubleTapZoom;
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5612,39 +5522,45 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.dragProbeTouch = exports.dragProbe = undefined;
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _getRGBPixels = __webpack_require__(30);
+var _getRGBPixels = __webpack_require__(32);
 
 var _getRGBPixels2 = _interopRequireDefault(_getRGBPixels);
 
-var _calculateSUV = __webpack_require__(15);
+var _calculateSUV = __webpack_require__(17);
 
 var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var dragEventData = void 0;
 
@@ -5874,7 +5790,7 @@ exports.dragProbe = dragProbe;
 exports.dragProbeTouch = dragProbeTouch;
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5885,49 +5801,59 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ellipticalRoiTouch = exports.ellipticalRoi = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _drawEllipse = __webpack_require__(47);
+var _drawEllipse = __webpack_require__(50);
 
 var _drawEllipse2 = _interopRequireDefault(_drawEllipse);
 
-var _pointInEllipse = __webpack_require__(32);
+var _pointInEllipse = __webpack_require__(34);
 
 var _pointInEllipse2 = _interopRequireDefault(_pointInEllipse);
 
-var _calculateEllipseStatistics = __webpack_require__(44);
+var _calculateEllipseStatistics = __webpack_require__(47);
 
 var _calculateEllipseStatistics2 = _interopRequireDefault(_calculateEllipseStatistics);
 
-var _calculateSUV = __webpack_require__(15);
+var _calculateSUV = __webpack_require__(17);
 
 var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'ellipticalRoi';
 
@@ -6329,7 +6255,7 @@ exports.ellipticalRoi = ellipticalRoi;
 exports.ellipticalRoiTouch = ellipticalRoiTouch;
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6340,25 +6266,35 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.freehand = undefined;
 
-var _toolStyle = __webpack_require__(3);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'freehand';
 var configuration = {
@@ -6805,7 +6741,7 @@ var freehand = {
 exports.freehand = freehand;
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6816,29 +6752,39 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.highlightTouch = exports.highlight = undefined;
 
-var _mouseButtonRectangleTool = __webpack_require__(36);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonRectangleTool = __webpack_require__(40);
 
 var _mouseButtonRectangleTool2 = _interopRequireDefault(_mouseButtonRectangleTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'highlight';
 
@@ -7004,7 +6950,7 @@ exports.highlight = highlight;
 exports.highlightTouch = highlightTouch;
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7014,11 +6960,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _displayTool = __webpack_require__(17);
+var _displayTool = __webpack_require__(19);
 
 var _displayTool2 = _interopRequireDefault(_displayTool);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
@@ -7052,7 +6998,7 @@ var imageStats = (0, _displayTool2.default)(onImageRendered);
 exports.default = imageStats;
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7063,33 +7009,43 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.lengthTouch = exports.length = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'length';
 
@@ -7316,7 +7272,7 @@ exports.length = length;
 exports.lengthTouch = lengthTouch;
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7327,17 +7283,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.magnifyTouchDrag = exports.magnify = undefined;
 
-var _touchDragTool = __webpack_require__(9);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _getMaxSimultaneousRequests = __webpack_require__(29);
+var _getMaxSimultaneousRequests = __webpack_require__(24);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var configuration = {
   magnifySize: 100,
@@ -7572,7 +7534,7 @@ exports.magnify = magnify;
 exports.magnifyTouchDrag = magnifyTouchDrag;
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7582,23 +7544,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _index = __webpack_require__(41);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _index = __webpack_require__(45);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _displayTool = __webpack_require__(17);
+var _displayTool = __webpack_require__(19);
 
 var _displayTool2 = _interopRequireDefault(_displayTool);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function getOrientationMarkers(element) {
   var enabledElement = cornerstone.getEnabledElement(element);
@@ -7700,7 +7668,7 @@ var orientationMarkers = (0, _displayTool2.default)(onImageRendered);
 exports.default = orientationMarkers;
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7711,19 +7679,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.panTouchDrag = exports.pan = undefined;
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function mouseUpCallback(e, eventData) {
   $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);
@@ -7767,7 +7741,7 @@ exports.pan = pan;
 exports.panTouchDrag = panTouchDrag;
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7777,11 +7751,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _multiTouchDragTool = __webpack_require__(22);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _multiTouchDragTool = __webpack_require__(25);
 
 var _multiTouchDragTool2 = _interopRequireDefault(_multiTouchDragTool);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function touchPanCallback(e, eventData) {
   var config = panMultiTouch.getConfiguration();
@@ -7808,7 +7788,7 @@ panMultiTouch.setConfiguration(configuration);
 exports.default = panMultiTouch;
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7819,41 +7799,51 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.probeTouch = exports.probe = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _getRGBPixels = __webpack_require__(30);
+var _getRGBPixels = __webpack_require__(32);
 
 var _getRGBPixels2 = _interopRequireDefault(_getRGBPixels);
 
-var _calculateSUV = __webpack_require__(15);
+var _calculateSUV = __webpack_require__(17);
 
 var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'probe';
 
@@ -7980,7 +7970,7 @@ exports.probe = probe;
 exports.probeTouch = probeTouch;
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7991,37 +7981,47 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.rectangleRoiTouch = exports.rectangleRoi = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _calculateSUV = __webpack_require__(15);
+var _calculateSUV = __webpack_require__(17);
 
 var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'rectangleRoi';
 
@@ -8441,7 +8441,7 @@ exports.rectangleRoi = rectangleRoi;
 exports.rectangleRoiTouch = rectangleRoiTouch;
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8452,19 +8452,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.rotateTouchDrag = exports.rotate = undefined;
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 // --- Strategies --- //
 function defaultStrategy(eventData) {
@@ -8543,7 +8549,7 @@ exports.rotate = rotate;
 exports.rotateTouchDrag = rotateTouchDrag;
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8552,6 +8558,13 @@ exports.rotateTouchDrag = rotateTouchDrag;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function touchRotateCallback(e, eventData) {
   eventData.viewport.rotation += eventData.rotation;
   cornerstone.setViewport(eventData.element, eventData.viewport);
@@ -8576,7 +8589,7 @@ var rotateTouch = {
 exports.default = rotateTouch;
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8616,7 +8629,7 @@ exports.default = function (element, filename) {
 };
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8627,64 +8640,73 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.seedAnnotateTouch = exports.seedAnnotate = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _moveHandle = __webpack_require__(19);
+var _moveHandle = __webpack_require__(21);
 
 var _moveHandle2 = _interopRequireDefault(_moveHandle);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawCircle = __webpack_require__(46);
+var _drawCircle = __webpack_require__(49);
 
 var _drawCircle2 = _interopRequireDefault(_drawCircle);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _pointInsideBoundingBox = __webpack_require__(16);
+var _pointInsideBoundingBox = __webpack_require__(18);
 
 var _pointInsideBoundingBox2 = _interopRequireDefault(_pointInsideBoundingBox);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'seedAnnotate';
 
 // Define a callback to get your text annotation
 // This could be used, e.g. to open a modal
 /* eslint no-alert:0 */
-
 function getTextCallback(doneGetTextCallback) {
   doneGetTextCallback(prompt('Enter your annotation:'));
 }
@@ -9101,7 +9123,7 @@ exports.seedAnnotate = seedAnnotate;
 exports.seedAnnotateTouch = seedAnnotateTouch;
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9112,53 +9134,63 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.simpleAngleTouch = exports.simpleAngle = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _roundToDecimal = __webpack_require__(34);
+var _roundToDecimal = __webpack_require__(36);
 
 var _roundToDecimal2 = _interopRequireDefault(_roundToDecimal);
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 var _textStyle2 = _interopRequireDefault(_textStyle);
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _moveNewHandle = __webpack_require__(20);
+var _moveNewHandle = __webpack_require__(22);
 
 var _moveNewHandle2 = _interopRequireDefault(_moveNewHandle);
 
-var _moveNewHandleTouch = __webpack_require__(21);
+var _moveNewHandleTouch = __webpack_require__(23);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'simpleAngle';
 
@@ -9536,7 +9568,7 @@ exports.simpleAngle = simpleAngle;
 exports.simpleAngleTouch = simpleAngleTouch;
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9547,33 +9579,43 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.textMarkerTouch = exports.textMarker = undefined;
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 var _touchTool2 = _interopRequireDefault(_touchTool);
 
-var _pointInsideBoundingBox = __webpack_require__(16);
+var _pointInsideBoundingBox = __webpack_require__(18);
 
 var _pointInsideBoundingBox2 = _interopRequireDefault(_pointInsideBoundingBox);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'textMarker';
 
@@ -9863,7 +9905,7 @@ exports.textMarker = textMarker;
 exports.textMarkerTouch = textMarkerTouch;
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9874,19 +9916,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.wwwcTouchDrag = exports.wwwc = undefined;
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function mouseUpCallback(e, eventData) {
   $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
@@ -9971,7 +10019,7 @@ exports.wwwc = wwwc;
 exports.wwwcTouchDrag = wwwcTouchDrag;
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9982,25 +10030,31 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.wwwcRegionTouch = exports.wwwcRegion = undefined;
 
-var _toolStyle = __webpack_require__(3);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolStyle = __webpack_require__(5);
 
 var _toolStyle2 = _interopRequireDefault(_toolStyle);
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 var _toolColors2 = _interopRequireDefault(_toolColors);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
-var _getLuminance = __webpack_require__(48);
+var _getLuminance = __webpack_require__(51);
 
 var _getLuminance2 = _interopRequireDefault(_getLuminance);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'wwwcRegion';
 
@@ -10366,7 +10420,7 @@ exports.wwwcRegion = wwwcRegion;
 exports.wwwcRegionTouch = wwwcRegionTouch;
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10377,27 +10431,33 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.zoomTouchDrag = exports.zoomTouchPinch = exports.zoomWheel = exports.zoom = undefined;
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _mouseWheelTool = __webpack_require__(18);
+var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
-var _touchPinchTool = __webpack_require__(37);
+var _touchPinchTool = __webpack_require__(41);
 
 var _touchPinchTool2 = _interopRequireDefault(_touchPinchTool);
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var startPoints = void 0;
 
@@ -10685,7 +10745,7 @@ exports.zoomTouchPinch = zoomTouchPinch;
 exports.zoomTouchDrag = zoomTouchDrag;
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10694,8 +10754,15 @@ exports.zoomTouchDrag = zoomTouchDrag;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var mouseX = void 0,
-    mouseY = void 0;
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var mouseX = void 0;
+var mouseY = void 0;
 
 function keyPress(e) {
   var element = e.currentTarget;
@@ -10757,7 +10824,7 @@ var keyboardInput = {
 exports.default = keyboardInput;
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10767,15 +10834,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _copyPoints = __webpack_require__(28);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _copyPoints = __webpack_require__(31);
 
 var _copyPoints2 = _interopRequireDefault(_copyPoints);
 
-var _pauseEvent = __webpack_require__(31);
+var _pauseEvent = __webpack_require__(33);
 
 var _pauseEvent2 = _interopRequireDefault(_pauseEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var isClickEvent = true;
 var preventClickTimeout = void 0;
@@ -11063,7 +11140,7 @@ var mouseInput = {
 exports.default = mouseInput;
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11072,6 +11149,13 @@ exports.default = mouseInput;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function mouseWheel(e) {
   // !!!HACK/NOTE/WARNING!!!
   // For some reason I am getting mousewheel and DOMMouseScroll events on my
@@ -11159,7 +11243,7 @@ var mouseWheelInput = {
 exports.default = mouseWheelInput;
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11169,21 +11253,31 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _hammerjs = __webpack_require__(115);
+var _hammerjs = __webpack_require__(117);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
-var _copyPoints = __webpack_require__(28);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+var _copyPoints = __webpack_require__(31);
 
 var _copyPoints2 = _interopRequireDefault(_copyPoints);
 
-var _pauseEvent = __webpack_require__(31);
+var _pauseEvent = __webpack_require__(33);
 
 var _pauseEvent2 = _interopRequireDefault(_pauseEvent);
 
-var _preventGhostClick = __webpack_require__(38);
+var _preventGhostClick = __webpack_require__(42);
 
 var _preventGhostClick2 = _interopRequireDefault(_preventGhostClick);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11689,7 +11783,7 @@ var touchInput = {
 exports.default = touchInput;
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11698,12 +11792,19 @@ exports.default = touchInput;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 var metaData = cornerstone.metaData;
 
 exports.default = metaData;
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11713,15 +11814,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _calculateReferenceLine = __webpack_require__(52);
+var _calculateReferenceLine = __webpack_require__(54);
 
 var _calculateReferenceLine2 = _interopRequireDefault(_calculateReferenceLine);
 
-var _referenceLinesTool = __webpack_require__(111);
+var _referenceLinesTool = __webpack_require__(113);
 
 var _referenceLinesTool2 = _interopRequireDefault(_referenceLinesTool);
 
-var _renderActiveReferenceLine = __webpack_require__(53);
+var _renderActiveReferenceLine = __webpack_require__(55);
 
 var _renderActiveReferenceLine2 = _interopRequireDefault(_renderActiveReferenceLine);
 
@@ -11736,7 +11837,7 @@ var referenceLines = {
 exports.default = referenceLines;
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11746,7 +11847,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _thresholding = __webpack_require__(114);
+var _thresholding = __webpack_require__(116);
 
 Object.defineProperty(exports, 'regionsThreshold', {
   enumerable: true,
@@ -11755,7 +11856,7 @@ Object.defineProperty(exports, 'regionsThreshold', {
   }
 });
 
-var _grow = __webpack_require__(113);
+var _grow = __webpack_require__(115);
 
 Object.defineProperty(exports, 'regionsGrow', {
   enumerable: true,
@@ -11764,7 +11865,7 @@ Object.defineProperty(exports, 'regionsGrow', {
   }
 });
 
-var _draw = __webpack_require__(112);
+var _draw = __webpack_require__(114);
 
 Object.defineProperty(exports, 'regionsDraw', {
   enumerable: true,
@@ -11776,7 +11877,7 @@ Object.defineProperty(exports, 'regionsDraw', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11787,15 +11888,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.stopClip = exports.playClip = undefined;
 
-var _loadHandlerManager = __webpack_require__(8);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint no-bitwise:0 */
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'playClip';
 
@@ -11806,6 +11911,7 @@ var toolType = 'playClip';
  * @param {Number} speed A speed factor which will be applied to each element of the resulting array.
  * @return {Array} An array with timeouts for each animation frame.
  */
+/* eslint no-bitwise:0 */
 function getPlayClipTimeouts(vector, speed) {
 
   var i = void 0;
@@ -12044,7 +12150,7 @@ exports.playClip = playClip;
 exports.stopClip = stopClip;
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12054,11 +12160,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _displayTool = __webpack_require__(17);
+var _displayTool = __webpack_require__(19);
 
 var _displayTool2 = _interopRequireDefault(_displayTool);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12130,7 +12236,7 @@ scrollIndicator.setConfiguration(configuration);
 exports.default = scrollIndicator;
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12140,7 +12246,354 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keyboardTool = __webpack_require__(105);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _requestPoolManager = __webpack_require__(28);
+
+var _requestPoolManager2 = _interopRequireDefault(_requestPoolManager);
+
+var _loadHandlerManager = __webpack_require__(10);
+
+var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
+
+var _toolState = __webpack_require__(1);
+
+var _getMaxSimultaneousRequests = __webpack_require__(24);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var toolType = 'stackPrefetch';
+var requestType = 'prefetch';
+
+var configuration = {};
+
+var resetPrefetchTimeout = void 0;
+var resetPrefetchDelay = 300;
+
+function range(lowEnd, highEnd) {
+  // Javascript version of Python's range function
+  // http://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-an-array-based-on-suppl
+  lowEnd = Math.round(lowEnd) || 0;
+  highEnd = Math.round(highEnd) || 0;
+
+  var arr = [];
+  var c = highEnd - lowEnd + 1;
+
+  if (c <= 0) {
+    return arr;
+  }
+
+  while (c--) {
+    arr[c] = highEnd--;
+  }
+
+  return arr;
+}
+
+var max = function max(arr) {
+  return Math.max.apply(null, arr);
+};
+
+var min = function min(arr) {
+  return Math.min.apply(null, arr);
+};
+
+function nearestIndex(arr, x) {
+  // Return index of nearest values in array
+  // http://stackoverflow.com/questions/25854212/return-index-of-nearest-values-in-an-array
+  var l = [];
+  var h = [];
+
+  arr.forEach(function (v) {
+    if (v < x) {
+      l.push(v);
+    } else if (v > x) {
+      h.push(v);
+    }
+  });
+
+  return {
+    low: arr.indexOf(max(l)),
+    high: arr.indexOf(min(h))
+  };
+}
+
+function prefetch(element) {
+  // Check to make sure stack data exists
+  var stackData = (0, _toolState.getToolState)(element, 'stack');
+
+  if (!stackData || !stackData.data || !stackData.data.length) {
+    return;
+  }
+
+  var stack = stackData.data[0];
+
+  // Get the stackPrefetch tool data
+  var stackPrefetchData = (0, _toolState.getToolState)(element, toolType);
+
+  if (!stackPrefetchData) {
+    return;
+  }
+
+  var stackPrefetch = stackPrefetchData.data[0] || {};
+
+  // If all the requests are complete, disable the stackPrefetch tool
+  if (!stackPrefetch.indicesToRequest || !stackPrefetch.indicesToRequest.length) {
+    stackPrefetch.enabled = false;
+  }
+
+  // Make sure the tool is still enabled
+  if (stackPrefetch.enabled === false) {
+    return;
+  }
+
+  // Remove an imageIdIndex from the list of indices to request
+  // This fires when the individual image loading deferred is resolved
+  function removeFromList(imageIdIndex) {
+    var index = stackPrefetch.indicesToRequest.indexOf(imageIdIndex);
+
+    if (index > -1) {
+      // Don't remove last element if imageIdIndex not found
+      stackPrefetch.indicesToRequest.splice(index, 1);
+    }
+  }
+
+  // Remove all already cached images from the
+  // IndicesToRequest array
+  stackPrefetchData.data[0].indicesToRequest.sort(function (a, b) {
+    return a - b;
+  });
+  var indicesToRequestCopy = stackPrefetch.indicesToRequest.slice();
+
+  indicesToRequestCopy.forEach(function (imageIdIndex) {
+    var imageId = stack.imageIds[imageIdIndex];
+
+    if (!imageId) {
+      return;
+    }
+
+    var imagePromise = cornerstone.imageCache.getImagePromise(imageId);
+
+    if (imagePromise && imagePromise.state() === 'resolved') {
+      removeFromList(imageIdIndex);
+    }
+  });
+
+  // Stop here if there are no images left to request
+  // After those in the cache have been removed
+  if (!stackPrefetch.indicesToRequest.length) {
+    return;
+  }
+
+  // Clear the requestPool of prefetch requests
+  _requestPoolManager2.default.clearRequestStack(requestType);
+
+  // Identify the nearest imageIdIndex to the currentImageIdIndex
+  var nearest = nearestIndex(stackPrefetch.indicesToRequest, stack.currentImageIdIndex);
+
+  var imageId = void 0;
+  var nextImageIdIndex = void 0;
+  var preventCache = false;
+
+  function doneCallback(image) {
+    // Console.log('prefetch done: ' + image.imageId);
+    var imageIdIndex = stack.imageIds.indexOf(image.imageId);
+
+    removeFromList(imageIdIndex);
+  }
+
+  // Retrieve the errorLoadingHandler if one exists
+  var errorLoadingHandler = _loadHandlerManager2.default.getErrorLoadingHandler();
+
+  function failCallback(error) {
+    console.log('prefetch errored: ' + error);
+    if (errorLoadingHandler) {
+      errorLoadingHandler(element, imageId, error, 'stackPrefetch');
+    }
+  }
+
+  // Prefetch images around the current image (before and after)
+  var lowerIndex = nearest.low;
+  var higherIndex = nearest.high;
+
+  while (lowerIndex > 0 || higherIndex < stackPrefetch.indicesToRequest.length) {
+    if (lowerIndex >= 0) {
+      nextImageIdIndex = stackPrefetch.indicesToRequest[lowerIndex--];
+      imageId = stack.imageIds[nextImageIdIndex];
+      _requestPoolManager2.default.addRequest(element, imageId, requestType, preventCache, doneCallback, failCallback);
+    }
+
+    if (higherIndex < stackPrefetch.indicesToRequest.length) {
+      nextImageIdIndex = stackPrefetch.indicesToRequest[higherIndex++];
+      imageId = stack.imageIds[nextImageIdIndex];
+      _requestPoolManager2.default.addRequest(element, imageId, requestType, preventCache, doneCallback, failCallback);
+    }
+  }
+
+  // Try to start the requestPool's grabbing procedure
+  // In case it isn't already running
+  _requestPoolManager2.default.startGrabbing();
+}
+
+function promiseRemovedHandler(e, eventData) {
+  // When an imagePromise has been pushed out of the cache, re-add its index
+  // It to the indicesToRequest list so that it will be retrieved later if the
+  // CurrentImageIdIndex is changed to an image nearby
+  var element = e.data.element;
+  var stackData = void 0;
+
+  try {
+    // It will throw an exception in some cases (eg: thumbnails)
+    stackData = (0, _toolState.getToolState)(element, 'stack');
+  } catch (error) {
+    return;
+  }
+
+  if (!stackData || !stackData.data || !stackData.data.length) {
+    return;
+  }
+
+  var stack = stackData.data[0];
+  var imageIdIndex = stack.imageIds.indexOf(eventData.imageId);
+
+  // Make sure the image that was removed is actually in this stack
+  // Before adding it to the indicesToRequest array
+  if (imageIdIndex < 0) {
+    return;
+  }
+
+  var stackPrefetchData = (0, _toolState.getToolState)(element, toolType);
+
+  if (!stackPrefetchData || !stackPrefetchData.data || !stackPrefetchData.data.length) {
+    return;
+  }
+
+  stackPrefetchData.data[0].indicesToRequest.push(imageIdIndex);
+}
+
+function onImageUpdated(e) {
+  // Start prefetching again (after a delay)
+  // When the user has scrolled to a new image
+  clearTimeout(resetPrefetchTimeout);
+  resetPrefetchTimeout = setTimeout(function () {
+    var element = e.target;
+
+    // If playClip is enabled and the user loads a different series in the viewport
+    // An exception will be thrown because the element will not be enabled anymore
+    try {
+      prefetch(element);
+    } catch (error) {
+      return;
+    }
+  }, resetPrefetchDelay);
+}
+
+function enable(element) {
+  // Clear old prefetch data. Skipping this can cause problems when changing the series inside an element
+  var stackPrefetchDataArray = (0, _toolState.getToolState)(element, toolType);
+
+  stackPrefetchDataArray.data = [];
+
+  // First check that there is stack data available
+  var stackData = (0, _toolState.getToolState)(element, 'stack');
+
+  if (!stackData || !stackData.data || !stackData.data.length) {
+    return;
+  }
+
+  var stack = stackData.data[0];
+
+  // Check if we are allowed to cache images in this stack
+  if (stack.preventCache === true) {
+    console.warn('A stack that should not be cached was given the stackPrefetch');
+
+    return;
+  }
+
+  // Use the currentImageIdIndex from the stack as the initalImageIdIndex
+  var stackPrefetchData = {
+    indicesToRequest: range(0, stack.imageIds.length - 1),
+    enabled: true,
+    direction: 1
+  };
+
+  // Remove the currentImageIdIndex from the list to request
+  var indexOfCurrentImage = stackPrefetchData.indicesToRequest.indexOf(stack.currentImageIdIndex);
+
+  stackPrefetchData.indicesToRequest.splice(indexOfCurrentImage, 1);
+
+  (0, _toolState.addToolState)(element, toolType, stackPrefetchData);
+
+  prefetch(element);
+
+  $(element).off('CornerstoneNewImage', onImageUpdated);
+  $(element).on('CornerstoneNewImage', onImageUpdated);
+
+  $(cornerstone.events).off('CornerstoneImageCachePromiseRemoved', promiseRemovedHandler);
+  $(cornerstone.events).on('CornerstoneImageCachePromiseRemoved', {
+    element: element
+  }, promiseRemovedHandler);
+}
+
+function disable(element) {
+  clearTimeout(resetPrefetchTimeout);
+  $(element).off('CornerstoneNewImage', onImageUpdated);
+
+  $(cornerstone.events).off('CornerstoneImageCachePromiseRemoved', promiseRemovedHandler);
+
+  var stackPrefetchData = (0, _toolState.getToolState)(element, toolType);
+  // If there is actually something to disable, disable it
+
+  if (stackPrefetchData && stackPrefetchData.data.length) {
+    stackPrefetchData.data[0].enabled = false;
+
+    // Clear current prefetch requests from the requestPool
+    _requestPoolManager2.default.clearRequestStack(requestType);
+  }
+}
+
+function getConfiguration() {
+  return configuration;
+}
+
+function setConfiguration(config) {
+  configuration = config;
+
+  if (config.maxSimultaneousRequests) {
+    (0, _getMaxSimultaneousRequests.setMaxSimultaneousRequests)(config.maxSimultaneousRequests);
+  }
+}
+
+// Module/private exports
+var stackPrefetch = {
+  enable: enable,
+  disable: disable,
+  getConfiguration: getConfiguration,
+  setConfiguration: setConfiguration
+};
+
+exports.default = stackPrefetch;
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _scroll = __webpack_require__(37);
+
+var _scroll2 = _interopRequireDefault(_scroll);
+
+var _keyboardTool = __webpack_require__(39);
 
 var _keyboardTool2 = _interopRequireDefault(_keyboardTool);
 
@@ -12164,7 +12617,7 @@ function keyDownCallback(e, eventData) {
     images = -1;
   }
 
-  scroll(eventData.element, images);
+  (0, _scroll2.default)(eventData.element, images);
 }
 
 // Module/private exports
@@ -12173,7 +12626,7 @@ var stackScrollKeyboard = (0, _keyboardTool2.default)(keyDownCallback);
 exports.default = stackScrollKeyboard;
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12183,9 +12636,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _imageIdSpecificStateManager = __webpack_require__(14);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _toolState = __webpack_require__(0);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _imageIdSpecificStateManager = __webpack_require__(16);
+
+var _toolState = __webpack_require__(1);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function saveApplicationState(elements) {
   // Save imageId-specific tool state data
@@ -12259,7 +12718,7 @@ var appState = {
 exports.default = appState;
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12361,7 +12820,7 @@ exports.newFrameOfReferenceSpecificToolStateManager = newFrameOfReferenceSpecifi
 exports.globalFrameOfReferenceSpecificToolStateManager = globalFrameOfReferenceSpecificToolStateManager;
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12372,9 +12831,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.addStackStateManager = exports.newStackSpecificToolStateManager = undefined;
 
-var _imageIdSpecificStateManager = __webpack_require__(14);
+var _imageIdSpecificStateManager = __webpack_require__(16);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 // This implements an Stack specific tool state management strategy.  This means
 // That tool data is shared between all imageIds in a given stack
@@ -12467,7 +12926,7 @@ exports.newStackSpecificToolStateManager = newStackSpecificToolStateManager;
 exports.addStackStateManager = addStackStateManager;
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12478,9 +12937,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.newTimeSeriesSpecificToolStateManager = exports.addTimeSeriesStateManager = undefined;
 
-var _imageIdSpecificStateManager = __webpack_require__(14);
+var _imageIdSpecificStateManager = __webpack_require__(16);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 // This implements an Stack specific tool state management strategy.  This means
 // That tool data is shared between all imageIds in a given stack
@@ -12557,7 +13016,7 @@ exports.addTimeSeriesStateManager = addTimeSeriesStateManager;
 exports.newTimeSeriesSpecificToolStateManager = newTimeSeriesSpecificToolStateManager;
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12566,6 +13025,13 @@ exports.newTimeSeriesSpecificToolStateManager = newTimeSeriesSpecificToolStateMa
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 // This object is responsible for synchronizing target elements when an event fires on a source
 // Element
 function Synchronizer(event, handler) {
@@ -12850,7 +13316,7 @@ function Synchronizer(event, handler) {
 exports.default = Synchronizer;
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12882,8 +13348,14 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
   synchronizer.setViewport(targetElement, targetViewport);
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12948,16 +13420,22 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
   });
 };
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _loadHandlerManager = __webpack_require__(8);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13038,16 +13516,22 @@ exports.default = function (synchronizer, sourceElement, targetElement, eventDat
   });
 };
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _loadHandlerManager = __webpack_require__(8);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13125,16 +13609,22 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
   }
 };
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _loadHandlerManager = __webpack_require__(8);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13203,16 +13693,22 @@ exports.default = function (synchronizer, sourceElement, targetElement, eventDat
   });
 };
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _loadHandlerManager = __webpack_require__(8);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13232,8 +13728,14 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
   cornerstone.updateImage(targetElement);
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13265,8 +13767,14 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
   synchronizer.setViewport(targetElement, targetViewport);
 };
 
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13276,29 +13784,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mouseButtonTool = __webpack_require__(6);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _mouseButtonTool = __webpack_require__(8);
 
 var _mouseButtonTool2 = _interopRequireDefault(_mouseButtonTool);
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _setContextToDisplayFontSize = __webpack_require__(51);
+var _setContextToDisplayFontSize = __webpack_require__(53);
 
 var _setContextToDisplayFontSize2 = _interopRequireDefault(_setContextToDisplayFontSize);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
-var _measurementManager = __webpack_require__(108);
+var _measurementManager = __webpack_require__(110);
 
 var _measurementManager2 = _interopRequireDefault(_measurementManager);
 
-var _lineSampleMeasurement = __webpack_require__(107);
+var _lineSampleMeasurement = __webpack_require__(109);
 
 var _lineSampleMeasurement2 = _interopRequireDefault(_lineSampleMeasurement);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'probe4D';
 
@@ -13412,7 +13926,7 @@ var probeTool4D = (0, _mouseButtonTool2.default)({
 exports.default = probeTool4D;
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13422,9 +13936,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
-var _incrementTimePoint = __webpack_require__(27);
+var _incrementTimePoint = __webpack_require__(30);
 
 var _incrementTimePoint2 = _interopRequireDefault(_incrementTimePoint);
 
@@ -13510,7 +14024,7 @@ var timeSeriesPlayer = {
 exports.default = timeSeriesPlayer;
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13521,27 +14035,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.timeSeriesScrollTouchDrag = exports.timeSeriesScrollWheel = exports.timeSeriesScroll = undefined;
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _mouseWheelTool = __webpack_require__(18);
+var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
-var _incrementTimePoint = __webpack_require__(27);
+var _incrementTimePoint = __webpack_require__(30);
 
 var _incrementTimePoint2 = _interopRequireDefault(_incrementTimePoint);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13637,7 +14151,7 @@ exports.timeSeriesScrollWheel = timeSeriesScrollWheel;
 exports.timeSeriesScrollTouchDrag = timeSeriesScrollTouchDrag;
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13646,49 +14160,10 @@ exports.timeSeriesScrollTouchDrag = timeSeriesScrollTouchDrag;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = '0.8.6';
+exports.default = '0.8.9';
 
 /***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (keyDownCallback) {
-  var configuration = {};
-
-  var toolInterface = {
-    activate: function activate(element) {
-      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
-      $(element).on('CornerstoneToolsKeyDown', keyDownCallback);
-    },
-    disable: function disable(element) {
-      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
-    },
-    enable: function enable(element) {
-      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
-    },
-    deactivate: function deactivate(element) {
-      $(element).off('CornerstoneToolsKeyDown', keyDownCallback);
-    },
-    getConfiguration: function getConfiguration() {
-      return configuration;
-    },
-    setConfiguration: function setConfiguration(config) {
-      configuration = config;
-    }
-  };
-
-  return toolInterface;
-};
-
-/***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13698,7 +14173,7 @@ Object.defineProperty(exports, "__esModule", {
          value: true
 });
 
-var _metaData = __webpack_require__(83);
+var _metaData = __webpack_require__(85);
 
 Object.defineProperty(exports, 'metaData', {
          enumerable: true,
@@ -13707,7 +14182,7 @@ Object.defineProperty(exports, 'metaData', {
          }
 });
 
-var _index = __webpack_require__(84);
+var _index = __webpack_require__(86);
 
 Object.defineProperty(exports, 'referenceLines', {
          enumerable: true,
@@ -13716,7 +14191,7 @@ Object.defineProperty(exports, 'referenceLines', {
          }
 });
 
-var _index2 = __webpack_require__(41);
+var _index2 = __webpack_require__(45);
 
 Object.defineProperty(exports, 'orientation', {
          enumerable: true,
@@ -13725,7 +14200,7 @@ Object.defineProperty(exports, 'orientation', {
          }
 });
 
-var _requestPoolManager = __webpack_require__(25);
+var _requestPoolManager = __webpack_require__(28);
 
 Object.defineProperty(exports, 'requestPoolManager', {
          enumerable: true,
@@ -13734,7 +14209,7 @@ Object.defineProperty(exports, 'requestPoolManager', {
          }
 });
 
-var _setContextToDisplayFontSize = __webpack_require__(51);
+var _setContextToDisplayFontSize = __webpack_require__(53);
 
 Object.defineProperty(exports, 'setContextToDisplayFontSize', {
          enumerable: true,
@@ -13743,7 +14218,7 @@ Object.defineProperty(exports, 'setContextToDisplayFontSize', {
          }
 });
 
-var _scrollToIndex = __webpack_require__(50);
+var _scrollToIndex = __webpack_require__(52);
 
 Object.defineProperty(exports, 'scrollToIndex', {
          enumerable: true,
@@ -13752,7 +14227,7 @@ Object.defineProperty(exports, 'scrollToIndex', {
          }
 });
 
-var _scroll = __webpack_require__(49);
+var _scroll = __webpack_require__(37);
 
 Object.defineProperty(exports, 'scroll', {
          enumerable: true,
@@ -13761,7 +14236,7 @@ Object.defineProperty(exports, 'scroll', {
          }
 });
 
-var _roundToDecimal = __webpack_require__(34);
+var _roundToDecimal = __webpack_require__(36);
 
 Object.defineProperty(exports, 'roundToDecimal', {
          enumerable: true,
@@ -13770,7 +14245,7 @@ Object.defineProperty(exports, 'roundToDecimal', {
          }
 });
 
-var _pointProjector = __webpack_require__(33);
+var _pointProjector = __webpack_require__(35);
 
 Object.defineProperty(exports, 'projectPatientPointToImagePlane', {
          enumerable: true,
@@ -13791,7 +14266,7 @@ Object.defineProperty(exports, 'planePlaneIntersection', {
          }
 });
 
-var _pointInsideBoundingBox = __webpack_require__(16);
+var _pointInsideBoundingBox = __webpack_require__(18);
 
 Object.defineProperty(exports, 'pointInsideBoundingBox', {
          enumerable: true,
@@ -13800,7 +14275,7 @@ Object.defineProperty(exports, 'pointInsideBoundingBox', {
          }
 });
 
-var _pointInEllipse = __webpack_require__(32);
+var _pointInEllipse = __webpack_require__(34);
 
 Object.defineProperty(exports, 'pointInEllipse', {
          enumerable: true,
@@ -13809,7 +14284,7 @@ Object.defineProperty(exports, 'pointInEllipse', {
          }
 });
 
-var _pauseEvent = __webpack_require__(31);
+var _pauseEvent = __webpack_require__(33);
 
 Object.defineProperty(exports, 'pauseEvent', {
          enumerable: true,
@@ -13818,7 +14293,7 @@ Object.defineProperty(exports, 'pauseEvent', {
          }
 });
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 Object.defineProperty(exports, 'isMouseButtonEnabled', {
          enumerable: true,
@@ -13827,7 +14302,7 @@ Object.defineProperty(exports, 'isMouseButtonEnabled', {
          }
 });
 
-var _getRGBPixels = __webpack_require__(30);
+var _getRGBPixels = __webpack_require__(32);
 
 Object.defineProperty(exports, 'getRGBPixels', {
          enumerable: true,
@@ -13836,7 +14311,7 @@ Object.defineProperty(exports, 'getRGBPixels', {
          }
 });
 
-var _getMaxSimultaneousRequests = __webpack_require__(29);
+var _getMaxSimultaneousRequests = __webpack_require__(24);
 
 Object.defineProperty(exports, 'getDefaultSimultaneousRequests', {
          enumerable: true,
@@ -13863,7 +14338,7 @@ Object.defineProperty(exports, 'isMobileDevice', {
          }
 });
 
-var _getLuminance = __webpack_require__(48);
+var _getLuminance = __webpack_require__(51);
 
 Object.defineProperty(exports, 'getLuminance', {
          enumerable: true,
@@ -13872,7 +14347,7 @@ Object.defineProperty(exports, 'getLuminance', {
          }
 });
 
-var _drawTextBox = __webpack_require__(4);
+var _drawTextBox = __webpack_require__(6);
 
 Object.defineProperty(exports, 'drawTextBox', {
          enumerable: true,
@@ -13881,7 +14356,7 @@ Object.defineProperty(exports, 'drawTextBox', {
          }
 });
 
-var _drawEllipse = __webpack_require__(47);
+var _drawEllipse = __webpack_require__(50);
 
 Object.defineProperty(exports, 'drawEllipse', {
          enumerable: true,
@@ -13890,7 +14365,7 @@ Object.defineProperty(exports, 'drawEllipse', {
          }
 });
 
-var _drawCircle = __webpack_require__(46);
+var _drawCircle = __webpack_require__(49);
 
 Object.defineProperty(exports, 'drawCircle', {
          enumerable: true,
@@ -13899,7 +14374,7 @@ Object.defineProperty(exports, 'drawCircle', {
          }
 });
 
-var _drawArrow = __webpack_require__(45);
+var _drawArrow = __webpack_require__(48);
 
 Object.defineProperty(exports, 'drawArrow', {
          enumerable: true,
@@ -13908,7 +14383,7 @@ Object.defineProperty(exports, 'drawArrow', {
          }
 });
 
-var _copyPoints = __webpack_require__(28);
+var _copyPoints = __webpack_require__(31);
 
 Object.defineProperty(exports, 'copyPoints', {
          enumerable: true,
@@ -13917,7 +14392,7 @@ Object.defineProperty(exports, 'copyPoints', {
          }
 });
 
-var _calculateSUV = __webpack_require__(15);
+var _calculateSUV = __webpack_require__(17);
 
 Object.defineProperty(exports, 'calculateSUV', {
          enumerable: true,
@@ -13926,7 +14401,7 @@ Object.defineProperty(exports, 'calculateSUV', {
          }
 });
 
-var _calculateEllipseStatistics = __webpack_require__(44);
+var _calculateEllipseStatistics = __webpack_require__(47);
 
 Object.defineProperty(exports, 'calculateEllipseStatistics', {
          enumerable: true,
@@ -13935,7 +14410,7 @@ Object.defineProperty(exports, 'calculateEllipseStatistics', {
          }
 });
 
-var _probeTool4D = __webpack_require__(101);
+var _probeTool4D = __webpack_require__(104);
 
 Object.defineProperty(exports, 'probeTool4D', {
          enumerable: true,
@@ -13944,7 +14419,7 @@ Object.defineProperty(exports, 'probeTool4D', {
          }
 });
 
-var _incrementTimePoint = __webpack_require__(27);
+var _incrementTimePoint = __webpack_require__(30);
 
 Object.defineProperty(exports, 'incrementTimePoint', {
          enumerable: true,
@@ -13953,7 +14428,7 @@ Object.defineProperty(exports, 'incrementTimePoint', {
          }
 });
 
-var _timeSeriesPlayer = __webpack_require__(102);
+var _timeSeriesPlayer = __webpack_require__(105);
 
 Object.defineProperty(exports, 'timeSeriesPlayer', {
          enumerable: true,
@@ -13962,7 +14437,7 @@ Object.defineProperty(exports, 'timeSeriesPlayer', {
          }
 });
 
-var _timeSeriesScroll = __webpack_require__(103);
+var _timeSeriesScroll = __webpack_require__(106);
 
 Object.defineProperty(exports, 'timeSeriesScroll', {
          enumerable: true,
@@ -13983,7 +14458,7 @@ Object.defineProperty(exports, 'timeSeriesScrollTouchDrag', {
          }
 });
 
-var _wwwcSynchronizer = __webpack_require__(100);
+var _wwwcSynchronizer = __webpack_require__(103);
 
 Object.defineProperty(exports, 'wwwcSynchronizer', {
          enumerable: true,
@@ -13992,7 +14467,7 @@ Object.defineProperty(exports, 'wwwcSynchronizer', {
          }
 });
 
-var _updateImageSynchronizer = __webpack_require__(99);
+var _updateImageSynchronizer = __webpack_require__(102);
 
 Object.defineProperty(exports, 'updateImageSynchronizer', {
          enumerable: true,
@@ -14001,7 +14476,7 @@ Object.defineProperty(exports, 'updateImageSynchronizer', {
          }
 });
 
-var _Synchronizer = __webpack_require__(93);
+var _Synchronizer = __webpack_require__(96);
 
 Object.defineProperty(exports, 'Synchronizer', {
          enumerable: true,
@@ -14010,7 +14485,7 @@ Object.defineProperty(exports, 'Synchronizer', {
          }
 });
 
-var _stackScrollSynchronizer = __webpack_require__(98);
+var _stackScrollSynchronizer = __webpack_require__(101);
 
 Object.defineProperty(exports, 'stackScrollSynchronizer', {
          enumerable: true,
@@ -14019,7 +14494,7 @@ Object.defineProperty(exports, 'stackScrollSynchronizer', {
          }
 });
 
-var _stackImagePositionSynchronizer = __webpack_require__(97);
+var _stackImagePositionSynchronizer = __webpack_require__(100);
 
 Object.defineProperty(exports, 'stackImagePositionSynchronizer', {
          enumerable: true,
@@ -14028,7 +14503,7 @@ Object.defineProperty(exports, 'stackImagePositionSynchronizer', {
          }
 });
 
-var _stackImagePositionOffsetSynchronizer = __webpack_require__(96);
+var _stackImagePositionOffsetSynchronizer = __webpack_require__(99);
 
 Object.defineProperty(exports, 'stackImagePositionOffsetSynchronizer', {
          enumerable: true,
@@ -14037,7 +14512,7 @@ Object.defineProperty(exports, 'stackImagePositionOffsetSynchronizer', {
          }
 });
 
-var _stackImageIndexSynchronizer = __webpack_require__(95);
+var _stackImageIndexSynchronizer = __webpack_require__(98);
 
 Object.defineProperty(exports, 'stackImageIndexSynchronizer', {
          enumerable: true,
@@ -14046,7 +14521,7 @@ Object.defineProperty(exports, 'stackImageIndexSynchronizer', {
          }
 });
 
-var _panZoomSynchronizer = __webpack_require__(94);
+var _panZoomSynchronizer = __webpack_require__(97);
 
 Object.defineProperty(exports, 'panZoomSynchronizer', {
          enumerable: true,
@@ -14055,7 +14530,7 @@ Object.defineProperty(exports, 'panZoomSynchronizer', {
          }
 });
 
-var _toolStyle = __webpack_require__(3);
+var _toolStyle = __webpack_require__(5);
 
 Object.defineProperty(exports, 'toolStyle', {
          enumerable: true,
@@ -14064,7 +14539,7 @@ Object.defineProperty(exports, 'toolStyle', {
          }
 });
 
-var _toolState = __webpack_require__(0);
+var _toolState = __webpack_require__(1);
 
 Object.defineProperty(exports, 'addToolState', {
          enumerable: true,
@@ -14103,7 +14578,7 @@ Object.defineProperty(exports, 'getElementToolStateManager', {
          }
 });
 
-var _toolCoordinates = __webpack_require__(26);
+var _toolCoordinates = __webpack_require__(29);
 
 Object.defineProperty(exports, 'toolCoordinates', {
          enumerable: true,
@@ -14112,7 +14587,7 @@ Object.defineProperty(exports, 'toolCoordinates', {
          }
 });
 
-var _toolColors = __webpack_require__(2);
+var _toolColors = __webpack_require__(4);
 
 Object.defineProperty(exports, 'toolColors', {
          enumerable: true,
@@ -14121,7 +14596,7 @@ Object.defineProperty(exports, 'toolColors', {
          }
 });
 
-var _timeSeriesSpecificStateManager = __webpack_require__(92);
+var _timeSeriesSpecificStateManager = __webpack_require__(95);
 
 Object.defineProperty(exports, 'addTimeSeriesStateManager', {
          enumerable: true,
@@ -14136,7 +14611,7 @@ Object.defineProperty(exports, 'newTimeSeriesSpecificToolStateManager', {
          }
 });
 
-var _textStyle = __webpack_require__(12);
+var _textStyle = __webpack_require__(14);
 
 Object.defineProperty(exports, 'textStyle', {
          enumerable: true,
@@ -14145,7 +14620,7 @@ Object.defineProperty(exports, 'textStyle', {
          }
 });
 
-var _stackSpecificStateManager = __webpack_require__(91);
+var _stackSpecificStateManager = __webpack_require__(94);
 
 Object.defineProperty(exports, 'stackSpecificStateManager', {
          enumerable: true,
@@ -14166,7 +14641,7 @@ Object.defineProperty(exports, 'addStackStateManager', {
          }
 });
 
-var _loadHandlerManager = __webpack_require__(8);
+var _loadHandlerManager = __webpack_require__(10);
 
 Object.defineProperty(exports, 'loadHandlerManager', {
          enumerable: true,
@@ -14175,7 +14650,7 @@ Object.defineProperty(exports, 'loadHandlerManager', {
          }
 });
 
-var _imageIdSpecificStateManager = __webpack_require__(14);
+var _imageIdSpecificStateManager = __webpack_require__(16);
 
 Object.defineProperty(exports, 'newImageIdSpecificToolStateManager', {
          enumerable: true,
@@ -14190,7 +14665,7 @@ Object.defineProperty(exports, 'globalImageIdSpecificToolStateManager', {
          }
 });
 
-var _frameOfReferenceStateManager = __webpack_require__(90);
+var _frameOfReferenceStateManager = __webpack_require__(93);
 
 Object.defineProperty(exports, 'newFrameOfReferenceSpecificToolStateManager', {
          enumerable: true,
@@ -14205,7 +14680,7 @@ Object.defineProperty(exports, 'globalFrameOfReferenceSpecificToolStateManager',
          }
 });
 
-var _appState = __webpack_require__(89);
+var _appState = __webpack_require__(92);
 
 Object.defineProperty(exports, 'appState', {
          enumerable: true,
@@ -14214,7 +14689,7 @@ Object.defineProperty(exports, 'appState', {
          }
 });
 
-var _stackScrollKeyboard = __webpack_require__(88);
+var _stackScrollKeyboard = __webpack_require__(91);
 
 Object.defineProperty(exports, 'stackScrollKeyboard', {
          enumerable: true,
@@ -14223,7 +14698,7 @@ Object.defineProperty(exports, 'stackScrollKeyboard', {
          }
 });
 
-var _stackScroll = __webpack_require__(43);
+var _stackScroll = __webpack_require__(46);
 
 Object.defineProperty(exports, 'stackScroll', {
          enumerable: true,
@@ -14250,7 +14725,7 @@ Object.defineProperty(exports, 'stackScrollMultiTouch', {
          }
 });
 
-var _stackPrefetch = __webpack_require__(42);
+var _stackPrefetch = __webpack_require__(90);
 
 Object.defineProperty(exports, 'stackPrefetch', {
          enumerable: true,
@@ -14259,7 +14734,7 @@ Object.defineProperty(exports, 'stackPrefetch', {
          }
 });
 
-var _scrollIndicator = __webpack_require__(87);
+var _scrollIndicator = __webpack_require__(89);
 
 Object.defineProperty(exports, 'scrollIndicator', {
          enumerable: true,
@@ -14268,7 +14743,7 @@ Object.defineProperty(exports, 'scrollIndicator', {
          }
 });
 
-var _playClip = __webpack_require__(86);
+var _playClip = __webpack_require__(88);
 
 Object.defineProperty(exports, 'playClip', {
          enumerable: true,
@@ -14283,7 +14758,7 @@ Object.defineProperty(exports, 'stopClip', {
          }
 });
 
-var _anyHandlesOutsideImage = __webpack_require__(10);
+var _anyHandlesOutsideImage = __webpack_require__(12);
 
 Object.defineProperty(exports, 'anyHandlesOutsideImage', {
          enumerable: true,
@@ -14292,7 +14767,7 @@ Object.defineProperty(exports, 'anyHandlesOutsideImage', {
          }
 });
 
-var _drawHandles = __webpack_require__(5);
+var _drawHandles = __webpack_require__(7);
 
 Object.defineProperty(exports, 'drawHandles', {
          enumerable: true,
@@ -14301,7 +14776,7 @@ Object.defineProperty(exports, 'drawHandles', {
          }
 });
 
-var _getHandleNearImagePoint = __webpack_require__(13);
+var _getHandleNearImagePoint = __webpack_require__(15);
 
 Object.defineProperty(exports, 'getHandleNearImagePoint', {
          enumerable: true,
@@ -14310,7 +14785,7 @@ Object.defineProperty(exports, 'getHandleNearImagePoint', {
          }
 });
 
-var _handleActivator = __webpack_require__(23);
+var _handleActivator = __webpack_require__(26);
 
 Object.defineProperty(exports, 'handleActivator', {
          enumerable: true,
@@ -14319,7 +14794,7 @@ Object.defineProperty(exports, 'handleActivator', {
          }
 });
 
-var _moveAllHandles = __webpack_require__(24);
+var _moveAllHandles = __webpack_require__(27);
 
 Object.defineProperty(exports, 'moveAllHandles', {
          enumerable: true,
@@ -14328,7 +14803,7 @@ Object.defineProperty(exports, 'moveAllHandles', {
          }
 });
 
-var _moveHandle = __webpack_require__(19);
+var _moveHandle = __webpack_require__(21);
 
 Object.defineProperty(exports, 'moveHandle', {
          enumerable: true,
@@ -14337,7 +14812,7 @@ Object.defineProperty(exports, 'moveHandle', {
          }
 });
 
-var _moveNewHandle = __webpack_require__(20);
+var _moveNewHandle = __webpack_require__(22);
 
 Object.defineProperty(exports, 'moveNewHandle', {
          enumerable: true,
@@ -14346,7 +14821,7 @@ Object.defineProperty(exports, 'moveNewHandle', {
          }
 });
 
-var _moveNewHandleTouch = __webpack_require__(21);
+var _moveNewHandleTouch = __webpack_require__(23);
 
 Object.defineProperty(exports, 'moveNewHandleTouch', {
          enumerable: true,
@@ -14355,7 +14830,7 @@ Object.defineProperty(exports, 'moveNewHandleTouch', {
          }
 });
 
-var _touchMoveAllHandles = __webpack_require__(39);
+var _touchMoveAllHandles = __webpack_require__(43);
 
 Object.defineProperty(exports, 'touchMoveAllHandles', {
          enumerable: true,
@@ -14364,7 +14839,7 @@ Object.defineProperty(exports, 'touchMoveAllHandles', {
          }
 });
 
-var _touchMoveHandle = __webpack_require__(40);
+var _touchMoveHandle = __webpack_require__(44);
 
 Object.defineProperty(exports, 'touchMoveHandle', {
          enumerable: true,
@@ -14373,7 +14848,7 @@ Object.defineProperty(exports, 'touchMoveHandle', {
          }
 });
 
-var _keyboardInput = __webpack_require__(79);
+var _keyboardInput = __webpack_require__(81);
 
 Object.defineProperty(exports, 'keyboardInput', {
          enumerable: true,
@@ -14382,7 +14857,7 @@ Object.defineProperty(exports, 'keyboardInput', {
          }
 });
 
-var _mouseInput = __webpack_require__(80);
+var _mouseInput = __webpack_require__(82);
 
 Object.defineProperty(exports, 'mouseInput', {
          enumerable: true,
@@ -14391,7 +14866,7 @@ Object.defineProperty(exports, 'mouseInput', {
          }
 });
 
-var _mouseWheelInput = __webpack_require__(81);
+var _mouseWheelInput = __webpack_require__(83);
 
 Object.defineProperty(exports, 'mouseWheelInput', {
          enumerable: true,
@@ -14400,7 +14875,7 @@ Object.defineProperty(exports, 'mouseWheelInput', {
          }
 });
 
-var _preventGhostClick = __webpack_require__(38);
+var _preventGhostClick = __webpack_require__(42);
 
 Object.defineProperty(exports, 'preventGhostClick', {
          enumerable: true,
@@ -14409,7 +14884,7 @@ Object.defineProperty(exports, 'preventGhostClick', {
          }
 });
 
-var _touchInput = __webpack_require__(82);
+var _touchInput = __webpack_require__(84);
 
 Object.defineProperty(exports, 'touchInput', {
          enumerable: true,
@@ -14418,7 +14893,7 @@ Object.defineProperty(exports, 'touchInput', {
          }
 });
 
-var _angleTool = __webpack_require__(54);
+var _angleTool = __webpack_require__(56);
 
 Object.defineProperty(exports, 'angle', {
          enumerable: true,
@@ -14433,7 +14908,7 @@ Object.defineProperty(exports, 'angleTouch', {
          }
 });
 
-var _arrowAnnotate = __webpack_require__(55);
+var _arrowAnnotate = __webpack_require__(57);
 
 Object.defineProperty(exports, 'arrowAnnotate', {
          enumerable: true,
@@ -14448,7 +14923,7 @@ Object.defineProperty(exports, 'arrowAnnotateTouch', {
          }
 });
 
-var _crosshairs = __webpack_require__(56);
+var _crosshairs = __webpack_require__(58);
 
 Object.defineProperty(exports, 'crosshairs', {
          enumerable: true,
@@ -14463,7 +14938,7 @@ Object.defineProperty(exports, 'crosshairsTouch', {
          }
 });
 
-var _displayTool = __webpack_require__(17);
+var _displayTool = __webpack_require__(19);
 
 Object.defineProperty(exports, 'displayTool', {
          enumerable: true,
@@ -14472,7 +14947,7 @@ Object.defineProperty(exports, 'displayTool', {
          }
 });
 
-var _doubleTapTool = __webpack_require__(35);
+var _doubleTapTool = __webpack_require__(38);
 
 Object.defineProperty(exports, 'doubleTapTool', {
          enumerable: true,
@@ -14481,7 +14956,7 @@ Object.defineProperty(exports, 'doubleTapTool', {
          }
 });
 
-var _doubleTapZoom = __webpack_require__(57);
+var _doubleTapZoom = __webpack_require__(59);
 
 Object.defineProperty(exports, 'doubleTapZoom', {
          enumerable: true,
@@ -14490,7 +14965,7 @@ Object.defineProperty(exports, 'doubleTapZoom', {
          }
 });
 
-var _dragProbe = __webpack_require__(58);
+var _dragProbe = __webpack_require__(60);
 
 Object.defineProperty(exports, 'dragProbe', {
          enumerable: true,
@@ -14505,7 +14980,7 @@ Object.defineProperty(exports, 'dragProbeTouch', {
          }
 });
 
-var _ellipticalRoi = __webpack_require__(59);
+var _ellipticalRoi = __webpack_require__(61);
 
 Object.defineProperty(exports, 'ellipticalRoi', {
          enumerable: true,
@@ -14520,7 +14995,7 @@ Object.defineProperty(exports, 'ellipticalRoiTouch', {
          }
 });
 
-var _freehand = __webpack_require__(60);
+var _freehand = __webpack_require__(62);
 
 Object.defineProperty(exports, 'freehand', {
          enumerable: true,
@@ -14529,7 +15004,7 @@ Object.defineProperty(exports, 'freehand', {
          }
 });
 
-var _highlight = __webpack_require__(61);
+var _highlight = __webpack_require__(63);
 
 Object.defineProperty(exports, 'highlight', {
          enumerable: true,
@@ -14544,7 +15019,7 @@ Object.defineProperty(exports, 'highlightTouch', {
          }
 });
 
-var _imageStats = __webpack_require__(62);
+var _imageStats = __webpack_require__(64);
 
 Object.defineProperty(exports, 'imageStats', {
          enumerable: true,
@@ -14552,14 +15027,17 @@ Object.defineProperty(exports, 'imageStats', {
                   return _interopRequireDefault(_imageStats).default;
          }
 });
+
+var _keyboardTool = __webpack_require__(39);
+
 Object.defineProperty(exports, 'keyboardTool', {
          enumerable: true,
          get: function get() {
-                  return _interopRequireDefault(_imageStats).default;
+                  return _interopRequireDefault(_keyboardTool).default;
          }
 });
 
-var _length = __webpack_require__(63);
+var _length = __webpack_require__(65);
 
 Object.defineProperty(exports, 'length', {
          enumerable: true,
@@ -14574,7 +15052,7 @@ Object.defineProperty(exports, 'lengthTouch', {
          }
 });
 
-var _magnify = __webpack_require__(64);
+var _magnify = __webpack_require__(66);
 
 Object.defineProperty(exports, 'magnify', {
          enumerable: true,
@@ -14589,7 +15067,7 @@ Object.defineProperty(exports, 'magnifyTouchDrag', {
          }
 });
 
-var _mouseButtonRectangleTool = __webpack_require__(36);
+var _mouseButtonRectangleTool = __webpack_require__(40);
 
 Object.defineProperty(exports, 'mouseButtonRectangleTool', {
          enumerable: true,
@@ -14598,7 +15076,7 @@ Object.defineProperty(exports, 'mouseButtonRectangleTool', {
          }
 });
 
-var _mouseButtonTool = __webpack_require__(6);
+var _mouseButtonTool = __webpack_require__(8);
 
 Object.defineProperty(exports, 'mouseButtonTool', {
          enumerable: true,
@@ -14607,7 +15085,7 @@ Object.defineProperty(exports, 'mouseButtonTool', {
          }
 });
 
-var _mouseWheelTool = __webpack_require__(18);
+var _mouseWheelTool = __webpack_require__(20);
 
 Object.defineProperty(exports, 'mouseWheelTool', {
          enumerable: true,
@@ -14616,7 +15094,7 @@ Object.defineProperty(exports, 'mouseWheelTool', {
          }
 });
 
-var _multiTouchDragTool = __webpack_require__(22);
+var _multiTouchDragTool = __webpack_require__(25);
 
 Object.defineProperty(exports, 'multiTouchDragTool', {
          enumerable: true,
@@ -14625,7 +15103,7 @@ Object.defineProperty(exports, 'multiTouchDragTool', {
          }
 });
 
-var _orientationMarkers = __webpack_require__(65);
+var _orientationMarkers = __webpack_require__(67);
 
 Object.defineProperty(exports, 'orientationMarkers', {
          enumerable: true,
@@ -14634,7 +15112,7 @@ Object.defineProperty(exports, 'orientationMarkers', {
          }
 });
 
-var _pan = __webpack_require__(66);
+var _pan = __webpack_require__(68);
 
 Object.defineProperty(exports, 'pan', {
          enumerable: true,
@@ -14649,7 +15127,7 @@ Object.defineProperty(exports, 'panTouchDrag', {
          }
 });
 
-var _panMultiTouch = __webpack_require__(67);
+var _panMultiTouch = __webpack_require__(69);
 
 Object.defineProperty(exports, 'panMultiTouch', {
          enumerable: true,
@@ -14658,7 +15136,7 @@ Object.defineProperty(exports, 'panMultiTouch', {
          }
 });
 
-var _probe = __webpack_require__(68);
+var _probe = __webpack_require__(70);
 
 Object.defineProperty(exports, 'probe', {
          enumerable: true,
@@ -14673,7 +15151,7 @@ Object.defineProperty(exports, 'probeTouch', {
          }
 });
 
-var _rectangleRoi = __webpack_require__(69);
+var _rectangleRoi = __webpack_require__(71);
 
 Object.defineProperty(exports, 'rectangleRoi', {
          enumerable: true,
@@ -14688,7 +15166,7 @@ Object.defineProperty(exports, 'rectangleRoiTouch', {
          }
 });
 
-var _rotate = __webpack_require__(70);
+var _rotate = __webpack_require__(72);
 
 Object.defineProperty(exports, 'rotate', {
          enumerable: true,
@@ -14703,7 +15181,7 @@ Object.defineProperty(exports, 'rotateTouchDrag', {
          }
 });
 
-var _rotateTouch = __webpack_require__(71);
+var _rotateTouch = __webpack_require__(73);
 
 Object.defineProperty(exports, 'rotateTouch', {
          enumerable: true,
@@ -14712,7 +15190,7 @@ Object.defineProperty(exports, 'rotateTouch', {
          }
 });
 
-var _saveAs = __webpack_require__(72);
+var _saveAs = __webpack_require__(74);
 
 Object.defineProperty(exports, 'saveAs', {
          enumerable: true,
@@ -14721,7 +15199,7 @@ Object.defineProperty(exports, 'saveAs', {
          }
 });
 
-var _seedAnnotate = __webpack_require__(73);
+var _seedAnnotate = __webpack_require__(75);
 
 Object.defineProperty(exports, 'seedAnnotate', {
          enumerable: true,
@@ -14736,7 +15214,7 @@ Object.defineProperty(exports, 'seedAnnotateTouch', {
          }
 });
 
-var _simpleAngle = __webpack_require__(74);
+var _simpleAngle = __webpack_require__(76);
 
 Object.defineProperty(exports, 'simpleAngle', {
          enumerable: true,
@@ -14751,7 +15229,7 @@ Object.defineProperty(exports, 'simpleAngleTouch', {
          }
 });
 
-var _simpleMouseButtonTool = __webpack_require__(11);
+var _simpleMouseButtonTool = __webpack_require__(13);
 
 Object.defineProperty(exports, 'simpleMouseButtonTool', {
          enumerable: true,
@@ -14760,7 +15238,7 @@ Object.defineProperty(exports, 'simpleMouseButtonTool', {
          }
 });
 
-var _textMarker = __webpack_require__(75);
+var _textMarker = __webpack_require__(77);
 
 Object.defineProperty(exports, 'textMarker', {
          enumerable: true,
@@ -14775,7 +15253,7 @@ Object.defineProperty(exports, 'textMarkerTouch', {
          }
 });
 
-var _touchDragTool = __webpack_require__(9);
+var _touchDragTool = __webpack_require__(11);
 
 Object.defineProperty(exports, 'touchDragTool', {
          enumerable: true,
@@ -14784,7 +15262,7 @@ Object.defineProperty(exports, 'touchDragTool', {
          }
 });
 
-var _touchPinchTool = __webpack_require__(37);
+var _touchPinchTool = __webpack_require__(41);
 
 Object.defineProperty(exports, 'touchPinchTool', {
          enumerable: true,
@@ -14793,7 +15271,7 @@ Object.defineProperty(exports, 'touchPinchTool', {
          }
 });
 
-var _touchTool = __webpack_require__(7);
+var _touchTool = __webpack_require__(9);
 
 Object.defineProperty(exports, 'touchTool', {
          enumerable: true,
@@ -14802,7 +15280,7 @@ Object.defineProperty(exports, 'touchTool', {
          }
 });
 
-var _wwwc = __webpack_require__(76);
+var _wwwc = __webpack_require__(78);
 
 Object.defineProperty(exports, 'wwwc', {
          enumerable: true,
@@ -14817,7 +15295,7 @@ Object.defineProperty(exports, 'wwwcTouchDrag', {
          }
 });
 
-var _wwwcRegion = __webpack_require__(77);
+var _wwwcRegion = __webpack_require__(79);
 
 Object.defineProperty(exports, 'wwwcRegion', {
          enumerable: true,
@@ -14832,7 +15310,7 @@ Object.defineProperty(exports, 'wwwcRegionTouch', {
          }
 });
 
-var _zoom = __webpack_require__(78);
+var _zoom = __webpack_require__(80);
 
 Object.defineProperty(exports, 'zoom', {
          enumerable: true,
@@ -14859,7 +15337,7 @@ Object.defineProperty(exports, 'zoomTouchDrag', {
          }
 });
 
-var _index3 = __webpack_require__(85);
+var _index3 = __webpack_require__(87);
 
 Object.defineProperty(exports, 'regionsThreshold', {
          enumerable: true,
@@ -14880,7 +15358,7 @@ Object.defineProperty(exports, 'regionsDraw', {
          }
 });
 
-var _version = __webpack_require__(104);
+var _version = __webpack_require__(107);
 
 Object.defineProperty(exports, 'version', {
          enumerable: true,
@@ -14892,7 +15370,7 @@ Object.defineProperty(exports, 'version', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14917,7 +15395,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14964,7 +15442,7 @@ var manager = new MeasurementManager();
 exports.default = manager;
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15004,8 +15482,14 @@ exports.default = function (vector) {
   return orientation;
 };
 
+var _cornerstoneMath = __webpack_require__(3);
+
+var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15029,7 +15513,7 @@ exports.default = function (string) {
 };
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15039,13 +15523,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _renderActiveReferenceLine = __webpack_require__(53);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _renderActiveReferenceLine = __webpack_require__(55);
 
 var _renderActiveReferenceLine2 = _interopRequireDefault(_renderActiveReferenceLine);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'referenceLines';
 
@@ -15109,7 +15599,7 @@ var tool = {
 exports.default = tool;
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15121,13 +15611,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'drawing';
 
@@ -15308,7 +15804,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15320,13 +15816,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
 
-var _isMouseButtonEnabled = __webpack_require__(1);
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'regionsGrow';
 
@@ -15366,8 +15868,7 @@ function regionGrowing(regions, slices, point, nextValue) {
   // Growing starts at clicked voxel
   var activeVoxels = [linearIndex];
 
-  // While activeVoxels is not empty
-  while (activeVoxels.length !== 0) {
+  function chunk() {
     // Set the active voxels to nextValue
     activeVoxels.forEach(function (i) {
       view[i] = nextValue;
@@ -15387,10 +15888,13 @@ function regionGrowing(regions, slices, point, nextValue) {
       return view[i] === fromValue;
     });
 
-    activeVoxels = nextVoxels;
+    return nextVoxels;
   }
 
-  return buffer;
+  // While activeVoxels is not empty
+  while (activeVoxels.length !== 0) {
+    chunk();
+  }
 }
 
 function onMouseDown(e, eventData) {
@@ -15444,17 +15948,23 @@ exports.default = {
 };
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _toolState = __webpack_require__(0);
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'thresholding';
 
@@ -15467,144 +15977,163 @@ var REGION_COLORS_RGBA = [[255, 10, 255], // Unused?
  * Perform the thresholding on a stack
  */
 function performThresholding(stack, callback) {
-    var width = void 0,
-        height = void 0;
-    var imageIds = stack.imageIds;
-    var slices = imageIds.length;
+  var width = void 0,
+      height = void 0;
+  var imageIds = stack.imageIds;
+  var slices = imageIds.length;
 
-    // get slope and intercept
-    return cornerstone.loadImage(imageIds[0]).then(function (image) {
-        width = image.width;
-        height = image.height;
+  // Get slope and intercept
+  return cornerstone.loadImage(imageIds[0]).then(function (image) {
+    width = image.width;
+    height = image.height;
 
-        var length = width * height * slices * LABEL_SIZE_BYTES;
-        var buffer = new ArrayBuffer(length);
-        var view = new Uint8Array(buffer);
+    var length = width * height * slices * LABEL_SIZE_BYTES;
+    var buffer = new ArrayBuffer(length);
+    var view = new Uint8Array(buffer);
 
-        // thresholding promises
-        var promises = imageIds.map(function (imageId, imageIdx) {
+    // Thresholding promises
+    var promises = imageIds.map(function (imageId, imageIdx) {
 
-            return cornerstone.loadImage(imageId).then(function (image) {
-                var slope = image.slope;
-                var intercept = image.intercept;
-                var pixelData = image.getPixelData();
-                var n = width * height;
-                for (var i = 0; i < n; i++) {
-                    var pixel = pixelData[i];
-                    var hu = pixel * slope + intercept;
-                    var label = hu >= CALCIUM_THRESHOLD_HU ? 1 : 0;
-                    var viewIdx = imageIdx * n + i;
-                    view[viewIdx] = label;
-                }
-            });
-        });
+      return cornerstone.loadImage(imageId).then(function (image) {
+        var slope = image.slope;
+        var intercept = image.intercept;
+        var pixelData = image.getPixelData();
+        var n = width * height;
 
-        // callback with buffer
-        return Promise.all(promises).then(function () {
-            var result = { buffer: buffer, width: width, height: height };
-            if (callback) callback(result);
-            return result;
-        });
+        for (var i = 0; i < n; i++) {
+          var pixel = pixelData[i];
+          var hu = pixel * slope + intercept;
+          var label = hu >= CALCIUM_THRESHOLD_HU ? 1 : 0;
+          var viewIdx = imageIdx * n + i;
+
+          view[viewIdx] = label;
+        }
+      });
     });
+
+    // Callback with buffer
+    return Promise.all(promises).then(function () {
+      var result = {
+        buffer: buffer,
+        width: width,
+        height: height
+      };
+
+      if (callback) {
+        callback(result);
+      }
+
+      return result;
+    });
+  });
 }
+
+var imgdata = null;
 
 /**
  * Draw regions on image
  */
 function onImageRendered(e, eventData) {
-    var element = eventData.element;
-    var stackData = cornerstoneTools.getToolState(element, 'stack');
-    var thresholdingData = cornerstoneTools.getToolState(element, 'regions');
-    if (!thresholdingData || !thresholdingData.data || !thresholdingData.data.length) {
-        return;
+  var element = eventData.element;
+  var stackData = (0, _toolState.getToolState)(element, 'stack');
+  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+
+  if (!thresholdingData || !thresholdingData.data || !thresholdingData.data.length) {
+    return;
+  }
+
+  var slice = stackData.data[0].currentImageIdIndex;
+  var buffer = thresholdingData.data[0].buffer;
+  var context = eventData.canvasContext;
+  var enabledElement = eventData.enabledElement;
+  var image = eventData.image;
+  var width = image.width;
+  var height = image.height;
+
+  var doubleBuffer = document.createElement('canvas');
+  var doubleBufferContext = doubleBuffer.getContext('2d');
+
+  doubleBuffer.width = width;
+  doubleBuffer.height = height;
+  imgdata = imgdata || doubleBufferContext.createImageData(width, height);
+
+  var pixels = imgdata.data;
+  var sliceSize = width * height;
+  var sliceOffset = slice * sliceSize;
+  var view = new Uint8Array(buffer, sliceOffset, sliceSize);
+
+  for (var i = 0; i < view.length; i += 1) {
+    var label = view[i];
+    var pi = i * 4;
+
+    if (label) {
+      var color = REGION_COLORS_RGBA[label - 1];
+
+      pixels[pi + 0] = color[0];
+      pixels[pi + 1] = color[1];
+      pixels[pi + 2] = color[2];
+      pixels[pi + 3] = 0.5 * 255;
+    } else {
+      pixels[pi + 3] = 0;
     }
+  }
+  doubleBufferContext.putImageData(imgdata, 0, 0);
 
-    var slice = stackData.data[0].currentImageIdIndex;
-    var buffer = thresholdingData.data[0].buffer;
-    var context = eventData.canvasContext;
-    var enabledElement = eventData.enabledElement;
-    var image = eventData.image;
-    var width = image.width;
-    var height = image.height;
-
-    var doubleBuffer = document.createElement('canvas');
-    doubleBuffer.width = width;
-    doubleBuffer.height = height;
-    var doubleBufferContext = doubleBuffer.getContext('2d');
-    var imgdata = doubleBufferContext.createImageData(width, height);
-    var pixels = imgdata.data;
-
-    var sliceSize = width * height;
-    var sliceOffset = slice * sliceSize;
-    var view = new Uint8Array(buffer, sliceOffset, sliceSize);
-    for (var i = 0; i < view.length; i += 1) {
-        var label = view[i];
-        if (label) {
-            var pi = i * 4;
-            var color = REGION_COLORS_RGBA[label - 1];
-            pixels[pi + 0] = color[0];
-            pixels[pi + 1] = color[1];
-            pixels[pi + 2] = color[2];
-            pixels[pi + 3] = 0.5 * 255;
-        }
-    }
-    doubleBufferContext.putImageData(imgdata, 0, 0);
-
-    cornerstone.setToPixelCoordinateSystem(enabledElement, context);
-    context.drawImage(doubleBuffer, 0, 0);
+  cornerstone.setToPixelCoordinateSystem(enabledElement, context);
+  context.drawImage(doubleBuffer, 0, 0);
 }
 
 function enable(element) {
-    // First check that there is stack data available
-    var stackData = (0, _toolState.getToolState)(element, 'stack');
-    if (!stackData || !stackData.data || !stackData.data.length) {
-        return;
-    }
+  // First check that there is stack data available
+  var stackData = (0, _toolState.getToolState)(element, 'stack');
+  if (!stackData || !stackData.data || !stackData.data.length) {
+    return;
+  }
 
-    var initialThresholdingData = {
-        enabled: 1,
-        buffer: null,
-        width: null,
-        height: null
-    };
-    (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
+  var initialThresholdingData = {
+    enabled: 1,
+    buffer: null,
+    width: null,
+    height: null
+  };
+  (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
 
-    var stack = stackData.data[0];
-    performThresholding(stack, function (regions) {
-        // add threshold data to tool state
-        var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
-        thresholdingData.data[0].buffer = regions.buffer;
-        thresholdingData.data[0].width = regions.width;
-        thresholdingData.data[0].height = regions.height;
-        // draw regions on image
-        $(element).on('CornerstoneImageRendered', onImageRendered);
+  var stack = stackData.data[0];
+  performThresholding(stack, function (regions) {
+    // add threshold data to tool state
+    var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+    thresholdingData.data[0].buffer = regions.buffer;
+    thresholdingData.data[0].width = regions.width;
+    thresholdingData.data[0].height = regions.height;
+    // draw regions on image
+    $(element).on('CornerstoneImageRendered', onImageRendered);
 
-        // Update the element to apply the viewport and tool changes
-        cornerstone.updateImage(element);
-    });
+    // Update the element to apply the viewport and tool changes
+    cornerstone.updateImage(element);
+  });
 }
 
 function disable(element) {
-    var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
-    // If there is actually something to disable, disable it
-    if (thresholdingData && thresholdingData.data.length) {
-        thresholdingData.data[0].enabled = false;
-    }
+  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  // If there is actually something to disable, disable it
+  if (thresholdingData && thresholdingData.data.length) {
+    thresholdingData.data[0].enabled = false;
+  }
 }
 
 // module/private exports
 exports.default = {
-    activate: enable,
-    deactivate: disable,
-    enable: enable,
-    disable: disable
+  activate: enable,
+  deactivate: disable,
+  enable: enable,
+  disable: disable
 };
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_115__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_117__;
 
 /***/ })
 /******/ ]);

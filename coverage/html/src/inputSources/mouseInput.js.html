@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/inputSources/mouseInput.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/inputSources/</a> mouseInput.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.23% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/71</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.23% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/71</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import * as cornerstoneMath from 'cornerstone-math';
+import copyPoints from '../util/copyPoints.js';
+import pauseEvent from '../util/pauseEvent.js';
+&nbsp;
+let isClickEvent = true;
+let preventClickTimeout;
+const clickDelay = 200;
+&nbsp;
+function preventClickHandler () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  isClickEvent = false;</span>
+}
+&nbsp;
+function activateMouseDown (mouseEventDetail) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(mouseEventDetail.element).trigger('CornerstoneToolsMouseDownActivate', mouseEventDetail);</span>
+}
+&nbsp;
+function mouseDoubleClick (e) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
+  const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMouseDoubleClick';</span>
+&nbsp;
+  const startPoints = <span class="cstat-no" title="statement not covered" >{</span>
+    page: cornerstoneMath.point.pageToPoint(e),
+    image: cornerstone.pageToPixel(element, e.pageX, e.pageY),
+    client: {
+      x: e.clientX,
+      y: e.clientY
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  startPoints.canvas = cornerstone.pixelToCanvas(element, startPoints.image);</span>
+&nbsp;
+  const lastPoints = <span class="cstat-no" title="statement not covered" >copyPoints(startPoints);</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    event: e,
+    which: e.which,
+    viewport: cornerstone.getViewport(element),
+    image: cornerstone.getEnabledElement(element).image,
+    element,
+    startPoints,
+    lastPoints,
+    currentPoints: startPoints,
+    deltaPoints: {
+      x: 0,
+      y: 0
+    },
+    type: eventType
+  };
+&nbsp;
+  const event = <span class="cstat-no" title="statement not covered" >$.Event(eventType, eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).trigger(event, eventData);</span>
+}
+&nbsp;
+function mouseDown (e) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  preventClickTimeout = setTimeout(preventClickHandler, clickDelay);</span>
+&nbsp;
+  const element = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
+  const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMouseDown';</span>
+&nbsp;
+    // Prevent CornerstoneToolsMouseMove while mouse is down
+<span class="cstat-no" title="statement not covered" >  $(element).off('mousemove', mouseMove);</span>
+&nbsp;
+  const startPoints = <span class="cstat-no" title="statement not covered" >{</span>
+    page: cornerstoneMath.point.pageToPoint(e),
+    image: cornerstone.pageToPixel(element, e.pageX, e.pageY),
+    client: {
+      x: e.clientX,
+      y: e.clientY
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  startPoints.canvas = cornerstone.pixelToCanvas(element, startPoints.image);</span>
+&nbsp;
+  let lastPoints = <span class="cstat-no" title="statement not covered" >copyPoints(startPoints);</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    event: e,
+    which: e.which,
+    viewport: cornerstone.getViewport(element),
+    image: cornerstone.getEnabledElement(element).image,
+    element,
+    startPoints,
+    lastPoints,
+    currentPoints: startPoints,
+    deltaPoints: {
+      x: 0,
+      y: 0
+    },
+    type: eventType
+  };
+&nbsp;
+  const event = <span class="cstat-no" title="statement not covered" >$.Event(eventType, eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).trigger(event, eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (event.isImmediatePropagationStopped() === false) {</span>
+        // No tools responded to this event, give the active tool a chance
+<span class="cstat-no" title="statement not covered" >    if (activateMouseDown(eventData) === true) {</span>
+<span class="cstat-no" title="statement not covered" >      return pauseEvent(e);</span>
+    }
+  }
+&nbsp;
+  const whichMouseButton = <span class="cstat-no" title="statement not covered" >e.which;</span>
+&nbsp;
+  function onMouseMove (e) <span class="fstat-no" title="function not covered" >{</span>
+        // Calculate our current points in page and image coordinates
+    const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMouseDrag';</span>
+    const currentPoints = <span class="cstat-no" title="statement not covered" >{</span>
+      page: cornerstoneMath.point.pageToPoint(e),
+      image: cornerstone.pageToPixel(element, e.pageX, e.pageY),
+      client: {
+        x: e.clientX,
+        y: e.clientY
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    currentPoints.canvas = cornerstone.pixelToCanvas(element, currentPoints.image);</span>
+&nbsp;
+        // Calculate delta values in page and image coordinates
+    const deltaPoints = <span class="cstat-no" title="statement not covered" >{</span>
+      page: cornerstoneMath.point.subtract(currentPoints.page, lastPoints.page),
+      image: cornerstoneMath.point.subtract(currentPoints.image, lastPoints.image),
+      client: cornerstoneMath.point.subtract(currentPoints.client, lastPoints.client),
+      canvas: cornerstoneMath.point.subtract(currentPoints.canvas, lastPoints.canvas)
+    };
+&nbsp;
+    const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+      which: whichMouseButton,
+      viewport: cornerstone.getViewport(element),
+      image: cornerstone.getEnabledElement(element).image,
+      element,
+      startPoints,
+      lastPoints,
+      currentPoints,
+      deltaPoints,
+      type: eventType
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).trigger(eventType, eventData);</span>
+&nbsp;
+        // Update the last points
+<span class="cstat-no" title="statement not covered" >    lastPoints = copyPoints(currentPoints);</span>
+&nbsp;
+        // Prevent left click selection of DOM elements
+<span class="cstat-no" title="statement not covered" >    return pauseEvent(e);</span>
+  }
+&nbsp;
+    // Hook mouseup so we can unbind our event listeners
+    // When they stop dragging
+  function onMouseUp (e) <span class="fstat-no" title="function not covered" >{</span>
+        // Cancel the timeout preventing the click event from triggering
+<span class="cstat-no" title="statement not covered" >    clearTimeout(preventClickTimeout);</span>
+&nbsp;
+    let eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMouseUp';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (isClickEvent) {</span>
+<span class="cstat-no" title="statement not covered" >      eventType = 'CornerstoneToolsMouseClick';</span>
+    }
+&nbsp;
+        // Calculate our current points in page and image coordinates
+    const currentPoints = <span class="cstat-no" title="statement not covered" >{</span>
+      page: cornerstoneMath.point.pageToPoint(e),
+      image: cornerstone.pageToPixel(element, e.pageX, e.pageY),
+      client: {
+        x: e.clientX,
+        y: e.clientY
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    currentPoints.canvas = cornerstone.pixelToCanvas(element, currentPoints.image);</span>
+&nbsp;
+        // Calculate delta values in page and image coordinates
+    const deltaPoints = <span class="cstat-no" title="statement not covered" >{</span>
+      page: cornerstoneMath.point.subtract(currentPoints.page, lastPoints.page),
+      image: cornerstoneMath.point.subtract(currentPoints.image, lastPoints.image),
+      client: cornerstoneMath.point.subtract(currentPoints.client, lastPoints.client),
+      canvas: cornerstoneMath.point.subtract(currentPoints.canvas, lastPoints.canvas)
+    };
+&nbsp;
+    const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+      event: e,
+      which: whichMouseButton,
+      viewport: cornerstone.getViewport(element),
+      image: cornerstone.getEnabledElement(element).image,
+      element,
+      startPoints,
+      lastPoints,
+      currentPoints,
+      deltaPoints,
+      type: eventType
+    };
+&nbsp;
+    const event = <span class="cstat-no" title="statement not covered" >$.Event(eventType, eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).trigger(event, eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(document).off('mousemove', onMouseMove);</span>
+<span class="cstat-no" title="statement not covered" >    $(document).off('mouseup', onMouseUp);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('mousemove', mouseMove);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    isClickEvent = true;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(document).on('mousemove', onMouseMove);</span>
+<span class="cstat-no" title="statement not covered" >  $(document).on('mouseup', onMouseUp);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return pauseEvent(e);</span>
+}
+&nbsp;
+function mouseMove (e) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
+  const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMouseMove';</span>
+&nbsp;
+  const startPoints = <span class="cstat-no" title="statement not covered" >{</span>
+    page: cornerstoneMath.point.pageToPoint(e),
+    image: cornerstone.pageToPixel(element, e.pageX, e.pageY),
+    client: {
+      x: e.clientX,
+      y: e.clientY
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  startPoints.canvas = cornerstone.pixelToCanvas(element, startPoints.image);</span>
+&nbsp;
+  let lastPoints = <span class="cstat-no" title="statement not covered" >copyPoints(startPoints);</span>
+&nbsp;
+  const whichMouseButton = <span class="cstat-no" title="statement not covered" >e.which;</span>
+&nbsp;
+    // Calculate our current points in page and image coordinates
+  const currentPoints = <span class="cstat-no" title="statement not covered" >{</span>
+    page: cornerstoneMath.point.pageToPoint(e),
+    image: cornerstone.pageToPixel(element, e.pageX, e.pageY),
+    client: {
+      x: e.clientX,
+      y: e.clientY
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  currentPoints.canvas = cornerstone.pixelToCanvas(element, currentPoints.image);</span>
+&nbsp;
+    // Calculate delta values in page and image coordinates
+  const deltaPoints = <span class="cstat-no" title="statement not covered" >{</span>
+    page: cornerstoneMath.point.subtract(currentPoints.page, lastPoints.page),
+    image: cornerstoneMath.point.subtract(currentPoints.image, lastPoints.image),
+    client: cornerstoneMath.point.subtract(currentPoints.client, lastPoints.client),
+    canvas: cornerstoneMath.point.subtract(currentPoints.canvas, lastPoints.canvas)
+  };
+&nbsp;
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    which: whichMouseButton,
+    viewport: cornerstone.getViewport(element),
+    image: cornerstone.getEnabledElement(element).image,
+    element,
+    startPoints,
+    lastPoints,
+    currentPoints,
+    deltaPoints,
+    type: eventType
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).trigger(eventType, eventData);</span>
+&nbsp;
+    // Update the last points
+<span class="cstat-no" title="statement not covered" >  lastPoints = copyPoints(currentPoints);</span>
+}
+&nbsp;
+function disable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('mousedown', mouseDown);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('mousemove', mouseMove);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('dblclick', mouseDoubleClick);</span>
+}
+&nbsp;
+function enable (element) <span class="fstat-no" title="function not covered" >{</span>
+    // Prevent handlers from being attached multiple times
+<span class="cstat-no" title="statement not covered" >  disable(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).on('mousedown', mouseDown);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).on('mousemove', mouseMove);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).on('dblclick', mouseDoubleClick);</span>
+}
+&nbsp;
+// Module exports
+const mouseInput = {
+  enable,
+  disable
+};
+&nbsp;
+export default mouseInput;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

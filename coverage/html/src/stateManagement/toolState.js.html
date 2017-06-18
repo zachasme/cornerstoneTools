@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/stateManagement/toolState.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/stateManagement/</a> toolState.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/28</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import { globalImageIdSpecificToolStateManager } from './imageIdSpecificStateManager';
+&nbsp;
+function getElementToolStateManager (element) <span class="fstat-no" title="function not covered" >{</span>
+  const enabledImage = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+    // If the enabledImage has no toolStateManager, create a default one for it
+    // NOTE: This makes state management element specific
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (enabledImage.toolStateManager === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    enabledImage.toolStateManager = globalImageIdSpecificToolStateManager;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return enabledImage.toolStateManager;</span>
+}
+&nbsp;
+// Here we add tool state, this is done by tools as well
+// As modules that restore saved state
+function addToolState (element, toolType, measurementData) <span class="fstat-no" title="function not covered" >{</span>
+  const toolStateManager = <span class="cstat-no" title="statement not covered" >getElementToolStateManager(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  toolStateManager.add(element, toolType, measurementData);</span>
+&nbsp;
+  const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMeasurementAdded';</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    toolType,
+    element,
+    measurementData
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).trigger(eventType, eventData);</span>
+}
+&nbsp;
+// Here you can get state - used by tools as well as modules
+// That save state persistently
+function getToolState (element, toolType) <span class="fstat-no" title="function not covered" >{</span>
+  const toolStateManager = <span class="cstat-no" title="statement not covered" >getElementToolStateManager(element);</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return toolStateManager.get(element, toolType);</span>
+}
+&nbsp;
+function removeToolState (element, toolType, data) <span class="fstat-no" title="function not covered" >{</span>
+  const toolStateManager = <span class="cstat-no" title="statement not covered" >getElementToolStateManager(element);</span>
+  const toolData = <span class="cstat-no" title="statement not covered" >toolStateManager.get(element, toolType);</span>
+    // Find this tool data
+  let indexOfData = <span class="cstat-no" title="statement not covered" >-1;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (let i = 0; i &lt; toolData.data.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    if (toolData.data[i] === data) {</span>
+<span class="cstat-no" title="statement not covered" >      indexOfData = i;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (indexOfData !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >    toolData.data.splice(indexOfData, 1);</span>
+&nbsp;
+    const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMeasurementRemoved';</span>
+    const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+      toolType,
+      element,
+      measurementData: data
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).trigger(eventType, eventData);</span>
+  }
+}
+&nbsp;
+function clearToolState (element, toolType) <span class="fstat-no" title="function not covered" >{</span>
+  const toolStateManager = <span class="cstat-no" title="statement not covered" >getElementToolStateManager(element);</span>
+  const toolData = <span class="cstat-no" title="statement not covered" >toolStateManager.get(element, toolType);</span>
+&nbsp;
+    // If any toolData actually exists, clear it
+<span class="cstat-no" title="statement not covered" >  if (toolData !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    toolData.data = [];</span>
+  }
+}
+&nbsp;
+// Sets the tool state manager for an element
+function setElementToolStateManager (element, toolStateManager) <span class="fstat-no" title="function not covered" >{</span>
+  const enabledImage = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  enabledImage.toolStateManager = toolStateManager;</span>
+}
+&nbsp;
+export {
+  addToolState,
+  getToolState,
+  removeToolState,
+  clearToolState,
+  setElementToolStateManager,
+  getElementToolStateManager
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

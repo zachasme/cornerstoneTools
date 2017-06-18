@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/manipulators/touchMoveHandle.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/manipulators/</a> touchMoveHandle.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.77% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/53</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.77% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/53</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+&nbsp;
+ /*
+ * Define the runAnimation boolean as an object
+ * so that it can be modified by reference
+ */
+const runAnimation = {
+  value: false
+};
+&nbsp;
+const touchEndEvents = ['CornerstoneToolsTouchEnd',
+  'CornerstoneToolsDragEnd',
+  'CornerstoneToolsTouchPinch',
+  'CornerstoneToolsTouchPress',
+  'CornerstoneToolsTap'
+].join(' ');
+&nbsp;
+function animate (lastTime, handle, runAnimation, enabledElement, targetLocation) <span class="fstat-no" title="function not covered" >{</span>
+    // See http://www.html5canvastutorials.com/advanced/html5-canvas-start-and-stop-an-animation/
+<span class="cstat-no" title="statement not covered" >  if (!runAnimation.value) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+    // Update
+  const time = <span class="cstat-no" title="statement not covered" >(new Date()).getTime();</span>
+    // Var timeDiff = time - lastTime;
+&nbsp;
+    // Pixels / second
+  const distanceRemaining = <span class="cstat-no" title="statement not covered" >Math.abs(handle.y - targetLocation.y);</span>
+  const linearDistEachFrame = <span class="cstat-no" title="statement not covered" >distanceRemaining / 10;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  console.log(`distanceRemaining: ${distanceRemaining}`);</span>
+<span class="cstat-no" title="statement not covered" >  if (distanceRemaining &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >    handle.y = targetLocation.y;</span>
+<span class="cstat-no" title="statement not covered" >    runAnimation.value = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (handle.y &gt; targetLocation.y) {</span>
+<span class="cstat-no" title="statement not covered" >    handle.y -= linearDistEachFrame;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (handle.y &lt; targetLocation.y) {</span>
+<span class="cstat-no" title="statement not covered" >    handle.y += linearDistEachFrame;</span>
+  }
+&nbsp;
+    // Update the image
+<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(enabledElement.element);</span>
+&nbsp;
+    // Request a new frame
+<span class="cstat-no" title="statement not covered" >  cornerstone.requestAnimationFrame(function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    animate(time, handle, runAnimation, enabledElement, targetLocation);</span>
+  });
+}
+&nbsp;
+export default function (touchEventData, toolType, data, handle, doneMovingCallback) <span class="fstat-no" title="function not covered" >{</span>
+    // Console.log('touchMoveHandle');
+<span class="cstat-no" title="statement not covered" >  runAnimation.value = true;</span>
+&nbsp;
+  const element = <span class="cstat-no" title="statement not covered" >touchEventData.element;</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+&nbsp;
+  const time = <span class="cstat-no" title="statement not covered" >(new Date()).getTime();</span>
+&nbsp;
+    // Average pixel width of index finger is 45-57 pixels
+    // https://www.smashingmagazine.com/2012/02/finger-friendly-design-ideal-mobile-touchscreen-target-sizes/
+  const fingerDistance = <span class="cstat-no" title="statement not covered" >-57;</span>
+&nbsp;
+  const aboveFinger = <span class="cstat-no" title="statement not covered" >{</span>
+    x: touchEventData.currentPoints.page.x,
+    y: touchEventData.currentPoints.page.y + fingerDistance
+  };
+&nbsp;
+  let targetLocation = <span class="cstat-no" title="statement not covered" >cornerstone.pageToPixel(element, aboveFinger.x, aboveFinger.y);</span>
+&nbsp;
+  function touchDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('touchMoveHandle touchDragCallback: ' + e.type);
+<span class="cstat-no" title="statement not covered" >    runAnimation.value = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (handle.hasMoved === false) {</span>
+<span class="cstat-no" title="statement not covered" >      handle.hasMoved = true;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    handle.active = true;</span>
+&nbsp;
+    const currentPoints = <span class="cstat-no" title="statement not covered" >eventData.currentPoints;</span>
+    const aboveFinger = <span class="cstat-no" title="statement not covered" >{</span>
+      x: currentPoints.page.x,
+      y: currentPoints.page.y + fingerDistance
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    targetLocation = cornerstone.pageToPixel(element, aboveFinger.x, aboveFinger.y);</span>
+<span class="cstat-no" title="statement not covered" >    handle.x = targetLocation.x;</span>
+<span class="cstat-no" title="statement not covered" >    handle.y = targetLocation.y;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+&nbsp;
+    const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMeasurementModified';</span>
+    const modifiedEventData = <span class="cstat-no" title="statement not covered" >{</span>
+      toolType,
+      element,
+      measurementData: data
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).trigger(eventType, modifiedEventData);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchDrag', touchDragCallback);</span>
+&nbsp;
+  function touchEndCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('touchMoveHandle touchEndCallback: ' + e.type);
+<span class="cstat-no" title="statement not covered" >    runAnimation.value = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    handle.active = false;</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchDrag', touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off(touchEndEvents, touchEndCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (e.type === 'CornerstoneToolsTouchPress') {</span>
+<span class="cstat-no" title="statement not covered" >      eventData.handlePressed = data;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      handle.x = touchEventData.currentPoints.image.x;</span>
+<span class="cstat-no" title="statement not covered" >      handle.y = touchEventData.currentPoints.image.y;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof doneMovingCallback === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >      doneMovingCallback(e, eventData);</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).on(touchEndEvents, touchEndCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  animate(time, handle, runAnimation, enabledElement, targetLocation);</span>
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

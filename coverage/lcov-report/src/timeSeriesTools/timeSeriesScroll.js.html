@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/timeSeriesTools/timeSeriesScroll.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/timeSeriesTools/</a> timeSeriesScroll.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.32% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.32% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import simpleMouseButtonTool from '../imageTools/simpleMouseButtonTool';
+import touchDragTool from '../imageTools/touchDragTool';
+import mouseWheelTool from '../imageTools/mouseWheelTool';
+import incrementTimePoint from './incrementTimePoint';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled';
+import { getToolState } from '../stateManagement/toolState';
+&nbsp;
+function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+}
+&nbsp;
+function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
+&nbsp;
+    const mouseDragEventData = <span class="cstat-no" title="statement not covered" >{</span>
+      deltaY: 0,
+      options: e.data.options
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragEventData, mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    e.stopImmediatePropagation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+}
+&nbsp;
+function mouseDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  e.data.deltaY += eventData.deltaPoints.page.y;</span>
+&nbsp;
+  const toolData = <span class="cstat-no" title="statement not covered" >getToolState(eventData.element, 'timeSeries');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (toolData === undefined || toolData.data === undefined || toolData.data.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const timeSeriesData = <span class="cstat-no" title="statement not covered" >toolData.data[0];</span>
+&nbsp;
+  let pixelsPerTimeSeries = <span class="cstat-no" title="statement not covered" >$(eventData.element).height() / timeSeriesData.stacks.length;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (e.data.options !== undefined &amp;&amp; e.data.options.timeSeriesScrollSpeed !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    pixelsPerTimeSeries = e.data.options.timeSeriesScrollSpeed;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (e.data.deltaY &gt;= pixelsPerTimeSeries || e.data.deltaY &lt;= -pixelsPerTimeSeries) {</span>
+    const timeSeriesDelta = <span class="cstat-no" title="statement not covered" >Math.round(e.data.deltaY / pixelsPerTimeSeries);</span>
+    const timeSeriesDeltaMod = <span class="cstat-no" title="statement not covered" >e.data.deltaY % pixelsPerTimeSeries;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    incrementTimePoint(eventData.element, timeSeriesDelta);</span>
+<span class="cstat-no" title="statement not covered" >    e.data.deltaY = timeSeriesDeltaMod;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
+}
+&nbsp;
+function mouseWheelCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const images = <span class="cstat-no" title="statement not covered" >-eventData.direction;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  incrementTimePoint(eventData.element, images);</span>
+}
+&nbsp;
+function onDrag (e) <span class="fstat-no" title="function not covered" >{</span>
+  const mouseMoveData = <span class="cstat-no" title="statement not covered" >e.originalEvent.detail;</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    deltaY: 0
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  eventData.deltaY += mouseMoveData.deltaPoints.page.y;</span>
+&nbsp;
+  const toolData = <span class="cstat-no" title="statement not covered" >getToolState(mouseMoveData.element, 'stack');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (toolData === undefined || toolData.data === undefined || toolData.data.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (eventData.deltaY &gt;= 3 || eventData.deltaY &lt;= -3) {</span>
+    const timeSeriesDelta = <span class="cstat-no" title="statement not covered" >eventData.deltaY / 3;</span>
+    const timeSeriesDeltaMod = <span class="cstat-no" title="statement not covered" >eventData.deltaY % 3;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    incrementTimePoint(eventData.element, timeSeriesDelta);</span>
+<span class="cstat-no" title="statement not covered" >    eventData.deltaY = timeSeriesDeltaMod;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
+}
+&nbsp;
+// Module/private exports
+const timeSeriesScroll = simpleMouseButtonTool(mouseDownCallback);
+const timeSeriesScrollWheel = mouseWheelTool(mouseWheelCallback);
+const timeSeriesScrollTouchDrag = touchDragTool(onDrag);
+&nbsp;
+export {
+  timeSeriesScroll,
+  timeSeriesScrollWheel,
+  timeSeriesScrollTouchDrag
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

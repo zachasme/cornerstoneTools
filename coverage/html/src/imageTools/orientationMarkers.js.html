@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/imageTools/orientationMarkers.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/imageTools/</a> orientationMarkers.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.86% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.86% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/35</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import orientation from '../orientation/index.js';
+import displayTool from './displayTool.js';
+import toolColors from '../stateManagement/toolColors.js';
+import drawTextBox from '../util/drawTextBox.js';
+&nbsp;
+function getOrientationMarkers (element) <span class="fstat-no" title="function not covered" >{</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+  const imagePlaneMetaData = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', enabledElement.image.imageId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!imagePlaneMetaData || !imagePlaneMetaData.rowCosines || !imagePlaneMetaData.columnCosines) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const rowString = <span class="cstat-no" title="statement not covered" >orientation.getOrientationString(imagePlaneMetaData.rowCosines);</span>
+  const columnString = <span class="cstat-no" title="statement not covered" >orientation.getOrientationString(imagePlaneMetaData.columnCosines);</span>
+&nbsp;
+  const oppositeRowString = <span class="cstat-no" title="statement not covered" >orientation.invertOrientationString(rowString);</span>
+  const oppositeColumnString = <span class="cstat-no" title="statement not covered" >orientation.invertOrientationString(columnString);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    top: oppositeColumnString,
+    bottom: columnString,
+    left: oppositeRowString,
+    right: rowString
+  };
+}
+&nbsp;
+function getOrientationMarkerPositions (element) <span class="fstat-no" title="function not covered" >{</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+  let coords;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  coords = {</span>
+    x: enabledElement.image.width / 2,
+    y: 5
+  };
+  const top = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(element, coords);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  coords = {</span>
+    x: enabledElement.image.width / 2,
+    y: enabledElement.image.height - 5
+  };
+  const bottom = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(element, coords);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  coords = {</span>
+    x: 5,
+    y: enabledElement.image.height / 2
+  };
+  const left = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(element, coords);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  coords = {</span>
+    x: enabledElement.image.width - 10,
+    y: enabledElement.image.height / 2
+  };
+  const right = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(element, coords);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    top,
+    bottom,
+    left,
+    right
+  };
+}
+&nbsp;
+function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+  const markers = <span class="cstat-no" title="statement not covered" >getOrientationMarkers(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!markers) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const coords = <span class="cstat-no" title="statement not covered" >getOrientationMarkerPositions(element, markers);</span>
+&nbsp;
+  const context = <span class="cstat-no" title="statement not covered" >eventData.canvasContext.canvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
+&nbsp;
+  const color = <span class="cstat-no" title="statement not covered" >toolColors.getToolColor();</span>
+&nbsp;
+  const textWidths = <span class="cstat-no" title="statement not covered" >{</span>
+    top: context.measureText(markers.top).width,
+    left: context.measureText(markers.left).width,
+    right: context.measureText(markers.right).width,
+    bottom: context.measureText(markers.bottom).width
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  drawTextBox(context, markers.top, coords.top.x - textWidths.top / 2, coords.top.y, color);</span>
+<span class="cstat-no" title="statement not covered" >  drawTextBox(context, markers.left, coords.left.x - textWidths.left / 2, coords.left.y, color);</span>
+&nbsp;
+  const config = <span class="cstat-no" title="statement not covered" >orientationMarkers.getConfiguration();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (config &amp;&amp; config.drawAllMarkers) {</span>
+<span class="cstat-no" title="statement not covered" >    drawTextBox(context, markers.right, coords.right.x - textWidths.right / 2, coords.right.y, color);</span>
+<span class="cstat-no" title="statement not covered" >    drawTextBox(context, markers.bottom, coords.bottom.x - textWidths.bottom / 2, coords.bottom.y, color);</span>
+  }
+}
+// /////// END IMAGE RENDERING ///////
+&nbsp;
+// Module exports
+const orientationMarkers = displayTool(onImageRendered);
+&nbsp;
+export default orientationMarkers;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

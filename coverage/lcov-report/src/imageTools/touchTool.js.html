@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/imageTools/touchTool.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/imageTools/</a> touchTool.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.95% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/182</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.11% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/148</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.95% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/182</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import anyHandlesOutsideImage from '../manipulators/anyHandlesOutsideImage.js';
+import getHandleNearImagePoint from '../manipulators/getHandleNearImagePoint.js';
+import touchMoveHandle from '../manipulators/touchMoveHandle.js';
+import moveNewHandleTouch from '../manipulators/moveNewHandleTouch.js';
+import touchMoveAllHandles from '../manipulators/touchMoveAllHandles.js';
+import { addToolState, removeToolState, getToolState } from '../stateManagement/toolState.js';
+&nbsp;
+function deactivateAllHandles (handles) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  Object.keys(handles).forEach(function (name) <span class="fstat-no" title="function not covered" >{</span></span>
+    const handle = <span class="cstat-no" title="statement not covered" >handles[name];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    handle.active = false;</span>
+  });
+}
+&nbsp;
+function deactivateAllToolInstances (toolData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (!toolData) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (let i = 0; i &lt; toolData.data.length; i++) {</span>
+    const data = <span class="cstat-no" title="statement not covered" >toolData.data[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    data.active = false;</span>
+<span class="cstat-no" title="statement not covered" >    if (!data.handles) {</span>
+<span class="cstat-no" title="statement not covered" >      continue;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    deactivateAllHandles(data.handles);</span>
+  }
+}
+&nbsp;
+function touchTool (touchToolInterface) {
+    // /////// BEGIN ACTIVE TOOL ///////
+&nbsp;
+  function addNewMeasurement (touchEventData) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('touchTool addNewMeasurement');
+    const element = <span class="cstat-no" title="statement not covered" >touchEventData.element;</span>
+&nbsp;
+    const measurementData = <span class="cstat-no" title="statement not covered" >touchToolInterface.createNewMeasurement(touchEventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!measurementData) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    addToolState(element, touchToolInterface.toolType, measurementData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (Object.keys(measurementData.handles).length === 1 &amp;&amp; touchEventData.type === 'CornerstoneToolsTap') {</span>
+<span class="cstat-no" title="statement not covered" >      measurementData.active = false;</span>
+<span class="cstat-no" title="statement not covered" >      measurementData.handles.end.active = false;</span>
+<span class="cstat-no" title="statement not covered" >      measurementData.handles.end.highlight = false;</span>
+<span class="cstat-no" title="statement not covered" >      measurementData.invalidated = true;</span>
+<span class="cstat-no" title="statement not covered" >      if (anyHandlesOutsideImage(touchEventData, measurementData.handles)) {</span>
+                // Delete the measurement
+<span class="cstat-no" title="statement not covered" >        removeToolState(element, touchToolInterface.toolType, measurementData);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >    moveNewHandleTouch(touchEventData, touchToolInterface.toolType, measurementData, measurementData.handles.end, function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      measurementData.active = false;</span>
+<span class="cstat-no" title="statement not covered" >      measurementData.invalidated = true;</span>
+<span class="cstat-no" title="statement not covered" >      if (anyHandlesOutsideImage(touchEventData, measurementData.handles)) {</span>
+                // Delete the measurement
+<span class="cstat-no" title="statement not covered" >        removeToolState(element, touchToolInterface.toolType, measurementData);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(element);</span>
+    });
+  }
+&nbsp;
+  function touchDownActivateCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('touchTool touchDownActivateCallback');
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.addNewMeasurement) {</span>
+<span class="cstat-no" title="statement not covered" >      touchToolInterface.addNewMeasurement(eventData);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      addNewMeasurement(eventData);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+  }
+    // /////// END ACTIVE TOOL ///////
+&nbsp;
+    // /////// BEGIN INACTIVE TOOL ///////
+  function tapCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('touchTool tapCallback');
+    const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+    const coords = <span class="cstat-no" title="statement not covered" >eventData.currentPoints.canvas;</span>
+    const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, touchToolInterface.toolType);</span>
+    let data;
+    let i;
+&nbsp;
+        // Deactivate everything
+<span class="cstat-no" title="statement not covered" >    deactivateAllToolInstances(toolData);</span>
+&nbsp;
+    function doneMovingCallback () <span class="fstat-no" title="function not covered" >{</span>
+            // Console.log('touchTool tapCallback doneMovingCallback');
+<span class="cstat-no" title="statement not covered" >      deactivateAllToolInstances(toolData);</span>
+<span class="cstat-no" title="statement not covered" >      if (anyHandlesOutsideImage(eventData, data.handles)) {</span>
+                // Delete the measurement
+<span class="cstat-no" title="statement not covered" >        removeToolState(element, touchToolInterface.toolType, data);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+    }
+&nbsp;
+        // Now check to see if there is a handle we can move
+<span class="cstat-no" title="statement not covered" >    if (toolData) {</span>
+<span class="cstat-no" title="statement not covered" >      for (i = 0; i &lt; toolData.data.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        data = toolData.data[i];</span>
+        const distanceSq = <span class="cstat-no" title="statement not covered" >25;</span> // Should probably make this a settable property later
+        const handle = <span class="cstat-no" title="statement not covered" >getHandleNearImagePoint(element, data.handles, coords, distanceSq);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (handle) {</span>
+<span class="cstat-no" title="statement not covered" >          $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >          $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >          data.active = true;</span>
+<span class="cstat-no" title="statement not covered" >          handle.active = true;</span>
+<span class="cstat-no" title="statement not covered" >          cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >          touchMoveHandle(e, touchToolInterface.toolType, data, handle, doneMovingCallback);</span>
+<span class="cstat-no" title="statement not covered" >          e.stopImmediatePropagation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+        }
+      }
+    }
+&nbsp;
+        // Now check to see if we have a tool that we can move
+<span class="cstat-no" title="statement not covered" >    if (toolData &amp;&amp; touchToolInterface.pointNearTool) {</span>
+<span class="cstat-no" title="statement not covered" >      for (i = 0; i &lt; toolData.data.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        data = toolData.data[i];</span>
+<span class="cstat-no" title="statement not covered" >        if (touchToolInterface.pointNearTool(element, data, coords)) {</span>
+<span class="cstat-no" title="statement not covered" >          $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >          $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >          data.active = true;</span>
+<span class="cstat-no" title="statement not covered" >          cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >          touchMoveAllHandles(e, data, toolData, touchToolInterface.toolType, true, doneMovingCallback);</span>
+<span class="cstat-no" title="statement not covered" >          e.stopImmediatePropagation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+        }
+      }
+    }
+&nbsp;
+        // If there is nothing to move, add a new instance of the tool
+        // Need to check here to see if activation is allowed!
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.touchDownActivateCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      touchToolInterface.touchDownActivateCallback(e, eventData);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      touchDownActivateCallback(e, eventData);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+  function touchStartCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('touchTool touchStartCallback');
+    const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+    const coords = <span class="cstat-no" title="statement not covered" >eventData.startPoints.canvas;</span>
+    let data;
+    const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, touchToolInterface.toolType);</span>
+    let i;
+&nbsp;
+    function doneMovingCallback (lastEvent, lastEventData) <span class="fstat-no" title="function not covered" >{</span>
+            // Console.log('touchTool touchStartCallback doneMovingCallback');
+<span class="cstat-no" title="statement not covered" >      data.active = false;</span>
+<span class="cstat-no" title="statement not covered" >      data.invalidated = true;</span>
+<span class="cstat-no" title="statement not covered" >      if (anyHandlesOutsideImage(eventData, data.handles)) {</span>
+                // Delete the measurement
+<span class="cstat-no" title="statement not covered" >        removeToolState(eventData.element, touchToolInterface.toolType, data);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(eventData.element);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >        $(element).on('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (lastEvent &amp;&amp; lastEvent.type === 'CornerstoneToolsTouchPress') {</span>
+        const event = <span class="cstat-no" title="statement not covered" >$.Event(lastEvent.type, lastEventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $(element).trigger(event, lastEventData);</span>
+      }
+    }
+&nbsp;
+        // Now check to see if there is a handle we can move
+&nbsp;
+        // Average pixel width of index finger is 45-57 pixels
+        // https://www.smashingmagazine.com/2012/02/finger-friendly-design-ideal-mobile-touchscreen-target-sizes/
+    const distance = <span class="cstat-no" title="statement not covered" >28;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!toolData) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; toolData.data.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      data = toolData.data[i];</span>
+&nbsp;
+      const handle = <span class="cstat-no" title="statement not covered" >getHandleNearImagePoint(eventData.element, data.handles, coords, distance);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (handle) {</span>
+<span class="cstat-no" title="statement not covered" >        $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >        $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >        if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >          $(element).off('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        data.active = true;</span>
+<span class="cstat-no" title="statement not covered" >        touchMoveHandle(e, touchToolInterface.toolType, data, handle, doneMovingCallback);</span>
+<span class="cstat-no" title="statement not covered" >        e.stopImmediatePropagation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+      }
+    }
+&nbsp;
+        // Now check to see if we have a tool that we can move
+<span class="cstat-no" title="statement not covered" >    if (!touchToolInterface.pointNearTool) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; toolData.data.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      data = toolData.data[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (touchToolInterface.pointNearTool(eventData.element, data, coords)) {</span>
+<span class="cstat-no" title="statement not covered" >        $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >        $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >        if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >          $(element).off('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        touchMoveAllHandles(e, data, toolData, touchToolInterface.toolType, true, doneMovingCallback);</span>
+<span class="cstat-no" title="statement not covered" >        e.stopImmediatePropagation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+      }
+    }
+  }
+    // /////// END INACTIVE TOOL ///////
+&nbsp;
+    // Not visible, not interactive
+  function disable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.doubleTapCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', touchToolInterface.doubleTapCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+  }
+&nbsp;
+    // Visible but not interactive
+  function enable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.doubleTapCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', touchToolInterface.doubleTapCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+  }
+&nbsp;
+    // Visible, interactive and can create
+  function activate (element) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('activate touchTool');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.doubleTapCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', touchToolInterface.doubleTapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsDoubleTap', touchToolInterface.doubleTapCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+  }
+&nbsp;
+    // Visible, interactive
+  function deactivate (element) <span class="fstat-no" title="function not covered" >{</span>
+    const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsToolDeactivated';</span>
+    const statusChangeEventData = <span class="cstat-no" title="statement not covered" >{</span>
+      toolType: touchToolInterface.toolType,
+      type: eventType
+    };
+&nbsp;
+    const event = <span class="cstat-no" title="statement not covered" >$.Event(eventType, statusChangeEventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).trigger(event, statusChangeEventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchStartActive', touchToolInterface.touchDownActivateCallback || touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneImageRendered', touchToolInterface.onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsTouchStart', touchToolInterface.touchStartCallback || touchStartCallback);</span>
+        // $(element).on('CornerstoneToolsTap', touchToolInterface.tapCallback || tapCallback);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.doubleTapCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', touchToolInterface.doubleTapCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (touchToolInterface.pressCallback) {</span>
+<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsTouchPress', touchToolInterface.pressCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+  }
+&nbsp;
+  const toolInterface = {
+    enable,
+    disable,
+    activate,
+    deactivate,
+    touchStartCallback: touchToolInterface.touchStartCallback || touchStartCallback,
+    touchDownActivateCallback: touchToolInterface.touchDownActivateCallback || touchDownActivateCallback,
+    tapCallback: touchToolInterface.tapCallback || tapCallback
+  };
+&nbsp;
+    // Expose pointNearTool if available
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (touchToolInterface.pointNearTool) {
+    toolInterface.pointNearTool = touchToolInterface.pointNearTool;
+  }
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (touchToolInterface.doubleTapCallback) {
+<span class="cstat-no" title="statement not covered" >    toolInterface.doubleTapCallback = touchToolInterface.doubleTapCallback;</span>
+  }
+&nbsp;
+  if (touchToolInterface.pressCallback) {
+    toolInterface.pressCallback = touchToolInterface.pressCallback;
+  }
+&nbsp;
+  if (touchToolInterface.addNewMeasurement) {
+    toolInterface.addNewMeasurement = touchToolInterface.addNewMeasurement;
+  }
+&nbsp;
+  return toolInterface;
+}
+&nbsp;
+export default touchTool;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

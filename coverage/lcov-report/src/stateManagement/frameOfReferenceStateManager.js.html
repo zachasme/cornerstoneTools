@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/stateManagement/frameOfReferenceStateManager.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/stateManagement/</a> frameOfReferenceStateManager.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.34% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.34% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// This implements a frame-of-reference specific tool state management strategy.  This means that
+// Measurement data are tied to a specific frame of reference UID and only visible to objects using
+// That frame-of-reference UID
+&nbsp;
+function newFrameOfReferenceSpecificToolStateManager () {
+  const toolState = {};
+&nbsp;
+    // Here we add tool state, this is done by tools as well
+    // As modules that restore saved state
+  function addFrameOfReferenceSpecificToolState (frameOfReference, toolType, data) <span class="fstat-no" title="function not covered" >{</span>
+        // If we don't have any tool state for this frameOfReference, add an empty object
+<span class="cstat-no" title="statement not covered" >    if (toolState.hasOwnProperty(frameOfReference) === false) {</span>
+<span class="cstat-no" title="statement not covered" >      toolState[frameOfReference] = {};</span>
+    }
+&nbsp;
+    const frameOfReferenceToolState = <span class="cstat-no" title="statement not covered" >toolState[frameOfReference];</span>
+&nbsp;
+        // If we don't have tool state for this type of tool, add an empty object
+<span class="cstat-no" title="statement not covered" >    if (frameOfReferenceToolState.hasOwnProperty(toolType) === false) {</span>
+<span class="cstat-no" title="statement not covered" >      frameOfReferenceToolState[toolType] = {</span>
+        data: []
+      };
+    }
+&nbsp;
+    const toolData = <span class="cstat-no" title="statement not covered" >frameOfReferenceToolState[toolType];</span>
+&nbsp;
+        // Finally, add this new tool to the state
+<span class="cstat-no" title="statement not covered" >    toolData.data.push(data);</span>
+  }
+&nbsp;
+    // Here you can get state - used by tools as well as modules
+    // That save state persistently
+  function getFrameOfReferenceSpecificToolState (frameOfReference, toolType) <span class="fstat-no" title="function not covered" >{</span>
+        // If we don't have any tool state for this frame of reference, return undefined
+<span class="cstat-no" title="statement not covered" >    if (toolState.hasOwnProperty(frameOfReference) === false) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    const frameOfReferenceToolState = <span class="cstat-no" title="statement not covered" >toolState[frameOfReference];</span>
+&nbsp;
+        // If we don't have tool state for this type of tool, return undefined
+<span class="cstat-no" title="statement not covered" >    if (frameOfReferenceToolState.hasOwnProperty(toolType) === false) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    const toolData = <span class="cstat-no" title="statement not covered" >frameOfReferenceToolState[toolType];</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return toolData;</span>
+  }
+&nbsp;
+  function removeFrameOfReferenceSpecificToolState (frameOfReference, toolType, data) <span class="fstat-no" title="function not covered" >{</span>
+        // If we don't have any tool state for this frame of reference, return undefined
+<span class="cstat-no" title="statement not covered" >    if (toolState.hasOwnProperty(frameOfReference) === false) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    const frameOfReferenceToolState = <span class="cstat-no" title="statement not covered" >toolState[frameOfReference];</span>
+&nbsp;
+        // If we don't have tool state for this type of tool, return undefined
+<span class="cstat-no" title="statement not covered" >    if (frameOfReferenceToolState.hasOwnProperty(toolType) === false) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    const toolData = <span class="cstat-no" title="statement not covered" >frameOfReferenceToolState[toolType];</span>
+        // Find this tool data
+    let indexOfData = <span class="cstat-no" title="statement not covered" >-1;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt; toolData.data.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      if (toolData.data[i] === data) {</span>
+<span class="cstat-no" title="statement not covered" >        indexOfData = i;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (indexOfData !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >      toolData.data.splice(indexOfData, 1);</span>
+    }
+  }
+&nbsp;
+  return {
+    get: getFrameOfReferenceSpecificToolState,
+    add: addFrameOfReferenceSpecificToolState,
+    remove: removeFrameOfReferenceSpecificToolState
+  };
+}
+&nbsp;
+// A global frameOfReferenceSpecificToolStateManager - the most common case is to share 3d information
+// Between stacks of images
+const globalFrameOfReferenceSpecificToolStateManager = newFrameOfReferenceSpecificToolStateManager();
+&nbsp;
+export {
+  newFrameOfReferenceSpecificToolStateManager,
+  globalFrameOfReferenceSpecificToolStateManager
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

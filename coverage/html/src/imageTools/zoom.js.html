@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/imageTools/zoom.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/imageTools/</a> zoom.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.36% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/112</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.36% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/112</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import simpleMouseButtonTool from './simpleMouseButtonTool';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled';
+import mouseWheelTool from './mouseWheelTool';
+import touchPinchTool from './touchPinchTool';
+import touchDragTool from './touchDragTool';
+&nbsp;
+&nbsp;
+let startPoints;
+&nbsp;
+function changeViewportScale (viewport, ticks) <span class="fstat-no" title="function not covered" >{</span>
+  const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
+  const pow = <span class="cstat-no" title="statement not covered" >1.7;</span>
+&nbsp;
+  const oldFactor = <span class="cstat-no" title="statement not covered" >Math.log(viewport.scale) / Math.log(pow);</span>
+  const factor = <span class="cstat-no" title="statement not covered" >oldFactor + ticks;</span>
+&nbsp;
+  const scale = <span class="cstat-no" title="statement not covered" >Math.pow(pow, factor);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (config.maxScale &amp;&amp; scale &gt; config.maxScale) {</span>
+<span class="cstat-no" title="statement not covered" >    viewport.scale = config.maxScale;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (config.minScale &amp;&amp; scale &lt; config.minScale) {</span>
+<span class="cstat-no" title="statement not covered" >    viewport.scale = config.minScale;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    viewport.scale = scale;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return viewport;</span>
+}
+&nbsp;
+function boundPosition (position, width, height) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  position.x = Math.max(position.x, 0);</span>
+<span class="cstat-no" title="statement not covered" >  position.y = Math.max(position.y, 0);</span>
+<span class="cstat-no" title="statement not covered" >  position.x = Math.min(position.x, width);</span>
+<span class="cstat-no" title="statement not covered" >  position.y = Math.min(position.y, height);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return position;</span>
+}
+&nbsp;
+function correctShift (shift, viewport) <span class="fstat-no" title="function not covered" >{</span>
+    // Apply Flips
+<span class="cstat-no" title="statement not covered" >  if (viewport.hflip) {</span>
+<span class="cstat-no" title="statement not covered" >    shift.x *= -1;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (viewport.vflip) {</span>
+<span class="cstat-no" title="statement not covered" >    shift.y *= -1;</span>
+  }
+&nbsp;
+    // Apply rotations
+<span class="cstat-no" title="statement not covered" >  if (viewport.rotation !== 0) {</span>
+    const angle = <span class="cstat-no" title="statement not covered" >viewport.rotation * Math.PI / 180;</span>
+&nbsp;
+    const cosA = <span class="cstat-no" title="statement not covered" >Math.cos(angle);</span>
+    const sinA = <span class="cstat-no" title="statement not covered" >Math.sin(angle);</span>
+&nbsp;
+    const newX = <span class="cstat-no" title="statement not covered" >shift.x * cosA - shift.y * sinA;</span>
+    const newY = <span class="cstat-no" title="statement not covered" >shift.x * sinA + shift.y * cosA;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    shift.x = newX;</span>
+<span class="cstat-no" title="statement not covered" >    shift.y = newY;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return shift;</span>
+}
+&nbsp;
+function defaultStrategy (eventData, ticks) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+    // Calculate the new scale factor based on how far the mouse has changed
+  const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+&nbsp;
+    // Now that the scale has been updated, determine the offset we need to apply to the center so we can
+    // Keep the original start location in the same position
+  const newCoords = <span class="cstat-no" title="statement not covered" >cornerstone.pageToPixel(element, eventData.startPoints.page.x, eventData.startPoints.page.y);</span>
+&nbsp;
+    // The shift we will use is the difference between the original image coordinates of the point we've selected
+    // And the image coordinates of the same point on the page after the viewport scaling above has been performed
+    // This shift is in image coordinates, and is designed to keep the target location fixed on the page.
+  let shift = <span class="cstat-no" title="statement not covered" >{</span>
+    x: eventData.startPoints.image.x - newCoords.x,
+    y: eventData.startPoints.image.y - newCoords.y
+  };
+&nbsp;
+    // Correct the required shift using the viewport rotation and flip parameters
+<span class="cstat-no" title="statement not covered" >  shift = correctShift(shift, viewport);</span>
+&nbsp;
+    // Apply the shift to the Viewport's translation setting
+<span class="cstat-no" title="statement not covered" >  viewport.translation.x -= shift.x;</span>
+<span class="cstat-no" title="statement not covered" >  viewport.translation.y -= shift.y;</span>
+&nbsp;
+    // Update the Viewport with the new translation value
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+}
+&nbsp;
+function translateStrategy (eventData, ticks) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+  const image = <span class="cstat-no" title="statement not covered" >eventData.image;</span>
+  const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
+&nbsp;
+    // Calculate the new scale factor based on how far the mouse has changed
+    // Note that in this case we don't need to update the viewport after the initial
+    // Zoom step since we aren't don't intend to keep the target position static on
+    // The page
+  const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
+&nbsp;
+    // Define the default shift to take place during this zoom step
+  const shift = <span class="cstat-no" title="statement not covered" >{</span>
+    x: 0,
+    y: 0
+  };
+&nbsp;
+    // Define the parameters for the translate strategy
+  const translateSpeed = <span class="cstat-no" title="statement not covered" >8;</span>
+  const outwardsMinScaleToTranslate = <span class="cstat-no" title="statement not covered" >3;</span>
+  const minTranslation = <span class="cstat-no" title="statement not covered" >0.01;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (ticks &lt; 0) {</span>
+        // Zoom outwards from the image center
+<span class="cstat-no" title="statement not covered" >    if (viewport.scale &lt; outwardsMinScaleToTranslate) {</span>
+            // If the current translation is smaller than the minimum desired translation,
+            // Set the translation to zero
+<span class="cstat-no" title="statement not covered" >      if (Math.abs(viewport.translation.x) &lt; minTranslation) {</span>
+<span class="cstat-no" title="statement not covered" >        viewport.translation.x = 0;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        shift.x = viewport.translation.x / translateSpeed;</span>
+      }
+&nbsp;
+            // If the current translation is smaller than the minimum desired translation,
+            // Set the translation to zero
+<span class="cstat-no" title="statement not covered" >      if (Math.abs(viewport.translation.y) &lt; minTranslation) {</span>
+<span class="cstat-no" title="statement not covered" >        viewport.translation.y = 0;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        shift.y = viewport.translation.y / translateSpeed;</span>
+      }
+    }
+  } else {
+        // Zoom inwards to the current image point
+&nbsp;
+        // Identify the coordinates of the point the user is trying to zoom into
+        // If we are not allowed to zoom outside the image, bound the user-selected position to
+        // A point inside the image
+<span class="cstat-no" title="statement not covered" >    if (config &amp;&amp; config.preventZoomOutsideImage) {</span>
+<span class="cstat-no" title="statement not covered" >      startPoints.image = boundPosition(startPoints.image, image.width, image.height);</span>
+    }
+&nbsp;
+        // Calculate the translation value that would place the desired image point in the center
+        // Of the viewport
+    let desiredTranslation = <span class="cstat-no" title="statement not covered" >{</span>
+      x: image.width / 2 - startPoints.image.x,
+      y: image.height / 2 - startPoints.image.y
+    };
+&nbsp;
+        // Correct the target location using the viewport rotation and flip parameters
+<span class="cstat-no" title="statement not covered" >    desiredTranslation = correctShift(desiredTranslation, viewport);</span>
+&nbsp;
+        // Calculate the difference between the current viewport translation value and the
+        // Final desired translation values
+    const distanceToDesired = <span class="cstat-no" title="statement not covered" >{</span>
+      x: viewport.translation.x - desiredTranslation.x,
+      y: viewport.translation.y - desiredTranslation.y
+    };
+&nbsp;
+        // If the current translation is smaller than the minimum desired translation,
+        // Stop translating in the x-direction
+<span class="cstat-no" title="statement not covered" >    if (Math.abs(distanceToDesired.x) &lt; minTranslation) {</span>
+<span class="cstat-no" title="statement not covered" >      viewport.translation.x = desiredTranslation.x;</span>
+    } else {
+            // Otherwise, shift the viewport by one step
+<span class="cstat-no" title="statement not covered" >      shift.x = distanceToDesired.x / translateSpeed;</span>
+    }
+&nbsp;
+        // If the current translation is smaller than the minimum desired translation,
+        // Stop translating in the y-direction
+<span class="cstat-no" title="statement not covered" >    if (Math.abs(distanceToDesired.y) &lt; minTranslation) {</span>
+<span class="cstat-no" title="statement not covered" >      viewport.translation.y = desiredTranslation.y;</span>
+    } else {
+            // Otherwise, shift the viewport by one step
+<span class="cstat-no" title="statement not covered" >      shift.y = distanceToDesired.y / translateSpeed;</span>
+    }
+  }
+&nbsp;
+    // Apply the shift to the Viewport's translation setting
+<span class="cstat-no" title="statement not covered" >  viewport.translation.x -= shift.x;</span>
+<span class="cstat-no" title="statement not covered" >  viewport.translation.y -= shift.y;</span>
+&nbsp;
+    // Update the Viewport with the new translation value
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+}
+&nbsp;
+function zoomToCenterStrategy (eventData, ticks) <span class="fstat-no" title="function not covered" >{</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+    // Calculate the new scale factor based on how far the mouse has changed
+  const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+}
+&nbsp;
+function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+}
+&nbsp;
+function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
+<span class="cstat-no" title="statement not covered" >    startPoints = eventData.startPoints; </span>// Used for translateStrategy
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
+  }
+}
+&nbsp;
+function dragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (!eventData.deltaPoints.page.y) {</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+  const ticks = <span class="cstat-no" title="statement not covered" >eventData.deltaPoints.page.y / 100;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  zoom.strategy(eventData, ticks);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+}
+&nbsp;
+function mouseWheelCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  let ticks = <span class="cstat-no" title="statement not covered" >-eventData.direction / 4;</span>
+&nbsp;
+    // Allow inversion of the mouse wheel scroll via a configuration option
+  const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (config &amp;&amp; config.invert) {</span>
+<span class="cstat-no" title="statement not covered" >    ticks *= -1;</span>
+  }
+&nbsp;
+  const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, viewport);</span>
+}
+&nbsp;
+function touchPinchCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
+  const viewport = <span class="cstat-no" title="statement not covered" >eventData.viewport;</span>
+  const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+&nbsp;
+    // Change the scale based on the pinch gesture's scale change
+<span class="cstat-no" title="statement not covered" >  viewport.scale += eventData.scaleChange * viewport.scale;</span>
+<span class="cstat-no" title="statement not covered" >  if (config.maxScale &amp;&amp; viewport.scale &gt; config.maxScale) {</span>
+<span class="cstat-no" title="statement not covered" >    viewport.scale = config.maxScale;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (config.minScale &amp;&amp; viewport.scale &lt; config.minScale) {</span>
+<span class="cstat-no" title="statement not covered" >    viewport.scale = config.minScale;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+&nbsp;
+    // Now that the scale has been updated, determine the offset we need to apply to the center so we can
+    // Keep the original start location in the same position
+  const newCoords = <span class="cstat-no" title="statement not covered" >cornerstone.pageToPixel(element, eventData.startPoints.page.x, eventData.startPoints.page.y);</span>
+  let shift = <span class="cstat-no" title="statement not covered" >{</span>
+    x: eventData.startPoints.image.x - newCoords.x,
+    y: eventData.startPoints.image.y - newCoords.y
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  shift = correctShift(shift, viewport);</span>
+<span class="cstat-no" title="statement not covered" >  viewport.translation.x -= shift.x;</span>
+<span class="cstat-no" title="statement not covered" >  viewport.translation.y -= shift.y;</span>
+<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+}
+&nbsp;
+const zoom = simpleMouseButtonTool(mouseDownCallback);
+&nbsp;
+zoom.strategies = {
+  default: defaultStrategy,
+  translate: translateStrategy,
+  zoomToCenter: zoomToCenterStrategy
+};
+&nbsp;
+zoom.strategy = defaultStrategy;
+&nbsp;
+const zoomWheel = mouseWheelTool(mouseWheelCallback);
+const zoomTouchPinch = touchPinchTool(touchPinchCallback);
+const zoomTouchDrag = touchDragTool(dragCallback);
+&nbsp;
+export {
+  zoom,
+  zoomWheel,
+  zoomTouchPinch,
+  zoomTouchDrag
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

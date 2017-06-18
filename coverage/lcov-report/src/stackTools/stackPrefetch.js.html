@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/stackTools/stackPrefetch.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/stackTools/</a> stackPrefetch.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.69% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/123</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/68</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.74% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/122</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+import requestPoolManager from '../requestPool/requestPoolManager';
+import loadHandlerManager from '../stateManagement/loadHandlerManager';
+import { addToolState, getToolState } from '../stateManagement/toolState';
+import { setMaxSimultaneousRequests } from '../util/getMaxSimultaneousRequests';
+&nbsp;
+const toolType = 'stackPrefetch';
+const requestType = 'prefetch';
+&nbsp;
+let configuration = {};
+&nbsp;
+let resetPrefetchTimeout;
+const resetPrefetchDelay = 300;
+&nbsp;
+function range (lowEnd, highEnd) <span class="fstat-no" title="function not covered" >{</span>
+    // Javascript version of Python's range function
+    // http://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-an-array-based-on-suppl
+<span class="cstat-no" title="statement not covered" >  lowEnd = Math.round(lowEnd) || 0;</span>
+<span class="cstat-no" title="statement not covered" >  highEnd = Math.round(highEnd) || 0;</span>
+&nbsp;
+  const arr = <span class="cstat-no" title="statement not covered" >[];</span>
+  let c = <span class="cstat-no" title="statement not covered" >highEnd - lowEnd + 1;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (c &lt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >    return arr;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  while (c--) {</span>
+<span class="cstat-no" title="statement not covered" >    arr[c] = highEnd--;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return arr;</span>
+}
+&nbsp;
+const max = function (arr) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return Math.max.apply(null, arr);</span>
+};
+&nbsp;
+const min = function (arr) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return Math.min.apply(null, arr);</span>
+};
+&nbsp;
+function nearestIndex (arr, x) <span class="fstat-no" title="function not covered" >{</span>
+    // Return index of nearest values in array
+    // http://stackoverflow.com/questions/25854212/return-index-of-nearest-values-in-an-array
+  const l = <span class="cstat-no" title="statement not covered" >[];</span>
+  const h = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  arr.forEach(function (v) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (v &lt; x) {</span>
+<span class="cstat-no" title="statement not covered" >      l.push(v);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (v &gt; x) {</span>
+<span class="cstat-no" title="statement not covered" >      h.push(v);</span>
+    }
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    low: arr.indexOf(max(l)),
+    high: arr.indexOf(min(h))
+  };
+}
+&nbsp;
+function prefetch (element) <span class="fstat-no" title="function not covered" >{</span>
+    // Check to make sure stack data exists
+  const stackData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!stackData || !stackData.data || !stackData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const stack = <span class="cstat-no" title="statement not covered" >stackData.data[0];</span>
+&nbsp;
+    // Get the stackPrefetch tool data
+  const stackPrefetchData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!stackPrefetchData) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const stackPrefetch = <span class="cstat-no" title="statement not covered" >stackPrefetchData.data[0] || {};</span>
+&nbsp;
+    // If all the requests are complete, disable the stackPrefetch tool
+<span class="cstat-no" title="statement not covered" >  if (!stackPrefetch.indicesToRequest || !stackPrefetch.indicesToRequest.length) {</span>
+<span class="cstat-no" title="statement not covered" >    stackPrefetch.enabled = false;</span>
+  }
+&nbsp;
+    // Make sure the tool is still enabled
+<span class="cstat-no" title="statement not covered" >  if (stackPrefetch.enabled === false) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+    // Remove an imageIdIndex from the list of indices to request
+    // This fires when the individual image loading deferred is resolved
+  function removeFromList (imageIdIndex) <span class="fstat-no" title="function not covered" >{</span>
+    const index = <span class="cstat-no" title="statement not covered" >stackPrefetch.indicesToRequest.indexOf(imageIdIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (index &gt; -1) { // Don't remove last element if imageIdIndex not found</span>
+<span class="cstat-no" title="statement not covered" >      stackPrefetch.indicesToRequest.splice(index, 1);</span>
+    }
+  }
+&nbsp;
+    // Remove all already cached images from the
+    // IndicesToRequest array
+<span class="cstat-no" title="statement not covered" >  stackPrefetchData.data[0].indicesToRequest.sort((a, b) =&gt; (<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a - b)</span></span>);</span>
+  const indicesToRequestCopy = <span class="cstat-no" title="statement not covered" >stackPrefetch.indicesToRequest.slice();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  indicesToRequestCopy.forEach(function (imageIdIndex) <span class="fstat-no" title="function not covered" >{</span></span>
+    const imageId = <span class="cstat-no" title="statement not covered" >stack.imageIds[imageIdIndex];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!imageId) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    const imagePromise = <span class="cstat-no" title="statement not covered" >cornerstone.imageCache.getImagePromise(imageId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (imagePromise &amp;&amp; imagePromise.state() === 'resolved') {</span>
+<span class="cstat-no" title="statement not covered" >      removeFromList(imageIdIndex);</span>
+    }
+  });
+&nbsp;
+    // Stop here if there are no images left to request
+    // After those in the cache have been removed
+<span class="cstat-no" title="statement not covered" >  if (!stackPrefetch.indicesToRequest.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+    // Clear the requestPool of prefetch requests
+<span class="cstat-no" title="statement not covered" >  requestPoolManager.clearRequestStack(requestType);</span>
+&nbsp;
+    // Identify the nearest imageIdIndex to the currentImageIdIndex
+  const nearest = <span class="cstat-no" title="statement not covered" >nearestIndex(stackPrefetch.indicesToRequest, stack.currentImageIdIndex);</span>
+&nbsp;
+  let imageId;
+  let nextImageIdIndex;
+  const preventCache = <span class="cstat-no" title="statement not covered" >false;</span>
+&nbsp;
+  function doneCallback (image) <span class="fstat-no" title="function not covered" >{</span>
+        // Console.log('prefetch done: ' + image.imageId);
+    const imageIdIndex = <span class="cstat-no" title="statement not covered" >stack.imageIds.indexOf(image.imageId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    removeFromList(imageIdIndex);</span>
+  }
+&nbsp;
+    // Retrieve the errorLoadingHandler if one exists
+  const errorLoadingHandler = <span class="cstat-no" title="statement not covered" >loadHandlerManager.getErrorLoadingHandler();</span>
+&nbsp;
+  function failCallback (error) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    console.log(`prefetch errored: ${error}`);</span>
+<span class="cstat-no" title="statement not covered" >    if (errorLoadingHandler) {</span>
+<span class="cstat-no" title="statement not covered" >      errorLoadingHandler(element, imageId, error, 'stackPrefetch');</span>
+    }
+  }
+&nbsp;
+    // Prefetch images around the current image (before and after)
+  let lowerIndex = <span class="cstat-no" title="statement not covered" >nearest.low;</span>
+  let higherIndex = <span class="cstat-no" title="statement not covered" >nearest.high;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  while (lowerIndex &gt; 0 || higherIndex &lt; stackPrefetch.indicesToRequest.length) {</span>
+<span class="cstat-no" title="statement not covered" >    if (lowerIndex &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >      nextImageIdIndex = stackPrefetch.indicesToRequest[lowerIndex--];</span>
+<span class="cstat-no" title="statement not covered" >      imageId = stack.imageIds[nextImageIdIndex];</span>
+<span class="cstat-no" title="statement not covered" >      requestPoolManager.addRequest(element, imageId, requestType, preventCache, doneCallback, failCallback);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (higherIndex &lt; stackPrefetch.indicesToRequest.length) {</span>
+<span class="cstat-no" title="statement not covered" >      nextImageIdIndex = stackPrefetch.indicesToRequest[higherIndex++];</span>
+<span class="cstat-no" title="statement not covered" >      imageId = stack.imageIds[nextImageIdIndex];</span>
+<span class="cstat-no" title="statement not covered" >      requestPoolManager.addRequest(element, imageId, requestType, preventCache, doneCallback, failCallback);</span>
+    }
+  }
+&nbsp;
+    // Try to start the requestPool's grabbing procedure
+    // In case it isn't already running
+<span class="cstat-no" title="statement not covered" >  requestPoolManager.startGrabbing();</span>
+}
+&nbsp;
+function promiseRemovedHandler (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+    // When an imagePromise has been pushed out of the cache, re-add its index
+    // It to the indicesToRequest list so that it will be retrieved later if the
+    // CurrentImageIdIndex is changed to an image nearby
+  const element = <span class="cstat-no" title="statement not covered" >e.data.element;</span>
+  let stackData;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+        // It will throw an exception in some cases (eg: thumbnails)
+<span class="cstat-no" title="statement not covered" >    stackData = getToolState(element, 'stack');</span>
+  } catch(error) {
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!stackData || !stackData.data || !stackData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const stack = <span class="cstat-no" title="statement not covered" >stackData.data[0];</span>
+  const imageIdIndex = <span class="cstat-no" title="statement not covered" >stack.imageIds.indexOf(eventData.imageId);</span>
+&nbsp;
+    // Make sure the image that was removed is actually in this stack
+    // Before adding it to the indicesToRequest array
+<span class="cstat-no" title="statement not covered" >  if (imageIdIndex &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const stackPrefetchData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!stackPrefetchData || !stackPrefetchData.data || !stackPrefetchData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  stackPrefetchData.data[0].indicesToRequest.push(imageIdIndex);</span>
+}
+&nbsp;
+function onImageUpdated (e) <span class="fstat-no" title="function not covered" >{</span>
+    // Start prefetching again (after a delay)
+    // When the user has scrolled to a new image
+<span class="cstat-no" title="statement not covered" >  clearTimeout(resetPrefetchTimeout);</span>
+<span class="cstat-no" title="statement not covered" >  resetPrefetchTimeout = setTimeout(function () <span class="fstat-no" title="function not covered" >{</span></span>
+    const element = <span class="cstat-no" title="statement not covered" >e.target;</span>
+&nbsp;
+        // If playClip is enabled and the user loads a different series in the viewport
+        // An exception will be thrown because the element will not be enabled anymore
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      prefetch(element);</span>
+    } catch(error) {
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+  }, resetPrefetchDelay);
+}
+&nbsp;
+function enable (element) <span class="fstat-no" title="function not covered" >{</span>
+    // Clear old prefetch data. Skipping this can cause problems when changing the series inside an element
+  const stackPrefetchDataArray = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  stackPrefetchDataArray.data = [];</span>
+&nbsp;
+    // First check that there is stack data available
+  const stackData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!stackData || !stackData.data || !stackData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const stack = <span class="cstat-no" title="statement not covered" >stackData.data[0];</span>
+&nbsp;
+    // Check if we are allowed to cache images in this stack
+<span class="cstat-no" title="statement not covered" >  if (stack.preventCache === true) {</span>
+<span class="cstat-no" title="statement not covered" >    console.warn('A stack that should not be cached was given the stackPrefetch');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+    // Use the currentImageIdIndex from the stack as the initalImageIdIndex
+  const stackPrefetchData = <span class="cstat-no" title="statement not covered" >{</span>
+    indicesToRequest: range(0, stack.imageIds.length - 1),
+    enabled: true,
+    direction: 1
+  };
+&nbsp;
+    // Remove the currentImageIdIndex from the list to request
+  const indexOfCurrentImage = <span class="cstat-no" title="statement not covered" >stackPrefetchData.indicesToRequest.indexOf(stack.currentImageIdIndex);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  stackPrefetchData.indicesToRequest.splice(indexOfCurrentImage, 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  addToolState(element, toolType, stackPrefetchData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  prefetch(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', onImageUpdated);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneNewImage', onImageUpdated);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(cornerstone.events).off('CornerstoneImageCachePromiseRemoved', promiseRemovedHandler);</span>
+<span class="cstat-no" title="statement not covered" >  $(cornerstone.events).on('CornerstoneImageCachePromiseRemoved', {</span>
+    element
+  }, promiseRemovedHandler);
+}
+&nbsp;
+function disable (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  clearTimeout(resetPrefetchTimeout);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', onImageUpdated);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(cornerstone.events).off('CornerstoneImageCachePromiseRemoved', promiseRemovedHandler);</span>
+&nbsp;
+  const stackPrefetchData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
+    // If there is actually something to disable, disable it
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (stackPrefetchData &amp;&amp; stackPrefetchData.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >    stackPrefetchData.data[0].enabled = false;</span>
+&nbsp;
+        // Clear current prefetch requests from the requestPool
+<span class="cstat-no" title="statement not covered" >    requestPoolManager.clearRequestStack(requestType);</span>
+  }
+}
+&nbsp;
+function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return configuration;</span>
+}
+&nbsp;
+function setConfiguration (config) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  configuration = config;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (config.maxSimultaneousRequests) {</span>
+<span class="cstat-no" title="statement not covered" >    setMaxSimultaneousRequests(config.maxSimultaneousRequests);</span>
+  }
+}
+&nbsp;
+// Module/private exports
+const stackPrefetch = {
+  enable,
+  disable,
+  getConfiguration,
+  setConfiguration
+};
+&nbsp;
+export default stackPrefetch;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 18 2017 15:48:24 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
