@@ -69,6 +69,8 @@ is used by our example image loader-->
 <!-- include special code for these examples which provides images -->
 <script src="../exampleImageLoader.js"></script>
 
+<button id="calculate">scores</button>
+
 <script>
     var element = $('#dicomImage').get(0);
 
@@ -103,6 +105,18 @@ is used by our example image loader-->
 
         cornerstoneTools.scrollIndicator.enable(element);
     });
+
+    document.getElementById('calculate').addEventListener('click', function(){
+      var scores = cornerstoneTools.regionsScore({
+        SliceThickness: 3,
+        PixelSpacing: [0.6, 0.6],
+        KVP: 120,
+        RescaleSlope: 1,
+        RescaleIntercept: 1024,
+      }).then(function(scores){
+        console.log("YO", scores);
+      });
+    })
 
 </script>
 </html>

@@ -3,6 +3,12 @@ import { addToolState, getToolState } from '../stateManagement/toolState';
 
 // UNUSED const toolType = 'thresholding';
 
+let LASTELEMENT = null;
+
+export function getLastElement () {
+  return LASTELEMENT;
+}
+
 const LABEL_SIZE_BYTES = 1;
 
 let configuration = {
@@ -17,6 +23,15 @@ let configuration = {
     [100, 255, 255],
     [255, 100, 255]
   ],
+  kvpToMultiplier: {
+    140: 1.04,
+    130: 1.02,
+    120: 1,
+    110: 0.98,
+    100: 0.96,
+    90: 0.93,
+    80: 0.89
+  },
   growIterationsPerChunk: 2
 };
 
@@ -131,6 +146,7 @@ function onImageRendered (e, eventData) {
 }
 
 function enable (element) {
+  LASTELEMENT = element;
   // First check that there is stack data available
   const stackData = getToolState(element, 'stack');
 
