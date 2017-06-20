@@ -33,8 +33,8 @@ function regionGrowing (element, regions, slices, point) {
     const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = getConfiguration();
     const { width, height, buffer } = regions;
     const [x, y, slice] = point;
-    const highSlice = slice + layersAbove;
-    const lowSlice = slice - layersBelow;
+    const highSlice = slice + layersBelow;
+    const lowSlice = slice - layersAbove;
 
     const view = new Uint8Array(buffer);
 

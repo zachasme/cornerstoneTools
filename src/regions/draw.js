@@ -86,7 +86,7 @@ function updateRegions (element) {
   const view = new Uint8Array(buffer, sliceOffset);
 
   // Mark points inside
-  for (let dslice = 0; dslice <= endSlice - slice; dslice += 1) {
+  for (let dslice = 0; dslice <= endSlice - startSlice; dslice += 1) {
     for (let x = 0; x < width; x += 1) {
       for (let y = 0; y < height; y += 1) {
         const index = x + (y * width) + (dslice * sliceSize);

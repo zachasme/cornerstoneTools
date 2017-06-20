@@ -3167,11 +3167,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var LABEL_SIZE_BYTES = 1;
 
 var configuration = {
-  toolRegionValue: 3,
+  toolRegionValue: 2,
   calciumThresholdHu: 130,
   layersAbove: 0,
-  layersBelow: 1,
-  regionColorsRGBA: [[255, 10, 255], // Unused?
+  layersBelow: 0,
+  regionColorsRGB: [[255, 10, 255], // Unused?
   [255, 100, 100], [100, 100, 255], [100, 255, 255], [255, 100, 255]],
   growIterationsPerChunk: 2
 };
@@ -3270,7 +3270,7 @@ function onImageRendered(e, eventData) {
     var pi = i * 4;
 
     if (label) {
-      var color = configuration.regionColorsRGBA[label - 1];
+      var color = configuration.regionColorsRGB[label - 1];
 
       pixels[pi + 0] = color[0];
       pixels[pi + 1] = color[1];
@@ -15931,7 +15931,7 @@ function updateRegions(element) {
   var view = new Uint8Array(buffer, sliceOffset);
 
   // Mark points inside
-  for (var dslice = 0; dslice <= endSlice - slice; dslice += 1) {
+  for (var dslice = 0; dslice <= endSlice - startSlice; dslice += 1) {
     for (var x = 0; x < width; x += 1) {
       for (var y = 0; y < height; y += 1) {
         var index = x + y * width + dslice * sliceSize;
@@ -16083,8 +16083,8 @@ function regionGrowing(element, regions, slices, point) {
         y = _point[1],
         slice = _point[2];
 
-    var highSlice = slice + layersAbove;
-    var lowSlice = slice - layersBelow;
+    var highSlice = slice + layersBelow;
+    var lowSlice = slice - layersAbove;
 
     var view = new Uint8Array(buffer);
 
