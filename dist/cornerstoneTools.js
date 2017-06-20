@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-06-18 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-06-20 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -15978,7 +15978,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // UNUSED const toolType = 'thresholding';
 
 var CALCIUM_THRESHOLD_HU = 130;
-var LABEL_SIZE_BYTES = 8;
+var LABEL_SIZE_BYTES = 1;
 var REGION_COLORS_RGBA = [[255, 10, 255], // Unused?
 [255, 100, 100], [100, 100, 255], [100, 255, 255], [255, 100, 255]];
 
