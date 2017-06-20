@@ -1,29 +1,40 @@
 import * as cornerstone from 'cornerstone-core';
 import { getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+import { getConfiguration } from './thresholding.js';
 
 // UNUSED const toolType = 'regionsGrow';
 
-const REGION_VALUE = 2;
-
-// Get neighbour linear indices
-function linearNeighbours (width, height, index) {
+// Get neighbour linear indices within slice bounds
+function linearNeighbours (width, height, highSlice, lowSlice, index) {
   const sliceSize = width * height;
-
-  return [
+  const neighbours = [
     index - 1,
     index + 1,
     index - width,
-    index + width,
-    index - sliceSize,
-    index + sliceSize
+    index + width
   ];
+
+  // Stay within bounds
+  const sliceIndex = Math.floor(index / sliceSize);
+
+  if (sliceIndex < highSlice) {
+    neighbours.push(index - sliceSize);
+  }
+  if (sliceIndex > lowSlice) {
+    neighbours.push(index + sliceSize);
+  }
+
+  return neighbours;
 }
 
-function regionGrowing (element, regions, slices, point, nextValue) {
+function regionGrowing (element, regions, slices, point) {
   return new Promise(function (resolve) {
+    const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = getConfiguration();
     const { width, height, buffer } = regions;
     const [x, y, slice] = point;
+    const highSlice = slice + layersAbove;
+    const lowSlice = slice - layersBelow;
 
     const view = new Uint8Array(buffer);
 
@@ -35,16 +46,15 @@ function regionGrowing (element, regions, slices, point, nextValue) {
     const fromValue = view[linearIndex];
 
     // Only continue if we clicked in thresholded area in different color
-    if (fromValue === 0 || fromValue === nextValue) {
+    if (fromValue === 0 || fromValue === toolRegionValue) {
       return;
     }
 
     // Growing starts at clicked voxel
     let activeVoxels = [linearIndex];
-    const ITERATIONS = 1;
 
     function chunk () {
-      for(let i = 0; i < ITERATIONS; i++) {
+      for(let i = 0; i < growIterationsPerChunk; i++) {
         // While activeVoxels is not empty
         if (activeVoxels.length === 0) {
           return resolve();
@@ -52,12 +62,12 @@ function regionGrowing (element, regions, slices, point, nextValue) {
 
         // Set the active voxels to nextValue
         activeVoxels.forEach((i) => {
-          view[i] = nextValue;
+          view[i] = toolRegionValue;
         });
 
         // The new active voxels are neighbours of curent active voxels
         const nextVoxels = activeVoxels.map(
-          (i) => linearNeighbours(width, height, i)
+          (i) => linearNeighbours(width, height, highSlice, lowSlice, i)
         ).reduce( // Flatten the array of arrays to array of indices
           (acc, cur) => acc.concat(cur), []
         ).filter( // Remove duplicates
@@ -87,7 +97,7 @@ function onMouseDown (e, eventData) {
 
     const point = [Math.round(x), Math.round(y), currentImageIdIndex];
 
-    regionGrowing(element, regionsData, imageIds.length, point, REGION_VALUE);
+    regionGrowing(element, regionsData, imageIds.length, point);
   }
 }
 

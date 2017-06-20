@@ -3,15 +3,22 @@ import { addToolState, getToolState } from '../stateManagement/toolState';
 
 // UNUSED const toolType = 'thresholding';
 
-const CALCIUM_THRESHOLD_HU = 130;
 const LABEL_SIZE_BYTES = 1;
-const REGION_COLORS_RGBA = [
-  [255, 10, 255], // Unused?
-  [255, 100, 100],
-  [100, 100, 255],
-  [100, 255, 255],
-  [255, 100, 255]
-];
+
+let configuration = {
+  toolRegionValue: 3,
+  calciumThresholdHu: 130,
+  layersAbove: 0,
+  layersBelow: 0,
+  regionColorsRGBA: [
+    [255, 10, 255], // Unused?
+    [255, 100, 100],
+    [100, 100, 255],
+    [100, 255, 255],
+    [255, 100, 255]
+  ],
+  growIterationsPerChunk: 2
+};
 
 /**
  * Perform the thresholding on a stack
@@ -42,7 +49,7 @@ function performThresholding (stack, afterwards) {
         for (let i = 0; i < n; i++) {
           const pixel = pixelData[i];
           const hu = (pixel * slope) + intercept;
-          const label = (hu >= CALCIUM_THRESHOLD_HU) ? 1 : 0;
+          const label = (hu >= configuration.calciumThresholdHu) ? 1 : 0;
           const viewIdx = (imageIdx) * n + i;
 
           view[viewIdx] = label;
@@ -107,7 +114,7 @@ function onImageRendered (e, eventData) {
     const pi = i * 4;
 
     if (label) {
-      const color = REGION_COLORS_RGBA[label - 1];
+      const color = configuration.regionColorsRGBA[label - 1];
 
       pixels[pi + 0] = color[0];
       pixels[pi + 1] = color[1];
@@ -166,10 +173,21 @@ function disable (element) {
   }
 }
 
+
+export function getConfiguration () {
+  return configuration;
+}
+
+export function setConfiguration (config) {
+  configuration = config;
+}
+
 // Module/private exports
 export default {
   activate: enable,
   deactivate: disable,
   enable,
-  disable
+  disable,
+  getConfiguration,
+  setConfiguration
 };

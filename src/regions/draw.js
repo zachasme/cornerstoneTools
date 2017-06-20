@@ -1,12 +1,9 @@
 import * as cornerstone from 'cornerstone-core';
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+import { getConfiguration } from './thresholding.js';
 
 const toolType = 'drawing';
-
-const REGION_VALUE = 4;
-const LAYERS_ABOVE = 0;
-const LAYERS_BELOW = 5;
 
 // Determine if a point is inside a polygon
 function isInside (point, vs) {
@@ -60,7 +57,9 @@ function onImageRendered (e, eventData) {
   context.fill();
 }
 
-function updateRegions (element, value, layersAbove, layersBelow) {
+function updateRegions (element) {
+  const { toolRegionValue, layersAbove, layersBelow } = getConfiguration();
+
   // Get tool data
   const stackData = getToolState(element, 'stack');
   const thresholdingData = getToolState(element, 'regions');
@@ -94,7 +93,7 @@ function updateRegions (element, value, layersAbove, layersBelow) {
         const prevValue = view[index];
 
         if (prevValue > 0 && isInside([x, y], points)) {
-          view[index] = value;
+          view[index] = toolRegionValue;
         }
       }
     }
@@ -106,7 +105,7 @@ function mouseUpCallback (e, eventData) {
   $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
   $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
   $(eventData.element).off('CornerstoneImageRendered', onImageRendered);
-  updateRegions(eventData.element, REGION_VALUE, LAYERS_ABOVE, LAYERS_BELOW);
+  updateRegions(eventData.element);
   cornerstone.updateImage(eventData.element);
 }
 

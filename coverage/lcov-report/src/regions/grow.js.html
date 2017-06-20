@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.27% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/44</span>
+        <span class='fraction'>0/51</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/20</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.27% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/44</span>
+        <span class='fraction'>0/51</span>
       </div>
     </div>
   </div>
@@ -159,21 +159,17 @@
 114
 115
 116
-117</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,6 +180,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -201,7 +222,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -278,29 +298,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
 import { getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+import { getConfiguration } from './thresholding.js';
 &nbsp;
 // UNUSED const toolType = 'regionsGrow';
 &nbsp;
-const REGION_VALUE = 2;
-&nbsp;
-// Get neighbour linear indices
-function linearNeighbours (width, height, index) <span class="fstat-no" title="function not covered" >{</span>
+// Get neighbour linear indices within slice bounds
+function linearNeighbours (width, height, highSlice, lowSlice, index) <span class="fstat-no" title="function not covered" >{</span>
   const sliceSize = <span class="cstat-no" title="statement not covered" >width * height;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return [</span>
+  const neighbours = <span class="cstat-no" title="statement not covered" >[</span>
     index - 1,
     index + 1,
     index - width,
-    index + width,
-    index - sliceSize,
-    index + sliceSize
+    index + width
   ];
+&nbsp;
+  // Stay within bounds
+  const sliceIndex = <span class="cstat-no" title="statement not covered" >Math.floor(index / sliceSize);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (sliceIndex &lt; highSlice) {</span>
+<span class="cstat-no" title="statement not covered" >    neighbours.push(index - sliceSize);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (sliceIndex &gt; lowSlice) {</span>
+<span class="cstat-no" title="statement not covered" >    neighbours.push(index + sliceSize);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return neighbours;</span>
 }
 &nbsp;
-function regionGrowing (element, regions, slices, point, nextValue) <span class="fstat-no" title="function not covered" >{</span>
+function regionGrowing (element, regions, slices, point) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  return new Promise(function (resolve) <span class="fstat-no" title="function not covered" >{</span></span>
+    const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = <span class="cstat-no" title="statement not covered" >getConfiguration();</span>
     const { width, height, buffer } = <span class="cstat-no" title="statement not covered" >regions;</span>
     const [x, y, slice] = <span class="cstat-no" title="statement not covered" >point;</span>
+    const highSlice = <span class="cstat-no" title="statement not covered" >slice + layersAbove;</span>
+    const lowSlice = <span class="cstat-no" title="statement not covered" >slice - layersBelow;</span>
 &nbsp;
     const view = <span class="cstat-no" title="statement not covered" >new Uint8Array(buffer);</span>
 &nbsp;
@@ -312,16 +343,15 @@ function regionGrowing (element, regions, slices, point, nextValue) <span class=
     const fromValue = <span class="cstat-no" title="statement not covered" >view[linearIndex];</span>
 &nbsp;
     // Only continue if we clicked in thresholded area in different color
-<span class="cstat-no" title="statement not covered" >    if (fromValue === 0 || fromValue === nextValue) {</span>
+<span class="cstat-no" title="statement not covered" >    if (fromValue === 0 || fromValue === toolRegionValue) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
     // Growing starts at clicked voxel
     let activeVoxels = <span class="cstat-no" title="statement not covered" >[linearIndex];</span>
-    const ITERATIONS = <span class="cstat-no" title="statement not covered" >1;</span>
 &nbsp;
     function chunk () <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      for(let i = 0; i &lt; ITERATIONS; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      for(let i = 0; i &lt; growIterationsPerChunk; i++) {</span>
         // While activeVoxels is not empty
 <span class="cstat-no" title="statement not covered" >        if (activeVoxels.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >          return resolve();</span>
@@ -329,12 +359,12 @@ function regionGrowing (element, regions, slices, point, nextValue) <span class=
 &nbsp;
         // Set the active voxels to nextValue
 <span class="cstat-no" title="statement not covered" >        activeVoxels.forEach((i) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >          view[i] = nextValue;</span>
+<span class="cstat-no" title="statement not covered" >          view[i] = toolRegionValue;</span>
         });
 &nbsp;
         // The new active voxels are neighbours of curent active voxels
         const nextVoxels = <span class="cstat-no" title="statement not covered" >activeVoxels.map(</span>
-          (i) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >linearNeighbours(width, height, i)</span></span>
+          (i) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >linearNeighbours(width, height, highSlice, lowSlice, i)</span></span>
         ).reduce( // Flatten the array of arrays to array of indices
           (acc, cur) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >acc.concat(cur),</span></span> []
         ).filter( // Remove duplicates
@@ -364,7 +394,7 @@ function onMouseDown (e, eventData) <span class="fstat-no" title="function not c
 &nbsp;
     const point = <span class="cstat-no" title="statement not covered" >[Math.round(x), Math.round(y), currentImageIdIndex];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    regionGrowing(element, regionsData, imageIds.length, point, REGION_VALUE);</span>
+<span class="cstat-no" title="statement not covered" >    regionGrowing(element, regionsData, imageIds.length, point);</span>
   }
 }
 &nbsp;
@@ -397,7 +427,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 20 2017 10:06:36 GMT+0200 (Romance Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 20 2017 11:18:58 GMT+0200 (Romance Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>
