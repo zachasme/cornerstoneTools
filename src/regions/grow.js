@@ -19,10 +19,10 @@ function linearNeighbours (width, height, highSlice, lowSlice, index) {
   const sliceIndex = Math.floor(index / sliceSize);
 
   if (sliceIndex < highSlice) {
-    neighbours.push(index - sliceSize);
+    neighbours.push(index + sliceSize);
   }
   if (sliceIndex > lowSlice) {
-    neighbours.push(index + sliceSize);
+    neighbours.push(index - sliceSize);
   }
 
   return neighbours;

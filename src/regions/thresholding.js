@@ -9,7 +9,7 @@ let configuration = {
   toolRegionValue: 3,
   calciumThresholdHu: 130,
   layersAbove: 0,
-  layersBelow: 0,
+  layersBelow: 1,
   regionColorsRGBA: [
     [255, 10, 255], // Unused?
     [255, 100, 100],

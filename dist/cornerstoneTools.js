@@ -3170,7 +3170,7 @@ var configuration = {
   toolRegionValue: 3,
   calciumThresholdHu: 130,
   layersAbove: 0,
-  layersBelow: 0,
+  layersBelow: 1,
   regionColorsRGBA: [[255, 10, 255], // Unused?
   [255, 100, 100], [100, 100, 255], [100, 255, 255], [255, 100, 255]],
   growIterationsPerChunk: 2
@@ -16057,10 +16057,10 @@ function linearNeighbours(width, height, highSlice, lowSlice, index) {
   var sliceIndex = Math.floor(index / sliceSize);
 
   if (sliceIndex < highSlice) {
-    neighbours.push(index - sliceSize);
+    neighbours.push(index + sliceSize);
   }
   if (sliceIndex > lowSlice) {
-    neighbours.push(index + sliceSize);
+    neighbours.push(index - sliceSize);
   }
 
   return neighbours;
