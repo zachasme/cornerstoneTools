@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-06-20 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-06-21 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -2292,8 +2292,7 @@ var configuration = {
   calciumThresholdHu: 130,
   layersAbove: 0,
   layersBelow: 0,
-  regionColorsRGB: [[255, 10, 255], // Unused?
-  [255, 100, 100], [100, 100, 255], [100, 255, 255], [255, 100, 255]],
+  regionColorsRGB: [[253, 235, 115], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
   kvpToMultiplier: {
     140: 1.04,
     130: 1.02,
