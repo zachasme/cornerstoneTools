@@ -18,7 +18,7 @@ let configuration = {
   layersBelow: 0,
   drawAlpha: 1,
   regionColorsRGB: [
-    [253, 235, 115],
+    [255, 0, 255],
     [246, 193, 91],
     [237, 148, 69],
     [230, 103, 49],

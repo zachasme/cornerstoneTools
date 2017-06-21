@@ -2293,7 +2293,7 @@ var configuration = {
   layersAbove: 0,
   layersBelow: 0,
   drawAlpha: 1,
-  regionColorsRGB: [[253, 235, 115], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
+  regionColorsRGB: [[255, 0, 255], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
   kvpToMultiplier: {
     140: 1.04,
     130: 1.02,
