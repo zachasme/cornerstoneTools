@@ -2266,6 +2266,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getLastElement = getLastElement;
+exports.createUndoStep = createUndoStep;
+exports.undo = undo;
 exports.getConfiguration = getConfiguration;
 exports.setConfiguration = setConfiguration;
 
@@ -2288,6 +2290,8 @@ function getLastElement() {
 var LABEL_SIZE_BYTES = 1;
 
 var configuration = {
+  historySize: 4,
+  historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: 130,
   layersAbove: 0,
@@ -2429,7 +2433,8 @@ function enable(element) {
     enabled: 1,
     buffer: null,
     width: null,
-    height: null
+    height: null,
+    history: []
   };
 
   (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
@@ -2460,6 +2465,37 @@ function disable(element) {
   }
 }
 
+function createUndoStep(element) {
+  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+
+  var state = thresholdingData.data[0];
+  // Make a copy using .slice()
+  var current = state.buffer.slice();
+
+  // Put at end of history
+  state.history.push(current);
+  // Remove oldest if too much history
+  if (state.history.length > configuration.historySize) {
+    state.history.shift();
+  }
+  console.log("HIST", state.history);
+}
+
+function undo(element) {
+  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  var state = thresholdingData.data[0];
+
+  if (state.history.length < 1) {
+    return;
+  }
+
+  var replacement = state.history.pop();
+  console.log("HIST", state.history);
+
+  state.buffer = replacement;
+  cornerstone.updateImage(element);
+}
+
 function getConfiguration() {
   return configuration;
 }
@@ -2475,7 +2511,8 @@ exports.default = {
   enable: enable,
   disable: disable,
   getConfiguration: getConfiguration,
-  setConfiguration: setConfiguration
+  setConfiguration: setConfiguration,
+  undo: undo
 };
 
 /***/ }),
@@ -15935,9 +15972,9 @@ function updateRegions(element) {
       layersAbove = _getConfiguration.layersAbove,
       layersBelow = _getConfiguration.layersBelow;
 
+  (0, _thresholding.createUndoStep)(element);
+
   // Get tool data
-
-
   var stackData = (0, _toolState.getToolState)(element, 'stack');
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
   var drawingData = (0, _toolState.getToolState)(element, toolType);
@@ -16176,6 +16213,8 @@ function onMouseDown(e, eventData) {
 
 
   if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
+    (0, _thresholding.createUndoStep)(element);
+
     var _getToolState$data = _slicedToArray((0, _toolState.getToolState)(element, 'stack').data, 1),
         stackData = _getToolState$data[0];
 
