@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/manipulators/getHandleNearImagePoint.js</title>
+    <title>Code coverage report for src/regions/undo.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">src/manipulators/</a> getHandleNearImagePoint.js
+      <a href="../../index.html">all files</a> / <a href="index.html">src/regions/</a> undo.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>0/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>0/8</span>
       </div>
     </div>
   </div>
@@ -72,23 +72,12 @@
 27
 28
 29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+30</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -99,70 +88,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
-import * as cornerstoneMath from 'cornerstone-math';
-import pointInsideBoundingBox from '../util/pointInsideBoundingBox';
+import { getToolState } from '../stateManagement/toolState';
 &nbsp;
-export default function (element, handles, coords, distanceThreshold) <span class="fstat-no" title="function not covered" >{</span>
-  let nearbyHandle;
+function enable (element) <span class="fstat-no" title="function not covered" >{</span>
+  const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
+  const state = <span class="cstat-no" title="statement not covered" >thresholdingData.data[0];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (!handles) {</span>
+<span class="cstat-no" title="statement not covered" >  if (state.history.length &lt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  Object.keys(handles).forEach(function (name) <span class="fstat-no" title="function not covered" >{</span></span>
-    const handle = <span class="cstat-no" title="statement not covered" >handles[name];</span>
+  const replacement = <span class="cstat-no" title="statement not covered" >state.history.pop();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("HIST",state.history)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (handle.hasOwnProperty('pointNearHandle')) {</span>
-<span class="cstat-no" title="statement not covered" >      if (handle.pointNearHandle(element, handle, coords)) {</span>
-<span class="cstat-no" title="statement not covered" >        nearbyHandle = handle;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        return;</span>
-      }
-    } else <span class="cstat-no" title="statement not covered" >if (handle.hasBoundingBox === true) {</span>
-<span class="cstat-no" title="statement not covered" >      if (pointInsideBoundingBox(handle, coords)) {</span>
-<span class="cstat-no" title="statement not covered" >        nearbyHandle = handle;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        return;</span>
-      }
-    } else {
-      const handleCanvas = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(element, handle);</span>
-      const distance = <span class="cstat-no" title="statement not covered" >cornerstoneMath.point.distance(handleCanvas, coords);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      if (distance &lt;= distanceThreshold) {</span>
-<span class="cstat-no" title="statement not covered" >        nearbyHandle = handle;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        return;</span>
-      }
-    }
-  });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return nearbyHandle;</span>
+<span class="cstat-no" title="statement not covered" >  state.buffer = replacement;</span>
+<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(element);</span>
 }
+&nbsp;
+function disable (element) <span class="fstat-no" title="function not covered" >{</span>
+  // pass
+}
+&nbsp;
+// Module/private exports
+export default {
+  activate: enable,
+  deactivate: disable,
+  enable,
+  disable
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

@@ -70,6 +70,8 @@ is used by our example image loader-->
 <script src="../exampleImageLoader.js"></script>
 
 <button id="calculate">scores</button>
+<button id="undo">undo</button>
+<button id="redo">redo</button>
 
 <script>
     var element = $('#dicomImage').get(0);
@@ -99,8 +101,8 @@ is used by our example image loader-->
 
         // Enable all tools we want to use with this element
         cornerstoneTools.regionsThreshold.activate(element);
-        cornerstoneTools.regionsGrow.activate(element, 4);
-        cornerstoneTools.regionsDraw.activate(element, 1);
+        cornerstoneTools.regionsDraw.activate(element, 4);
+        cornerstoneTools.regionsGrow.activate(element, 1);
         cornerstoneTools.stackScrollWheel.activate(element);
 
         cornerstoneTools.scrollIndicator.enable(element);
@@ -117,6 +119,15 @@ is used by our example image loader-->
         console.log("YO", scores);
       });
     })
+
+    document.getElementById('undo').addEventListener('click', function(){
+      cornerstoneTools.regionsThreshold.undo(element);
+    });
+
+    document.getElementById('redo').addEventListener('click', function(){
+      cornerstoneTools.regionsThreshold.redo(element);
+    });
+
 
 </script>
 </html>

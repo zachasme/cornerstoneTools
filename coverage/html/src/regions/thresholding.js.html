@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.82% </span>
+        <span class="strong">4.49% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/83</span>
+        <span class='fraction'>4/89</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/22</span>
+        <span class='fraction'>0/24</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.82% </span>
+        <span class="strong">4.49% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/83</span>
+        <span class='fraction'>4/89</span>
       </div>
     </div>
   </div>
@@ -254,7 +254,25 @@
 209
 210
 211
-212</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -298,6 +316,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -419,7 +439,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -428,6 +447,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -441,6 +462,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -479,13 +515,15 @@ export function getLastElement () <span class="fstat-no" title="function not cov
 const LABEL_SIZE_BYTES = 1;
 &nbsp;
 let configuration = {
+  historySize: 4,
+  historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: 130,
   layersAbove: 0,
   layersBelow: 0,
   drawAlpha: 1,
   regionColorsRGB: [
-    [253, 235, 115],
+    [255, 0, 255],
     [246, 193, 91],
     [237, 148, 69],
     [230, 103, 49],
@@ -627,7 +665,8 @@ function enable (element) <span class="fstat-no" title="function not covered" >{
     enabled: 1,
     buffer: null,
     width: null,
-    height: null
+    height: null,
+    history: []
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  addToolState(element, 'regions', initialThresholdingData);</span>
@@ -658,6 +697,21 @@ function disable (element) <span class="fstat-no" title="function not covered" >
   }
 }
 &nbsp;
+export function createUndoStep (element) <span class="fstat-no" title="function not covered" >{</span>
+  const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
+&nbsp;
+  const state = <span class="cstat-no" title="statement not covered" >thresholdingData.data[0];</span>
+  // Make a copy using .slice()
+  const current = <span class="cstat-no" title="statement not covered" >state.buffer.slice();</span>
+&nbsp;
+  // Put at end of history
+<span class="cstat-no" title="statement not covered" >  state.history.push(current);</span>
+  // Remove oldest if too much history
+<span class="cstat-no" title="statement not covered" >  if (state.history.length &gt; configuration.historySize) {</span>
+<span class="cstat-no" title="statement not covered" >    state.history.shift();</span>
+  }
+&nbsp;
+}
 &nbsp;
 export function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  return configuration;</span>
@@ -682,7 +736,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 21 2017 19:30:11 GMT+0200 (CEST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jun 22 2017 00:01:20 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

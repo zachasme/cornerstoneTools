@@ -1,7 +1,7 @@
 import * as cornerstone from 'cornerstone-core';
 import { getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import { getConfiguration } from './thresholding.js';
+import { getConfiguration, createUndoStep } from './thresholding.js';
 
 // UNUSED const toolType = 'regionsGrow';
 
@@ -90,6 +90,7 @@ function onMouseDown (e, eventData) {
   const { element } = eventData;
 
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
+    createUndoStep(element);
     const [stackData] = getToolState(element, 'stack').data;
     const [regionsData] = getToolState(element, 'regions').data;
     const { currentImageIdIndex, imageIds } = stackData;

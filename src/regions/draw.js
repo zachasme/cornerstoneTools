@@ -1,7 +1,7 @@
 import * as cornerstone from 'cornerstone-core';
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import { getConfiguration } from './thresholding.js';
+import { getConfiguration, createUndoStep } from './thresholding.js';
 
 const toolType = 'drawing';
 
@@ -59,6 +59,8 @@ function onImageRendered (e, eventData) {
 
 function updateRegions (element) {
   const { toolRegionValue, layersAbove, layersBelow } = getConfiguration();
+
+  createUndoStep(element);
 
   // Get tool data
   const stackData = getToolState(element, 'stack');

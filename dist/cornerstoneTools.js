@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-06-21 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-06-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -8,7 +8,7 @@
 		exports["cornerstoneTools"] = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
 	else
 		root["cornerstoneTools"] = factory(root["cornerstone"], root["cornerstoneMath"], root["Hammer"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_118__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_119__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -2267,7 +2267,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getLastElement = getLastElement;
 exports.createUndoStep = createUndoStep;
-exports.undo = undo;
 exports.getConfiguration = getConfiguration;
 exports.setConfiguration = setConfiguration;
 
@@ -2297,7 +2296,7 @@ var configuration = {
   layersAbove: 0,
   layersBelow: 0,
   drawAlpha: 1,
-  regionColorsRGB: [[253, 235, 115], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
+  regionColorsRGB: [[255, 0, 255], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
   kvpToMultiplier: {
     140: 1.04,
     130: 1.02,
@@ -2478,22 +2477,6 @@ function createUndoStep(element) {
   if (state.history.length > configuration.historySize) {
     state.history.shift();
   }
-  console.log("HIST", state.history);
-}
-
-function undo(element) {
-  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
-  var state = thresholdingData.data[0];
-
-  if (state.history.length < 1) {
-    return;
-  }
-
-  var replacement = state.history.pop();
-  console.log("HIST", state.history);
-
-  state.buffer = replacement;
-  cornerstone.updateImage(element);
 }
 
 function getConfiguration() {
@@ -2511,8 +2494,7 @@ exports.default = {
   enable: enable,
   disable: disable,
   getConfiguration: getConfiguration,
-  setConfiguration: setConfiguration,
-  undo: undo
+  setConfiguration: setConfiguration
 };
 
 /***/ }),
@@ -11513,7 +11495,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _hammerjs = __webpack_require__(118);
+var _hammerjs = __webpack_require__(119);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
@@ -12140,6 +12122,15 @@ Object.defineProperty(exports, 'regionsScore', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_score).default;
+  }
+});
+
+var _undo = __webpack_require__(118);
+
+Object.defineProperty(exports, 'regionsUndo', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_undo).default;
   }
 });
 
@@ -15632,6 +15623,12 @@ Object.defineProperty(exports, 'regionsScore', {
                   return _index3.regionsScore;
          }
 });
+Object.defineProperty(exports, 'regionsUndo', {
+         enumerable: true,
+         get: function get() {
+                  return _index3.regionsUndo;
+         }
+});
 
 var _version = __webpack_require__(108);
 
@@ -16370,9 +16367,55 @@ exports.default = score;
 
 /***/ }),
 /* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _cornerstoneCore = __webpack_require__(0);
+
+var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+
+var _toolState = __webpack_require__(1);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function enable(element) {
+  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  var state = thresholdingData.data[0];
+
+  if (state.history.length < 1) {
+    return;
+  }
+
+  var replacement = state.history.pop();
+  console.log("HIST", state.history);
+
+  state.buffer = replacement;
+  cornerstone.updateImage(element);
+}
+
+function disable(element) {}
+// pass
+
+
+// Module/private exports
+exports.default = {
+  activate: enable,
+  deactivate: disable,
+  enable: enable,
+  disable: disable
+};
+
+/***/ }),
+/* 119 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_118__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_119__;
 
 /***/ })
 /******/ ]);
