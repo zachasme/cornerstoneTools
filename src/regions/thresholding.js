@@ -16,6 +16,7 @@ let configuration = {
   calciumThresholdHu: 130,
   layersAbove: 0,
   layersBelow: 0,
+  drawAlpha: 1,
   regionColorsRGB: [
     [253, 235, 115],
     [246, 193, 91],
@@ -135,7 +136,7 @@ function onImageRendered (e, eventData) {
       pixels[pi + 0] = color[0];
       pixels[pi + 1] = color[1];
       pixels[pi + 2] = color[2];
-      pixels[pi + 3] = 0.5 * 255;
+      pixels[pi + 3] = configuration.drawAlpha * 255;
     } else {
       pixels[pi + 3] = 0;
     }
