@@ -12,6 +12,8 @@ export function getLastElement () {
 const LABEL_SIZE_BYTES = 1;
 
 let configuration = {
+  historySize: 4,
+  historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: 130,
   layersAbove: 0,
@@ -160,7 +162,8 @@ function enable (element) {
     enabled: 1,
     buffer: null,
     width: null,
-    height: null
+    height: null,
+    history: []
   };
 
   addToolState(element, 'regions', initialThresholdingData);
@@ -191,6 +194,21 @@ function disable (element) {
   }
 }
 
+export function createUndoStep (element) {
+  const thresholdingData = getToolState(element, 'regions');
+
+  const state = thresholdingData.data[0];
+  // Make a copy using .slice()
+  const current = state.buffer.slice();
+
+  // Put at end of history
+  state.history.push(current);
+  // Remove oldest if too much history
+  if (state.history.length > configuration.historySize) {
+    state.history.shift();
+  }
+
+}
 
 export function getConfiguration () {
   return configuration;
@@ -207,5 +225,6 @@ export default {
   enable,
   disable,
   getConfiguration,
-  setConfiguration
+  setConfiguration,
+  undo,
 };
