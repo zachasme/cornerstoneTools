@@ -16305,10 +16305,8 @@ function score(attributes) {
       RescaleSlope = attributes.RescaleSlope,
       RescaleIntercept = attributes.RescaleIntercept;
 
-  RescaleSlope = -1024;
-  console.log("Attributes: ");
-  console.log(attributes);
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
+
   var zLength = SliceThickness / 3;
   var xLength = PixelSpacing[0];
   var yLength = PixelSpacing[1];
