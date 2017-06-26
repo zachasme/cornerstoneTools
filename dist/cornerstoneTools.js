@@ -16264,6 +16264,9 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 exports.score = score;
 
 var _cornerstoneCore = __webpack_require__(0);
@@ -16337,6 +16340,9 @@ function score(attributes) {
         if (label > 1) {
           var value = pixelData[i];
           console.log(value);
+          console.log(typeof value === 'undefined' ? 'undefined' : _typeof(value));
+          console.log(typeof RescaleSlope === 'undefined' ? 'undefined' : _typeof(RescaleSlope));
+          console.log(typeof RescaleIntercept === 'undefined' ? 'undefined' : _typeof(RescaleIntercept));
           var hu = value * RescaleSlope + RescaleIntercept;
           console.log(hu);
           var currentMax = maxHUEachRegion[label - 2];

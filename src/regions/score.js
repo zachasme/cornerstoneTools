@@ -21,7 +21,7 @@ export function score (attributes) {
   const regionBuffer = thresholdingData.data[0].buffer;
   const imageIds = stackData.data[0].imageIds;
   const { regionColorsRGB, kvpToMultiplier } = getConfiguration();
-  const {
+  let {
     SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
   } = attributes;
 
@@ -51,6 +51,9 @@ export function score (attributes) {
       if (label > 1) {
         const value = pixelData[i];
         console.log(value);
+        console.log(typeof(value));
+        console.log(typeof(RescaleSlope));
+        console.log(typeof(RescaleIntercept));
         const hu = (value * RescaleSlope) + RescaleIntercept;
         console.log(hu);
         const currentMax = maxHUEachRegion[label - 2];
