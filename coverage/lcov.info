@@ -1,5 +1,5 @@
 TN:
-SF:/home/zach/git/cornerstoneTools/src/metaData.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/metaData.js
 FNF:0
 FNH:0
 DA:3,1
@@ -9,7 +9,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/pointProjector.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/pointProjector.js
 FN:4,projectPatientPointToImagePlane
 FN:17,imagePointToPatientPoint
 FN:31,getRectangleFromImagePlane
@@ -77,7 +77,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/referenceLines/calculateReferenceLine.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/referenceLines/calculateReferenceLine.js
 FN:6,(anonymous_0)
 FNF:1
 FNH:0
@@ -94,7 +94,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/imageIdSpecificStateManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/imageIdSpecificStateManager.js
 FN:7,newImageIdSpecificToolStateManager
 FN:13,saveImageIdToolState
 FN:17,restoreImageIdToolState
@@ -162,7 +162,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/toolState.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/toolState.js
 FN:4,getElementToolStateManager
 FN:18,addToolState
 FN:35,getToolState
@@ -219,7 +219,7 @@ BRF:8
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/toolColors.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/toolColors.js
 FN:6,setFillColor
 FN:10,getFillColor
 FN:14,setToolColor
@@ -255,7 +255,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/toolStyle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/toolStyle.js
 FN:4,setToolWidth
 FN:8,getToolWidth
 FN:12,setActiveWidth
@@ -279,7 +279,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/referenceLines/renderActiveReferenceLine.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/referenceLines/renderActiveReferenceLine.js
 FN:7,(anonymous_0)
 FNF:1
 FNH:0
@@ -342,7 +342,7 @@ BRF:20
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/referenceLines/referenceLinesTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/referenceLines/referenceLinesTool.js
 FN:7,onImageRendered
 FN:27,(anonymous_1)
 FN:41,enable
@@ -385,7 +385,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/referenceLines/index.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/referenceLines/index.js
 FNF:0
 FNH:0
 DA:5,1
@@ -395,7 +395,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/orientation/getOrientationString.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/orientation/getOrientationString.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -444,7 +444,7 @@ BRF:21
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/orientation/invertOrientationString.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/orientation/invertOrientationString.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:0
@@ -463,7 +463,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/orientation/index.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/orientation/index.js
 FNF:0
 FNH:0
 DA:4,1
@@ -473,7 +473,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/getMaxSimultaneousRequests.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/getMaxSimultaneousRequests.js
 FN:31,getBrowserInfo
 FN:57,setMaxSimultaneousRequests
 FN:61,getMaxSimultaneousRequests
@@ -544,7 +544,7 @@ BRF:22
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/requestPool/requestPoolManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/requestPool/requestPoolManager.js
 FN:25,addRequest
 FN:47,(anonymous_1)
 FN:49,(anonymous_2)
@@ -699,7 +699,7 @@ BRF:41
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/setContextToDisplayFontSize.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/setContextToDisplayFontSize.js
 FN:14,(anonymous_0)
 FNF:1
 FNH:0
@@ -715,7 +715,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/loadHandlerManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/loadHandlerManager.js
 FN:5,setStartLoadHandler
 FN:9,getStartLoadHandler
 FN:13,setEndLoadHandler
@@ -743,7 +743,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/touchDragTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/touchDragTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -798,7 +798,7 @@ BRF:24
 BRH:4
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/multiTouchDragTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/multiTouchDragTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -856,7 +856,7 @@ BRF:24
 BRH:3
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/simpleMouseButtonTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/simpleMouseButtonTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -878,7 +878,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/mouseWheelTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/mouseWheelTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -897,7 +897,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/isMouseButtonEnabled.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/isMouseButtonEnabled.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -910,7 +910,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/scroll.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/scroll.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:0
@@ -934,7 +934,7 @@ BRF:5
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stackTools/stackScroll.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stackTools/stackScroll.js
 FN:9,mouseUpCallback
 FN:15,mouseDownCallback
 FN:30,mouseWheelCallback
@@ -1013,7 +1013,7 @@ BRF:19
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/scrollToIndex.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/scrollToIndex.js
 FN:7,(anonymous_0)
 FN:26,doneCallback
 FN:46,failCallback
@@ -1095,7 +1095,7 @@ BRF:27
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/roundToDecimal.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/roundToDecimal.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:0
@@ -1108,7 +1108,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/pointInsideBoundingBox.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/pointInsideBoundingBox.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -1124,7 +1124,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/pointInEllipse.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/pointInEllipse.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:0
@@ -1147,7 +1147,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/pauseEvent.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/pauseEvent.js
 FN:7,(anonymous_0)
 FNF:1
 FNH:0
@@ -1169,7 +1169,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/getRGBPixels.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/getRGBPixels.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -1205,7 +1205,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/getLuminance.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/getLuminance.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -1242,7 +1242,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/textStyle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/textStyle.js
 FN:5,setFont
 FN:9,getFont
 FN:13,setFontSize
@@ -1273,7 +1273,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/drawTextBox.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/drawTextBox.js
 FN:3,(anonymous_0)
 FN:21,(anonymous_1)
 FN:56,(anonymous_2)
@@ -1334,7 +1334,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/drawEllipse.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/drawEllipse.js
 FN:2,(anonymous_0)
 FNF:1
 FNH:0
@@ -1360,7 +1360,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/drawCircle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/drawCircle.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:0
@@ -1377,7 +1377,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/drawArrow.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/drawArrow.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:0
@@ -1407,7 +1407,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/copyPoints.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/copyPoints.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:1
@@ -1423,7 +1423,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/calculateSUV.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/calculateSUV.js
 FN:4,fracToDec
 FN:8,(anonymous_1)
 FNF:2
@@ -1482,7 +1482,7 @@ BRF:18
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/util/calculateEllipseStatistics.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/util/calculateEllipseStatistics.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -1514,7 +1514,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/toolCoordinates.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/toolCoordinates.js
 FN:3,setCoords
 FN:7,getCoords
 FNF:2
@@ -1530,7 +1530,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/getHandleNearImagePoint.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/getHandleNearImagePoint.js
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -1573,7 +1573,7 @@ BRF:12
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/handleActivator.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/handleActivator.js
 FN:3,getActiveHandle
 FN:6,(anonymous_1)
 FN:19,(anonymous_2)
@@ -1615,7 +1615,7 @@ BRF:10
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/moveHandle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/moveHandle.js
 FN:3,(anonymous_0)
 FN:10,mouseDragCallback
 FN:41,mouseUpCallback
@@ -1662,7 +1662,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/moveNewHandle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/moveNewHandle.js
 FN:3,(anonymous_0)
 FN:6,moveCallback
 FN:31,whichMovement
@@ -1738,7 +1738,7 @@ BRF:10
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/anyHandlesOutsideImage.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/anyHandlesOutsideImage.js
 FN:3,(anonymous_0)
 FN:14,(anonymous_1)
 FNF:2
@@ -1765,7 +1765,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/moveAllHandles.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/moveAllHandles.js
 FN:5,(anonymous_0)
 FN:8,mouseDragCallback
 FN:11,(anonymous_2)
@@ -1823,7 +1823,7 @@ BRF:10
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/mouseButtonTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/mouseButtonTool.js
 FN:12,(anonymous_0)
 FN:16,addNewMeasurement
 FN:60,(anonymous_2)
@@ -2117,7 +2117,7 @@ BRF:116
 BRH:6
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/drawHandles.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/drawHandles.js
 FN:6,(anonymous_0)
 FN:9,(anonymous_1)
 FNF:2
@@ -2161,7 +2161,7 @@ BRF:13
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/measurementManager/measurementManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/measurementManager/measurementManager.js
 FN:2,MeasurementManager
 FN:8,(anonymous_1)
 FN:19,(anonymous_2)
@@ -2188,7 +2188,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/measurementManager/lineSampleMeasurement.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/measurementManager/lineSampleMeasurement.js
 FN:2,(anonymous_0)
 FN:9,(anonymous_1)
 FNF:2
@@ -2206,7 +2206,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/timeSeriesTools/probeTool4D.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/timeSeriesTools/probeTool4D.js
 FN:11,updateLineSample
 FN:14,(anonymous_1)
 FN:23,(anonymous_2)
@@ -2275,7 +2275,7 @@ BRF:9
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/timeSeriesTools/incrementTimePoint.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/timeSeriesTools/incrementTimePoint.js
 FN:5,(anonymous_0)
 FN:51,(anonymous_1)
 FN:60,(anonymous_2)
@@ -2348,7 +2348,7 @@ BRF:23
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/timeSeriesTools/timeSeriesPlayer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/timeSeriesTools/timeSeriesPlayer.js
 FN:14,playClip
 FN:50,(anonymous_1)
 FN:63,stopClip
@@ -2412,7 +2412,7 @@ BRF:22
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/timeSeriesTools/timeSeriesScroll.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/timeSeriesTools/timeSeriesScroll.js
 FN:8,mouseUpCallback
 FN:14,mouseDownCallback
 FN:31,mouseDragCallback
@@ -2496,7 +2496,7 @@ BRF:24
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/wwwcSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/wwwcSynchronizer.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:0
@@ -2524,7 +2524,7 @@ BRF:7
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/updateImageSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/updateImageSynchronizer.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:0
@@ -2540,7 +2540,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/Synchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/Synchronizer.js
 FN:5,Synchronizer
 FN:15,(anonymous_1)
 FN:19,(anonymous_2)
@@ -2776,7 +2776,7 @@ BRF:50
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/stackScrollSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/stackScrollSynchronizer.js
 FN:7,(anonymous_0)
 FN:49,(anonymous_1)
 FN:57,(anonymous_2)
@@ -2834,7 +2834,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/stackImagePositionSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/stackImagePositionSynchronizer.js
 FN:7,(anonymous_0)
 FN:24,(anonymous_1)
 FN:57,(anonymous_2)
@@ -2903,7 +2903,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/stackImagePositionOffsetSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/stackImagePositionOffsetSynchronizer.js
 FN:10,(anonymous_0)
 FN:33,(anonymous_1)
 FN:64,(anonymous_2)
@@ -2976,7 +2976,7 @@ BRF:18
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/stackImageIndexSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/stackImageIndexSynchronizer.js
 FN:7,(anonymous_0)
 FN:45,(anonymous_1)
 FN:53,(anonymous_2)
@@ -3030,7 +3030,7 @@ BRF:12
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/synchronization/panZoomSynchronizer.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/synchronization/panZoomSynchronizer.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:0
@@ -3058,7 +3058,7 @@ BRF:7
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/timeSeriesSpecificStateManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/timeSeriesSpecificStateManager.js
 FN:6,newTimeSeriesSpecificToolStateManager
 FN:11,addStackSpecificToolState
 FN:34,getStackSpecificToolState
@@ -3109,7 +3109,7 @@ BRF:12
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/stackSpecificStateManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/stackSpecificStateManager.js
 FN:6,newStackSpecificToolStateManager
 FN:9,saveToolState
 FN:13,restoreToolState
@@ -3168,7 +3168,7 @@ BRF:12
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/frameOfReferenceStateManager.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/frameOfReferenceStateManager.js
 FN:5,newFrameOfReferenceSpecificToolStateManager
 FN:10,addFrameOfReferenceSpecificToolState
 FN:33,getFrameOfReferenceSpecificToolState
@@ -3230,7 +3230,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stateManagement/appState.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stateManagement/appState.js
 FN:5,saveApplicationState
 FN:14,(anonymous_1)
 FN:29,restoreApplicationState
@@ -3286,7 +3286,7 @@ BRF:13
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/keyboardTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/keyboardTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -3307,7 +3307,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stackTools/stackScrollKeyboard.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stackTools/stackScrollKeyboard.js
 FN:9,keyDownCallback
 FNF:1
 FNH:0
@@ -3333,7 +3333,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stackTools/stackPrefetch.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stackTools/stackPrefetch.js
 FN:15,range
 FN:35,(anonymous_1)
 FN:39,(anonymous_2)
@@ -3568,7 +3568,7 @@ BRF:68
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/displayTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/displayTool.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:1
@@ -3588,7 +3588,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stackTools/scrollIndicator.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stackTools/scrollIndicator.js
 FN:15,onImageRendered
 FNF:1
 FNH:0
@@ -3643,7 +3643,7 @@ BRF:13
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/stackTools/playClip.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/stackTools/playClip.js
 FN:15,getPlayClipTimeouts
 FN:64,stopClipWithData
 FN:82,triggerStopEvent
@@ -3829,7 +3829,7 @@ BRF:68
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/moveNewHandleTouch.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/moveNewHandleTouch.js
 FN:3,(anonymous_0)
 FN:15,moveCallback
 FN:39,moveEndCallback
@@ -3923,7 +3923,7 @@ BRF:12
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/touchMoveAllHandles.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/touchMoveAllHandles.js
 FN:5,(anonymous_0)
 FN:8,touchDragCallback
 FN:11,(anonymous_2)
@@ -3981,7 +3981,7 @@ BRF:8
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/manipulators/touchMoveHandle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/manipulators/touchMoveHandle.js
 FN:18,animate
 FN:50,(anonymous_1)
 FN:55,(anonymous_2)
@@ -4067,7 +4067,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/inputSources/keyboardInput.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/inputSources/keyboardInput.js
 FN:6,keyPress
 FN:37,mouseMove
 FN:44,enable
@@ -4104,7 +4104,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/inputSources/mouseInput.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/inputSources/mouseInput.js
 FN:10,preventClickHandler
 FN:14,activateMouseDown
 FN:18,mouseDoubleClick
@@ -4208,7 +4208,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/inputSources/mouseWheelInput.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/inputSources/mouseWheelInput.js
 FN:3,mouseWheel
 FN:72,enable
 FN:79,disable
@@ -4287,7 +4287,7 @@ BRF:33
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/inputSources/preventGhostClick.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/inputSources/preventGhostClick.js
 FN:14,handleTap
 FN:38,attachEvents
 FN:41,(anonymous_2)
@@ -4345,7 +4345,7 @@ BRF:8
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/inputSources/touchInput.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/inputSources/touchInput.js
 FN:26,onTouch
 FN:156,(anonymous_1)
 FN:207,(anonymous_2)
@@ -4570,7 +4570,7 @@ BRF:43
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/touchTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/touchTool.js
 FN:9,deactivateAllHandles
 FN:10,(anonymous_1)
 FN:17,deactivateAllToolInstances
@@ -4939,7 +4939,7 @@ BRF:148
 BRH:12
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/angleTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/angleTool.js
 FN:16,createNewMeasurement
 FN:53,pointNearTool
 FN:74,onImageRendered
@@ -5029,7 +5029,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/arrowAnnotate.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/arrowAnnotate.js
 FN:23,getTextCallback
 FN:27,changeTextCallback
 FN:42,addNewMeasurement
@@ -5318,7 +5318,7 @@ BRF:72
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/crosshairs.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/crosshairs.js
 FN:9,chooseLocation
 FN:36,(anonymous_1)
 FN:54,(anonymous_2)
@@ -5463,7 +5463,7 @@ BRF:24
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/doubleTapTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/doubleTapTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -5482,7 +5482,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/doubleTapZoom.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/doubleTapZoom.js
 FN:4,fitToWindowStrategy
 FN:8,doubleTapCallback
 FNF:2
@@ -5501,7 +5501,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/dragProbe.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/dragProbe.js
 FN:13,defaultStrategy
 FN:78,minimalStrategy
 FN:180,mouseUpCallback
@@ -5688,7 +5688,7 @@ BRF:54
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/ellipticalRoi.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/ellipticalRoi.js
 FN:18,createNewMeasurement
 FN:53,pointNearEllipse
 FN:81,pointNearTool
@@ -5884,7 +5884,7 @@ BRF:60
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/freehand.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/freehand.js
 FN:26,addPoint
 FN:66,pointNearHandle
 FN:92,pointNearHandleAllTools
@@ -6180,7 +6180,7 @@ BRF:69
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/mouseButtonRectangleTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/mouseButtonRectangleTool.js
 FN:11,(anonymous_0)
 FN:13,addNewMeasurement
 FN:27,(anonymous_2)
@@ -6336,7 +6336,7 @@ BRF:34
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/highlight.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/highlight.js
 FN:13,createNewMeasurement
 FN:45,pointInsideRect
 FN:65,pointNearTool
@@ -6423,7 +6423,7 @@ BRF:17
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/imageStats.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/imageStats.js
 FN:4,onImageRendered
 FN:14,(anonymous_1)
 FN:22,(anonymous_2)
@@ -6450,7 +6450,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/length.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/length.js
 FN:14,createNewMeasurement
 FN:47,pointNearTool
 FN:59,onImageRendered
@@ -6564,7 +6564,7 @@ BRF:28
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/magnify.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/magnify.js
 FN:16,mouseUpCallback
 FN:26,hideTool
 FN:33,mouseDownCallback
@@ -6705,7 +6705,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/orientationMarkers.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/orientationMarkers.js
 FN:7,getOrientationMarkers
 FN:29,getOrientationMarkerPositions
 FN:65,onImageRendered
@@ -6766,7 +6766,7 @@ BRF:11
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/pan.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/pan.js
 FN:6,mouseUpCallback
 FN:12,mouseDownCallback
 FN:22,dragCallback
@@ -6807,7 +6807,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/panMultiTouch.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/panMultiTouch.js
 FN:4,touchPanCallback
 FNF:1
 FNH:0
@@ -6832,7 +6832,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/probe.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/probe.js
 FN:16,createNewMeasurement
 FN:37,pointNearTool
 FN:44,onImageRendered
@@ -6905,7 +6905,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/rectangleRoi.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/rectangleRoi.js
 FN:15,createNewMeasurement
 FN:49,pointNearTool
 FN:68,calculateMeanStdDev
@@ -7106,7 +7106,7 @@ BRF:58
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/rotate.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/rotate.js
 FN:7,defaultStrategy
 FN:33,horizontalStrategy
 FN:38,verticalStrategy
@@ -7158,7 +7158,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/rotateTouch.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/rotateTouch.js
 FN:3,touchRotateCallback
 FN:10,disable
 FN:14,activate
@@ -7180,7 +7180,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/saveAs.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/saveAs.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:0
@@ -7205,7 +7205,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/seedAnnotate.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/seedAnnotate.js
 FN:22,getTextCallback
 FN:26,changeTextCallback
 FN:43,addNewMeasurement
@@ -7481,7 +7481,7 @@ BRF:72
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/simpleAngle.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/simpleAngle.js
 FN:20,createNewMeasurement
 FN:59,pointNearTool
 FN:79,length
@@ -7703,7 +7703,7 @@ BRF:42
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/textMarker.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/textMarker.js
 FN:14,createNewMeasurement
 FN:81,pointNearTool
 FN:93,onImageRendered
@@ -7902,7 +7902,7 @@ BRF:51
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/touchPinchTool.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/touchPinchTool.js
 FN:1,(anonymous_0)
 FNF:1
 FNH:1
@@ -7921,7 +7921,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/wwwc.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/wwwc.js
 FN:6,mouseUpCallback
 FN:12,mouseDownCallback
 FN:22,defaultStrategy
@@ -7987,7 +7987,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/wwwcRegion.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/wwwcRegion.js
 FN:17,calculateMinMaxMean
 FN:48,newImageCallback
 FN:69,dragEndCallback
@@ -8240,7 +8240,7 @@ BRF:54
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/imageTools/zoom.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/imageTools/zoom.js
 FN:11,changeViewportScale
 FN:31,boundPosition
 FN:40,correctShift
@@ -8429,7 +8429,7 @@ BRF:46
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/regions/thresholding.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/regions/thresholding.js
 FN:8,getLastElement
 FN:45,performThresholding
 FN:51,(anonymous_2)
@@ -8577,7 +8577,7 @@ BRF:24
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/regions/grow.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/regions/grow.js
 FN:9,linearNeighbours
 FN:31,regionGrowing
 FN:32,(anonymous_2)
@@ -8682,7 +8682,7 @@ BRF:20
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/regions/draw.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/regions/draw.js
 FN:9,isInside
 FN:29,onImageRendered
 FN:52,(anonymous_2)
@@ -8802,7 +8802,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/regions/score.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/regions/score.js
 FN:5,getDensityFactor
 FN:17,score
 FN:36,(anonymous_2)
@@ -8865,7 +8865,13 @@ DA:71,0
 DA:72,0
 DA:74,0
 DA:76,0
-LF:44
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:83,0
+LF:50
 LH:0
 BRDA:6,0,0,0
 BRDA:6,0,1,0
@@ -8881,7 +8887,7 @@ BRF:10
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/regions/undo.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/regions/undo.js
 FN:4,enable
 FN:19,disable
 FNF:2
@@ -8904,7 +8910,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/regions/index.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/regions/index.js
 FNF:0
 FNH:0
 LF:0
@@ -8913,7 +8919,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/version.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/version.js
 FNF:0
 FNH:0
 LF:0
@@ -8922,7 +8928,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/zach/git/cornerstoneTools/src/index.js
+SF:/Users/emil/Dropbox/OUH/coding/cornerstoneTools/src/index.js
 FNF:0
 FNH:0
 LF:0

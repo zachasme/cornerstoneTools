@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-06-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-06-26 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -16357,6 +16357,13 @@ function score(attributes) {
       var area = voxels.length * voxelSize;
 
       var cascore = area * densityFactor * kvpMultiplier;
+
+      console.log("voxels.length: " + voxels.length);
+      console.log("voxelSize: " + voxelSize);
+      console.log("Area: " + area);
+      console.log("Max HU: " + maxHU);
+      console.log("kvpMultiplier: " + kvpMultiplier);
+      console.log("CAscore: " + cascore);
 
       return cascore;
     });

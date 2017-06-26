@@ -73,6 +73,13 @@ export function score (attributes) {
 
       const cascore = area * densityFactor * kvpMultiplier;
 
+      console.log("voxels.length: " + voxels.length);
+      console.log("voxelSize: " + voxelSize);
+      console.log("Area: " + area);
+      console.log("Max HU: " + maxHU);
+      console.log("kvpMultiplier: " + kvpMultiplier);
+      console.log("CAscore: " + cascore);
+
       return cascore
     });
   });
