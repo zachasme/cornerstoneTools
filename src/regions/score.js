@@ -52,6 +52,7 @@ export function score (attributes) {
 
       if (label > 1) {
         const value = pixelData[i];
+        console.log(value);
         const hu = (value * RescaleSlope) + RescaleIntercept;
         console.log(hu);
         const currentMax = maxHUEachRegion[label - 2];
