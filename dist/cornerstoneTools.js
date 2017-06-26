@@ -16343,7 +16343,7 @@ function score(attributes) {
           console.log(typeof value === 'undefined' ? 'undefined' : _typeof(value));
           console.log(typeof RescaleSlope === 'undefined' ? 'undefined' : _typeof(RescaleSlope));
           console.log(typeof RescaleIntercept === 'undefined' ? 'undefined' : _typeof(RescaleIntercept));
-          var hu = value * RescaleSlope + RescaleIntercept;
+          var hu = value * parseInt(RescaleSlope) + parseInt(RescaleIntercept);
           console.log(hu);
           var currentMax = maxHUEachRegion[label - 2];
 

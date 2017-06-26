@@ -54,7 +54,7 @@ export function score (attributes) {
         console.log(typeof(value));
         console.log(typeof(RescaleSlope));
         console.log(typeof(RescaleIntercept));
-        const hu = (value * RescaleSlope) + RescaleIntercept;
+        const hu = (value * parseInt(RescaleSlope)) + parseInt(RescaleIntercept);
         console.log(hu);
         const currentMax = maxHUEachRegion[label - 2];
 
