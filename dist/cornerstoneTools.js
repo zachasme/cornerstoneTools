@@ -16305,6 +16305,7 @@ function score(attributes) {
       RescaleSlope = attributes.RescaleSlope,
       RescaleIntercept = attributes.RescaleIntercept;
 
+  RescaleSlope = -1024;
   console.log("Attributes: ");
   console.log(attributes);
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
@@ -16338,6 +16339,7 @@ function score(attributes) {
         if (label > 1) {
           var value = pixelData[i];
           var hu = value * RescaleSlope + RescaleIntercept;
+          console.log(hu);
           var currentMax = maxHUEachRegion[label - 2];
 
           voxelsEachRegion[label - 2].push(hu);

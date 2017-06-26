@@ -21,9 +21,10 @@ export function score (attributes) {
   const regionBuffer = thresholdingData.data[0].buffer;
   const imageIds = stackData.data[0].imageIds;
   const { regionColorsRGB, kvpToMultiplier } = getConfiguration();
-  const {
+  let {
     SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
   } = attributes;
+  RescaleSlope = -1024;
   console.log("Attributes: ");
   console.log(attributes);
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
@@ -52,6 +53,7 @@ export function score (attributes) {
       if (label > 1) {
         const value = pixelData[i];
         const hu = (value * RescaleSlope) + RescaleIntercept;
+        console.log(hu);
         const currentMax = maxHUEachRegion[label - 2];
 
         voxelsEachRegion[label - 2].push(hu);
@@ -60,8 +62,6 @@ export function score (attributes) {
         }
       }
     }
-
-
   }));
 
   return Promise.all(promises).then(function () {

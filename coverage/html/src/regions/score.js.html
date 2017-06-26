@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/56</span>
+        <span class='fraction'>0/58</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/53</span>
+        <span class='fraction'>0/55</span>
       </div>
     </div>
   </div>
@@ -162,23 +162,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,12 +181,20 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,9 +248,10 @@ export function score (attributes) <span class="fstat-no" title="function not co
   const regionBuffer = <span class="cstat-no" title="statement not covered" >thresholdingData.data[0].buffer;</span>
   const imageIds = <span class="cstat-no" title="statement not covered" >stackData.data[0].imageIds;</span>
   const { regionColorsRGB, kvpToMultiplier } = <span class="cstat-no" title="statement not covered" >getConfiguration();</span>
-  const {
+  let {
     SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
   } = <span class="cstat-no" title="statement not covered" >attributes;</span>
+<span class="cstat-no" title="statement not covered" >  RescaleSlope = -1024;</span>
 <span class="cstat-no" title="statement not covered" >  console.log("Attributes: ");</span>
 <span class="cstat-no" title="statement not covered" >  console.log(attributes);</span>
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
@@ -279,6 +280,7 @@ export function score (attributes) <span class="fstat-no" title="function not co
 <span class="cstat-no" title="statement not covered" >      if (label &gt; 1) {</span>
         const value = <span class="cstat-no" title="statement not covered" >pixelData[i];</span>
         const hu = <span class="cstat-no" title="statement not covered" >(value * RescaleSlope) + RescaleIntercept;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(hu);</span>
         const currentMax = <span class="cstat-no" title="statement not covered" >maxHUEachRegion[label - 2];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        voxelsEachRegion[label - 2].push(hu);</span>
@@ -287,8 +289,6 @@ export function score (attributes) <span class="fstat-no" title="function not co
         }
       }
     }
-&nbsp;
-&nbsp;
   }));
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return Promise.all(promises).then(function () <span class="fstat-no" title="function not covered" >{</span></span>
@@ -322,7 +322,7 @@ export default score;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jun 26 2017 12:27:22 GMT+0200 (CEST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jun 26 2017 12:49:20 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
