@@ -10,7 +10,6 @@ function getDensityFactor (hu) {
   } else if (hu < 400) {
     return 3;
   }
-
   return 4;
 }
 
@@ -25,6 +24,8 @@ export function score (attributes) {
   const {
     SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
   } = attributes;
+  console.log("Attributes: ");
+  console.log(attributes);
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
   const zLength = SliceThickness / 3;
   const xLength = PixelSpacing[0];
@@ -77,6 +78,7 @@ export function score (attributes) {
       console.log("voxelSize: " + voxelSize);
       console.log("Area: " + area);
       console.log("Max HU: " + maxHU);
+      console.log("densityFactor: " + densityFactor);
       console.log("kvpMultiplier: " + kvpMultiplier);
       console.log("CAscore: " + cascore);
 

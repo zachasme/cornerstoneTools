@@ -16284,7 +16284,6 @@ function getDensityFactor(hu) {
   } else if (hu < 400) {
     return 3;
   }
-
   return 4;
 }
 
@@ -16305,8 +16304,10 @@ function score(attributes) {
       KVP = attributes.KVP,
       RescaleSlope = attributes.RescaleSlope,
       RescaleIntercept = attributes.RescaleIntercept;
-  // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
 
+  console.log("Attributes: ");
+  console.log(attributes);
+  // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
   var zLength = SliceThickness / 3;
   var xLength = PixelSpacing[0];
   var yLength = PixelSpacing[1];
@@ -16362,6 +16363,7 @@ function score(attributes) {
       console.log("voxelSize: " + voxelSize);
       console.log("Area: " + area);
       console.log("Max HU: " + maxHU);
+      console.log("densityFactor: " + densityFactor);
       console.log("kvpMultiplier: " + kvpMultiplier);
       console.log("CAscore: " + cascore);
 
