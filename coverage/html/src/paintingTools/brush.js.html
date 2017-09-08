@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/paintingTools/brush.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/paintingTools/</a> brush.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/88</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/88</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import $ from '../jquery.js';
+import * as cornerstone from '../cornerstone-core.js';
+import mouseButtonTool from '../imageTools/mouseButtonTool.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+&nbsp;
+// This module is for creating segmentation overlays
+const configuration = {
+  draw: 1,
+  radius: 10,
+  hoverColor: 'green',
+  dragColor: 'yellow',
+  overlayColor: 'red'
+};
+&nbsp;
+let brushImagePositions = [];
+let lastCanvasCoords;
+const dynamicImageCanvas = document.createElement('canvas');
+&nbsp;
+function defaultStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const configuration = <span class="cstat-no" title="statement not covered" >brush.getConfiguration();</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(eventData.element);</span>
+  const context = <span class="cstat-no" title="statement not covered" >enabledElement.canvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
+&nbsp;
+  const coords = <span class="cstat-no" title="statement not covered" >eventData.currentPoints.canvas;</span>
+  const radius = <span class="cstat-no" title="statement not covered" >configuration.radius * enabledElement.viewport.scale;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  drawCircle(context, coords, radius, configuration.dragColor);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  brushImagePositions.push({</span>
+    x: Math.round(eventData.currentPoints.image.x),
+    y: Math.round(eventData.currentPoints.image.y)
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  lastCanvasCoords = eventData.currentPoints.canvas;</span>
+}
+&nbsp;
+function drawCircle (context, coords, radius, color) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  context.save();</span>
+<span class="cstat-no" title="statement not covered" >  context.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >  context.arc(coords.x, coords.y, radius, 0, 2 * Math.PI, true);</span>
+<span class="cstat-no" title="statement not covered" >  context.strokeStyle = color;</span>
+<span class="cstat-no" title="statement not covered" >  context.fillStyle = color;</span>
+<span class="cstat-no" title="statement not covered" >  context.stroke();</span>
+<span class="cstat-no" title="statement not covered" >  context.fill();</span>
+<span class="cstat-no" title="statement not covered" >  context.restore();</span>
+}
+&nbsp;
+function clearCircle (context, coords, radius) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  context.save();</span>
+<span class="cstat-no" title="statement not covered" >  context.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >  context.arc(coords.x, coords.y, radius, 0, 2 * Math.PI, true);</span>
+<span class="cstat-no" title="statement not covered" >  context.clip();</span>
+<span class="cstat-no" title="statement not covered" >  context.clearRect(coords.x - radius - 1, coords.y - radius - 1,</span>
+                    radius * 2 + 2, radius * 2 + 2);
+<span class="cstat-no" title="statement not covered" >  context.restore();</span>
+}
+&nbsp;
+function mouseMoveCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  lastCanvasCoords = eventData.currentPoints.canvas;</span>
+<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
+}
+&nbsp;
+function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  lastCanvasCoords = eventData.currentPoints.canvas;</span>
+<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element, true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', mouseMoveCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+}
+&nbsp;
+function dragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  brush.strategy(eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false;</span>
+}
+&nbsp;
+function mouseDownActivateCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    brush.strategy(eventData);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).on('CornerstoneToolsMouseDrag', mouseMoveCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+}
+&nbsp;
+function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const configuration = <span class="cstat-no" title="statement not covered" >brush.getConfiguration();</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(eventData.element);</span>
+  const context = <span class="cstat-no" title="statement not covered" >enabledElement.canvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!lastCanvasCoords) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const radius = <span class="cstat-no" title="statement not covered" >configuration.radius * enabledElement.viewport.scale;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  drawCircle(context, lastCanvasCoords, radius, configuration.hoverColor);</span>
+}
+&nbsp;
+function getPixelData () <span class="fstat-no" title="function not covered" >{</span>
+  const configuration = <span class="cstat-no" title="statement not covered" >brush.getConfiguration();</span>
+&nbsp;
+  const context = <span class="cstat-no" title="statement not covered" >dynamicImageCanvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (configuration.draw === 1) {</span>
+    // Draw
+<span class="cstat-no" title="statement not covered" >    brushImagePositions.forEach(function (coords) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      drawCircle(context, coords, configuration.radius, configuration.overlayColor);</span>
+    });
+  } else {
+    // Erase
+<span class="cstat-no" title="statement not covered" >    brushImagePositions.forEach(function (coords) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      clearCircle(context, coords, configuration.radius);</span>
+    });
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  brushImagePositions = [];</span>
+&nbsp;
+  const width = <span class="cstat-no" title="statement not covered" >this.width;</span>
+  const height = <span class="cstat-no" title="statement not covered" >this.height;</span>
+  const imageData = <span class="cstat-no" title="statement not covered" >context.getImageData(0, 0, width, height);</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return imageData.data;</span>
+}
+&nbsp;
+let brushLayerId;
+&nbsp;
+function activate (element, mouseButtonMask) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneImageRendered', onImageRendered);</span>
+&nbsp;
+  const eventData = <span class="cstat-no" title="statement not covered" >{</span>
+    mouseButtonMask
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDownActivate', mouseDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDownActivate', eventData, mouseDownActivateCallback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseMove', mouseMoveCallback);</span>
+<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseMove', mouseMoveCallback);</span>
+&nbsp;
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  dynamicImageCanvas.width = enabledElement.canvas.width;</span>
+<span class="cstat-no" title="statement not covered" >  dynamicImageCanvas.height = enabledElement.canvas.height;</span>
+&nbsp;
+  const context = <span class="cstat-no" title="statement not covered" >dynamicImageCanvas.getContext('2d');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  context.fillStyle = 'rgba(0,0,0,0)';</span>
+<span class="cstat-no" title="statement not covered" >  context.fillRect(0, 0, dynamicImageCanvas.width, dynamicImageCanvas.height);</span>
+&nbsp;
+  const dynamicImage = <span class="cstat-no" title="statement not covered" >{</span>
+    minPixelValue: 0,
+    maxPixelValue: 255,
+    slope: 1.0,
+    intercept: 0,
+    windowCenter: 127,
+    windowWidth: 256,
+    getPixelData,
+    rgba: true,
+    rows: enabledElement.image.height,
+    columns: enabledElement.image.width,
+    height: enabledElement.image.height,
+    width: enabledElement.image.width,
+    color: true,
+    invert: false,
+    columnPixelSpacing: 1.0,
+    rowPixelSpacing: 1.0,
+    sizeInBytes: enabledElement.image.width * enabledElement.image.height * 4
+  };
+&nbsp;
+  let layer;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (brushLayerId) {</span>
+<span class="cstat-no" title="statement not covered" >    layer = cornerstone.getLayer(element, brushLayerId);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!layer) {</span>
+<span class="cstat-no" title="statement not covered" >    brushLayerId = cornerstone.addLayer(element, dynamicImage);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(element);</span>
+}
+&nbsp;
+const brush = mouseButtonTool({
+  mouseMoveCallback,
+  mouseDownActivateCallback,
+  onImageRendered
+});
+&nbsp;
+brush.activate = activate;
+&nbsp;
+brush.setConfiguration(configuration);
+brush.strategies = {
+  default: defaultStrategy
+};
+brush.strategy = defaultStrategy;
+&nbsp;
+export { brush };
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Sep 08 2017 16:05:42 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

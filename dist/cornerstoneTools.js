@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-06-26 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-09-08 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -2304,7 +2304,9 @@ var configuration = {
     110: 0.98,
     100: 0.96,
     90: 0.93,
-    80: 0.89
+    80: 0.89,
+    // dummy data for 70
+    70: 0.86
   },
   growIterationsPerChunk: 2
 };
