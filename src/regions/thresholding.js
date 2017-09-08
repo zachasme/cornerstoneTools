@@ -34,7 +34,9 @@ let configuration = {
     110: 0.98,
     100: 0.96,
     90: 0.93,
-    80: 0.89
+    80: 0.89,
+    // dummy data for 70
+    70: 0.86,
   },
   growIterationsPerChunk: 2
 };
