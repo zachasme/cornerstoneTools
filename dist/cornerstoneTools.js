@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-09-08 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-09-12 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -16266,9 +16266,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 exports.score = score;
 
 var _cornerstoneCore = __webpack_require__(0);
@@ -16304,14 +16301,15 @@ function score(attributes) {
       regionColorsRGB = _getConfiguration.regionColorsRGB,
       kvpToMultiplier = _getConfiguration.kvpToMultiplier;
 
-  var SliceThickness = attributes.SliceThickness,
+  var SliceLocation = attributes.SliceLocation,
+      SliceThickness = attributes.SliceThickness,
       PixelSpacing = attributes.PixelSpacing,
       KVP = attributes.KVP,
       RescaleSlope = attributes.RescaleSlope,
       RescaleIntercept = attributes.RescaleIntercept;
 
+  console.log('attr: ', attributes);
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
-
   var zLength = SliceThickness / 3;
   var xLength = PixelSpacing[0];
   var yLength = PixelSpacing[1];
@@ -16329,7 +16327,7 @@ function score(attributes) {
   var view = new Uint8Array(regionBuffer);
   var promises = imageIds.map(function (imageId, imageIndex) {
     return cornerstone.loadImage(imageId).then(function (image) {
-
+      console.log('image', image);
       var width = image.width;
       var height = image.height;
       var sliceSize = width * height;
@@ -16341,12 +16339,7 @@ function score(attributes) {
 
         if (label > 1) {
           var value = pixelData[i];
-          console.log(value);
-          console.log(typeof value === 'undefined' ? 'undefined' : _typeof(value));
-          console.log(typeof RescaleSlope === 'undefined' ? 'undefined' : _typeof(RescaleSlope));
-          console.log(typeof RescaleIntercept === 'undefined' ? 'undefined' : _typeof(RescaleIntercept));
           var hu = value * parseInt(RescaleSlope) + parseInt(RescaleIntercept);
-          console.log(hu);
           var currentMax = maxHUEachRegion[label - 2];
 
           voxelsEachRegion[label - 2].push(hu);

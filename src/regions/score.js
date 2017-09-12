@@ -22,9 +22,9 @@ export function score (attributes) {
   const imageIds = stackData.data[0].imageIds;
   const { regionColorsRGB, kvpToMultiplier } = getConfiguration();
   let {
-    SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
+    SliceLocation, SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
   } = attributes;
-
+  console.log('attr: ', attributes)
   // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
   const zLength = SliceThickness / 3;
   const xLength = PixelSpacing[0];
@@ -38,7 +38,7 @@ export function score (attributes) {
 
   const view = new Uint8Array(regionBuffer);
   const promises = imageIds.map((imageId, imageIndex) => cornerstone.loadImage(imageId).then(image => {
-
+    console.log('image', image)
     const width = image.width;
     const height = image.height;
     const sliceSize = width * height;
@@ -50,12 +50,7 @@ export function score (attributes) {
 
       if (label > 1) {
         const value = pixelData[i];
-        console.log(value);
-        console.log(typeof(value));
-        console.log(typeof(RescaleSlope));
-        console.log(typeof(RescaleIntercept));
         const hu = (value * parseInt(RescaleSlope)) + parseInt(RescaleIntercept);
-        console.log(hu);
         const currentMax = maxHUEachRegion[label - 2];
 
         voxelsEachRegion[label - 2].push(hu);
