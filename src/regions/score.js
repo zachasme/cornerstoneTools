@@ -38,7 +38,7 @@ export function score (attributes) {
 
   const view = new Uint8Array(regionBuffer);
   const promises = imageIds.map((imageId, imageIndex) => cornerstone.loadImage(imageId).then(image => {
-    console.log('image', image)
+    console.log('image', image.data.elements[0x00201041])
     const width = image.width;
     const height = image.height;
     const sliceSize = width * height;

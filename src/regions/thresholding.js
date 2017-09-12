@@ -28,6 +28,7 @@ let configuration = {
     [106, 58, 45]
   ],
   kvpToMultiplier: {
+    150: 1.06,
     140: 1.04,
     130: 1.02,
     120: 1,
@@ -35,8 +36,7 @@ let configuration = {
     100: 0.96,
     90: 0.93,
     80: 0.89,
-    // dummy data for 70
-    70: 0.86,
+    70: 0.85,
   },
   growIterationsPerChunk: 2
 };
