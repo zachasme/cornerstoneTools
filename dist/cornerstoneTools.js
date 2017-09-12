@@ -16327,7 +16327,8 @@ function score(attributes) {
   var view = new Uint8Array(regionBuffer);
   var promises = imageIds.map(function (imageId, imageIndex) {
     return cornerstone.loadImage(imageId).then(function (image) {
-      console.log('image', image.data.elements[0x00201041]);
+      console.log(image);
+      console.log('sliceLocation', image.data.elements[0x00201041]);
       var width = image.width;
       var height = image.height;
       var sliceSize = width * height;
