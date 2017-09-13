@@ -16361,10 +16361,10 @@ function score() {
       kvpMultiplier = kvpToMultiplier[kVP];
 
       // TODO: display these in application before score calculation
-      var scanLocation = dataSet.string('x00080080');
-      var patientId = dataSet.string('x00100020');
-      var patientBirthDate = dataSet.string('x00100030');
-      var studyDate = dataSet.string('x00080020');
+      // const scanLocation = dataSet.string('x00080080');
+      // const patientId = dataSet.string('x00100020');
+      // const patientBirthDate = dataSet.string('x00100030');
+      // const studyDate = dataSet.string('x00080020');
 
       //If you want to see all the metadata on image
       // for (let property in dataSet.elements) {
