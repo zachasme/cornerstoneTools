@@ -70,12 +70,14 @@ export function score (attributes) {
     const sliceLocation = dataSet.floatString('x00201041');
     // TODO: use these as attributes instead of the ones from Viewers
     // Test that it is indeed the same values    const sliceThickness = dataSet.floatString('x00180050');
+    const sliceThickness = dataSet.floatString('x00180050');
     const pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
     const kVP = dataSet.floatString('x00180060');
     const rescaleSlope = dataSet.floatString('x00281053');
     const rescaleIntercept = dataSet.floatString('x00281052');
-    //console.log("Viewers attrs", attributes)
-    //console.log("Image attrs", sliceThickness, pixelSpacing, kVP, rescaleSlope, rescaleIntercept)
+
+    console.log("Viewers attrs", attributes)
+    console.log("Image attrs", sliceThickness, pixelSpacing, kVP, rescaleSlope, rescaleIntercept)
 
     // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
     zLength = SliceThickness / 3;
@@ -90,12 +92,12 @@ export function score (attributes) {
     const patientBirthDate = dataSet.string('x00100030');
     const studyDate = dataSet.string('x00080020');
 
-    /* If you want to see all the metadata on image
-    for (let property in dataSet.elements) {
-      if (dataSet.elements.hasOwnProperty(property)) {
-        console.log(property.toString() + ': ' + dataSet.string(property.toString()))
-      }
-    }*/
+    //If you want to see all the metadata on image
+    // for (let property in dataSet.elements) {
+    //   if (dataSet.elements.hasOwnProperty(property)) {
+    //     console.log(property.toString() + ': ' + dataSet.string(property.toString()))
+    //   }
+    // }
 
     if (prevSliceLocation) {
       const absPrevLocation = Math.abs(prevSliceLocation);
@@ -104,7 +106,7 @@ export function score (attributes) {
                       ? absPrevLocation - absCurrentLocation
                       : absCurrentLocation - absPrevLocation;
 
-      overlapFactor = overlap <= 3 ? overlap / 3 : 1;
+      overlapFactor = overlap <= 3 ? (3 - overlap) / 3 : 1;
       overlapFactors.push(overlapFactor);
       modeOverlapFactor = mode(overlapFactors);
       prevSliceLocation = sliceLocation;
