@@ -16307,7 +16307,7 @@ function mode(array) {
   return maxEl;
 }
 
-function score(attributes) {
+function score() {
 
   var element = (0, _thresholding.getLastElement)();
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
@@ -16318,13 +16318,8 @@ function score(attributes) {
       regionColorsRGB = _getConfiguration.regionColorsRGB,
       kvpToMultiplier = _getConfiguration.kvpToMultiplier;
 
-  var SliceThickness = attributes.SliceThickness,
-      PixelSpacing = attributes.PixelSpacing,
-      KVP = attributes.KVP,
-      RescaleSlope = attributes.RescaleSlope,
-      RescaleIntercept = attributes.RescaleIntercept;
-
   // Extract and group region-voxels
+
 
   var voxelsEachRegion = regionColorsRGB.slice(1).map(function () {
     return [];
@@ -16358,15 +16353,12 @@ function score(attributes) {
       var rescaleSlope = dataSet.floatString('x00281053');
       var rescaleIntercept = dataSet.floatString('x00281052');
 
-      console.log("Viewers attrs", attributes);
-      console.log("Image attrs", sliceThickness, pixelSpacing, kVP, rescaleSlope, rescaleIntercept);
-
       // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
-      zLength = SliceThickness / 3;
-      xLength = PixelSpacing[0];
-      yLength = PixelSpacing[1];
+      zLength = sliceThickness / 3;
+      xLength = pixelSpacing[0];
+      yLength = pixelSpacing[1];
       voxelSize = zLength * xLength * yLength; // In mm
-      kvpMultiplier = kvpToMultiplier[KVP];
+      kvpMultiplier = kvpToMultiplier[kVP];
 
       // TODO: display these in application before score calculation
       var scanLocation = dataSet.string('x00080080');
@@ -16405,7 +16397,7 @@ function score(attributes) {
 
         if (label > 1) {
           var value = pixelData[i];
-          var hu = value * parseInt(RescaleSlope) + parseInt(RescaleIntercept);
+          var hu = value * parseInt(rescaleSlope) + parseInt(rescaleIntercept);
           var currentMax = maxHUEachRegion[label - 2];
 
           voxelsEachRegion[label - 2].push(hu);

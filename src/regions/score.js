@@ -37,16 +37,13 @@ function mode(array)
   return maxEl;
 }
 
-export function score (attributes) {
+export function score () {
 
   const element = getLastElement();
   const thresholdingData = getToolState(element, 'regions');
   const stackData = getToolState(element, 'stack');
   const imageIds = stackData.data[0].imageIds;
   const { regionColorsRGB, kvpToMultiplier } = getConfiguration();
-  const {
-    SliceThickness, PixelSpacing, KVP, RescaleSlope, RescaleIntercept
-  } = attributes;
 
   // Extract and group region-voxels
   const voxelsEachRegion = regionColorsRGB.slice(1).map(() => []);
@@ -76,15 +73,12 @@ export function score (attributes) {
     const rescaleSlope = dataSet.floatString('x00281053');
     const rescaleIntercept = dataSet.floatString('x00281052');
 
-    console.log("Viewers attrs", attributes)
-    console.log("Image attrs", sliceThickness, pixelSpacing, kVP, rescaleSlope, rescaleIntercept)
-
     // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
-    zLength = SliceThickness / 3;
-    xLength = PixelSpacing[0];
-    yLength = PixelSpacing[1];
+    zLength = sliceThickness / 3;
+    xLength = pixelSpacing[0];
+    yLength = pixelSpacing[1];
     voxelSize = zLength * xLength * yLength; // In mm
-    kvpMultiplier = kvpToMultiplier[KVP];
+    kvpMultiplier = kvpToMultiplier[kVP];
 
     // TODO: display these in application before score calculation
     const scanLocation = dataSet.string('x00080080');
@@ -125,7 +119,7 @@ export function score (attributes) {
 
       if (label > 1) {
         const value = pixelData[i];
-        const hu = (value * parseInt(RescaleSlope)) + parseInt(RescaleIntercept);
+        const hu = (value * parseInt(rescaleSlope)) + parseInt(rescaleIntercept);
         const currentMax = maxHUEachRegion[label - 2];
 
         voxelsEachRegion[label - 2].push(hu);
