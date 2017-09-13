@@ -80,7 +80,7 @@ is used by our example image loader-->
 <button id="redo">redo</button>
 
   <div>
-    <input type="file" id="selectFile" >
+    <input type="file" multiple id="selectFile" >
  </div>
  <button id="examples">or use example pictures</button>
 
@@ -154,9 +154,11 @@ is used by our example image loader-->
     });
 
     document.getElementById('selectFile').addEventListener('change', function(e){
-      var file = e.target.files[0];
-      var imageId = cornerstoneWADOImageLoader.wadouri.fileManager.add(file);
-      loadAndViewImages([imageId]);
+
+      var files = Array.from(e.target.files);
+      var imageIds = files.map(cornerstoneWADOImageLoader.wadouri.fileManager.add)
+
+      loadAndViewImages(imageIds);
     })
 
 

@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-09-12 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-09-13 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -16289,34 +16289,43 @@ function getDensityFactor(hu) {
   return 4;
 }
 
+// Finds the value with the most occurrences in array
+// Should be O(n)
+function mode(array) {
+  if (array.length == 0) return null;
+  var modeMap = {};
+  var maxEl = array[0],
+      maxCount = 1;
+  for (var i = 0; i < array.length; i++) {
+    var el = array[i];
+    if (modeMap[el] == null) modeMap[el] = 1;else modeMap[el]++;
+    if (modeMap[el] > maxCount) {
+      maxEl = el;
+      maxCount = modeMap[el];
+    }
+  }
+  return maxEl;
+}
+
 function score(attributes) {
 
   var element = (0, _thresholding.getLastElement)();
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
   var stackData = (0, _toolState.getToolState)(element, 'stack');
-  var regionBuffer = thresholdingData.data[0].buffer;
   var imageIds = stackData.data[0].imageIds;
 
   var _getConfiguration = (0, _thresholding.getConfiguration)(),
       regionColorsRGB = _getConfiguration.regionColorsRGB,
       kvpToMultiplier = _getConfiguration.kvpToMultiplier;
 
-  var SliceLocation = attributes.SliceLocation,
-      SliceThickness = attributes.SliceThickness,
+  var SliceThickness = attributes.SliceThickness,
       PixelSpacing = attributes.PixelSpacing,
       KVP = attributes.KVP,
       RescaleSlope = attributes.RescaleSlope,
       RescaleIntercept = attributes.RescaleIntercept;
 
-  console.log('attr: ', attributes);
-  // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
-  var zLength = SliceThickness / 3;
-  var xLength = PixelSpacing[0];
-  var yLength = PixelSpacing[1];
-  var voxelSize = zLength * xLength * yLength; // In mm
-  var kvpMultiplier = kvpToMultiplier[KVP];
-
   // Extract and group region-voxels
+
   var voxelsEachRegion = regionColorsRGB.slice(1).map(function () {
     return [];
   });
@@ -16324,11 +16333,65 @@ function score(attributes) {
     return -Infinity;
   });
 
+  var regionBuffer = thresholdingData.data[0].buffer;
   var view = new Uint8Array(regionBuffer);
+
+  var zLength = void 0;
+  var xLength = void 0;
+  var yLength = void 0;
+  var voxelSize = void 0;
+  var kvpMultiplier = void 0;
+  var prevSliceLocation = void 0;
+  var overlapFactor = void 0;
+  var modeOverlapFactor = void 0;
+  var overlapFactors = [];
+
   var promises = imageIds.map(function (imageId, imageIndex) {
     return cornerstone.loadImage(imageId).then(function (image) {
-      console.log(image);
-      console.log('sliceLocation', image.data.elements.x00201041);
+      var dataSet = image.data;
+      var sliceLocation = dataSet.floatString('x00201041');
+      // TODO: use these as attributes instead of the ones from Viewers
+      // Test that it is indeed the same values    const sliceThickness = dataSet.floatString('x00180050');
+      var pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
+      var kVP = dataSet.floatString('x00180060');
+      var rescaleSlope = dataSet.floatString('x00281053');
+      var rescaleIntercept = dataSet.floatString('x00281052');
+      //console.log("Viewers attrs", attributes)
+      //console.log("Image attrs", sliceThickness, pixelSpacing, kVP, rescaleSlope, rescaleIntercept)
+
+      // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
+      zLength = SliceThickness / 3;
+      xLength = PixelSpacing[0];
+      yLength = PixelSpacing[1];
+      voxelSize = zLength * xLength * yLength; // In mm
+      kvpMultiplier = kvpToMultiplier[KVP];
+
+      // TODO: display these in application before score calculation
+      var scanLocation = dataSet.string('x00080080');
+      var patientId = dataSet.string('x00100020');
+      var patientBirthDate = dataSet.string('x00100030');
+      var studyDate = dataSet.string('x00080020');
+
+      /* If you want to see all the metadata on image
+      for (let property in dataSet.elements) {
+        if (dataSet.elements.hasOwnProperty(property)) {
+          console.log(property.toString() + ': ' + dataSet.string(property.toString()))
+        }
+      }*/
+
+      if (prevSliceLocation) {
+        var absPrevLocation = Math.abs(prevSliceLocation);
+        var absCurrentLocation = Math.abs(sliceLocation);
+        var overlap = absPrevLocation > absCurrentLocation ? absPrevLocation - absCurrentLocation : absCurrentLocation - absPrevLocation;
+
+        overlapFactor = overlap <= 3 ? overlap / 3 : 1;
+        overlapFactors.push(overlapFactor);
+        modeOverlapFactor = mode(overlapFactors);
+        prevSliceLocation = sliceLocation;
+      } else {
+        prevSliceLocation = sliceLocation;
+      }
+
       var width = image.width;
       var height = image.height;
       var sliceSize = width * height;
@@ -16362,6 +16425,7 @@ function score(attributes) {
 
       var cascore = area * densityFactor * kvpMultiplier;
 
+      console.log("modeOverlapFactor", modeOverlapFactor);
       console.log("voxels.length: " + voxels.length);
       console.log("voxelSize: " + voxelSize);
       console.log("Area: " + area);
@@ -16370,7 +16434,7 @@ function score(attributes) {
       console.log("kvpMultiplier: " + kvpMultiplier);
       console.log("CAscore: " + cascore);
 
-      return cascore;
+      return cascore * modeOverlapFactor;
     });
   });
 }
