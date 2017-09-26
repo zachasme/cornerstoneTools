@@ -79,19 +79,20 @@ export function score () {
     yLength = pixelSpacing[1];
     voxelSize = zLength * xLength * yLength; // In mm
     kvpMultiplier = kvpToMultiplier[kVP];
-
     // TODO: display these in application before score calculation
     // const scanLocation = dataSet.string('x00080080');
     // const patientId = dataSet.string('x00100020');
     // const patientBirthDate = dataSet.string('x00100030');
     // const studyDate = dataSet.string('x00080020');
 
-    //If you want to see all the metadata on image
+    // If you want to see all the metadata on image
     // for (let property in dataSet.elements) {
     //   if (dataSet.elements.hasOwnProperty(property)) {
     //     console.log(property.toString() + ': ' + dataSet.string(property.toString()))
     //   }
     // }
+    // const collimation = dataSet.floatString('x00189307')
+    // console.log('collimation: ', collimation)
 
     if (prevSliceLocation) {
       const absPrevLocation = Math.abs(prevSliceLocation);
@@ -99,8 +100,12 @@ export function score () {
       const overlap = absPrevLocation > absCurrentLocation
                       ? absPrevLocation - absCurrentLocation
                       : absCurrentLocation - absPrevLocation;
-
-      overlapFactor = overlap <= 3 ? (3 - overlap) / 3 : 1;
+      // console.log(absPrevLocation)
+      // console.log("overlap", overlap)
+      // console.log("sliceThickness", sliceThickness)
+      // overlapFactor = overlap <= 3 ? (3 - overlap) / 3 : 1;
+      overlapFactor = overlap < sliceThickness ? (sliceThickness - overlap) / sliceThickness : 1;
+      // console.log(overlapFactor)
       overlapFactors.push(overlapFactor);
       modeOverlapFactor = mode(overlapFactors);
       prevSliceLocation = sliceLocation;
