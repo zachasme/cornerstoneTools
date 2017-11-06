@@ -196,6 +196,11 @@ function disable (element) {
   }
 }
 
+export function update () {
+  disable(LASTELEMENT);
+  enable(LASTELEMENT);
+}
+
 export function createUndoStep (element) {
   const thresholdingData = getToolState(element, 'regions');
 
@@ -224,6 +229,7 @@ export function setConfiguration (config) {
 export default {
   activate: enable,
   deactivate: disable,
+  update,
   enable,
   disable,
   getConfiguration,

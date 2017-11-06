@@ -80,6 +80,10 @@ is used by our example image loader-->
 <button id="redo">redo</button>
 
   <div>
+    <label for="thresholdVal">Thresholding value:</label>
+    <input type="text" id="thresholdVal" value="130">
+  </div>
+  <div>
     <input type="file" multiple id="selectFile" >
  </div>
  <button id="examples">or use example pictures</button>
@@ -159,6 +163,14 @@ is used by our example image loader-->
       var imageIds = files.map(cornerstoneWADOImageLoader.wadouri.fileManager.add)
 
       loadAndViewImages(imageIds);
+    })
+
+    document.getElementById('thresholdVal').addEventListener('blur', function(event) {
+      var config = cornerstoneTools.regionsThreshold.getConfiguration();
+      config.calciumThresholdHu = parseInt(event.target.value);
+      cornerstoneTools.regionsThreshold.setConfiguration(config)
+      cornerstoneTools.regionsThreshold.update(element);
+      console.log("updated...");
     })
 
 
