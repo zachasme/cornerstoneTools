@@ -157,8 +157,11 @@ export function score () {
       // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
       // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
       if (modeOverlapFactor) {
+        cascore = cascore * modeOverlapFactor;
+        console.log("Final cascore: ", cascore);
         return cascore * modeOverlapFactor;
       } else {
+        console.log("Final cascore: ", cascore);
         return cascore;
       }
     });
