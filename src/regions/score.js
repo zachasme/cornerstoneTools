@@ -144,24 +144,22 @@ export function score () {
       const area = voxels.length * voxelSize;
 
       const cascore = area * densityFactor * kvpMultiplier;
-
-      console.log("modeOverlapFactor", modeOverlapFactor)
-      console.log("voxels.length: " + voxels.length);
-      console.log("voxelSize: " + voxelSize);
-      console.log("Area: " + area);
-      console.log("Max HU: " + maxHU);
-      console.log("densityFactor: " + densityFactor);
-      console.log("kvpMultiplier: " + kvpMultiplier);
-      console.log("CAscore: " + cascore);
+      //
+      // console.log("modeOverlapFactor", modeOverlapFactor)
+      // console.log("voxels.length: " + voxels.length);
+      // console.log("voxelSize: " + voxelSize);
+      // console.log("Area: " + area);
+      // console.log("Max HU: " + maxHU);
+      // console.log("densityFactor: " + densityFactor);
+      // console.log("kvpMultiplier: " + kvpMultiplier);
+      // console.log("CAscore: " + cascore);
 
       // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
       // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
       if (modeOverlapFactor) {
         cascore = cascore * modeOverlapFactor;
-        console.log("Final cascore: ", cascore);
         return cascore * modeOverlapFactor;
       } else {
-        console.log("Final cascore: ", cascore);
         return cascore;
       }
     });
