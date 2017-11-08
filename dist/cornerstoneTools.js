@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-11-06 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-11-08 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -16430,17 +16430,23 @@ function score() {
       var area = voxels.length * voxelSize;
 
       var cascore = area * densityFactor * kvpMultiplier;
+      //
+      // console.log("modeOverlapFactor", modeOverlapFactor)
+      // console.log("voxels.length: " + voxels.length);
+      // console.log("voxelSize: " + voxelSize);
+      // console.log("Area: " + area);
+      // console.log("Max HU: " + maxHU);
+      // console.log("densityFactor: " + densityFactor);
+      // console.log("kvpMultiplier: " + kvpMultiplier);
+      // console.log("CAscore: " + cascore);
 
-      console.log("modeOverlapFactor", modeOverlapFactor);
-      console.log("voxels.length: " + voxels.length);
-      console.log("voxelSize: " + voxelSize);
-      console.log("Area: " + area);
-      console.log("Max HU: " + maxHU);
-      console.log("densityFactor: " + densityFactor);
-      console.log("kvpMultiplier: " + kvpMultiplier);
-      console.log("CAscore: " + cascore);
-
-      return cascore * modeOverlapFactor;
+      // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
+      // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
+      if (modeOverlapFactor) {
+        return cascore * modeOverlapFactor;
+      } else {
+        return cascore;
+      }
     });
   });
 }

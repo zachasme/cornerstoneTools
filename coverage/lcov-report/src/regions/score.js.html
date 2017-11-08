@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/85</span>
+        <span class='fraction'>0/79</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/22</span>
+        <span class='fraction'>0/24</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/81</span>
+        <span class='fraction'>0/75</span>
       </div>
     </div>
   </div>
@@ -206,7 +206,13 @@
 161
 162
 163
-164</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+164
+165
+166
+167
+168
+169
+170</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -353,16 +359,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -515,17 +527,23 @@ export function score () <span class="fstat-no" title="function not covered" >{<
       const area = <span class="cstat-no" title="statement not covered" >voxels.length * voxelSize;</span>
 &nbsp;
       const cascore = <span class="cstat-no" title="statement not covered" >area * densityFactor * kvpMultiplier;</span>
+      //
+      // console.log("modeOverlapFactor", modeOverlapFactor)
+      // console.log("voxels.length: " + voxels.length);
+      // console.log("voxelSize: " + voxelSize);
+      // console.log("Area: " + area);
+      // console.log("Max HU: " + maxHU);
+      // console.log("densityFactor: " + densityFactor);
+      // console.log("kvpMultiplier: " + kvpMultiplier);
+      // console.log("CAscore: " + cascore);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      console.log("modeOverlapFactor", modeOverlapFactor)</span>
-<span class="cstat-no" title="statement not covered" >      console.log("voxels.length: " + voxels.length);</span>
-<span class="cstat-no" title="statement not covered" >      console.log("voxelSize: " + voxelSize);</span>
-<span class="cstat-no" title="statement not covered" >      console.log("Area: " + area);</span>
-<span class="cstat-no" title="statement not covered" >      console.log("Max HU: " + maxHU);</span>
-<span class="cstat-no" title="statement not covered" >      console.log("densityFactor: " + densityFactor);</span>
-<span class="cstat-no" title="statement not covered" >      console.log("kvpMultiplier: " + kvpMultiplier);</span>
-<span class="cstat-no" title="statement not covered" >      console.log("CAscore: " + cascore);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      return cascore * modeOverlapFactor;</span>
+      // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
+      // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
+<span class="cstat-no" title="statement not covered" >      if (modeOverlapFactor) {</span>
+<span class="cstat-no" title="statement not covered" >        return cascore * modeOverlapFactor;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return cascore;</span>
+      }
     });
   });
 &nbsp;
@@ -538,7 +556,7 @@ export default score;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 06 2017 15:56:46 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 08 2017 18:16:38 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>
