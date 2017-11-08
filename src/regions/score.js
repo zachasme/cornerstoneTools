@@ -154,7 +154,13 @@ export function score () {
       console.log("kvpMultiplier: " + kvpMultiplier);
       console.log("CAscore: " + cascore);
 
-      return cascore * modeOverlapFactor;
+      // If modeOverlapFactor factor is NaN it is because there is only one slice in the series.
+      // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore. 
+      if isNaN(modeOverlapFactor) {
+        return cascore;
+      } else {
+          return cascore * modeOverlapFactor;
+      }
     });
   });
 
