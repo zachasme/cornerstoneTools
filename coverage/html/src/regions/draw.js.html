@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">1.27% </span>
+        <span class="strong">2.35% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/79</span>
+        <span class='fraction'>2/85</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>0/16</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/9</span>
+        <span class='fraction'>0/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">1.27% </span>
+        <span class="strong">2.35% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/79</span>
+        <span class='fraction'>2/85</span>
       </div>
     </div>
   </div>
@@ -218,15 +218,38 @@
 173
 174
 175
-176</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,10 +331,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -381,8 +410,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -396,9 +434,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import { getConfiguration, createUndoStep } from './thresholding.js';
+import * as regionsThreshold from './thresholding.js';
 &nbsp;
 const toolType = 'drawing';
+&nbsp;
+let configuration = {
+  snap: false // snap to thresholded region or not
+};
 &nbsp;
 // Determine if a point is inside a polygon
 function isInside (point, vs) <span class="fstat-no" title="function not covered" >{</span>
@@ -453,9 +495,9 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 }
 &nbsp;
 function updateRegions (element) <span class="fstat-no" title="function not covered" >{</span>
-  const { toolRegionValue, layersAbove, layersBelow } = <span class="cstat-no" title="statement not covered" >getConfiguration();</span>
+  const { toolRegionValue, layersAbove, layersBelow } = <span class="cstat-no" title="statement not covered" >regionsThreshold.getConfiguration();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  createUndoStep(element);</span>
+<span class="cstat-no" title="statement not covered" >  regionsThreshold.createUndoStep(element);</span>
 &nbsp;
   // Get tool data
   const stackData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
@@ -489,7 +531,13 @@ function updateRegions (element) <span class="fstat-no" title="function not cove
         const index = <span class="cstat-no" title="statement not covered" >x + (y * width) + (dslice * sliceSize);</span>
         const prevValue = <span class="cstat-no" title="statement not covered" >view[index];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (prevValue &gt; 0 &amp;&amp; isInside([x, y], points)) {</span>
+        let snapBool;
+<span class="cstat-no" title="statement not covered" >        if (configuration.snap) {</span>
+<span class="cstat-no" title="statement not covered" >          snapBool = prevValue &gt; 0;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          snapBool = true;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (snapBool &amp;&amp; isInside([x, y], points)) {</span>
 <span class="cstat-no" title="statement not covered" >          view[index] = toolRegionValue;</span>
         }
       }
@@ -555,9 +603,16 @@ function enable (element, mouseButtonMask) <span class="fstat-no" title="functio
 <span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
 }
 &nbsp;
-// Disables the reference line tool for the given element
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+}
+&nbsp;
+export function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return configuration;</span>
+}
+&nbsp;
+export function setConfiguration (config) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  configuration = config;</span>
 }
 &nbsp;
 // Module/private exports
@@ -566,7 +621,9 @@ export default {
   enable,
   disable,
   activate: enable,
-  deactivate: disable
+  deactivate: disable,
+  getConfiguration,
+  setConfiguration
 };
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -574,7 +631,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 08 2017 18:16:38 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 16 2017 00:46:36 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

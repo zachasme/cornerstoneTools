@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-11-08 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-11-16 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -15892,6 +15892,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+exports.getConfiguration = getConfiguration;
+exports.setConfiguration = setConfiguration;
+
 var _cornerstoneCore = __webpack_require__(0);
 
 var cornerstone = _interopRequireWildcard(_cornerstoneCore);
@@ -15904,11 +15907,17 @@ var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
 var _thresholding = __webpack_require__(25);
 
+var regionsThreshold = _interopRequireWildcard(_thresholding);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var toolType = 'drawing';
+
+var configuration = {
+  snap: false // snap to thresholded region or not
+};
 
 // Determine if a point is inside a polygon
 function isInside(point, vs) {
@@ -15973,12 +15982,12 @@ function onImageRendered(e, eventData) {
 }
 
 function updateRegions(element) {
-  var _getConfiguration = (0, _thresholding.getConfiguration)(),
-      toolRegionValue = _getConfiguration.toolRegionValue,
-      layersAbove = _getConfiguration.layersAbove,
-      layersBelow = _getConfiguration.layersBelow;
+  var _regionsThreshold$get = regionsThreshold.getConfiguration(),
+      toolRegionValue = _regionsThreshold$get.toolRegionValue,
+      layersAbove = _regionsThreshold$get.layersAbove,
+      layersBelow = _regionsThreshold$get.layersBelow;
 
-  (0, _thresholding.createUndoStep)(element);
+  regionsThreshold.createUndoStep(element);
 
   // Get tool data
   var stackData = (0, _toolState.getToolState)(element, 'stack');
@@ -16012,7 +16021,13 @@ function updateRegions(element) {
         var index = x + y * width + dslice * sliceSize;
         var prevValue = view[index];
 
-        if (prevValue > 0 && isInside([x, y], points)) {
+        var snapBool = void 0;
+        if (configuration.snap) {
+          snapBool = prevValue > 0;
+        } else {
+          snapBool = true;
+        }
+        if (snapBool && isInside([x, y], points)) {
           view[index] = toolRegionValue;
         }
       }
@@ -16078,9 +16093,16 @@ function enable(element, mouseButtonMask) {
   $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
 }
 
-// Disables the reference line tool for the given element
 function disable(element) {
   $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
+}
+
+function getConfiguration() {
+  return configuration;
+}
+
+function setConfiguration(config) {
+  configuration = config;
 }
 
 // Module/private exports
@@ -16089,7 +16111,9 @@ exports.default = {
   enable: enable,
   disable: disable,
   activate: enable,
-  deactivate: disable
+  deactivate: disable,
+  getConfiguration: getConfiguration,
+  setConfiguration: setConfiguration
 };
 
 /***/ }),

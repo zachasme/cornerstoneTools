@@ -1,9 +1,13 @@
 import * as cornerstone from 'cornerstone-core';
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import { getConfiguration, createUndoStep } from './thresholding.js';
+import * as regionsThreshold from './thresholding.js';
 
 const toolType = 'drawing';
+
+let configuration = {
+  snap: false // snap to thresholded region or not
+};
 
 // Determine if a point is inside a polygon
 function isInside (point, vs) {
@@ -58,9 +62,9 @@ function onImageRendered (e, eventData) {
 }
 
 function updateRegions (element) {
-  const { toolRegionValue, layersAbove, layersBelow } = getConfiguration();
+  const { toolRegionValue, layersAbove, layersBelow } = regionsThreshold.getConfiguration();
 
-  createUndoStep(element);
+  regionsThreshold.createUndoStep(element);
 
   // Get tool data
   const stackData = getToolState(element, 'stack');
@@ -94,7 +98,13 @@ function updateRegions (element) {
         const index = x + (y * width) + (dslice * sliceSize);
         const prevValue = view[index];
 
-        if (prevValue > 0 && isInside([x, y], points)) {
+        let snapBool;
+        if (configuration.snap) {
+          snapBool = prevValue > 0;
+        } else {
+          snapBool = true;
+        }
+        if (snapBool && isInside([x, y], points)) {
           view[index] = toolRegionValue;
         }
       }
@@ -160,9 +170,16 @@ function enable (element, mouseButtonMask) {
   $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
 }
 
-// Disables the reference line tool for the given element
 function disable (element) {
   $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
+}
+
+export function getConfiguration () {
+  return configuration;
+}
+
+export function setConfiguration (config) {
+  configuration = config;
 }
 
 // Module/private exports
@@ -171,5 +188,7 @@ export default {
   enable,
   disable,
   activate: enable,
-  deactivate: disable
+  deactivate: disable,
+  getConfiguration,
+  setConfiguration
 };

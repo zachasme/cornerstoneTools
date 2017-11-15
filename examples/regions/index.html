@@ -87,6 +87,7 @@ is used by our example image loader-->
     <input type="file" multiple id="selectFile" >
  </div>
  <button id="examples">or use example pictures</button>
+ <label for="snap"><input id="snap" type="checkbox" name="snap">snap</label>
 
 <script>
     var element = $('#dicomImage').get(0);
@@ -170,7 +171,13 @@ is used by our example image loader-->
       config.calciumThresholdHu = parseInt(event.target.value);
       cornerstoneTools.regionsThreshold.setConfiguration(config)
       cornerstoneTools.regionsThreshold.update(element);
-      console.log("updated...");
+    })
+
+    document.getElementById('snap').addEventListener('change', function(e) {
+      e.preventDefault();
+      var config = cornerstoneTools.regionsDraw.getConfiguration();
+      config.snap = e.target.checked;
+      cornerstoneTools.regionsDraw.setConfiguration(config);
     })
 
 
