@@ -12,7 +12,7 @@ export function getLastElement () {
 const LABEL_SIZE_BYTES = 1;
 
 let configuration = {
-  historySize: 4,
+  historySize: 2,
   historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: '-', // placeholder until it gets set ('-' shows up nicely in text input)

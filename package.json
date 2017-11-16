@@ -2,7 +2,7 @@
   "name": "cornerstone-tools",
   "version": "0.8.9",
   "description": "Medical imaging tools for the Cornerstone library",
-  "main": "./dist/cornerstoneTools.min.js",
+  "main": "./dist/cornerstoneTools.js",
   "keywords": [
     "DICOM",
     "medical",
