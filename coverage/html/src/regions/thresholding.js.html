@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.21% </span>
+        <span class="strong">5.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/96</span>
+        <span class='fraction'>5/97</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.21% </span>
+        <span class="strong">5.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/96</span>
+        <span class='fraction'>5/97</span>
       </div>
     </div>
   </div>
@@ -289,7 +289,9 @@
 244
 245
 246
-247</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+247
+248
+249</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -466,19 +468,21 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -711,21 +715,23 @@ function enable (element, doneCallback) <span class="fstat-no" title="function n
 &nbsp;
   const stack = <span class="cstat-no" title="statement not covered" >stackData.data[0];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  performThresholding(stack, function (regions) <span class="fstat-no" title="function not covered" >{</span></span>
-    // Add threshold data to tool state
-    const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
+<span class="cstat-no" title="statement not covered" >  setTimeout(() =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    performThresholding(stack, function (regions) <span class="fstat-no" title="function not covered" >{</span></span>
+      // Add threshold data to tool state
+      const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    thresholdingData.data[0].buffer = regions.buffer;</span>
-<span class="cstat-no" title="statement not covered" >    thresholdingData.data[0].width = regions.width;</span>
-<span class="cstat-no" title="statement not covered" >    thresholdingData.data[0].height = regions.height;</span>
-    // Draw regions on image
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >      thresholdingData.data[0].buffer = regions.buffer;</span>
+<span class="cstat-no" title="statement not covered" >      thresholdingData.data[0].width = regions.width;</span>
+<span class="cstat-no" title="statement not covered" >      thresholdingData.data[0].height = regions.height;</span>
+      // Draw regions on image
+<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneImageRendered', onImageRendered);</span>
 &nbsp;
-    // Update the element to apply the viewport and tool changes
-<span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
+      // Update the element to apply the viewport and tool changes
+<span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    typeof doneCallback === 'function' &amp;&amp; doneCallback();</span>
-  });
+<span class="cstat-no" title="statement not covered" >      typeof doneCallback === 'function' &amp;&amp; doneCallback();</span>
+    });
+  }, 1);
 }
 &nbsp;
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
@@ -787,7 +793,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 16 2017 03:46:59 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 16 2017 13:23:11 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>
