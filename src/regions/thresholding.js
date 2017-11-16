@@ -202,6 +202,7 @@ export function update () {
   return new Promise((resolve, reject) => {
     disable(LASTELEMENT);
     enable(LASTELEMENT);
+    console.log("tadaa");
     resolve();
   })
 }

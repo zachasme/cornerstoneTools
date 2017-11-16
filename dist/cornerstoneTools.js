@@ -2473,6 +2473,7 @@ function update() {
   return new Promise(function (resolve, reject) {
     disable(LASTELEMENT);
     enable(LASTELEMENT);
+    console.log("tadaa");
     resolve();
   });
 }
