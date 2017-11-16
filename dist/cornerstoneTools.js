@@ -2290,7 +2290,7 @@ function getLastElement() {
 var LABEL_SIZE_BYTES = 1;
 
 var configuration = {
-  historySize: 2,
+  historySize: 4,
   historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: '-', // placeholder until it gets set ('-' shows up nicely in text input)
@@ -2425,6 +2425,12 @@ function onImageRendered(e, eventData) {
 }
 
 function enable(element, doneCallback) {
+  // Check if tool is already enabled. If so, don't reenable
+  if ((0, _toolState.getToolState)(element, 'regions').data[0].enabled) {
+    return;
+  }
+  console.log('*** ENABLING regionsThreshold ***');
+
   LASTELEMENT = element;
   // First check that there is stack data available
   var stackData = (0, _toolState.getToolState)(element, 'stack');
