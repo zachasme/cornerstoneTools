@@ -174,21 +174,23 @@ function enable (element, doneCallback) {
 
   const stack = stackData.data[0];
 
-  performThresholding(stack, function (regions) {
-    // Add threshold data to tool state
-    const thresholdingData = getToolState(element, 'regions');
+  setTimeout(() => {
+    performThresholding(stack, function (regions) {
+      // Add threshold data to tool state
+      const thresholdingData = getToolState(element, 'regions');
 
-    thresholdingData.data[0].buffer = regions.buffer;
-    thresholdingData.data[0].width = regions.width;
-    thresholdingData.data[0].height = regions.height;
-    // Draw regions on image
-    $(element).on('CornerstoneImageRendered', onImageRendered);
+      thresholdingData.data[0].buffer = regions.buffer;
+      thresholdingData.data[0].width = regions.width;
+      thresholdingData.data[0].height = regions.height;
+      // Draw regions on image
+      $(element).on('CornerstoneImageRendered', onImageRendered);
 
-    // Update the element to apply the viewport and tool changes
-    cornerstone.updateImage(element);
+      // Update the element to apply the viewport and tool changes
+      cornerstone.updateImage(element);
 
-    typeof doneCallback === 'function' && doneCallback();
-  });
+      typeof doneCallback === 'function' && doneCallback();
+    });
+  }, 1);
 }
 
 function disable (element) {
