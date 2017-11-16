@@ -2293,7 +2293,7 @@ var configuration = {
   historySize: 4,
   historyPosition: 0,
   toolRegionValue: 2,
-  calciumThresholdHu: 0,
+  calciumThresholdHu: '-', // placeholder until it gets set ('-' shows up nicely in text input)
   layersAbove: 0,
   layersBelow: 0,
   drawAlpha: 1,
@@ -2311,6 +2311,8 @@ var configuration = {
   },
   growIterationsPerChunk: 2
 };
+
+configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
 
 /**
  * Perform the thresholding on a stack
