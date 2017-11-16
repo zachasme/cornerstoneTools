@@ -190,7 +190,7 @@ function enable (element, doneCallback) {
 
       typeof doneCallback === 'function' && doneCallback();
     });
-  }, 1);
+  }, 100);
 }
 
 function disable (element) {
