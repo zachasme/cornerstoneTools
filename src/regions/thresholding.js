@@ -199,8 +199,11 @@ function disable (element) {
 }
 
 export function update () {
-  disable(LASTELEMENT);
-  enable(LASTELEMENT);
+  return new Promise((resolve, reject) => {
+    disable(LASTELEMENT);
+    enable(LASTELEMENT);
+    resolve();
+  })
 }
 
 export function createUndoStep (element) {

@@ -2470,8 +2470,11 @@ function disable(element) {
 }
 
 function update() {
-  disable(LASTELEMENT);
-  enable(LASTELEMENT);
+  return new Promise(function (resolve, reject) {
+    disable(LASTELEMENT);
+    enable(LASTELEMENT);
+    resolve();
+  });
 }
 
 function createUndoStep(element) {
