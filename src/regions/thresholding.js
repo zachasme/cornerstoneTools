@@ -15,7 +15,7 @@ let configuration = {
   historySize: 4,
   historyPosition: 0,
   toolRegionValue: 2,
-  calciumThresholdHu: 130,
+  calciumThresholdHu: 0,
   layersAbove: 0,
   layersBelow: 0,
   drawAlpha: 1,
