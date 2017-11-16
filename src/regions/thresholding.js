@@ -187,7 +187,7 @@ function enable (element, doneCallback) {
     // Update the element to apply the viewport and tool changes
     cornerstone.updateImage(element);
 
-    doneCallback();
+    typeof doneCallback === 'function' && doneCallback();
   });
 }
 
@@ -204,6 +204,7 @@ export function update () {
   return new Promise((resolve, reject) => {
     disable(LASTELEMENT);
     enable(LASTELEMENT, () => {
+      console.log("done!");
       resolve();
     });
   })
