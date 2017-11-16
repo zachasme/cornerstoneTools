@@ -2424,7 +2424,7 @@ function onImageRendered(e, eventData) {
   context.drawImage(doubleBuffer, 0, 0);
 }
 
-function enable(element) {
+function enable(element, doneCallback) {
   LASTELEMENT = element;
   // First check that there is stack data available
   var stackData = (0, _toolState.getToolState)(element, 'stack');
@@ -2457,6 +2457,8 @@ function enable(element) {
 
     // Update the element to apply the viewport and tool changes
     cornerstone.updateImage(element);
+
+    doneCallback();
   });
 }
 
@@ -2472,9 +2474,9 @@ function disable(element) {
 function update() {
   return new Promise(function (resolve, reject) {
     disable(LASTELEMENT);
-    enable(LASTELEMENT);
-    console.log("tadaa");
-    resolve();
+    enable(LASTELEMENT, function () {
+      resolve();
+    });
   });
 }
 
