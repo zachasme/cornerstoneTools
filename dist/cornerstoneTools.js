@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-11-16 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-11-17 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -2426,7 +2426,8 @@ function onImageRendered(e, eventData) {
 
 function enable(element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
-  if ((0, _toolState.getToolState)(element, 'regions').data[0].enabled) {
+  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;
   }
   console.log('*** ENABLING regionsThreshold ***');

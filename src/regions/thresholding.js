@@ -155,7 +155,8 @@ function onImageRendered (e, eventData) {
 
 function enable (element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
-  if (getToolState(element, 'regions').data[0].enabled) { return; }
+  const thresholdingData = getToolState(element, 'regions');
+  if (thresholdingData.data[0] && thresholdingData.data[0].enabled) { return; }
   console.log('*** ENABLING regionsThreshold ***');
 
   LASTELEMENT = element;
