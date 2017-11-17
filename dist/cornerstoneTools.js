@@ -2480,11 +2480,12 @@ function disable(element) {
   }
 }
 
-function update() {
+function update(element) {
+  var enabledElement = element || LASTELEMENT;
+
   return new Promise(function (resolve, reject) {
-    disable(LASTELEMENT);
-    enable(LASTELEMENT, function () {
-      console.log("done!");
+    disable(enabledElement);
+    enable(enabledElement, function () {
       resolve();
     });
   });

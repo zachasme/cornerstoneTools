@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5% </span>
+        <span class="strong">4.95% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/100</span>
+        <span class='fraction'>5/101</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/28</span>
+        <span class='fraction'>0/32</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.05% </span>
+        <span class="strong">5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/99</span>
+        <span class='fraction'>5/100</span>
       </div>
     </div>
   </div>
@@ -295,7 +295,9 @@
 250
 251
 252
-253</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+253
+254
+255</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -454,22 +456,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -478,6 +465,22 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -505,6 +508,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -704,7 +708,8 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 &nbsp;
 function enable (element, doneCallback) <span class="fstat-no" title="function not covered" >{</span>
   // Check if tool is already enabled. If so, don't reenable
-<span class="cstat-no" title="statement not covered" >  if (getToolState(element, 'regions').data[0].enabled) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+  const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
+<span class="cstat-no" title="statement not covered" >  if (thresholdingData.data[0] &amp;&amp; thresholdingData.data[0].enabled) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
 <span class="cstat-no" title="statement not covered" >  console.log('*** ENABLING regionsThreshold ***');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  LASTELEMENT = element;</span>
@@ -755,11 +760,12 @@ function disable (element) <span class="fstat-no" title="function not covered" >
   }
 }
 &nbsp;
-export function update () <span class="fstat-no" title="function not covered" >{</span>
+export function update (element) <span class="fstat-no" title="function not covered" >{</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >element || LASTELEMENT;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return new Promise((resolve, reject) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >    disable(LASTELEMENT);</span>
-<span class="cstat-no" title="statement not covered" >    enable(LASTELEMENT, () =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >      console.log("done!");</span>
+<span class="cstat-no" title="statement not covered" >    disable(enabledElement);</span>
+<span class="cstat-no" title="statement not covered" >    enable(enabledElement, () =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >      resolve();</span>
     });
   })
@@ -805,7 +811,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 16 2017 16:44:06 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 17 2017 14:23:43 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

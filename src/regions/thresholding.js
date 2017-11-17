@@ -207,11 +207,12 @@ function disable (element) {
   }
 }
 
-export function update () {
+export function update (element) {
+  const enabledElement = element || LASTELEMENT;
+
   return new Promise((resolve, reject) => {
-    disable(LASTELEMENT);
-    enable(LASTELEMENT, () => {
-      console.log("done!");
+    disable(enabledElement);
+    enable(enabledElement, () => {
       resolve();
     });
   })
