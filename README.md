@@ -1,5 +1,7 @@
 # Cornerstone Tools (Cacalc fork)
 
+Main branch: `threhsolding`
+
 ## Development
 An example using region stuff is available in `/examples/regions/index.html` To run this, you must start a simple server in the root directory using e.g.
 
