@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 0.8.9 - 2017-11-17 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 0.8.9 - 2017-11-20 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-core"), require("cornerstone-math"), require("hammerjs"));
@@ -2312,12 +2312,14 @@ var configuration = {
   growIterationsPerChunk: 2
 };
 
+console.log("CONFIGURATION");
 configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
 
 /**
  * Perform the thresholding on a stack
  */
 function performThresholding(stack, afterwards) {
+  console.log("PERFORM_THRESHOLDING");
   var width = void 0,
       height = void 0;
   var imageIds = stack.imageIds;
@@ -2375,6 +2377,7 @@ var imgdata = null;
  * Draw regions on image
  */
 function onImageRendered(e, eventData) {
+  console.log("onImageRendered");
   var element = eventData.element;
   var stackData = (0, _toolState.getToolState)(element, 'stack');
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
@@ -2492,6 +2495,7 @@ function update(element) {
 }
 
 function createUndoStep(element) {
+  console.log("CREATE UNDO STEP");
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
 
   var state = thresholdingData.data[0];
@@ -2507,10 +2511,12 @@ function createUndoStep(element) {
 }
 
 function getConfiguration() {
+  console.log("GETCONFIGURATION");
   return configuration;
 }
 
 function setConfiguration(config) {
+  console.log("SETCONFIGURATION");
   configuration = config;
 }
 
@@ -16358,7 +16364,7 @@ function mode(array) {
 }
 
 function score() {
-
+  console.log("SCORE");
   var element = (0, _thresholding.getLastElement)();
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
   var stackData = (0, _toolState.getToolState)(element, 'stack');
@@ -16466,6 +16472,7 @@ function score() {
 
   return Promise.all(promises).then(function () {
     return voxelsEachRegion.map(function (voxels, i) {
+      console.log("SCORE -> voxelsEachRegion");
       // UNUSED??    const mean_HU = sum / region.length
       var maxHU = maxHUEachRegion[i];
 
@@ -16516,6 +16523,7 @@ var _toolState = __webpack_require__(1);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function enable(element) {
+  console.log("ENABLE UNDO");
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
   var state = thresholdingData.data[0];
 

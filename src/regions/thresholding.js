@@ -41,12 +41,14 @@ let configuration = {
   growIterationsPerChunk: 2
 };
 
+console.log("CONFIGURATION");
 configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
 
 /**
  * Perform the thresholding on a stack
  */
 function performThresholding (stack, afterwards) {
+  console.log("PERFORM_THRESHOLDING");
   let width, height;
   const imageIds = stack.imageIds;
   const slices = imageIds.length;
@@ -104,6 +106,7 @@ let imgdata = null;
  * Draw regions on image
  */
 function onImageRendered (e, eventData) {
+  console.log("onImageRendered");
   const element = eventData.element;
   const stackData = getToolState(element, 'stack');
   const thresholdingData = getToolState(element, 'regions');
@@ -219,6 +222,7 @@ export function update (element) {
 }
 
 export function createUndoStep (element) {
+  console.log("CREATE UNDO STEP");
   const thresholdingData = getToolState(element, 'regions');
 
   const state = thresholdingData.data[0];
@@ -235,10 +239,12 @@ export function createUndoStep (element) {
 }
 
 export function getConfiguration () {
+  console.log("GETCONFIGURATION");
   return configuration;
 }
 
 export function setConfiguration (config) {
+  console.log("SETCONFIGURATION");
   configuration = config;
 }
 

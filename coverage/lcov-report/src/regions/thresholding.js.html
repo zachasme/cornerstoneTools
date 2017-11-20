@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.95% </span>
+        <span class="strong">5.61% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/101</span>
+        <span class='fraction'>6/107</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5% </span>
+        <span class="strong">5.66% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/100</span>
+        <span class='fraction'>6/106</span>
       </div>
     </div>
   </div>
@@ -297,7 +297,13 @@
 252
 253
 254
-255</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+255
+256
+257
+258
+259
+260
+261</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -341,11 +347,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -406,6 +414,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -518,6 +527,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -535,9 +545,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -594,12 +606,14 @@ let configuration = {
   growIterationsPerChunk: 2
 };
 &nbsp;
+console.log("CONFIGURATION");
 configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
 &nbsp;
 /**
  * Perform the thresholding on a stack
  */
 function performThresholding (stack, afterwards) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  console.log("PERFORM_THRESHOLDING");</span>
   let width, height;
   const imageIds = <span class="cstat-no" title="statement not covered" >stack.imageIds;</span>
   const slices = <span class="cstat-no" title="statement not covered" >imageIds.length;</span>
@@ -657,6 +671,7 @@ let imgdata = null;
  * Draw regions on image
  */
 function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  console.log("onImageRendered");</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
   const stackData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
   const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
@@ -772,6 +787,7 @@ export function update (element) <span class="fstat-no" title="function not cove
 }
 &nbsp;
 export function createUndoStep (element) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  console.log("CREATE UNDO STEP");</span>
   const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
 &nbsp;
   const state = <span class="cstat-no" title="statement not covered" >thresholdingData.data[0];</span>
@@ -788,10 +804,12 @@ export function createUndoStep (element) <span class="fstat-no" title="function 
 }
 &nbsp;
 export function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  console.log("GETCONFIGURATION");</span>
 <span class="cstat-no" title="statement not covered" >  return configuration;</span>
 }
 &nbsp;
 export function setConfiguration (config) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  console.log("SETCONFIGURATION");</span>
 <span class="cstat-no" title="statement not covered" >  configuration = config;</span>
 }
 &nbsp;
@@ -811,7 +829,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 17 2017 14:23:43 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

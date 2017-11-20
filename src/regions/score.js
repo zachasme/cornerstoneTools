@@ -38,7 +38,7 @@ function mode(array)
 }
 
 export function score () {
-
+  console.log("SCORE");
   const element = getLastElement();
   const thresholdingData = getToolState(element, 'regions');
   const stackData = getToolState(element, 'stack');
@@ -137,6 +137,7 @@ export function score () {
 
   return Promise.all(promises).then(function () {
     return voxelsEachRegion.map((voxels, i) => {
+      console.log("SCORE -> voxelsEachRegion");
       // UNUSED??    const mean_HU = sum / region.length
       const maxHU = maxHUEachRegion[i];
 
