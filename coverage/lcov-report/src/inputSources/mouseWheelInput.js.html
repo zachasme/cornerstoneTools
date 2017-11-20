@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.45% </span>
+        <span class="strong">6.25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/31</span>
+        <span class='fraction'>2/32</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/33</span>
+        <span class='fraction'>0/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.45% </span>
+        <span class="strong">6.25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/31</span>
+        <span class='fraction'>2/32</span>
       </div>
     </div>
   </div>
@@ -132,12 +132,19 @@
 87
 88
 89
-90</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+90
+91
+92</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -145,11 +152,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,24 +225,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+import triggerEvent from '../util/triggerEvent.js';
 &nbsp;
 function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</span>
-    // !!!HACK/NOTE/WARNING!!!
-    // For some reason I am getting mousewheel and DOMMouseScroll events on my
-    // Mac os x mavericks system when middle mouse button dragging.
-    // I couldn't find any info about this so this might break other systems
-    // Webkit hack
+  // !!!HACK/NOTE/WARNING!!!
+  // For some reason I am getting mousewheel and DOMMouseScroll events on my
+  // Mac os x mavericks system when middle mouse button dragging.
+  // I couldn't find any info about this so this might break other systems
+  // Webkit hack
 <span class="cstat-no" title="statement not covered" >  if (e.originalEvent.type === 'mousewheel' &amp;&amp; e.originalEvent.wheelDeltaY === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
-    // Firefox hack
+  // Firefox hack
 <span class="cstat-no" title="statement not covered" >  if (e.originalEvent.type === 'DOMMouseScroll' &amp;&amp; e.originalEvent.axis === 1) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
 &nbsp;
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const element = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
 &nbsp;
   let x;
@@ -253,14 +259,14 @@ function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</
 <span class="cstat-no" title="statement not covered" >    x = e.originalEvent.pageX;</span>
 <span class="cstat-no" title="statement not covered" >    y = e.originalEvent.pageY;</span>
   } else {
-        // IE9 &amp; IE10
+    // IE9 &amp; IE10
 <span class="cstat-no" title="statement not covered" >    x = e.x;</span>
 <span class="cstat-no" title="statement not covered" >    y = e.y;</span>
   }
 &nbsp;
   const startingCoords = <span class="cstat-no" title="statement not covered" >cornerstone.pageToPixel(element, x, y);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  e = window.event || e; </span>// Old IE support
+<span class="cstat-no" title="statement not covered" >  e = (window.event &amp;&amp; window.event.wheelDelta) ? window.event : e; </span>// Old IE support
 &nbsp;
   let wheelDelta;
 &nbsp;
@@ -287,20 +293,20 @@ function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</
     imageY: startingCoords.y
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).trigger('CornerstoneToolsMouseWheel', mouseWheelData);</span>
+<span class="cstat-no" title="statement not covered" >  triggerEvent(element, 'CornerstoneToolsMouseWheel', mouseWheelData);</span>
 }
 &nbsp;
 const mouseWheelEvents = 'mousewheel DOMMouseScroll';
 &nbsp;
 function enable (element) <span class="fstat-no" title="function not covered" >{</span>
-    // Prevent handlers from being attached multiple times
+  // Prevent handlers from being attached multiple times
 <span class="cstat-no" title="statement not covered" >  disable(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on(mouseWheelEvents, mouseWheel);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on(mouseWheelEvents, mouseWheel);</span>
 }
 &nbsp;
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).unbind(mouseWheelEvents, mouseWheel);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).unbind(mouseWheelEvents, mouseWheel);</span>
 }
 &nbsp;
 // Module exports
@@ -316,7 +322,7 @@ export default mouseWheelInput;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

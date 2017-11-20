@@ -76,60 +76,66 @@
 31
 32
 33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+34
+35
+36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function (mouseDownCallback) {
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+&nbsp;
+export default function (mouseDownCallback) {
   let configuration = {};
 &nbsp;
   const toolInterface = {
     activate (element, mouseButtonMask, options) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
       const eventData = <span class="cstat-no" title="statement not covered" >{</span>
         mouseButtonMask,
         options
       };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsMouseDownActivate', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).on('CornerstoneToolsMouseDownActivate', eventData, mouseDownCallback);</span>
     },
     disable (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
     },
     enable (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
     },
     deactivate (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
     },
     getConfiguration () {
 <span class="cstat-no" title="statement not covered" >      return configuration;</span>
@@ -148,7 +154,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

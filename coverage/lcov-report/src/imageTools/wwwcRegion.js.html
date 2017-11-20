@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.5% </span>
+        <span class="strong">2.44% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/160</span>
+        <span class='fraction'>4/164</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.5% </span>
+        <span class="strong">2.44% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/160</span>
+        <span class='fraction'>4/164</span>
       </div>
     </div>
   </div>
@@ -414,7 +414,11 @@
 369
 370
 371
-372</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+372
+373
+374
+375
+376</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -463,6 +467,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -512,6 +517,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -626,6 +632,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -785,7 +793,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import toolStyle from '../stateManagement/toolStyle.js';
 import toolColors from '../stateManagement/toolColors.js';
 import { getToolState, addToolState } from '../stateManagement/toolState.js';
@@ -832,39 +840,40 @@ function calculateMinMaxMean (storedPixelLuminanceData, globalMin, globalMax) <s
 }
 &nbsp;
 /* Erases the toolData and rebinds the handlers when the image changes */
-function newImageCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function newImageCallback (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(eventData.element, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (toolData &amp;&amp; toolData.data) {</span>
 <span class="cstat-no" title="statement not covered" >    toolData.data = [];</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseMove', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseMove', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
 &nbsp;
   const mouseData = <span class="cstat-no" title="statement not covered" >{</span>
     mouseButtonMask: currentMouseButtonMask
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).on('CornerstoneToolsMouseDown', mouseData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).on('CornerstoneToolsMouseDown', mouseData, mouseDownCallback);</span>
 }
 &nbsp;
 /* Applies the windowing procedure when the mouse drag ends */
 function dragEndCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseMove', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseMove', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
 &nbsp;
   const mouseData = <span class="cstat-no" title="statement not covered" >{</span>
     mouseButtonMask: currentMouseButtonMask
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).on('CornerstoneToolsMouseDown', mouseData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).on('CornerstoneToolsMouseDown', mouseData, mouseDownCallback);</span>
 &nbsp;
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(eventData.element, toolType);</span>
 &nbsp;
@@ -872,7 +881,7 @@ function dragEndCallback (e, eventData) <span class="fstat-no" title="function n
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // Update the endpoint as the mouse/touch is dragged
+  // Update the endpoint as the mouse/touch is dragged
 <span class="cstat-no" title="statement not covered" >  toolData.data[0].endPoint = {</span>
     x: eventData.currentPoints.image.x,
     y: eventData.currentPoints.image.y
@@ -883,6 +892,7 @@ function dragEndCallback (e, eventData) <span class="fstat-no" title="function n
 &nbsp;
 /** Calculates the minimum and maximum value in the given pixel array */
 function applyWWWCRegion (eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(eventData.element, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!toolData || !toolData.data || !toolData.data.length) {</span>
@@ -892,14 +902,14 @@ function applyWWWCRegion (eventData) <span class="fstat-no" title="function not 
   const startPoint = <span class="cstat-no" title="statement not covered" >toolData.data[0].startPoint;</span>
   const endPoint = <span class="cstat-no" title="statement not covered" >toolData.data[0].endPoint;</span>
 &nbsp;
-    // Get the rectangular region defined by the handles
+  // Get the rectangular region defined by the handles
   let width = <span class="cstat-no" title="statement not covered" >Math.abs(startPoint.x - endPoint.x);</span>
   let height = <span class="cstat-no" title="statement not covered" >Math.abs(startPoint.y - endPoint.y);</span>
 &nbsp;
   let left = <span class="cstat-no" title="statement not covered" >Math.min(startPoint.x, endPoint.x);</span>
   let top = <span class="cstat-no" title="statement not covered" >Math.min(startPoint.y, endPoint.y);</span>
 &nbsp;
-    // Bound the rectangle so we don't get undefined pixels
+  // Bound the rectangle so we don't get undefined pixels
 <span class="cstat-no" title="statement not covered" >  left = Math.max(left, 0);</span>
 <span class="cstat-no" title="statement not covered" >  left = Math.min(left, eventData.image.width);</span>
 <span class="cstat-no" title="statement not covered" >  top = Math.max(top, 0);</span>
@@ -907,13 +917,13 @@ function applyWWWCRegion (eventData) <span class="fstat-no" title="function not 
 <span class="cstat-no" title="statement not covered" >  width = Math.floor(Math.min(width, Math.abs(eventData.image.width - left)));</span>
 <span class="cstat-no" title="statement not covered" >  height = Math.floor(Math.min(height, Math.abs(eventData.image.height - top)));</span>
 &nbsp;
-    // Get the pixel data in the rectangular region
+  // Get the pixel data in the rectangular region
   const pixelLuminanceData = <span class="cstat-no" title="statement not covered" >getLuminance(eventData.element, left, top, width, height);</span>
 &nbsp;
-    // Calculate the minimum and maximum pixel values
+  // Calculate the minimum and maximum pixel values
   const minMaxMean = <span class="cstat-no" title="statement not covered" >calculateMinMaxMean(pixelLuminanceData, eventData.image.minPixelValue, eventData.image.maxPixelValue);</span>
 &nbsp;
-    // Adjust the viewport window width and center based on the calculated values
+  // Adjust the viewport window width and center based on the calculated values
   const config = <span class="cstat-no" title="statement not covered" >wwwcRegion.getConfiguration();</span>
   const viewport = <span class="cstat-no" title="statement not covered" >cornerstone.getViewport(eventData.element);</span>
 &nbsp;
@@ -925,7 +935,7 @@ function applyWWWCRegion (eventData) <span class="fstat-no" title="function not 
 <span class="cstat-no" title="statement not covered" >  viewport.voi.windowCenter = minMaxMean.mean;</span>
 <span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, viewport);</span>
 &nbsp;
-    // Clear the toolData
+  // Clear the toolData
 <span class="cstat-no" title="statement not covered" >  toolData.data = [];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
@@ -934,25 +944,25 @@ function applyWWWCRegion (eventData) <span class="fstat-no" title="function not 
 function whichMovement (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseMove');</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDrag');</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseMove');</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDrag');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseMove', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseMove', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseClick', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseClick', dragEndCallback);</span>
 <span class="cstat-no" title="statement not covered" >  if (e.type === 'CornerstoneToolsMouseDrag') {</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseUp', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseUp', dragEndCallback);</span>
   }
 }
 &nbsp;
 /** Records the start point and attaches the drag event handler */
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', eventData, whichMovement);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseMove', eventData, whichMovement);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseDrag', eventData, whichMovement);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseMove', eventData, whichMovement);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 <span class="cstat-no" title="statement not covered" >    recordStartPoint(eventData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false;</span>
@@ -979,24 +989,26 @@ function recordStartPoint (eventData) <span class="fstat-no" title="function not
 &nbsp;
 /** Draws the rectangular region while the touch or mouse event drag occurs */
 function dragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-    // If we have no toolData for this element, return immediately as there is nothing to do
+  // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(eventData.element, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!toolData || !toolData.data || !toolData.data.length) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // Update the endpoint as the mouse/touch is dragged
+  // Update the endpoint as the mouse/touch is dragged
   const endPoint = <span class="cstat-no" title="statement not covered" >{</span>
     x: eventData.currentPoints.image.x,
     y: eventData.currentPoints.image.y
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  toolData.data[0].endPoint = endPoint;</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(eventData.element);</span>
 }
 &nbsp;
-function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onImageRendered (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(eventData.element, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!toolData || !toolData.data || !toolData.data.length) {</span>
@@ -1010,16 +1022,16 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // Get the current element's canvas
-  const canvas = <span class="cstat-no" title="statement not covered" >$(eventData.element).find('canvas').get(0);</span>
+  // Get the current element's canvas
+  const canvas = <span class="cstat-no" title="statement not covered" >external.$(eventData.element).find('canvas').get(0);</span>
   const context = <span class="cstat-no" title="statement not covered" >canvas.getContext('2d');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
 &nbsp;
-    // Set to the active tool color
+  // Set to the active tool color
   const color = <span class="cstat-no" title="statement not covered" >toolColors.getActiveColor();</span>
 &nbsp;
-    // Calculate the rectangle parameters
+  // Calculate the rectangle parameters
   const startPointCanvas = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(eventData.element, startPoint);</span>
   const endPointCanvas = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(eventData.element, endPoint);</span>
 &nbsp;
@@ -1031,7 +1043,7 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
   const lineWidth = <span class="cstat-no" title="statement not covered" >toolStyle.getToolWidth();</span>
   const config = <span class="cstat-no" title="statement not covered" >wwwcRegion.getConfiguration();</span>
 &nbsp;
-    // Draw the rectangle
+  // Draw the rectangle
 <span class="cstat-no" title="statement not covered" >  context.save();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (config &amp;&amp; config.shadow) {</span>
@@ -1051,18 +1063,18 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 &nbsp;
 // --- Mouse tool enable / disable --- ///
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseMove', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseMove', dragCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneImageRendered', onImageRendered);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstoneimagerendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstonenewimage', newImageCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(element);</span>
 }
 &nbsp;
 function activate (element, mouseButtonMask) <span class="fstat-no" title="function not covered" >{</span>
@@ -1080,33 +1092,33 @@ function activate (element, mouseButtonMask) <span class="fstat-no" title="funct
 <span class="cstat-no" title="statement not covered" >    addToolState(element, toolType, data);</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseUp', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseClick', dragEndCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseMove', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseMove', dragCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneImageRendered', onImageRendered);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstoneimagerendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstonenewimage', newImageCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.addEventListener('cornerstoneimagerendered', onImageRendered);</span>
 &nbsp;
-    // If the displayed image changes after the user has started clicking, we should
-    // Cancel the handlers and prepare for another click
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneNewImage', newImageCallback);</span>
+  // If the displayed image changes after the user has started clicking, we should
+  // Cancel the handlers and prepare for another click
+<span class="cstat-no" title="statement not covered" >  element.addEventListener('cornerstonenewimage', newImageCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(element);</span>
 }
 &nbsp;
 // --- Touch tool enable / disable --- //
 function disableTouchDrag (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsTouchDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsTouchStart', recordStartPoint);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsDragEnd', applyWWWCRegion);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsTouchDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsTouchStart', recordStartPoint);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsDragEnd', applyWWWCRegion);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstoneimagerendered', onImageRendered);</span>
 }
 &nbsp;
 function activateTouchDrag (element) <span class="fstat-no" title="function not covered" >{</span>
@@ -1118,15 +1130,15 @@ function activateTouchDrag (element) <span class="fstat-no" title="function not 
 <span class="cstat-no" title="statement not covered" >    addToolState(element, toolType, data);</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsTouchDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsTouchStart', recordStartPoint);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsDragEnd', applyWWWCRegion);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsTouchDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsTouchStart', recordStartPoint);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsDragEnd', applyWWWCRegion);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstoneimagerendered', onImageRendered);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchStart', recordStartPoint);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsDragEnd', applyWWWCRegion);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchStart', recordStartPoint);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsDragEnd', applyWWWCRegion);</span>
+<span class="cstat-no" title="statement not covered" >  element.addEventListener('cornerstoneimagerendered', onImageRendered);</span>
 }
 &nbsp;
 function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
@@ -1162,7 +1174,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -219,32 +219,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import simpleMouseButtonTool from './simpleMouseButtonTool.js';
 import touchDragTool from './touchDragTool.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 &nbsp;
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
   }
 }
 &nbsp;
 function defaultStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
-    // Here we normalize the ww/wc adjustments so the same number of on screen pixels
-    // Adjusts the same percentage of the dynamic range of the image.  This is needed to
-    // Provide consistency for the ww/wc tool regardless of the dynamic range (e.g. an 8 bit
-    // Image will feel the same as a 16 bit image would)
+  // Here we normalize the ww/wc adjustments so the same number of on screen pixels
+  // Adjusts the same percentage of the dynamic range of the image.  This is needed to
+  // Provide consistency for the ww/wc tool regardless of the dynamic range (e.g. an 8 bit
+  // Image will feel the same as a 16 bit image would)
   const maxVOI = <span class="cstat-no" title="statement not covered" >eventData.image.maxPixelValue * eventData.image.slope + eventData.image.intercept;</span>
   const minVOI = <span class="cstat-no" title="statement not covered" >eventData.image.minPixelValue * eventData.image.slope + eventData.image.intercept;</span>
   const imageDynamicRange = <span class="cstat-no" title="statement not covered" >maxVOI - minVOI;</span>
@@ -259,7 +259,7 @@ function defaultStrategy (eventData) <span class="fstat-no" title="function not 
 &nbsp;
 function mouseDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  wwwc.strategy(eventData);</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, eventData.viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(eventData.element, eventData.viewport);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
 }
@@ -290,7 +290,7 @@ function touchDragCallback (e, eventData) <span class="fstat-no" title="function
 <span class="cstat-no" title="statement not covered" >    dragData.viewport.voi.windowCenter += (deltaY);</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(dragData.element, dragData.viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(dragData.element, dragData.viewport);</span>
 }
 &nbsp;
 const wwwc = simpleMouseButtonTool(mouseDownCallback);
@@ -313,7 +313,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

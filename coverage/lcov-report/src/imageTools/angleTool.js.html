@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.08% </span>
+        <span class="strong">4.92% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/59</span>
+        <span class='fraction'>3/61</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.08% </span>
+        <span class="strong">4.92% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/59</span>
+        <span class='fraction'>3/61</span>
       </div>
     </div>
   </div>
@@ -223,8 +223,9 @@
 178
 179
 180
-181</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+181
+182
+183</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -278,6 +279,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,6 +315,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -403,23 +407,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
-import * as cornerstoneMath from 'cornerstone-math';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { cornerstoneMath, external } from '../externalModules.js';
 import mouseButtonTool from './mouseButtonTool.js';
-import touchTool from './touchTool';
+import touchTool from './touchTool.js';
 import drawTextBox from '../util/drawTextBox.js';
 import roundToDecimal from '../util/roundToDecimal.js';
 import toolStyle from '../stateManagement/toolStyle.js';
 import textStyle from '../stateManagement/textStyle.js';
 import toolColors from '../stateManagement/toolColors.js';
-import drawHandles from '../manipulators/drawHandles';
+import drawHandles from '../manipulators/drawHandles.js';
 import { getToolState } from '../stateManagement/toolState.js';
 &nbsp;
 const toolType = 'angle';
 &nbsp;
 // /////// BEGIN ACTIVE TOOL ///////
 function createNewMeasurement (mouseEventData) <span class="fstat-no" title="function not covered" >{</span>
-    // Create the measurement data for this tool with the end handle activated
+  // Create the measurement data for this tool with the end handle activated
   const angleData = <span class="cstat-no" title="statement not covered" >{</span>
     visible: true,
     active: true,
@@ -456,6 +459,8 @@ function createNewMeasurement (mouseEventData) <span class="fstat-no" title="fun
 // /////// END ACTIVE TOOL ///////
 &nbsp;
 function pointNearTool (element, data, coords) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
+&nbsp;
   const lineSegment = <span class="cstat-no" title="statement not covered" >{</span>
     start: cornerstone.pixelToCanvas(element, data.handles.start),
     end: cornerstone.pixelToCanvas(element, data.handles.end)
@@ -478,28 +483,29 @@ function pointNearTool (element, data, coords) <span class="fstat-no" title="fun
 // /////// BEGIN IMAGE RENDERING ///////
 function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 &nbsp;
-    // If we have no toolData for this element, return immediately as there is nothing to do
+  // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (toolData === undefined) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // We have tool data for this element - iterate over each one and draw it
+  // We have tool data for this element - iterate over each one and draw it
   const context = <span class="cstat-no" title="statement not covered" >eventData.canvasContext.canvas.getContext('2d');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
 &nbsp;
-    // Activation color
+  // Activation color
   let color;
   const lineWidth = <span class="cstat-no" title="statement not covered" >toolStyle.getToolWidth();</span>
   const font = <span class="cstat-no" title="statement not covered" >textStyle.getFont();</span>
   const config = <span class="cstat-no" title="statement not covered" >angle.getConfiguration();</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  for (let i = 0; i &lt; toolData.data.length; i++) {</span>
 <span class="cstat-no" title="statement not covered" >    context.save();</span>
 &nbsp;
-        // Configurable shadow
+    // Configurable shadow
 <span class="cstat-no" title="statement not covered" >    if (config &amp;&amp; config.shadow) {</span>
 <span class="cstat-no" title="statement not covered" >      context.shadowColor = config.shadowColor || '#000000';</span>
 <span class="cstat-no" title="statement not covered" >      context.shadowOffsetX = config.shadowOffsetX || 1;</span>
@@ -508,14 +514,14 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 &nbsp;
     const data = <span class="cstat-no" title="statement not covered" >toolData.data[i];</span>
 &nbsp;
-        // Differentiate the color of activation tool
+    // Differentiate the color of activation tool
 <span class="cstat-no" title="statement not covered" >    if (data.active) {</span>
 <span class="cstat-no" title="statement not covered" >      color = toolColors.getActiveColor();</span>
     } else {
 <span class="cstat-no" title="statement not covered" >      color = toolColors.getToolColor();</span>
     }
 &nbsp;
-        // Draw the line
+    // Draw the line
 <span class="cstat-no" title="statement not covered" >    context.beginPath();</span>
 <span class="cstat-no" title="statement not covered" >    context.strokeStyle = color;</span>
 <span class="cstat-no" title="statement not covered" >    context.lineWidth = lineWidth;</span>
@@ -533,14 +539,14 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
 <span class="cstat-no" title="statement not covered" >    context.lineTo(handleEndCanvas.x, handleEndCanvas.y);</span>
 <span class="cstat-no" title="statement not covered" >    context.stroke();</span>
 &nbsp;
-        // Draw the handles
+    // Draw the handles
 <span class="cstat-no" title="statement not covered" >    drawHandles(context, eventData, data.handles);</span>
 &nbsp;
-        // Draw the text
+    // Draw the text
 <span class="cstat-no" title="statement not covered" >    context.fillStyle = color;</span>
 &nbsp;
-        // Need to work on correct angle to measure.  This is a cobb angle and we need to determine
-        // Where lines cross to measure angle. For now it will show smallest angle.
+    // Need to work on correct angle to measure.  This is a cobb angle and we need to determine
+    // Where lines cross to measure angle. For now it will show smallest angle.
     const dx1 = <span class="cstat-no" title="statement not covered" >(Math.ceil(data.handles.start.x) - Math.ceil(data.handles.end.x)) * eventData.image.columnPixelSpacing;</span>
     const dy1 = <span class="cstat-no" title="statement not covered" >(Math.ceil(data.handles.start.y) - Math.ceil(data.handles.end.y)) * eventData.image.rowPixelSpacing;</span>
     const dx2 = <span class="cstat-no" title="statement not covered" >(Math.ceil(data.handles.start2.x) - Math.ceil(data.handles.end2.x)) * eventData.image.columnPixelSpacing;</span>
@@ -589,7 +595,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

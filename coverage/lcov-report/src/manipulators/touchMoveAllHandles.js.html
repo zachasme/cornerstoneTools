@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/33</span>
+        <span class='fraction'>0/34</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/33</span>
+        <span class='fraction'>0/34</span>
       </div>
     </div>
   </div>
@@ -112,11 +112,15 @@
 67
 68
 69
-70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+70
+71
+72</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,12 +185,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
-import anyHandlesOutsideImage from './anyHandlesOutsideImage';
-import { removeToolState } from '../stateManagement/toolState';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+import anyHandlesOutsideImage from './anyHandlesOutsideImage.js';
+import { removeToolState } from '../stateManagement/toolState.js';
+import triggerEvent from '../util/triggerEvent.js';
 &nbsp;
 export default function (touchEventData, data, toolData, toolType, deleteIfHandleOutsideImage, doneMovingCallback) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >touchEventData.element;</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
 &nbsp;
   function touchDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    data.active = true;</span>
@@ -210,26 +216,26 @@ export default function (touchEventData, data, toolData, toolType, deleteIfHandl
       measurementData: data
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    $(element).trigger(eventType, modifiedEventData);</span>
+<span class="cstat-no" title="statement not covered" >    triggerEvent(element, eventType, modifiedEventData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchDrag', touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchDrag', touchDragCallback);</span>
 &nbsp;
   function touchEndCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-        // Console.log('touchMoveAllHandles touchEndCallback: ' + e.type);
+    // Console.log('touchMoveAllHandles touchEndCallback: ' + e.type);
 <span class="cstat-no" title="statement not covered" >    data.active = false;</span>
 <span class="cstat-no" title="statement not covered" >    data.invalidated = false;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchDrag', touchDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchPinch', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchPress', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTouchEnd', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsDragEnd', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).off('CornerstoneToolsTap', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTouchDrag', touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTouchPinch', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTouchPress', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTouchEnd', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsDragEnd', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTap', touchEndCallback);</span>
 &nbsp;
-        // If any handle is outside the image, delete the tool data
+    // If any handle is outside the image, delete the tool data
 <span class="cstat-no" title="statement not covered" >    if (deleteIfHandleOutsideImage === true &amp;&amp;</span>
             anyHandlesOutsideImage(eventData, data.handles)) {
 <span class="cstat-no" title="statement not covered" >      removeToolState(element, toolType, data);</span>
@@ -242,11 +248,11 @@ export default function (touchEventData, data, toolData, toolType, deleteIfHandl
     }
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchPinch', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchPress', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchEnd', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsDragEnd', touchEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTap', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchPinch', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchPress', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchEnd', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsDragEnd', touchEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTap', touchEndCallback);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return true;</span>
 }
@@ -256,7 +262,7 @@ export default function (touchEventData, data, toolData, toolType, deleteIfHandl
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/32</span>
+        <span class='fraction'>0/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/32</span>
+        <span class='fraction'>0/33</span>
       </div>
     </div>
   </div>
@@ -112,7 +112,8 @@
 67
 68
 69
-70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+70
+71</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,9 +121,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,6 +130,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,19 +155,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,6 +163,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -181,25 +183,26 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import calculateReferenceLine from './calculateReferenceLine.js';
 import toolColors from '../stateManagement/toolColors.js';
 import toolStyle from '../stateManagement/toolStyle.js';
 &nbsp;
 // Renders the active reference line
 export default function (context, eventData, targetElement, referenceElement) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const targetImage = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(targetElement).image;</span>
   const referenceImage = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(referenceElement).image;</span>
 &nbsp;
-    // Make sure the images are actually loaded for the target and reference
+  // Make sure the images are actually loaded for the target and reference
 <span class="cstat-no" title="statement not covered" >  if (!targetImage || !referenceImage) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-  const targetImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', targetImage.imageId);</span>
-  const referenceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', referenceImage.imageId);</span>
+  const targetImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlaneModule', targetImage.imageId);</span>
+  const referenceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlaneModule', referenceImage.imageId);</span>
 &nbsp;
-    // Make sure the target and reference actually have image plane metadata
+  // Make sure the target and reference actually have image plane metadata
 <span class="cstat-no" title="statement not covered" >  if (!targetImagePlane ||</span>
         !referenceImagePlane ||
         !targetImagePlane.rowCosines ||
@@ -211,12 +214,12 @@ export default function (context, eventData, targetElement, referenceElement) <s
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // The image planes must be in the same frame of reference
+  // The image planes must be in the same frame of reference
 <span class="cstat-no" title="statement not covered" >  if (targetImagePlane.frameOfReferenceUID !== referenceImagePlane.frameOfReferenceUID) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // The image plane normals must be &gt; 30 degrees apart
+  // The image plane normals must be &gt; 30 degrees apart
   const targetNormal = <span class="cstat-no" title="statement not covered" >targetImagePlane.rowCosines.clone().cross(targetImagePlane.columnCosines);</span>
   const referenceNormal = <span class="cstat-no" title="statement not covered" >referenceImagePlane.rowCosines.clone().cross(referenceImagePlane.columnCosines);</span>
   let angleInRadians = <span class="cstat-no" title="statement not covered" >targetNormal.angleTo(referenceNormal);</span>
@@ -238,7 +241,7 @@ export default function (context, eventData, targetElement, referenceElement) <s
   const color = <span class="cstat-no" title="statement not covered" >toolColors.getActiveColor();</span>
   const lineWidth = <span class="cstat-no" title="statement not covered" >toolStyle.getToolWidth();</span>
 &nbsp;
-    // Draw the referenceLines
+  // Draw the referenceLines
 <span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  context.save();</span>
@@ -256,7 +259,7 @@ export default function (context, eventData, targetElement, referenceElement) <s
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

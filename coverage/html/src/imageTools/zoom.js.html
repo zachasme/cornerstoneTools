@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.36% </span>
+        <span class="strong">5.26% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/112</span>
+        <span class='fraction'>6/114</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.36% </span>
+        <span class="strong">5.26% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/112</span>
+        <span class='fraction'>6/114</span>
       </div>
     </div>
   </div>
@@ -337,7 +337,9 @@
 292
 293
 294
-295</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+295
+296
+297</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -405,6 +407,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -583,6 +586,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -631,12 +635,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
-import simpleMouseButtonTool from './simpleMouseButtonTool';
-import isMouseButtonEnabled from '../util/isMouseButtonEnabled';
-import mouseWheelTool from './mouseWheelTool';
-import touchPinchTool from './touchPinchTool';
-import touchDragTool from './touchDragTool';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+import simpleMouseButtonTool from './simpleMouseButtonTool.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+import mouseWheelTool from './mouseWheelTool.js';
+import touchPinchTool from './touchPinchTool.js';
+import touchDragTool from './touchDragTool.js';
 &nbsp;
 &nbsp;
 let startPoints;
@@ -671,7 +675,7 @@ function boundPosition (position, width, height) <span class="fstat-no" title="f
 }
 &nbsp;
 function correctShift (shift, viewport) <span class="fstat-no" title="function not covered" >{</span>
-    // Apply Flips
+  // Apply Flips
 <span class="cstat-no" title="statement not covered" >  if (viewport.hflip) {</span>
 <span class="cstat-no" title="statement not covered" >    shift.x *= -1;</span>
   }
@@ -680,7 +684,7 @@ function correctShift (shift, viewport) <span class="fstat-no" title="function n
 <span class="cstat-no" title="statement not covered" >    shift.y *= -1;</span>
   }
 &nbsp;
-    // Apply rotations
+  // Apply rotations
 <span class="cstat-no" title="statement not covered" >  if (viewport.rotation !== 0) {</span>
     const angle = <span class="cstat-no" title="statement not covered" >viewport.rotation * Math.PI / 180;</span>
 &nbsp;
@@ -698,20 +702,21 @@ function correctShift (shift, viewport) <span class="fstat-no" title="function n
 }
 &nbsp;
 function defaultStrategy (eventData, ticks) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-    // Calculate the new scale factor based on how far the mouse has changed
+  // Calculate the new scale factor based on how far the mouse has changed
   const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
 &nbsp;
-    // Now that the scale has been updated, determine the offset we need to apply to the center so we can
-    // Keep the original start location in the same position
+  // Now that the scale has been updated, determine the offset we need to apply to the center so we can
+  // Keep the original start location in the same position
   const newCoords = <span class="cstat-no" title="statement not covered" >cornerstone.pageToPixel(element, eventData.startPoints.page.x, eventData.startPoints.page.y);</span>
 &nbsp;
-    // The shift we will use is the difference between the original image coordinates of the point we've selected
-    // And the image coordinates of the same point on the page after the viewport scaling above has been performed
-    // This shift is in image coordinates, and is designed to keep the target location fixed on the page.
+  // The shift we will use is the difference between the original image coordinates of the point we've selected
+  // And the image coordinates of the same point on the page after the viewport scaling above has been performed
+  // This shift is in image coordinates, and is designed to keep the target location fixed on the page.
   let shift = <span class="cstat-no" title="statement not covered" >{</span>
     x: eventData.startPoints.image.x - newCoords.x,
     y: eventData.startPoints.image.y - newCoords.y
@@ -720,11 +725,11 @@ function defaultStrategy (eventData, ticks) <span class="fstat-no" title="functi
     // Correct the required shift using the viewport rotation and flip parameters
 <span class="cstat-no" title="statement not covered" >  shift = correctShift(shift, viewport);</span>
 &nbsp;
-    // Apply the shift to the Viewport's translation setting
+  // Apply the shift to the Viewport's translation setting
 <span class="cstat-no" title="statement not covered" >  viewport.translation.x -= shift.x;</span>
 <span class="cstat-no" title="statement not covered" >  viewport.translation.y -= shift.y;</span>
 &nbsp;
-    // Update the Viewport with the new translation value
+  // Update the Viewport with the new translation value
 <span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
 }
 &nbsp;
@@ -733,13 +738,13 @@ function translateStrategy (eventData, ticks) <span class="fstat-no" title="func
   const image = <span class="cstat-no" title="statement not covered" >eventData.image;</span>
   const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
 &nbsp;
-    // Calculate the new scale factor based on how far the mouse has changed
-    // Note that in this case we don't need to update the viewport after the initial
-    // Zoom step since we aren't don't intend to keep the target position static on
-    // The page
+  // Calculate the new scale factor based on how far the mouse has changed
+  // Note that in this case we don't need to update the viewport after the initial
+  // Zoom step since we aren't don't intend to keep the target position static on
+  // The page
   const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
 &nbsp;
-    // Define the default shift to take place during this zoom step
+  // Define the default shift to take place during this zoom step
   const shift = <span class="cstat-no" title="statement not covered" >{</span>
     x: 0,
     y: 0
@@ -751,18 +756,18 @@ function translateStrategy (eventData, ticks) <span class="fstat-no" title="func
   const minTranslation = <span class="cstat-no" title="statement not covered" >0.01;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (ticks &lt; 0) {</span>
-        // Zoom outwards from the image center
+    // Zoom outwards from the image center
 <span class="cstat-no" title="statement not covered" >    if (viewport.scale &lt; outwardsMinScaleToTranslate) {</span>
-            // If the current translation is smaller than the minimum desired translation,
-            // Set the translation to zero
+      // If the current translation is smaller than the minimum desired translation,
+      // Set the translation to zero
 <span class="cstat-no" title="statement not covered" >      if (Math.abs(viewport.translation.x) &lt; minTranslation) {</span>
 <span class="cstat-no" title="statement not covered" >        viewport.translation.x = 0;</span>
       } else {
 <span class="cstat-no" title="statement not covered" >        shift.x = viewport.translation.x / translateSpeed;</span>
       }
 &nbsp;
-            // If the current translation is smaller than the minimum desired translation,
-            // Set the translation to zero
+      // If the current translation is smaller than the minimum desired translation,
+      // Set the translation to zero
 <span class="cstat-no" title="statement not covered" >      if (Math.abs(viewport.translation.y) &lt; minTranslation) {</span>
 <span class="cstat-no" title="statement not covered" >        viewport.translation.y = 0;</span>
       } else {
@@ -770,80 +775,80 @@ function translateStrategy (eventData, ticks) <span class="fstat-no" title="func
       }
     }
   } else {
-        // Zoom inwards to the current image point
+    // Zoom inwards to the current image point
 &nbsp;
-        // Identify the coordinates of the point the user is trying to zoom into
-        // If we are not allowed to zoom outside the image, bound the user-selected position to
-        // A point inside the image
+    // Identify the coordinates of the point the user is trying to zoom into
+    // If we are not allowed to zoom outside the image, bound the user-selected position to
+    // A point inside the image
 <span class="cstat-no" title="statement not covered" >    if (config &amp;&amp; config.preventZoomOutsideImage) {</span>
 <span class="cstat-no" title="statement not covered" >      startPoints.image = boundPosition(startPoints.image, image.width, image.height);</span>
     }
 &nbsp;
-        // Calculate the translation value that would place the desired image point in the center
-        // Of the viewport
+    // Calculate the translation value that would place the desired image point in the center
+    // Of the viewport
     let desiredTranslation = <span class="cstat-no" title="statement not covered" >{</span>
       x: image.width / 2 - startPoints.image.x,
       y: image.height / 2 - startPoints.image.y
     };
 &nbsp;
-        // Correct the target location using the viewport rotation and flip parameters
+    // Correct the target location using the viewport rotation and flip parameters
 <span class="cstat-no" title="statement not covered" >    desiredTranslation = correctShift(desiredTranslation, viewport);</span>
 &nbsp;
-        // Calculate the difference between the current viewport translation value and the
-        // Final desired translation values
+    // Calculate the difference between the current viewport translation value and the
+    // Final desired translation values
     const distanceToDesired = <span class="cstat-no" title="statement not covered" >{</span>
       x: viewport.translation.x - desiredTranslation.x,
       y: viewport.translation.y - desiredTranslation.y
     };
 &nbsp;
-        // If the current translation is smaller than the minimum desired translation,
-        // Stop translating in the x-direction
+    // If the current translation is smaller than the minimum desired translation,
+    // Stop translating in the x-direction
 <span class="cstat-no" title="statement not covered" >    if (Math.abs(distanceToDesired.x) &lt; minTranslation) {</span>
 <span class="cstat-no" title="statement not covered" >      viewport.translation.x = desiredTranslation.x;</span>
     } else {
-            // Otherwise, shift the viewport by one step
+      // Otherwise, shift the viewport by one step
 <span class="cstat-no" title="statement not covered" >      shift.x = distanceToDesired.x / translateSpeed;</span>
     }
 &nbsp;
-        // If the current translation is smaller than the minimum desired translation,
-        // Stop translating in the y-direction
+    // If the current translation is smaller than the minimum desired translation,
+    // Stop translating in the y-direction
 <span class="cstat-no" title="statement not covered" >    if (Math.abs(distanceToDesired.y) &lt; minTranslation) {</span>
 <span class="cstat-no" title="statement not covered" >      viewport.translation.y = desiredTranslation.y;</span>
     } else {
-            // Otherwise, shift the viewport by one step
+      // Otherwise, shift the viewport by one step
 <span class="cstat-no" title="statement not covered" >      shift.y = distanceToDesired.y / translateSpeed;</span>
     }
   }
 &nbsp;
-    // Apply the shift to the Viewport's translation setting
+  // Apply the shift to the Viewport's translation setting
 <span class="cstat-no" title="statement not covered" >  viewport.translation.x -= shift.x;</span>
 <span class="cstat-no" title="statement not covered" >  viewport.translation.y -= shift.y;</span>
 &nbsp;
-    // Update the Viewport with the new translation value
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+  // Update the Viewport with the new translation value
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(element, viewport);</span>
 }
 &nbsp;
 function zoomToCenterStrategy (eventData, ticks) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-    // Calculate the new scale factor based on how far the mouse has changed
+  // Calculate the new scale factor based on how far the mouse has changed
   const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(element, viewport);</span>
 }
 &nbsp;
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
 <span class="cstat-no" title="statement not covered" >    startPoints = eventData.startPoints; </span>// Used for translateStrategy
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
   }
@@ -864,7 +869,7 @@ function dragCallback (e, eventData) <span class="fstat-no" title="function not 
 function mouseWheelCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   let ticks = <span class="cstat-no" title="statement not covered" >-eventData.direction / 4;</span>
 &nbsp;
-    // Allow inversion of the mouse wheel scroll via a configuration option
+  // Allow inversion of the mouse wheel scroll via a configuration option
   const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (config &amp;&amp; config.invert) {</span>
@@ -873,15 +878,16 @@ function mouseWheelCallback (e, eventData) <span class="fstat-no" title="functio
 &nbsp;
   const viewport = <span class="cstat-no" title="statement not covered" >changeViewportScale(eventData.viewport, ticks);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(eventData.element, viewport);</span>
 }
 &nbsp;
 function touchPinchCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const config = <span class="cstat-no" title="statement not covered" >zoom.getConfiguration();</span>
   const viewport = <span class="cstat-no" title="statement not covered" >eventData.viewport;</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-    // Change the scale based on the pinch gesture's scale change
+  // Change the scale based on the pinch gesture's scale change
 <span class="cstat-no" title="statement not covered" >  viewport.scale += eventData.scaleChange * viewport.scale;</span>
 <span class="cstat-no" title="statement not covered" >  if (config.maxScale &amp;&amp; viewport.scale &gt; config.maxScale) {</span>
 <span class="cstat-no" title="statement not covered" >    viewport.scale = config.maxScale;</span>
@@ -891,8 +897,8 @@ function touchPinchCallback (e, eventData) <span class="fstat-no" title="functio
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(element, viewport);</span>
 &nbsp;
-    // Now that the scale has been updated, determine the offset we need to apply to the center so we can
-    // Keep the original start location in the same position
+  // Now that the scale has been updated, determine the offset we need to apply to the center so we can
+  // Keep the original start location in the same position
   const newCoords = <span class="cstat-no" title="statement not covered" >cornerstone.pageToPixel(element, eventData.startPoints.page.x, eventData.startPoints.page.y);</span>
   let shift = <span class="cstat-no" title="statement not covered" >{</span>
     x: eventData.startPoints.image.x - newCoords.x,
@@ -931,7 +937,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

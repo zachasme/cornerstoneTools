@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.66% </span>
+        <span class="strong">3.61% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/82</span>
+        <span class='fraction'>3/83</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.66% </span>
+        <span class="strong">3.61% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/82</span>
+        <span class='fraction'>3/83</span>
       </div>
     </div>
   </div>
@@ -251,7 +251,8 @@
 206
 207
 208
-209</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+209
+210</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -274,6 +275,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -459,7 +461,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import loadHandlerManager from '../stateManagement/loadHandlerManager.js';
 import { addToolState, getToolState, clearToolState } from '../stateManagement/toolState.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
@@ -470,32 +472,33 @@ const toolType = 'crosshairs';
 function chooseLocation (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  e.stopImmediatePropagation(); </span>// Prevent CornerstoneToolsTouchStartActive from killing any press events
 &nbsp;
-    // If we have no toolData for this element, return immediately as there is nothing to do
+  // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!toolData) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // Get current element target information
+  // Get current element target information
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const sourceElement = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
   const sourceEnabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(sourceElement);</span>
   const sourceImageId = <span class="cstat-no" title="statement not covered" >sourceEnabledElement.image.imageId;</span>
-  const sourceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', sourceImageId);</span>
+  const sourceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlaneModule', sourceImageId);</span>
 &nbsp;
-    // Get currentPoints from mouse cursor on selected element
+  // Get currentPoints from mouse cursor on selected element
   const sourceImagePoint = <span class="cstat-no" title="statement not covered" >eventData.currentPoints.image;</span>
 &nbsp;
-    // Transfer this to a patientPoint given imagePlane metadata
+  // Transfer this to a patientPoint given imagePlane metadata
   const patientPoint = <span class="cstat-no" title="statement not covered" >imagePointToPatientPoint(sourceImagePoint, sourceImagePlane);</span>
 &nbsp;
-    // Get the enabled elements associated with this synchronization context
+  // Get the enabled elements associated with this synchronization context
   const syncContext = <span class="cstat-no" title="statement not covered" >toolData.data[0].synchronizationContext;</span>
   const enabledElements = <span class="cstat-no" title="statement not covered" >syncContext.getSourceElements();</span>
 &nbsp;
-    // Iterate over each synchronized element
+  // Iterate over each synchronized element
 <span class="cstat-no" title="statement not covered" >  enabledElements.forEach(function (targetElement) <span class="fstat-no" title="function not covered" >{</span></span>
-        // Don't do anything if the target is the same as the source
+    // Don't do anything if the target is the same as the source
 <span class="cstat-no" title="statement not covered" >    if (targetElement === sourceElement) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
@@ -511,15 +514,15 @@ function chooseLocation (e, eventData) <span class="fstat-no" title="function no
 &nbsp;
     const stackData = <span class="cstat-no" title="statement not covered" >stackToolDataSource.data[0];</span>
 &nbsp;
-        // Find within the element's stack the closest image plane to selected location
+    // Find within the element's stack the closest image plane to selected location
 <span class="cstat-no" title="statement not covered" >    stackData.imageIds.forEach(function (imageId, index) <span class="fstat-no" title="function not covered" >{</span></span>
-      const imagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', imageId);</span>
+      const imagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlaneModule', imageId);</span>
       const imagePosition = <span class="cstat-no" title="statement not covered" >imagePlane.imagePositionPatient;</span>
       const row = <span class="cstat-no" title="statement not covered" >imagePlane.rowCosines.clone();</span>
       const column = <span class="cstat-no" title="statement not covered" >imagePlane.columnCosines.clone();</span>
       const normal = <span class="cstat-no" title="statement not covered" >column.clone().cross(row.clone());</span>
       const distance = <span class="cstat-no" title="statement not covered" >Math.abs(normal.clone().dot(imagePosition) - normal.clone().dot(patientPoint));</span>
-            // Console.log(index + '=' + distance);
+      // Console.log(index + '=' + distance);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (distance &lt; minDistance) {</span>
 <span class="cstat-no" title="statement not covered" >        minDistance = distance;</span>
@@ -531,7 +534,7 @@ function chooseLocation (e, eventData) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
-        // Switch the loaded image to the required image
+    // Switch the loaded image to the required image
 <span class="cstat-no" title="statement not covered" >    if (newImageIdIndex !== -1 &amp;&amp; stackData.imageIds[newImageIdIndex] !== undefined) {</span>
       const startLoadingHandler = <span class="cstat-no" title="statement not covered" >loadHandlerManager.getStartLoadHandler();</span>
       const endLoadingHandler = <span class="cstat-no" title="statement not covered" >loadHandlerManager.getEndLoadHandler();</span>
@@ -569,14 +572,14 @@ function chooseLocation (e, eventData) <span class="fstat-no" title="function no
 }
 &nbsp;
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
 <span class="cstat-no" title="statement not covered" >    chooseLocation(e, eventData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = cases jquery to preventDefault() and stopPropagation() this event
@@ -601,14 +604,14 @@ function enable (element, mouseButtonMask, synchronizationContext) <span class="
     synchronizationContext
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
 }
 &nbsp;
 // Disables the reference line tool for the given element
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 }
 &nbsp;
 // Module/private exports
@@ -620,13 +623,13 @@ const crosshairs = {
 };
 &nbsp;
 function dragEndCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsTouchDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsDragEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsTouchDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsDragEnd', dragEndCallback);</span>
 }
 &nbsp;
 function dragStartCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).on('CornerstoneToolsTouchDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).on('CornerstoneToolsDragEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).on('CornerstoneToolsTouchDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).on('CornerstoneToolsDragEnd', dragEndCallback);</span>
 <span class="cstat-no" title="statement not covered" >  chooseLocation(e, eventData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return false;</span>
@@ -639,21 +642,21 @@ function dragCallback (e, eventData) <span class="fstat-no" title="function not 
 }
 &nbsp;
 function enableTouch (element, synchronizationContext) <span class="fstat-no" title="function not covered" >{</span>
-    // Clear any currently existing toolData
+  // Clear any currently existing toolData
 <span class="cstat-no" title="statement not covered" >  clearToolState(element, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  addToolState(element, toolType, {</span>
     synchronizationContext
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsTouchStart', dragStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsTouchStart', dragStartCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsTouchStart', dragStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsTouchStart', dragStartCallback);</span>
 }
 &nbsp;
 // Disables the reference line tool for the given element
 function disableTouch (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsTouchStart', dragStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsTouchStart', dragStartCallback);</span>
 }
 &nbsp;
 const crosshairsTouch = {
@@ -673,7 +676,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.44% </span>
+        <span class="strong">4.4% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/90</span>
+        <span class='fraction'>4/91</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.44% </span>
+        <span class="strong">4.4% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/90</span>
+        <span class='fraction'>4/91</span>
       </div>
     </div>
   </div>
@@ -281,7 +281,9 @@
 236
 237
 238
-239</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+239
+240
+241</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -331,6 +333,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -519,7 +523,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import touchDragTool from './touchDragTool.js';
 import { getBrowserInfo } from '../util/getMaxSimultaneousRequests.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
@@ -537,16 +541,16 @@ let currentPoints;
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstonenewimage', newImageCallback);</span>
 <span class="cstat-no" title="statement not covered" >  hideTool(eventData);</span>
 }
 &nbsp;
 function hideTool (eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).find('.magnifyTool').hide();</span>
-    // Re-enable the mouse cursor
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).find('.magnifyTool').hide();</span>
+  // Re-enable the mouse cursor
 <span class="cstat-no" title="statement not covered" >  document.body.style.cursor = 'default';</span>
 }
 &nbsp;
@@ -555,19 +559,21 @@ function mouseDownCallback (e, eventData) <span class="fstat-no" title="function
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseDrag', eventData, dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseUp', eventData, mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseClick', eventData, mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseDrag', eventData, dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseUp', eventData, mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseClick', eventData, mouseUpCallback);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    currentPoints = eventData.currentPoints;</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneNewImage', eventData, newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.addEventListener('cornerstonenewimage', newImageCallback);</span>
 <span class="cstat-no" title="statement not covered" >    drawMagnificationTool(eventData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
   }
 }
 &nbsp;
-function newImageCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function newImageCallback (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  eventData.currentPoints = currentPoints;</span>
 <span class="cstat-no" title="statement not covered" >  drawMagnificationTool(eventData);</span>
 }
@@ -575,9 +581,9 @@ function newImageCallback (e, eventData) <span class="fstat-no" title="function 
 function dragEndCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsDragEnd', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsTouchEnd', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneNewImage', newImageCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsDragEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsTouchEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstonenewimage', newImageCallback);</span>
 <span class="cstat-no" title="statement not covered" >  hideTool(eventData);</span>
 }
 &nbsp;
@@ -587,8 +593,8 @@ function dragCallback (e, eventData) <span class="fstat-no" title="function not 
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  drawMagnificationTool(eventData);</span>
 <span class="cstat-no" title="statement not covered" >  if (eventData.isTouchEvent === true) {</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsDragEnd', dragEndCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsTouchEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsDragEnd', dragEndCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsTouchEnd', dragEndCallback);</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
@@ -596,7 +602,7 @@ function dragCallback (e, eventData) <span class="fstat-no" title="function not 
 &nbsp;
 /** Draws the magnifying glass */
 function drawMagnificationTool (eventData) <span class="fstat-no" title="function not covered" >{</span>
-  const magnifyCanvas = <span class="cstat-no" title="statement not covered" >$(eventData.element).find('.magnifyTool').get(0);</span>
+  const magnifyCanvas = <span class="cstat-no" title="statement not covered" >external.$(eventData.element).find('.magnifyTool').get(0);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!magnifyCanvas) {</span>
 <span class="cstat-no" title="statement not covered" >    createMagnificationCanvas(eventData.element);</span>
@@ -607,9 +613,9 @@ function drawMagnificationTool (eventData) <span class="fstat-no" title="functio
   const magnifySize = <span class="cstat-no" title="statement not covered" >config.magnifySize;</span>
   const magnificationLevel = <span class="cstat-no" title="statement not covered" >config.magnificationLevel;</span>
 &nbsp;
-    // The 'not' magnifyTool class here is necessary because cornerstone places
-    // No classes of it's own on the canvas we want to select
-  const canvas = <span class="cstat-no" title="statement not covered" >$(eventData.element).find('canvas').not('.magnifyTool').get(0);</span>
+  // The 'not' magnifyTool class here is necessary because cornerstone places
+  // No classes of it's own on the canvas we want to select
+  const canvas = <span class="cstat-no" title="statement not covered" >external.$(eventData.element).find('canvas').not('.magnifyTool').get(0);</span>
   const context = <span class="cstat-no" title="statement not covered" >canvas.getContext('2d');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  context.setTransform(1, 0, 0, 1, 0, 0);</span>
@@ -620,8 +626,8 @@ function drawMagnificationTool (eventData) <span class="fstat-no" title="functio
 &nbsp;
   const getSize = <span class="cstat-no" title="statement not covered" >magnifySize / magnificationLevel;</span>
 &nbsp;
-    // Calculate the on-canvas location of the mouse pointer / touch
-  const canvasLocation = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(eventData.element, eventData.currentPoints.image);</span>
+  // Calculate the on-canvas location of the mouse pointer / touch
+  const canvasLocation = <span class="cstat-no" title="statement not covered" >external.cornerstone.pixelToCanvas(eventData.element, eventData.currentPoints.image);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (eventData.isTouchEvent === true) {</span>
 <span class="cstat-no" title="statement not covered" >    canvasLocation.y -= 1.25 * getSize;</span>
@@ -633,11 +639,11 @@ function drawMagnificationTool (eventData) <span class="fstat-no" title="functio
 <span class="cstat-no" title="statement not covered" >  canvasLocation.y = Math.max(canvasLocation.y, 0);</span>
 <span class="cstat-no" title="statement not covered" >  canvasLocation.y = Math.min(canvasLocation.y, canvas.height);</span>
 &nbsp;
-    // Clear the rectangle
+  // Clear the rectangle
 <span class="cstat-no" title="statement not covered" >  zoomCtx.clearRect(0, 0, magnifySize, magnifySize);</span>
 <span class="cstat-no" title="statement not covered" >  zoomCtx.fillStyle = 'transparent';</span>
 &nbsp;
-    // Fill it with the pixels that the mouse is clicking on
+  // Fill it with the pixels that the mouse is clicking on
 <span class="cstat-no" title="statement not covered" >  zoomCtx.fillRect(0, 0, magnifySize, magnifySize);</span>
 &nbsp;
   const copyFrom = <span class="cstat-no" title="statement not covered" >{</span>
@@ -646,8 +652,8 @@ function drawMagnificationTool (eventData) <span class="fstat-no" title="functio
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (browserName === 'Safari') {</span>
-        // Safari breaks when trying to copy pixels with negative indices
-        // This prevents proper Magnify usage
+    // Safari breaks when trying to copy pixels with negative indices
+    // This prevents proper Magnify usage
 <span class="cstat-no" title="statement not covered" >    copyFrom.x = Math.max(copyFrom.x, 0);</span>
 <span class="cstat-no" title="statement not covered" >    copyFrom.y = Math.max(copyFrom.y, 0);</span>
   }
@@ -662,23 +668,23 @@ function drawMagnificationTool (eventData) <span class="fstat-no" title="functio
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  zoomCtx.drawImage(canvas, copyFrom.x, copyFrom.y, canvas.width - copyFrom.x, canvas.height - copyFrom.y, 0, 0, scaledMagnify.x, scaledMagnify.y);</span>
 &nbsp;
-    // Place the magnification tool at the same location as the pointer
+  // Place the magnification tool at the same location as the pointer
 <span class="cstat-no" title="statement not covered" >  magnifyCanvas.style.top = `${canvasLocation.y - 0.5 * magnifySize}px`;</span>
 <span class="cstat-no" title="statement not covered" >  magnifyCanvas.style.left = `${canvasLocation.x - 0.5 * magnifySize}px`;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  magnifyCanvas.style.display = 'block';</span>
 &nbsp;
-    // Hide the mouse cursor, so the user can see better
+  // Hide the mouse cursor, so the user can see better
 <span class="cstat-no" title="statement not covered" >  document.body.style.cursor = 'none';</span>
 }
 &nbsp;
 /** Creates the magnifying glass canvas */
 function createMagnificationCanvas (element) <span class="fstat-no" title="function not covered" >{</span>
-    // If the magnifying glass canvas doesn't already exist
-<span class="cstat-no" title="statement not covered" >  if ($(element).find('.magnifyTool').length === 0) {</span>
-        // Create a canvas and append it as a child to the element
+  // If the magnifying glass canvas doesn't already exist
+<span class="cstat-no" title="statement not covered" >  if (external.$(element).find('.magnifyTool').length === 0) {</span>
+    // Create a canvas and append it as a child to the element
     const magnifyCanvas = <span class="cstat-no" title="statement not covered" >document.createElement('canvas');</span>
-        // The magnifyTool class is used to find the canvas later on
+    // The magnifyTool class is used to find the canvas later on
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    magnifyCanvas.classList.add('magnifyTool');</span>
 &nbsp;
@@ -687,7 +693,7 @@ function createMagnificationCanvas (element) <span class="fstat-no" title="funct
 <span class="cstat-no" title="statement not covered" >    magnifyCanvas.width = config.magnifySize;</span>
 <span class="cstat-no" title="statement not covered" >    magnifyCanvas.height = config.magnifySize;</span>
 &nbsp;
-        // Make sure position is absolute so the canvas can follow the mouse / touch
+    // Make sure position is absolute so the canvas can follow the mouse / touch
 <span class="cstat-no" title="statement not covered" >    magnifyCanvas.style.position = 'absolute';</span>
 <span class="cstat-no" title="statement not covered" >    element.appendChild(magnifyCanvas);</span>
   }
@@ -695,12 +701,12 @@ function createMagnificationCanvas (element) <span class="fstat-no" title="funct
 &nbsp;
 /** Find the magnifying glass canvas and remove it */
 function removeMagnificationCanvas (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).find('.magnifyTool').remove();</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).find('.magnifyTool').remove();</span>
 }
 &nbsp;
 // --- Mouse tool activate / disable --- //
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 <span class="cstat-no" title="statement not covered" >  removeMagnificationCanvas(element);</span>
 }
 &nbsp;
@@ -720,9 +726,9 @@ function activate (element, mouseButtonMask) <span class="fstat-no" title="funct
     mouseButtonMask
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
 <span class="cstat-no" title="statement not covered" >  createMagnificationCanvas(element);</span>
 }
 &nbsp;
@@ -763,7 +769,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

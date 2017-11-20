@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.88% </span>
+        <span class="strong">4.76% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/41</span>
+        <span class='fraction'>2/42</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.88% </span>
+        <span class="strong">4.76% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/41</span>
+        <span class='fraction'>2/42</span>
       </div>
     </div>
   </div>
@@ -161,7 +161,8 @@
 116
 117
 118
-119</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+119
+120</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,6 +174,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,17 +281,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
-import mouseButtonTool from '../imageTools/mouseButtonTool';
-import drawHandles from '../manipulators/drawHandles';
-import setContextToDisplayFontSize from '../util/setContextToDisplayFontSize';
-import { getToolState } from '../stateManagement/toolState';
-import MeasurementManager from '../measurementManager/measurementManager';
-import LineSampleMeasurement from '../measurementManager/lineSampleMeasurement';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+import mouseButtonTool from '../imageTools/mouseButtonTool.js';
+import drawHandles from '../manipulators/drawHandles.js';
+import setContextToDisplayFontSize from '../util/setContextToDisplayFontSize.js';
+import { getToolState } from '../stateManagement/toolState.js';
+import MeasurementManager from '../measurementManager/measurementManager.js';
+import LineSampleMeasurement from '../measurementManager/lineSampleMeasurement.js';
 &nbsp;
 const toolType = 'probe4D';
 &nbsp;
 function updateLineSample (measurementData) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const samples = <span class="cstat-no" title="statement not covered" >[];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  measurementData.timeSeries.stacks.forEach(function (stack) <span class="fstat-no" title="function not covered" >{</span></span>
@@ -321,7 +324,7 @@ function createNewMeasurement (mouseEventData) <span class="fstat-no" title="fun
 &nbsp;
   const timeSeries = <span class="cstat-no" title="statement not covered" >timeSeriestoolData.data[0];</span>
 &nbsp;
-    // Create the measurement data for this tool with the end handle activated
+  // Create the measurement data for this tool with the end handle activated
   const measurementData = <span class="cstat-no" title="statement not covered" >{</span>
     timeSeries,
     lineSample: new LineSampleMeasurement(),
@@ -347,34 +350,34 @@ function createNewMeasurement (mouseEventData) <span class="fstat-no" title="fun
 // /////// BEGIN IMAGE RENDERING ///////
 &nbsp;
 function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-    // If we have no toolData for this element, return immediately as there is nothing to do
+  // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!toolData) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // We have tool data for this element - iterate over each one and draw it
+  // We have tool data for this element - iterate over each one and draw it
   const context = <span class="cstat-no" title="statement not covered" >eventData.canvasContext.canvas.getContext('2d');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.setToPixelCoordinateSystem(eventData.enabledElement, context);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setToPixelCoordinateSystem(eventData.enabledElement, context);</span>
   const color = <span class="cstat-no" title="statement not covered" >'white';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  for (let i = 0; i &lt; toolData.data.length; i++) {</span>
 <span class="cstat-no" title="statement not covered" >    context.save();</span>
     const data = <span class="cstat-no" title="statement not covered" >toolData.data[i];</span>
 &nbsp;
-        // Draw the handles
+    // Draw the handles
 <span class="cstat-no" title="statement not covered" >    context.beginPath();</span>
 <span class="cstat-no" title="statement not covered" >    drawHandles(context, eventData, data.handles, color);</span>
 <span class="cstat-no" title="statement not covered" >    context.stroke();</span>
 &nbsp;
-        // Draw text
+    // Draw text
     const fontParameters = <span class="cstat-no" title="statement not covered" >setContextToDisplayFontSize(eventData.enabledElement, eventData.canvasContext, 15);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    context.font = `${fontParameters.fontSize}px Arial`;</span>
 &nbsp;
-        // Translate the x/y away from the cursor
+    // Translate the x/y away from the cursor
     const x = <span class="cstat-no" title="statement not covered" >Math.round(data.handles.end.x);</span>
     const y = <span class="cstat-no" title="statement not covered" >Math.round(data.handles.end.y);</span>
     const textX = <span class="cstat-no" title="statement not covered" >data.handles.end.x + 3;</span>
@@ -403,7 +406,7 @@ export default probeTool4D;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

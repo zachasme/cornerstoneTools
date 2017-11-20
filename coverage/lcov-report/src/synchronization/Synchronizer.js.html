@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/129</span>
+        <span class='fraction'>0/131</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/50</span>
+        <span class='fraction'>0/52</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/129</span>
+        <span class='fraction'>0/131</span>
       </div>
     </div>
   </div>
@@ -328,7 +328,8 @@
 283
 284
 285
-286</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+286
+287</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,6 +338,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -452,7 +454,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -613,12 +615,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 &nbsp;
 // This object is responsible for synchronizing target elements when an event fires on a source
 // Element
 function Synchronizer (event, handler) <span class="fstat-no" title="function not covered" >{</span>
 &nbsp;
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const that = <span class="cstat-no" title="statement not covered" >this;</span>
   const sourceElements = <span class="cstat-no" title="statement not covered" >[];</span> // Source elements fire the events we want to synchronize to
   const targetElements = <span class="cstat-no" title="statement not covered" >[];</span> // Target elements we want to synchronize to source elements
@@ -654,7 +657,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
       }
 &nbsp;
       const sourceImageId = <span class="cstat-no" title="statement not covered" >sourceEnabledElement.image.imageId;</span>
-      const sourceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', sourceImageId);</span>
+      const sourceImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlaneModule', sourceImageId);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (!sourceImagePlane || !sourceImagePlane.imagePositionPatient) {</span>
 <span class="cstat-no" title="statement not covered" >        return;</span>
@@ -693,7 +696,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
 &nbsp;
-        const targetImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlane', targetImageId);</span>
+        const targetImagePlane = <span class="cstat-no" title="statement not covered" >cornerstone.metaData.get('imagePlaneModule', targetImageId);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        if (!targetImagePlane || !targetImagePlane.imagePositionPatient) {</span>
 <span class="cstat-no" title="statement not covered" >          return;</span>
@@ -711,7 +714,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
   };
 &nbsp;
   function fireEvent (sourceElement, eventData) <span class="fstat-no" title="function not covered" >{</span>
-        // Broadcast an event that something changed
+    // Broadcast an event that something changed
 <span class="cstat-no" title="statement not covered" >    if (!sourceElements.length || !targetElements.length) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
@@ -737,7 +740,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (sourceImageId === targetImageId) {</span>
 <span class="cstat-no" title="statement not covered" >        positionDifference = 0;</span>
-      } else {
+      } else <span class="cstat-no" title="statement not covered" >if (initialData.distances[sourceImageId] !== undefined) {</span>
 <span class="cstat-no" title="statement not covered" >        positionDifference = initialData.distances[sourceImageId][targetImageId];</span>
       }
 &nbsp;
@@ -754,109 +757,109 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >    fireEvent(e.currentTarget, eventData);</span>
   }
 &nbsp;
-    // Adds an element as a source
+  // Adds an element as a source
 <span class="cstat-no" title="statement not covered" >  this.addSource = function (element) <span class="fstat-no" title="function not covered" >{</span></span>
-        // Return if this element was previously added
+    // Return if this element was previously added
     const index = <span class="cstat-no" title="statement not covered" >sourceElements.indexOf(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (index !== -1) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
-        // Add to our list of enabled elements
+    // Add to our list of enabled elements
 <span class="cstat-no" title="statement not covered" >    sourceElements.push(element);</span>
 &nbsp;
-        // Subscribe to the event
-<span class="cstat-no" title="statement not covered" >    $(element).on(event, onEvent);</span>
+    // Subscribe to the event
+<span class="cstat-no" title="statement not covered" >    external.$(element).on(event, onEvent);</span>
 &nbsp;
-        // Update the inital distances between elements
+    // Update the inital distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    that.updateDisableHandlers();</span>
   };
 &nbsp;
-    // Adds an element as a target
+  // Adds an element as a target
 <span class="cstat-no" title="statement not covered" >  this.addTarget = function (element) <span class="fstat-no" title="function not covered" >{</span></span>
-        // Return if this element was previously added
+    // Return if this element was previously added
     const index = <span class="cstat-no" title="statement not covered" >targetElements.indexOf(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (index !== -1) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
-        // Add to our list of enabled elements
+    // Add to our list of enabled elements
 <span class="cstat-no" title="statement not covered" >    targetElements.push(element);</span>
 &nbsp;
-        // Update the inital distances between elements
+    // Update the inital distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
-        // Invoke the handler for this new target element
+    // Invoke the handler for this new target element
 <span class="cstat-no" title="statement not covered" >    eventHandler(that, element, element, 0);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    that.updateDisableHandlers();</span>
   };
 &nbsp;
-    // Adds an element as both a source and a target
+  // Adds an element as both a source and a target
 <span class="cstat-no" title="statement not covered" >  this.add = function (element) <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >    that.addSource(element);</span>
 <span class="cstat-no" title="statement not covered" >    that.addTarget(element);</span>
   };
 &nbsp;
-    // Removes an element as a source
+  // Removes an element as a source
 <span class="cstat-no" title="statement not covered" >  this.removeSource = function (element) <span class="fstat-no" title="function not covered" >{</span></span>
-        // Find the index of this element
+    // Find the index of this element
     const index = <span class="cstat-no" title="statement not covered" >sourceElements.indexOf(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (index === -1) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
-        // Remove this element from the array
+    // Remove this element from the array
 <span class="cstat-no" title="statement not covered" >    sourceElements.splice(index, 1);</span>
 &nbsp;
-        // Stop listening for the event
-<span class="cstat-no" title="statement not covered" >    $(element).off(event, onEvent);</span>
+    // Stop listening for the event
+<span class="cstat-no" title="statement not covered" >    external.$(element).off(event, onEvent);</span>
 &nbsp;
-        // Update the inital distances between elements
+    // Update the inital distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
-        // Update everyone listening for events
+    // Update everyone listening for events
 <span class="cstat-no" title="statement not covered" >    fireEvent(element);</span>
 <span class="cstat-no" title="statement not covered" >    that.updateDisableHandlers();</span>
   };
 &nbsp;
-    // Removes an element as a target
+  // Removes an element as a target
 <span class="cstat-no" title="statement not covered" >  this.removeTarget = function (element) <span class="fstat-no" title="function not covered" >{</span></span>
-        // Find the index of this element
+    // Find the index of this element
     const index = <span class="cstat-no" title="statement not covered" >targetElements.indexOf(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (index === -1) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
-        // Remove this element from the array
+    // Remove this element from the array
 <span class="cstat-no" title="statement not covered" >    targetElements.splice(index, 1);</span>
 &nbsp;
-        // Update the inital distances between elements
+    // Update the inital distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
-        // Invoke the handler for the removed target
+    // Invoke the handler for the removed target
 <span class="cstat-no" title="statement not covered" >    eventHandler(that, element, element, 0);</span>
 <span class="cstat-no" title="statement not covered" >    that.updateDisableHandlers();</span>
   };
 &nbsp;
-    // Removes an element as both a source and target
+  // Removes an element as both a source and target
 <span class="cstat-no" title="statement not covered" >  this.remove = function (element) <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >    that.removeTarget(element);</span>
 <span class="cstat-no" title="statement not covered" >    that.removeSource(element);</span>
   };
 &nbsp;
-    // Returns the source elements
+  // Returns the source elements
 <span class="cstat-no" title="statement not covered" >  this.getSourceElements = function () <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >    return sourceElements;</span>
   };
 &nbsp;
-    // Returns the target elements
+  // Returns the target elements
 <span class="cstat-no" title="statement not covered" >  this.getTargetElements = function () <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >    return targetElements;</span>
   };
@@ -873,23 +876,23 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >    ignoreFiredEvents = false;</span>
   };
 &nbsp;
-  function disableHandler (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-    const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
+  function disableHandler (e) <span class="fstat-no" title="function not covered" >{</span>
+    const element = <span class="cstat-no" title="statement not covered" >e.detail.element;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    that.remove(element);</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  this.updateDisableHandlers = function () <span class="fstat-no" title="function not covered" >{</span></span>
-    const elements = <span class="cstat-no" title="statement not covered" >$.unique(sourceElements.concat(targetElements));</span>
+    const elements = <span class="cstat-no" title="statement not covered" >external.$.unique(sourceElements.concat(targetElements));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    elements.forEach(function (element) <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneElementDisabled', disableHandler);</span>
-<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneElementDisabled', disableHandler);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener('cornerstoneelementdisabled', disableHandler);</span>
+<span class="cstat-no" title="statement not covered" >      element.addEventListener('cornerstoneelementdisabled', disableHandler);</span>
     });
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  this.destroy = function () <span class="fstat-no" title="function not covered" >{</span></span>
-    const elements = <span class="cstat-no" title="statement not covered" >$.unique(sourceElements.concat(targetElements));</span>
+    const elements = <span class="cstat-no" title="statement not covered" >external.$.unique(sourceElements.concat(targetElements));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    elements.forEach(function (element) <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >      that.remove(element);</span>
@@ -904,7 +907,7 @@ export default Synchronizer;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

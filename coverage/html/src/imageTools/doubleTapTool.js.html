@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/8</span>
+        <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/8</span>
+        <span class='fraction'>1/7</span>
       </div>
     </div>
   </div>
@@ -64,50 +64,47 @@
 19
 20
 21
-22
-23</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+22</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function (doubleTapCallback) {
-  const toolInterface = {
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+&nbsp;
+export default function (doubleTapCallback) {
+  return {
     activate (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
       const eventData = <span class="cstat-no" title="statement not covered" >{};</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      $(element).on('CornerstoneToolsDoubleTap', eventData, doubleTapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).on('CornerstoneToolsDoubleTap', eventData, doubleTapCallback);</span>
     },
     disable (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
     },
     enable (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
     },
     deactivate (element) {
-<span class="cstat-no" title="statement not covered" >      $(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsDoubleTap', doubleTapCallback);</span>
     }
   };
-&nbsp;
-&nbsp;
-  return toolInterface;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -115,7 +112,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

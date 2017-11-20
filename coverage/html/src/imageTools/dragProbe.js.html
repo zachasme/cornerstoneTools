@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.46% </span>
+        <span class="strong">4.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/112</span>
+        <span class='fraction'>5/114</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.46% </span>
+        <span class="strong">4.39% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/112</span>
+        <span class='fraction'>5/114</span>
       </div>
     </div>
   </div>
@@ -284,7 +284,9 @@
 239
 240
 241
-242</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+242
+243
+244</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,6 +299,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -362,6 +365,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -525,19 +529,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import simpleMouseButtonTool from './simpleMouseButtonTool.js';
 import touchDragTool from './touchDragTool.js';
 import textStyle from '../stateManagement/textStyle.js';
 import toolColors from '../stateManagement/toolColors.js';
-import drawTextBox from '../util/drawTextBox';
-import getRGBPixels from '../util/getRGBPixels';
-import calculateSUV from '../util/calculateSUV';
-import isMouseButtonEnabled from '../util/isMouseButtonEnabled';
+import drawTextBox from '../util/drawTextBox.js';
+import getRGBPixels from '../util/getRGBPixels.js';
+import calculateSUV from '../util/calculateSUV.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 &nbsp;
 let dragEventData;
 &nbsp;
 function defaultStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(eventData.element);</span>
 &nbsp;
   const context = <span class="cstat-no" title="statement not covered" >enabledElement.canvas.getContext('2d');</span>
@@ -578,7 +583,7 @@ function defaultStrategy (eventData) <span class="fstat-no" title="function not 
     const mo = <span class="cstat-no" title="statement not covered" >sp * eventData.image.slope + eventData.image.intercept;</span>
     const suv = <span class="cstat-no" title="statement not covered" >calculateSUV(eventData.image, sp);</span>
 &nbsp;
-        // Draw text
+    // Draw text
 <span class="cstat-no" title="statement not covered" >    text = `${x}, ${y}`;</span>
 <span class="cstat-no" title="statement not covered" >    str = `SP: ${sp} MO: ${parseFloat(mo.toFixed(3))}`;</span>
 <span class="cstat-no" title="statement not covered" >    if (suv) {</span>
@@ -586,9 +591,9 @@ function defaultStrategy (eventData) <span class="fstat-no" title="function not 
     }
   }
 &nbsp;
-    // Draw text
+  // Draw text
   const coords = <span class="cstat-no" title="statement not covered" >{</span>
-        // Translate the x/y away from the cursor
+    // Translate the x/y away from the cursor
     x: eventData.currentPoints.image.x + 3,
     y: eventData.currentPoints.image.y - 3
   };
@@ -603,6 +608,7 @@ function defaultStrategy (eventData) <span class="fstat-no" title="function not 
 }
 &nbsp;
 function minimalStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
   const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
   const image = <span class="cstat-no" title="statement not covered" >enabledElement.image;</span>
@@ -634,10 +640,10 @@ function minimalStrategy (eventData) <span class="fstat-no" title="function not 
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (eventData.isTouchEvent === true) {</span>
 <span class="cstat-no" title="statement not covered" >    toolCoords = cornerstone.pageToPixel(element, eventData.currentPoints.page.x,</span>
-            eventData.currentPoints.page.y - textStyle.getFontSize() * 4);
+      eventData.currentPoints.page.y - textStyle.getFontSize() * 4);
   } else {
 <span class="cstat-no" title="statement not covered" >    toolCoords = cornerstone.pageToPixel(element, eventData.currentPoints.page.x,</span>
-            eventData.currentPoints.page.y - textStyle.getFontSize() / 2);
+      eventData.currentPoints.page.y - textStyle.getFontSize() / 2);
   }
 &nbsp;
   let storedPixels;
@@ -672,13 +678,13 @@ function minimalStrategy (eventData) <span class="fstat-no" title="function not 
     }
   }
 &nbsp;
-    // Prepare text
+  // Prepare text
   const textCoords = <span class="cstat-no" title="statement not covered" >cornerstone.pixelToCanvas(element, toolCoords);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  context.font = font;</span>
 <span class="cstat-no" title="statement not covered" >  context.fillStyle = color;</span>
 &nbsp;
-    // Translate the x/y away from the cursor
+  // Translate the x/y away from the cursor
   let translation;
   const handleRadius = <span class="cstat-no" title="statement not covered" >6;</span>
   const width = <span class="cstat-no" title="statement not covered" >context.measureText(text).width;</span>
@@ -707,21 +713,21 @@ function minimalStrategy (eventData) <span class="fstat-no" title="function not 
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneImageRendered', imageRenderedCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstoneimagerendered', imageRenderedCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(eventData.element);</span>
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneImageRendered', imageRenderedCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.addEventListener('cornerstoneimagerendered', imageRenderedCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 <span class="cstat-no" title="statement not covered" >    dragProbe.strategy(eventData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
@@ -737,12 +743,12 @@ function imageRenderedCallback () <span class="fstat-no" title="function not cov
 &nbsp;
 // The strategy can't be execute at this moment because the image is rendered asynchronously
 // (requestAnimationFrame). Then the eventData that contains all information needed is being
-// Cached and the strategy will be executed once CornerstoneImageRendered is triggered.
+// Cached and the strategy will be executed once cornerstoneimagerendered is triggered.
 function dragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  dragEventData = eventData;</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
 }
@@ -772,7 +778,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

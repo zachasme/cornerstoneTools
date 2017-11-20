@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.85% </span>
+        <span class="strong">3.7% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/26</span>
+        <span class='fraction'>1/27</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.85% </span>
+        <span class="strong">3.7% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/26</span>
+        <span class='fraction'>1/27</span>
       </div>
     </div>
   </div>
@@ -119,7 +119,9 @@
 74
 75
 76
-77</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+77
+78
+79</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,6 +155,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -195,12 +199,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
-import { globalImageIdSpecificToolStateManager } from './imageIdSpecificStateManager';
-import { getElementToolStateManager } from './toolState';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+import { globalImageIdSpecificToolStateManager } from './imageIdSpecificStateManager.js';
+import { getElementToolStateManager } from './toolState.js';
 &nbsp;
 function saveApplicationState (elements) <span class="fstat-no" title="function not covered" >{</span>
-    // Save imageId-specific tool state data
+  // Save imageId-specific tool state data
   const appState = <span class="cstat-no" title="statement not covered" >{</span>
     imageIdToolState: globalImageIdSpecificToolStateManager.saveToolState(),
     elementToolState: {},
@@ -217,7 +221,7 @@ function saveApplicationState (elements) <span class="fstat-no" title="function 
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    appState.elementToolState[element.id] = toolStateManager.saveToolState();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    appState.elementViewport[element.id] = cornerstone.getViewport(element);</span>
+<span class="cstat-no" title="statement not covered" >    appState.elementViewport[element.id] = external.cornerstone.getViewport(element);</span>
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return appState;</span>
@@ -230,11 +234,13 @@ function restoreApplicationState (appState) <span class="fstat-no" title="functi
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
-    // Restore all the imageId specific tool data
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
+&nbsp;
+  // Restore all the imageId specific tool data
 <span class="cstat-no" title="statement not covered" >  globalImageIdSpecificToolStateManager.restoreToolState(appState.imageIdToolState);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  Object.keys(appState.elementViewport).forEach(function (elementId) <span class="fstat-no" title="function not covered" >{</span></span>
-        // Restore any stack specific tool data
+    // Restore any stack specific tool data
     const element = <span class="cstat-no" title="statement not covered" >document.getElementById(elementId);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (!element) {</span>
@@ -253,12 +259,12 @@ function restoreApplicationState (appState) <span class="fstat-no" title="functi
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    toolStateManager.restoreToolState(appState.elementToolState[elementId]);</span>
 &nbsp;
-        // Restore the saved viewport information
+    // Restore the saved viewport information
     const savedViewport = <span class="cstat-no" title="statement not covered" >appState.elementViewport[elementId];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    cornerstone.setViewport(element, savedViewport);</span>
 &nbsp;
-        // Update the element to apply the viewport and tool changes
+    // Update the element to apply the viewport and tool changes
 <span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
   });
 &nbsp;
@@ -277,7 +283,7 @@ export default appState;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

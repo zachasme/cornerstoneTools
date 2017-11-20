@@ -207,14 +207,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import simpleMouseButtonTool from './simpleMouseButtonTool.js';
-import touchDragTool from './touchDragTool';
-import isMouseButtonEnabled from '../util/isMouseButtonEnabled';
+import touchDragTool from './touchDragTool.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 &nbsp;
 // --- Strategies --- //
 function defaultStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
-    // Calculate distance from the center of the image
+  // Calculate distance from the center of the image
   const rect = <span class="cstat-no" title="statement not covered" >eventData.element.getBoundingClientRect(eventData.element);</span>
 &nbsp;
   const points = <span class="cstat-no" title="statement not covered" >{</span>
@@ -227,7 +227,7 @@ function defaultStrategy (eventData) <span class="fstat-no" title="function not 
 &nbsp;
   const pointsFromCenter = <span class="cstat-no" title="statement not covered" >{</span>
     x: points.x - rect.left - width / 2,
-        // Invert the coordinate system so that up is positive
+    // Invert the coordinate system so that up is positive
     y: -1 * (points.y - rect.top - height / 2)
   };
 &nbsp;
@@ -236,31 +236,31 @@ function defaultStrategy (eventData) <span class="fstat-no" title="function not 
   const rotation = <span class="cstat-no" title="statement not covered" >-1 * rotationDegrees + 90;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  eventData.viewport.rotation = rotation;</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, eventData.viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(eventData.element, eventData.viewport);</span>
 }
 &nbsp;
 function horizontalStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  eventData.viewport.rotation += (eventData.deltaPoints.page.x / eventData.viewport.scale);</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, eventData.viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(eventData.element, eventData.viewport);</span>
 }
 &nbsp;
 function verticalStrategy (eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  eventData.viewport.rotation += (eventData.deltaPoints.page.y / eventData.viewport.scale);</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, eventData.viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(eventData.element, eventData.viewport);</span>
 }
 &nbsp;
 // --- Mouse event callbacks --- //
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  $(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    $(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseDrag', dragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
   }
@@ -268,7 +268,7 @@ function mouseDownCallback (e, eventData) <span class="fstat-no" title="function
 &nbsp;
 function dragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  rotate.strategy(eventData);</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.setViewport(eventData.element, eventData.viewport);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setViewport(eventData.element, eventData.viewport);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
 }
@@ -295,7 +295,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 21:40:15 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>
