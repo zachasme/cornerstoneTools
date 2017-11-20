@@ -112,11 +112,11 @@ function enable (element, mouseButtonMask) {
     return;
   }
 
-  $(element).on('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);
+  element.addEventListener('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);
 }
 
 function disable (element) {
-  $(element).off('CornerstoneToolsMouseDown', onMouseDown);
+  element.removeEventListener('CornerstoneToolsMouseDown', onMouseDown);
 }
 
 export default {

@@ -191,7 +191,7 @@ function enable (element, doneCallback) {
       thresholdingData.data[0].width = regions.width;
       thresholdingData.data[0].height = regions.height;
       // Draw regions on image
-      $(element).on('CornerstoneImageRendered', onImageRendered);
+      element.addEventListener('CornerstoneImageRendered', onImageRendered);
 
       // Update the element to apply the viewport and tool changes
       cornerstone.updateImage(element);

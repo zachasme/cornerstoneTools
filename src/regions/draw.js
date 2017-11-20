@@ -114,9 +114,9 @@ function updateRegions (element) {
 
 // Disable drawing and tracking on mouse up also update regions
 function mouseUpCallback (e, eventData) {
-  $(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
-  $(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
-  $(eventData.element).off('CornerstoneImageRendered', onImageRendered);
+  eventData.element.removeEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);
+  eventData.element.removeEventListener('CornerstoneToolsMouseUp', mouseUpCallback);
+  eventData.element.removeEventListener('CornerstoneImageRendered', onImageRendered);
   updateRegions(eventData.element);
   cornerstone.updateImage(eventData.element);
 }
@@ -127,9 +127,9 @@ function mouseDownCallback (e, eventData) {
 
     toolData.data[0].points = [];
 
-    $(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
-    $(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);
-    $(eventData.element).on('CornerstoneImageRendered', onImageRendered);
+    eventData.element.addEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);
+    eventData.element.addEventListener('CornerstoneToolsMouseUp', mouseUpCallback);
+    eventData.element.addEventListener('CornerstoneImageRendered', onImageRendered);
 
     return mouseDragCallback(e, eventData);
   }
@@ -166,12 +166,12 @@ function enable (element, mouseButtonMask) {
     points: []
   });
 
-  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
-  $(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
+  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);
+  element.addEventListener('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
 }
 
 function disable (element) {
-  $(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
+  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);
 }
 
 export function getConfiguration () {

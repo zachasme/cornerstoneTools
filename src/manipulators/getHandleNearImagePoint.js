@@ -1,6 +1,5 @@
-import * as cornerstone from 'cornerstone-core';
-import * as cornerstoneMath from 'cornerstone-math';
-import pointInsideBoundingBox from '../util/pointInsideBoundingBox';
+import { cornerstoneMath, external } from '../externalModules.js';
+import pointInsideBoundingBox from '../util/pointInsideBoundingBox.js';
 
 export default function (element, handles, coords, distanceThreshold) {
   let nearbyHandle;
@@ -25,7 +24,7 @@ export default function (element, handles, coords, distanceThreshold) {
         return;
       }
     } else {
-      const handleCanvas = cornerstone.pixelToCanvas(element, handle);
+      const handleCanvas = external.cornerstone.pixelToCanvas(element, handle);
       const distance = cornerstoneMath.point.distance(handleCanvas, coords);
 
       if (distance <= distanceThreshold) {
