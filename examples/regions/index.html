@@ -76,8 +76,8 @@ is used by our example image loader-->
 
 
     <!-- include the cornerstoneWADOImageLoader library -->
-    <script src="./dicomParser.min.js"></script>
-    <script src="./cornerstoneWADOImageLoader.min.js"></script>
+    <script src="./dicomParser.js"></script>
+    <script src="./cornerstoneWADOImageLoader.js"></script>
 
 
 <button id="calculate">scores</button>
@@ -104,11 +104,13 @@ is used by our example image loader-->
     cornerstoneTools.mouseInput.enable(element1);
     cornerstoneTools.mouseWheelInput.enable(element1);
 
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
     var config = {
-         webWorkerPath : './cornerstoneWADOImageLoaderWebWorker.min.js',
+         webWorkerPath : './cornerstoneWADOImageLoaderWebWorker.js',
          taskConfiguration: {
              'decodeTask' : {
-                 codecsPath: './cornerstoneWADOImageLoaderCodecs.min.js'
+                 codecsPath: './cornerstoneWADOImageLoaderCodecs.js'
              }
          }
      };
