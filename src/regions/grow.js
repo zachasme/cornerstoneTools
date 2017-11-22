@@ -1,4 +1,4 @@
-import * as cornerstone from 'cornerstone-core';
+import { external } from '../externalModules.js';
 import { getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 import { getConfiguration, createUndoStep } from './thresholding.js';
@@ -78,7 +78,7 @@ function regionGrowing (element, regions, slices, point) {
 
         activeVoxels = nextVoxels;
       }
-      cornerstone.updateImage(element);
+      external.cornerstone.updateImage(element);
       setTimeout(chunk, 0);
     }
 
@@ -112,11 +112,11 @@ function enable (element, mouseButtonMask) {
     return;
   }
 
-  element.addEventListener('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);
+  external.$(element).on('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);
 }
 
 function disable (element) {
-  element.removeEventListener('CornerstoneToolsMouseDown', onMouseDown);
+  external.$(element).on('CornerstoneToolsMouseDown', onMouseDown);
 }
 
 export default {

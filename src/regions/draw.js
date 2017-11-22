@@ -1,4 +1,4 @@
-import * as cornerstone from 'cornerstone-core';
+import { external } from '../externalModules.js';
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 import * as regionsThreshold from './thresholding.js';
@@ -34,7 +34,7 @@ function onImageRendered (e, eventData) {
   const { canvasContext, enabledElement, element } = eventData;
 
   // Set the canvas context to the image coordinate system
-  cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
+  external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
 
   // Points
   const drawingData = getToolState(element, toolType);
@@ -114,11 +114,11 @@ function updateRegions (element) {
 
 // Disable drawing and tracking on mouse up also update regions
 function mouseUpCallback (e, eventData) {
-  eventData.element.removeEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);
-  eventData.element.removeEventListener('CornerstoneToolsMouseUp', mouseUpCallback);
-  eventData.element.removeEventListener('CornerstoneImageRendered', onImageRendered);
+  external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
+  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
+  external.$(eventData.element).off('CornerstoneImageRendered', onImageRendered);
   updateRegions(eventData.element);
-  cornerstone.updateImage(eventData.element);
+  external.cornerstone.updateImage(eventData.element);
 }
 
 function mouseDownCallback (e, eventData) {
@@ -127,9 +127,9 @@ function mouseDownCallback (e, eventData) {
 
     toolData.data[0].points = [];
 
-    eventData.element.addEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);
-    eventData.element.addEventListener('CornerstoneToolsMouseUp', mouseUpCallback);
-    eventData.element.addEventListener('CornerstoneImageRendered', onImageRendered);
+    external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
+    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);
+    external.$(eventData.element).on('CornerstoneImageRendered', onImageRendered);
 
     return mouseDragCallback(e, eventData);
   }
@@ -149,7 +149,7 @@ function mouseDragCallback (e, eventData) {
 
   toolData.data[0].points.push([point.x, point.y]);
 
-  cornerstone.updateImage(eventData.element);
+  external.cornerstone.updateImage(eventData.element);
 
   return false; // False = causes jquery to preventDefault() and stopPropagation() this event
 }
@@ -166,12 +166,12 @@ function enable (element, mouseButtonMask) {
     points: []
   });
 
-  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);
-  element.addEventListener('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
+  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
+  external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
 }
 
 function disable (element) {
-  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);
+  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
 }
 
 export function getConfiguration () {

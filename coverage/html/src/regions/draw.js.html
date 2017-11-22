@@ -431,7 +431,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 import * as regionsThreshold from './thresholding.js';
@@ -467,7 +467,7 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
   const { canvasContext, enabledElement, element } = <span class="cstat-no" title="statement not covered" >eventData;</span>
 &nbsp;
   // Set the canvas context to the image coordinate system
-<span class="cstat-no" title="statement not covered" >  cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);</span>
 &nbsp;
   // Points
   const drawingData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
@@ -547,11 +547,11 @@ function updateRegions (element) <span class="fstat-no" title="function not cove
 &nbsp;
 // Disable drawing and tracking on mouse up also update regions
 function mouseUpCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  eventData.element.removeEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >  eventData.element.removeEventListener('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  eventData.element.removeEventListener('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(eventData.element).off('CornerstoneImageRendered', onImageRendered);</span>
 <span class="cstat-no" title="statement not covered" >  updateRegions(eventData.element);</span>
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(eventData.element);</span>
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
@@ -560,9 +560,9 @@ function mouseDownCallback (e, eventData) <span class="fstat-no" title="function
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    toolData.data[0].points = [];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    eventData.element.addEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    eventData.element.addEventListener('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    eventData.element.addEventListener('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    external.$(eventData.element).on('CornerstoneImageRendered', onImageRendered);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return mouseDragCallback(e, eventData);</span>
   }
@@ -582,7 +582,7 @@ function mouseDragCallback (e, eventData) <span class="fstat-no" title="function
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  toolData.data[0].points.push([point.x, point.y]);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.updateImage(eventData.element);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(eventData.element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
 }
@@ -599,12 +599,12 @@ function enable (element, mouseButtonMask) <span class="fstat-no" title="functio
     points: []
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);</span>
-<span class="cstat-no" title="statement not covered" >  element.addEventListener('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);</span>
 }
 &nbsp;
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);</span>
 }
 &nbsp;
 export function getConfiguration () <span class="fstat-no" title="function not covered" >{</span>
@@ -631,7 +631,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 22 2017 14:34:12 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

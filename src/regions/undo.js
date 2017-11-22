@@ -1,4 +1,4 @@
-import * as cornerstone from 'cornerstone-core';
+import { external } from '../externalModules.js';
 import { getToolState } from '../stateManagement/toolState';
 
 function enable (element) {
@@ -14,7 +14,7 @@ function enable (element) {
   console.log("HIST",state.history)
 
   state.buffer = replacement;
-  cornerstone.updateImage(element);
+  external.cornerstone.updateImage(element);
 }
 
 function disable (element) {

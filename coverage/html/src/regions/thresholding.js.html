@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.61% </span>
+        <span class="strong">5.56% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/107</span>
+        <span class='fraction'>6/108</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.66% </span>
+        <span class="strong">5.61% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/106</span>
+        <span class='fraction'>6/107</span>
       </div>
     </div>
   </div>
@@ -303,7 +303,8 @@
 258
 259
 260
-261</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+261
+262</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -415,6 +416,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -563,7 +565,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as cornerstone from 'cornerstone-core';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
 import { addToolState, getToolState } from '../stateManagement/toolState';
 &nbsp;
 // UNUSED const toolType = 'thresholding';
@@ -619,7 +621,7 @@ function performThresholding (stack, afterwards) <span class="fstat-no" title="f
   const slices = <span class="cstat-no" title="statement not covered" >imageIds.length;</span>
 &nbsp;
   // Get slope and intercept
-<span class="cstat-no" title="statement not covered" >  return cornerstone.loadImage(imageIds[0]).then(function (image) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >  return external.cornerstone.loadImage(imageIds[0]).then(function (image) <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >    width = image.width;</span>
 <span class="cstat-no" title="statement not covered" >    height = image.height;</span>
 &nbsp;
@@ -630,7 +632,7 @@ function performThresholding (stack, afterwards) <span class="fstat-no" title="f
     // Thresholding promises
     const promises = <span class="cstat-no" title="statement not covered" >imageIds.map(function (imageId, imageIdx) <span class="fstat-no" title="function not covered" >{</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      return cornerstone.loadImage(imageId).then(function (image) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      return external.cornerstone.loadImage(imageId).then(function (image) <span class="fstat-no" title="function not covered" >{</span></span>
         const slope = <span class="cstat-no" title="statement not covered" >image.slope;</span>
         const intercept = <span class="cstat-no" title="statement not covered" >image.intercept;</span>
         const pixelData = <span class="cstat-no" title="statement not covered" >image.getPixelData();</span>
@@ -670,8 +672,9 @@ let imgdata = null;
 /**
  * Draw regions on image
  */
-function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onImageRendered (e) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  console.log("onImageRendered");</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
   const stackData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'stack');</span>
   const thresholdingData = <span class="cstat-no" title="statement not covered" >getToolState(element, 'regions');</span>
@@ -717,7 +720,7 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
   }
 <span class="cstat-no" title="statement not covered" >  doubleBufferContext.putImageData(imgdata, 0, 0);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  cornerstone.setToPixelCoordinateSystem(enabledElement, context);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.setToPixelCoordinateSystem(enabledElement, context);</span>
 <span class="cstat-no" title="statement not covered" >  context.drawImage(doubleBuffer, 0, 0);</span>
 }
 &nbsp;
@@ -756,10 +759,10 @@ function enable (element, doneCallback) <span class="fstat-no" title="function n
 <span class="cstat-no" title="statement not covered" >      thresholdingData.data[0].width = regions.width;</span>
 <span class="cstat-no" title="statement not covered" >      thresholdingData.data[0].height = regions.height;</span>
       // Draw regions on image
-<span class="cstat-no" title="statement not covered" >      element.addEventListener('CornerstoneImageRendered', onImageRendered);</span>
+<span class="cstat-no" title="statement not covered" >      element.addEventListener('cornerstoneimagerendered', onImageRendered);</span>
 &nbsp;
       // Update the element to apply the viewport and tool changes
-<span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(element);</span>
+<span class="cstat-no" title="statement not covered" >      external.cornerstone.updateImage(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      typeof doneCallback === 'function' &amp;&amp; doneCallback();</span>
     });
@@ -829,7 +832,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 23:49:44 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 22 2017 14:34:12 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -1,4 +1,4 @@
-import * as cornerstone from 'cornerstone-core';
+import { external } from '../externalModules.js';
 import { getConfiguration, getLastElement } from './thresholding.js';
 import { getToolState } from '../stateManagement/toolState';
 
@@ -62,7 +62,7 @@ export function score () {
   let modeOverlapFactor;
   const overlapFactors = [];
 
-  const promises = imageIds.map((imageId, imageIndex) => cornerstone.loadImage(imageId).then(image => {
+  const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then(image => {
     const dataSet = image.data;
     const sliceLocation = dataSet.floatString('x00201041');
     // TODO: use these as attributes instead of the ones from Viewers

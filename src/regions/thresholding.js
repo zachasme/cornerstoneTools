@@ -1,4 +1,4 @@
-import * as cornerstone from 'cornerstone-core';
+import { external } from '../externalModules.js';
 import { addToolState, getToolState } from '../stateManagement/toolState';
 
 // UNUSED const toolType = 'thresholding';
@@ -54,7 +54,7 @@ function performThresholding (stack, afterwards) {
   const slices = imageIds.length;
 
   // Get slope and intercept
-  return cornerstone.loadImage(imageIds[0]).then(function (image) {
+  return external.cornerstone.loadImage(imageIds[0]).then(function (image) {
     width = image.width;
     height = image.height;
 
@@ -65,7 +65,7 @@ function performThresholding (stack, afterwards) {
     // Thresholding promises
     const promises = imageIds.map(function (imageId, imageIdx) {
 
-      return cornerstone.loadImage(imageId).then(function (image) {
+      return external.cornerstone.loadImage(imageId).then(function (image) {
         const slope = image.slope;
         const intercept = image.intercept;
         const pixelData = image.getPixelData();
@@ -105,8 +105,9 @@ let imgdata = null;
 /**
  * Draw regions on image
  */
-function onImageRendered (e, eventData) {
+function onImageRendered (e) {
   console.log("onImageRendered");
+  const eventData = e.detail;
   const element = eventData.element;
   const stackData = getToolState(element, 'stack');
   const thresholdingData = getToolState(element, 'regions');
@@ -152,7 +153,7 @@ function onImageRendered (e, eventData) {
   }
   doubleBufferContext.putImageData(imgdata, 0, 0);
 
-  cornerstone.setToPixelCoordinateSystem(enabledElement, context);
+  external.cornerstone.setToPixelCoordinateSystem(enabledElement, context);
   context.drawImage(doubleBuffer, 0, 0);
 }
 
@@ -191,10 +192,10 @@ function enable (element, doneCallback) {
       thresholdingData.data[0].width = regions.width;
       thresholdingData.data[0].height = regions.height;
       // Draw regions on image
-      element.addEventListener('CornerstoneImageRendered', onImageRendered);
+      element.addEventListener('cornerstoneimagerendered', onImageRendered);
 
       // Update the element to apply the viewport and tool changes
-      cornerstone.updateImage(element);
+      external.cornerstone.updateImage(element);
 
       typeof doneCallback === 'function' && doneCallback();
     });

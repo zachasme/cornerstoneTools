@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2017-11-21 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2017-11-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -8,7 +8,7 @@
 		exports["cornerstoneTools"] = factory(require("cornerstone-math"));
 	else
 		root["cornerstoneTools"] = factory(root["cornerstoneMath"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_62__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_61__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 60);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,7 +86,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.external = exports.cornerstoneMath = undefined;
 
-var _cornerstoneMath = __webpack_require__(62);
+var _cornerstoneMath = __webpack_require__(61);
 
 var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
 
@@ -827,7 +827,7 @@ exports.default = function (mouseToolInterface) {
 
 var _externalModules = __webpack_require__(0);
 
-var _toolCoordinates = __webpack_require__(36);
+var _toolCoordinates = __webpack_require__(35);
 
 var _toolCoordinates2 = _interopRequireDefault(_toolCoordinates);
 
@@ -835,19 +835,19 @@ var _getHandleNearImagePoint = __webpack_require__(18);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _handleActivator = __webpack_require__(37);
+var _handleActivator = __webpack_require__(36);
 
 var _handleActivator2 = _interopRequireDefault(_handleActivator);
 
-var _moveHandle = __webpack_require__(22);
+var _moveHandle = __webpack_require__(21);
 
 var _moveHandle2 = _interopRequireDefault(_moveHandle);
 
-var _moveNewHandle = __webpack_require__(23);
+var _moveNewHandle = __webpack_require__(22);
 
 var _moveNewHandle2 = _interopRequireDefault(_moveNewHandle);
 
-var _moveAllHandles = __webpack_require__(38);
+var _moveAllHandles = __webpack_require__(37);
 
 var _moveAllHandles2 = _interopRequireDefault(_moveAllHandles);
 
@@ -944,15 +944,15 @@ var _getHandleNearImagePoint = __webpack_require__(18);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _touchMoveHandle = __webpack_require__(53);
+var _touchMoveHandle = __webpack_require__(52);
 
 var _touchMoveHandle2 = _interopRequireDefault(_touchMoveHandle);
 
-var _moveNewHandleTouch = __webpack_require__(25);
+var _moveNewHandleTouch = __webpack_require__(24);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
-var _touchMoveAllHandles = __webpack_require__(52);
+var _touchMoveAllHandles = __webpack_require__(51);
 
 var _touchMoveAllHandles2 = _interopRequireDefault(_touchMoveAllHandles);
 
@@ -1852,14 +1852,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/*! cornerstone-core - 1.0.1 - 2017-11-04 | (c) 2016 Chris Hafey | https://github.com/chafey/cornerstone */
-!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define("cornerstone-core",[],t):"object"==typeof exports?exports["cornerstone-core"]=t():e.cornerstone=t()}(this,function(){return function(e){function t(n){if(r[n])return r[n].exports;var a=r[n]={i:n,l:!1,exports:{}};return e[n].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var r={};return t.m=e,t.c=r,t.d=function(e,r,n){t.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(r,"a",r),r},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=34)}([function(e,t,r){"use strict";function n(e){if(void 0===e)throw new Error("getEnabledElement: parameter element must not be undefined");for(var t=0;t<l.length;t++)if(l[t].element===e)return l[t];throw new Error("element not enabled")}function a(e){if(void 0===e)throw new Error("getEnabledElement: enabledElement element must not be undefined");l.push(e)}function i(e){var t=[];return l.forEach(function(r){r.image&&r.image.imageId===e&&t.push(r)}),t}function o(){return l}Object.defineProperty(t,"__esModule",{value:!0}),t.getEnabledElement=n,t.addEnabledElement=a,t.getEnabledElementsByImageId=i,t.getEnabledElements=o;var l=[]},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=window.$,a={set $(e){n=e},get $(){return n}};t.external=a},function(e,t,r){"use strict";function n(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;t=t.toLocaleLowerCase();var n=new CustomEvent(t,{detail:r});e.dispatchEvent(n)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=n},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],r=(0,n.getEnabledElement)(e);if(void 0===r.image&&!r.layers.length)throw new Error("updateImage: image has not been loaded yet");(0,i.default)(r,t)};var n=r(0),a=r(4),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){e.needsRedraw=!0,t&&(e.invalid=!0)}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){if(void 0===e)throw new Error("getDefaultViewport: parameter canvas must not be undefined");if(void 0===t)throw new Error("getDefaultViewport: parameter image must not be undefined");var r={scale:1,translation:{x:0,y:0},voi:{windowWidth:t.windowWidth,windowCenter:t.windowCenter},invert:t.invert,pixelReplication:!1,rotation:0,hflip:!1,vflip:!1,modalityLUT:t.modalityLUT,voiLUT:t.voiLUT},n=e.height/t.rows,a=e.width/t.columns;return r.scale=Math.min(a,n),r}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(){return window.performance?performance.now():Date.now()}},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e,t){var r=e.renderingTools.colorRenderCanvas;r.width=t.width,r.height=t.height;var n=r.getContext("2d");n.fillStyle="white",n.fillRect(0,0,r.width,r.height);var a=n.getImageData(0,0,t.width,t.height);e.renderingTools.colorRenderCanvasContext=n,e.renderingTools.colorRenderCanvasData=a}function i(e,t){return void 0!==e.cachedLut&&e.cachedLut.windowCenter===t.voi.windowCenter&&e.cachedLut.windowWidth===t.voi.windowWidth&&e.cachedLut.invert===t.invert?e.cachedLut.lutArray:((0,f.default)(e,t.voi.windowWidth,t.voi.windowCenter,t.invert),e.cachedLut.windowWidth=t.voi.windowWidth,e.cachedLut.windowCenter=t.voi.windowCenter,e.cachedLut.invert=t.invert,e.cachedLut.lutArray)}function o(e,t){var r=e.renderingTools.lastRenderedImageId,n=e.renderingTools.lastRenderedViewport;return t.imageId!==r||!n||n.windowCenter!==e.viewport.voi.windowCenter||n.windowWidth!==e.viewport.voi.windowWidth||n.invert!==e.viewport.invert||n.rotation!==e.viewport.rotation||n.hflip!==e.viewport.hflip||n.vflip!==e.viewport.vflip}function l(e,t,r){e.renderingTools.colorRenderCanvas||(e.renderingTools.colorRenderCanvas=document.createElement("canvas"));var n=e.renderingTools.colorRenderCanvas;if(255===e.viewport.voi.windowWidth&&128===e.viewport.voi.windowCenter&&!1===e.viewport.invert&&t.getCanvas&&t.getCanvas())return t.getCanvas();if(!1===o(e,t)&&!0!==r)return n;n.width===t.width&&n.height===t.height||a(e,t);var l=window.performance?performance.now():Date.now(),u=i(t,e.viewport);t.stats=t.stats||{},t.stats.lastLutGenerateTime=(window.performance?performance.now():Date.now())-l;var d=e.renderingTools.colorRenderCanvasData,s=e.renderingTools.colorRenderCanvasContext;return t.rgba?(0,v.default)(t,u,d.data):(0,c.default)(t,u,d.data),l=window.performance?performance.now():Date.now(),s.putImageData(d,0,0),t.stats.lastPutImageDataTime=(window.performance?performance.now():Date.now())-l,n}function u(e,t){if(void 0===e)throw new Error("drawImage: enabledElement parameter must not be undefined");var r=e.image;if(void 0===r)throw new Error("drawImage: image must be loaded before it can be drawn");var n=e.canvas.getContext("2d");n.setTransform(1,0,0,1,0,0),n.fillStyle="black",n.fillRect(0,0,e.canvas.width,e.canvas.height),!0===e.viewport.pixelReplication?(n.imageSmoothingEnabled=!1,n.mozImageSmoothingEnabled=!1):(n.imageSmoothingEnabled=!0,n.mozImageSmoothingEnabled=!0),n.save(),(0,p.default)(e,n);var a=void 0;a=e.options&&e.options.renderer&&"webgl"===e.options.renderer.toLowerCase()?b.default.renderer.render(e):l(e,r,t),n.drawImage(a,0,0,r.width,r.height,0,0,r.width,r.height),n.restore(),e.renderingTools.lastRenderedImageId=r.imageId;var i={};i.windowCenter=e.viewport.voi.windowCenter,i.windowWidth=e.viewport.voi.windowWidth,i.invert=e.viewport.invert,i.rotation=e.viewport.rotation,i.hflip=e.viewport.hflip,i.vflip=e.viewport.vflip,e.renderingTools.lastRenderedViewport=i}function d(e,t){if(void 0===e)throw new Error("addColorLayer: layer parameter must not be undefined");var r=e.image;if(r.rgba=!0,void 0===r)throw new Error("addColorLayer: image must be loaded before it can be drawn");e.renderingTools=e.renderingTools||{},e.canvas=l(e,r,t);var n=e.canvas.getContext("2d");!0===e.viewport.pixelReplication?(n.imageSmoothingEnabled=!1,n.mozImageSmoothingEnabled=!1):(n.imageSmoothingEnabled=!0,n.mozImageSmoothingEnabled=!0);var a={windowCenter:e.viewport.voi.windowCenter,windowWidth:e.viewport.voi.windowWidth,invert:e.viewport.invert,rotation:e.viewport.rotation,hflip:e.viewport.hflip,vflip:e.viewport.vflip};e.renderingTools.lastRenderedImageId=r.imageId,e.renderingTools.lastRenderedViewport=a}Object.defineProperty(t,"__esModule",{value:!0}),t.renderColorImage=u,t.addColorLayer=d;var s=r(9),f=n(s),m=r(16),c=n(m),g=r(37),v=n(g),h=r(8),p=n(h),w=r(11),b=n(w)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){if(void 0===e)throw new Error("setToPixelCoordinateSystem: parameter enabledElement must not be undefined");if(void 0===t)throw new Error("setToPixelCoordinateSystem: parameter context must not be undefined");var n=(0,a.default)(e,r);t.setTransform(n.m[0],n.m[1],n.m[2],n.m[3],n.m[4],n.m[5])};var n=r(17),a=function(e){return e&&e.__esModule?e:{default:e}}(n)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r,n,a,o){if(void 0===e.cachedLut){var u=e.maxPixelValue-Math.min(e.minPixelValue,0)+1;e.cachedLut={},e.cachedLut.lutArray=new Uint8ClampedArray(u)}var d=e.cachedLut.lutArray,s=e.maxPixelValue,f=e.minPixelValue,m=(0,i.default)(e.slope,e.intercept,a),c=(0,l.default)(t,r,o),g=0;if(f<0&&(g=f),!0===n)for(var v=e.minPixelValue;v<=s;v++)d[v+-g]=255-c(m(v));else for(var h=e.minPixelValue;h<=s;h++)d[h+-g]=c(m(h));return d};var a=r(19),i=n(a),o=r(35),l=n(o)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){return(0,a.default)(e)};var n=r(17),a=function(e){return e&&e.__esModule?e:{default:e}}(n)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=r(38),i=r(22),o=n(i),l=r(21),u=n(l),d={createProgramFromString:o.default,renderer:{render:a.render,initRenderer:a.initRenderer,getRenderCanvas:a.getRenderCanvas,isWebGLAvailable:a.isWebGLAvailable},textureCache:u.default};Object.defineProperty(d,"isWebGLInitialized",{enumerable:!0,configurable:!1,get:function(){return a.isWebGLInitialized}}),t.default=d},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var a=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(){function e(){n(this,e),this.listeners={}}return a(e,[{key:"addEventListener",value:function(e,t){e in this.listeners||(this.listeners[e]=[]),this.listeners[e].push(t)}},{key:"removeEventListener",value:function(e,t){if(e in this.listeners)for(var r=this.listeners[e],n=0,a=r.length;n<a;n++)if(r[n]===t)return void r.splice(n,1)}},{key:"dispatchEvent",value:function(e){if(!(e.type in this.listeners))return!0;for(var t=this.listeners[e.type],r=0,n=t.length;r<n;r++)t[r].call(this,e);return!e.defaultPrevented}}]),e}(),o=new i;t.default=o},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e,t){var r=e.renderingTools.grayscaleRenderCanvas;r.width=t.width,r.height=t.height;var n=r.getContext("2d");n.fillStyle="white",n.fillRect(0,0,r.width,r.height);var a=n.getImageData(0,0,t.width,t.height);e.renderingTools.grayscaleRenderCanvasContext=n,e.renderingTools.grayscaleRenderCanvasData=a}function i(e,t){return!e&&!t||!(!e||!t)&&e.id===t.id}function o(e,t,r){return void 0!==e.cachedLut&&e.cachedLut.windowCenter===t.voi.windowCenter&&e.cachedLut.windowWidth===t.voi.windowWidth&&i(e.cachedLut.modalityLUT,t.modalityLUT)&&i(e.cachedLut.voiLUT,t.voiLUT)&&e.cachedLut.invert===t.invert&&!0!==r?e.cachedLut.lutArray:((0,m.default)(e,t.voi.windowWidth,t.voi.windowCenter,t.invert,t.modalityLUT,t.voiLUT),e.cachedLut.windowWidth=t.voi.windowWidth,e.cachedLut.windowCenter=t.voi.windowCenter,e.cachedLut.invert=t.invert,e.cachedLut.voiLUT=t.voiLUT,e.cachedLut.modalityLUT=t.modalityLUT,e.cachedLut.lutArray)}function l(e,t){var r=e.renderingTools.lastRenderedImageId,n=e.renderingTools.lastRenderedViewport;return t.imageId!==r||!n||n.windowCenter!==e.viewport.voi.windowCenter||n.windowWidth!==e.viewport.voi.windowWidth||n.invert!==e.viewport.invert||n.rotation!==e.viewport.rotation||n.hflip!==e.viewport.hflip||n.vflip!==e.viewport.vflip||n.modalityLUT!==e.viewport.modalityLUT||n.voiLUT!==e.viewport.voiLUT}function u(e,t,r){e.renderingTools.grayscaleRenderCanvas||(e.renderingTools.grayscaleRenderCanvas=document.createElement("canvas"));var n=e.renderingTools.grayscaleRenderCanvas;if(!1===l(e,t)&&!0!==r)return n;n.width===t.width&&n.height===t.height||a(e,t);var i=(0,w.default)(),u=o(t,e.viewport,r);t.stats=t.stats||{},t.stats.lastLutGenerateTime=(0,w.default)()-i;var d=e.renderingTools.grayscaleRenderCanvasData,s=e.renderingTools.grayscaleRenderCanvasContext;return(0,g.default)(t,u,d.data),i=(0,w.default)(),s.putImageData(d,0,0),t.stats.lastPutImageDataTime=(0,w.default)()-i,n}function d(e,t){if(void 0===e)throw new Error("drawImage: enabledElement parameter must not be undefined");var r=e.image;if(void 0===r)throw new Error("drawImage: image must be loaded before it can be drawn");var n=e.canvas.getContext("2d");n.setTransform(1,0,0,1,0,0),n.fillStyle="black",n.fillRect(0,0,e.canvas.width,e.canvas.height),!0===e.viewport.pixelReplication?(n.imageSmoothingEnabled=!1,n.mozImageSmoothingEnabled=!1):(n.imageSmoothingEnabled=!0,n.mozImageSmoothingEnabled=!0),(0,h.default)(e,n),e.renderingTools||(e.renderingTools={});var a=void 0;a=e.options&&e.options.renderer&&"webgl"===e.options.renderer.toLowerCase()?y.default.renderer.render(e):u(e,r,t),n.drawImage(a,0,0,r.width,r.height,0,0,r.width,r.height),e.renderingTools.lastRenderedImageId=r.imageId;var i={};i.windowCenter=e.viewport.voi.windowCenter,i.windowWidth=e.viewport.voi.windowWidth,i.invert=e.viewport.invert,i.rotation=e.viewport.rotation,i.hflip=e.viewport.hflip,i.vflip=e.viewport.vflip,i.modalityLUT=e.viewport.modalityLUT,i.voiLUT=e.viewport.voiLUT,e.renderingTools.lastRenderedViewport=i}function s(e,t){if(void 0===e)throw new Error("addGrayscaleLayer: layer parameter must not be undefined");var r=e.image;if(void 0===r)throw new Error("addGrayscaleLayer: image must be loaded before it can be drawn");e.renderingTools=e.renderingTools||{},e.canvas=u(e,r,t);var n=e.canvas.getContext("2d");!0===e.viewport.pixelReplication?(n.imageSmoothingEnabled=!1,n.mozImageSmoothingEnabled=!1):(n.imageSmoothingEnabled=!0,n.mozImageSmoothingEnabled=!0);var a={windowCenter:e.viewport.voi.windowCenter,windowWidth:e.viewport.voi.windowWidth,invert:e.viewport.invert,rotation:e.viewport.rotation,hflip:e.viewport.hflip,vflip:e.viewport.vflip};e.renderingTools.lastRenderedImageId=r.imageId,e.renderingTools.lastRenderedViewport=a}Object.defineProperty(t,"__esModule",{value:!0}),t.renderGrayscaleImage=d,t.addGrayscaleLayer=s;var f=r(9),m=n(f),c=r(15),g=n(c),v=r(8),h=n(v),p=r(6),w=n(p),b=r(11),y=n(b)},function(e,t,r){"use strict";function n(e){window.setTimeout(e,1e3/60)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){return window.requestAnimationFrame(e)||window.webkitRequestAnimationFrame(e)||window.mozRequestAnimationFrame(e)||window.oRequestAnimationFrame(e)||window.msRequestAnimationFrame(e)||n(e)}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){var n=(0,a.default)(),i=e.getPixelData();e.stats.lastGetPixelDataTime=(0,a.default)()-n;var o=i.length,l=e.minPixelValue,u=3,d=0;if(n=(0,a.default)(),i instanceof Int16Array)if(l<0)for(;d<o;)r[u]=t[i[d++]+-l],u+=4;else for(;d<o;)r[u]=t[i[d++]],u+=4;else if(i instanceof Uint16Array)for(;d<o;)r[u]=t[i[d++]],u+=4;else if(l<0)for(;d<o;)r[u]=t[i[d++]+-l],u+=4;else for(;d<o;)r[u]=t[i[d++]],u+=4;e.stats.lastStoredPixelDataToCanvasImageDataTime=(0,a.default)()-n};var n=r(6),a=function(e){return e&&e.__esModule?e:{default:e}}(n)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){var n=(0,a.default)(),i=e.getPixelData();e.stats.lastGetPixelDataTime=(0,a.default)()-n;var o=e.minPixelValue,l=0,u=0,d=i.length;if(n=(0,a.default)(),o<0)for(;u<d;)r[l++]=t[i[u++]+-o],r[l++]=t[i[u++]+-o],r[l]=t[i[u]+-o],u+=2,l+=2;else for(;u<d;)r[l++]=t[i[u++]],r[l++]=t[i[u++]],r[l]=t[i[u]],u+=2,l+=2;e.stats.lastStoredPixelDataToCanvasImageDataTime=(0,a.default)()-n};var n=r(6),a=function(e){return e&&e.__esModule?e:{default:e}}(n)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=new n.Transform;r.translate(e.canvas.width/2,e.canvas.height/2);var a=e.viewport.rotation;0!==a&&r.rotate(a*Math.PI/180);var i=e.viewport.scale,o=e.viewport.scale;return e.image.rowPixelSpacing<e.image.columnPixelSpacing?i*=e.image.columnPixelSpacing/e.image.rowPixelSpacing:e.image.columnPixelSpacing<e.image.rowPixelSpacing&&(o*=e.image.rowPixelSpacing/e.image.columnPixelSpacing),r.scale(i,o),0!==a&&r.rotate(-a*Math.PI/180),r.translate(e.viewport.translation.x,e.viewport.translation.y),0!==a&&r.rotate(a*Math.PI/180),void 0!==t&&r.scale(t,t),e.viewport.hflip&&r.scale(-1,1),e.viewport.vflip&&r.scale(1,-1),r.translate(-e.image.width/2,-e.image.height/2),r};var n=r(20)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e,t,r){var n=t.element,a={viewport:t.viewport,element:t.element,image:t.image,enabledElement:t,layerId:r};c.external.$(n).trigger(e,a),(0,x.default)(n,e,a)}function i(e,t){var r=e.image,n=t.image;if(r.imageId&&n.imageId){var a=w.default.get("imagePlane",r.imageId),i=w.default.get("imagePlane",n.imageId);if(a&&a.columnPixelSpacing&&i&&i.columnPixelSpacing){var o=i.columnPixelSpacing*n.width/(a.columnPixelSpacing*r.width),l=t.viewport.scale/e.viewport.scale*o;t.viewport.scale=e.viewport.scale*l}}}function o(e,t,r){var n=(0,v.default)(),o=(0,h.getEnabledElement)(e),l=o.layers,u=(0,y.default)(o.canvas,t);r&&r.viewport&&(u=Object.assign(u,r.viewport)),!1!==o.syncViewports&&(o.syncViewports=!0);var d={image:t,layerId:n,viewport:u,options:r||{}};return l.length&&i(l[0],d),l.push(d),1===l.length&&f(e,n),a("CornerstoneLayerAdded",o,n),n}function l(e,t){var r=(0,h.getEnabledElement)(e),n=r.layers,i=r.layers.findIndex(function(e){return e.layerId===t});-1!==i&&(n.splice(i,1),t===r.activeLayerId&&n.length&&f(e,n[0].layerId),a("CornerstoneLayerRemoved",r,t))}function u(e,t){return(0,h.getEnabledElement)(e).layers.find(function(e){return e.layerId===t})}function d(e){return(0,h.getEnabledElement)(e).layers}function s(e){return(0,h.getEnabledElement)(e).layers.filter(function(e){return e.options&&!1!==e.options.visible&&0!==e.options.opacity})}function f(e,t){var r=(0,h.getEnabledElement)(e);if(r.activeLayerId!==t){var n=r.layers.findIndex(function(e){return e.layerId===t});if(-1===n)throw new Error("setActiveLayer: layer not found in layers array");var i=r.layers[n];r.activeLayerId=t,r.image=i.image,r.viewport=i.viewport,(0,C.default)(e),a("CornerstoneActiveLayerChanged",r,t)}}function m(e){var t=(0,h.getEnabledElement)(e);return t.layers.find(function(e){return e.layerId===t.activeLayerId})}Object.defineProperty(t,"__esModule",{value:!0}),t.addLayer=o,t.removeLayer=l,t.getLayer=u,t.getLayers=d,t.getVisibleLayers=s,t.setActiveLayer=f,t.getActiveLayer=m;var c=r(1),g=r(49),v=n(g),h=r(0),p=r(24),w=n(p),b=r(5),y=n(b),I=r(3),C=n(I),_=r(2),x=n(_)},function(e,t,r){"use strict";function n(e,t){var r=e,n=t;return function(e){return e*r+n}}function a(e){var t=e.lut[0],r=e.lut[e.lut.length-1],n=e.firstValueMapped+e.lut.length;return function(a){return a<e.firstValueMapped?t:a>=n?r:e.lut[a]}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){return r?a(r):n(e,t)}},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var a=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}();t.Transform=function(){function e(){n(this,e),this.reset()}return a(e,[{key:"reset",value:function(){this.m=[1,0,0,1,0,0]}},{key:"clone",value:function(){var t=new e;return t.m[0]=this.m[0],t.m[1]=this.m[1],t.m[2]=this.m[2],t.m[3]=this.m[3],t.m[4]=this.m[4],t.m[5]=this.m[5],t}},{key:"multiply",value:function(e){var t=this.m[0]*e.m[0]+this.m[2]*e.m[1],r=this.m[1]*e.m[0]+this.m[3]*e.m[1],n=this.m[0]*e.m[2]+this.m[2]*e.m[3],a=this.m[1]*e.m[2]+this.m[3]*e.m[3],i=this.m[0]*e.m[4]+this.m[2]*e.m[5]+this.m[4],o=this.m[1]*e.m[4]+this.m[3]*e.m[5]+this.m[5];this.m[0]=t,this.m[1]=r,this.m[2]=n,this.m[3]=a,this.m[4]=i,this.m[5]=o}},{key:"invert",value:function(){var e=1/(this.m[0]*this.m[3]-this.m[1]*this.m[2]),t=this.m[3]*e,r=-this.m[1]*e,n=-this.m[2]*e,a=this.m[0]*e,i=e*(this.m[2]*this.m[5]-this.m[3]*this.m[4]),o=e*(this.m[1]*this.m[4]-this.m[0]*this.m[5]);this.m[0]=t,this.m[1]=r,this.m[2]=n,this.m[3]=a,this.m[4]=i,this.m[5]=o}},{key:"rotate",value:function(e){var t=Math.cos(e),r=Math.sin(e),n=this.m[0]*t+this.m[2]*r,a=this.m[1]*t+this.m[3]*r,i=this.m[0]*-r+this.m[2]*t,o=this.m[1]*-r+this.m[3]*t;this.m[0]=n,this.m[1]=a,this.m[2]=i,this.m[3]=o}},{key:"translate",value:function(e,t){this.m[4]+=this.m[0]*e+this.m[2]*t,this.m[5]+=this.m[1]*e+this.m[3]*t}},{key:"scale",value:function(e,t){this.m[0]*=e,this.m[1]*=e,this.m[2]*=t,this.m[3]*=t}},{key:"transformPoint",value:function(e,t){var r=e,n=t;return e=r*this.m[0]+n*this.m[2]+this.m[4],t=r*this.m[1]+n*this.m[3]+this.m[5],{x:e,y:t}}}]),e}()},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(){return{maximumSizeInBytes:w,cacheSizeInBytes:b,numberOfImagesCached:p.length}}function i(){function e(e,t){return e.timeStamp>t.timeStamp?-1:e.timeStamp<t.timeStamp?1:0}if(!(b<=w)){for(p.sort(e);b>w;){var t=p[p.length-1];b-=t.sizeInBytes,delete h[t.imageId],p.pop(),f.external.$(c.default).trigger("CornerstoneWebGLTextureRemoved",{imageId:t.imageId}),(0,v.default)(c.default,"CornerstoneWebGLTextureRemoved",{imageId:t.imageId})}var r=a();f.external.$(c.default).trigger("CornerstoneWebGLTextureCacheFull",r),(0,v.default)(c.default,"CornerstoneWebGLTextureCacheFull",r)}}function o(e){if(void 0===e)throw new Error("setMaximumSizeBytes: parameter numBytes must not be undefined");if(void 0===e.toFixed)throw new Error("setMaximumSizeBytes: parameter numBytes must be a number");w=e,i()}function l(e,t){var r=e.imageId;if(void 0===e)throw new Error("putImageTexture: image must not be undefined");if(void 0===r)throw new Error("putImageTexture: imageId must not be undefined");if(void 0===t)throw new Error("putImageTexture: imageTexture must not be undefined");if(!0===Object.prototype.hasOwnProperty.call(h,r))throw new Error("putImageTexture: imageId already in cache");var n={imageId:r,imageTexture:t,timeStamp:new Date,sizeInBytes:t.sizeInBytes};if(h[r]=n,p.push(n),void 0===t.sizeInBytes)throw new Error("putImageTexture: imageTexture.sizeInBytes must not be undefined");if(void 0===t.sizeInBytes.toFixed)throw new Error("putImageTexture: imageTexture.sizeInBytes is not a number");b+=n.sizeInBytes,i()}function u(e){if(void 0===e)throw new Error("getImageTexture: imageId must not be undefined");var t=h[e];if(void 0!==t)return t.timeStamp=new Date,t.imageTexture}function d(e){if(void 0===e)throw new Error("removeImageTexture: imageId must not be undefined");var t=h[e];if(void 0===t)throw new Error("removeImageTexture: imageId must not be undefined");return p.splice(p.indexOf(t),1),b-=t.sizeInBytes,delete h[e],t.imageTexture}function s(){for(;p.length>0;){var e=p.pop();delete h[e.imageId]}b=0}Object.defineProperty(t,"__esModule",{value:!0});var f=r(1),m=r(12),c=n(m),g=r(2),v=n(g),h={},p=[],w=268435456,b=0;t.default={purgeCache:s,getImageTexture:u,putImageTexture:l,removeImageTexture:d,setMaximumSizeBytes:o}},function(e,t,r){"use strict";function n(e,t,r){var n=e.createShader(r);if(e.shaderSource(n,t),e.compileShader(n),!e.getShaderParameter(n,e.COMPILE_STATUS)&&!e.isContextLost()){var a=e.getShaderInfoLog(n);console.error("Could not compile shader:\n"+a)}return n}function a(e,t,r){var n=e.createProgram();if(e.attachShader(n,t),e.attachShader(n,r),e.linkProgram(n),!e.getProgramParameter(n,e.LINK_STATUS)&&!e.isContextLost()){var a=e.getProgramInfoLog(n);console.error("WebGL program filed to link:\n"+a)}return n}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){return a(e,n(e,t,e.VERTEX_SHADER),n(e,r,e.FRAGMENT_SHADER))}},function(e,t,r){"use strict";function n(e,t){if(void 0===e)throw new Error("drawImage: enabledElement parameter must not be undefined");var r=e.image;if(void 0===r)throw new Error("drawImage: image must be loaded before it can be drawn");var n=e.canvas.getContext("2d");n.setTransform(1,0,0,1,0,0),n.fillStyle="black",n.fillRect(0,0,e.canvas.width,e.canvas.height),!0===e.viewport.pixelReplication?(n.imageSmoothingEnabled=!1,n.mozImageSmoothingEnabled=!1):(n.imageSmoothingEnabled=!0,n.mozImageSmoothingEnabled=!0),(0,i.default)(e,n),e.viewport.voi.windowWidth===e.image.windowWidth&&e.viewport.voi.windowCenter===e.image.windowCenter&&!1===e.viewport.invert?n.drawImage(r.getImage(),0,0,r.width,r.height,0,0,r.width,r.height):(0,o.renderColorImage)(e,t)}Object.defineProperty(t,"__esModule",{value:!0}),t.renderWebImage=n;var a=r(8),i=function(e){return e&&e.__esModule?e:{default:e}}(a),o=r(7)},function(e,t,r){"use strict";function n(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:0,r=void 0;for(r=0;r<o.length&&!(o[r].priority<=t);r++);o.splice(r,0,{priority:t,provider:e})}function a(e){for(var t=0;t<o.length;t++)if(o[t].provider===e){o.splice(t,1);break}}function i(e,t){for(var r=0;r<o.length;r++){var n=o[r].provider(e,t);if(void 0!==n)return n}}Object.defineProperty(t,"__esModule",{value:!0}),t.addProvider=n,t.removeProvider=a;var o=[];t.default={addProvider:n,removeProvider:a,get:i}},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e,t){t.width!==e.clientWidth&&(t.width=e.clientWidth,t.style.width=e.clientWidth+"px"),t.height!==e.clientHeight&&(t.height=e.clientHeight,t.style.height=e.clientHeight+"px")}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=(0,o.getEnabledElement)(e);a(e,r.canvas);var n={element:e};i.external.$(e).trigger("CornerstoneElementResized",n),(0,m.default)(e,"CornerstoneElementResized",n),void 0!==r.image&&(!0===t?(0,u.default)(e):(0,s.default)(e))};var i=r(1),o=r(0),l=r(26),u=n(l),d=r(3),s=n(d),f=r(2),m=n(f)},function(e,t,r){"use strict";function n(e){return 0===e.viewport.rotation||180===e.viewport.rotation?{width:e.image.width,height:e.image.height}:{width:e.image.height,height:e.image.width}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){var t=(0,a.getEnabledElement)(e),r=n(t),i=t.canvas.height/r.height,l=t.canvas.width/r.width;t.viewport.scale=Math.min(l,i),t.viewport.translation.x=0,t.viewport.translation.y=0,(0,o.default)(e)};var a=r(0),i=r(3),o=function(e){return e&&e.__esModule?e:{default:e}}(i)},function(e,t,r){"use strict";function n(e){for(var t=Number.MAX_VALUE,r=Number.MIN_VALUE,n=e.length,a=void 0,i=0;i<n;i++)a=e[i],t=t<a?t:a,r=r>a?r:a;return{minPixelValue:t,maxPixelValue:r}}function a(e){if(e.restore)return e.restore;var t=e.color,r=e.rgba,n=e.cachedLut,a=e.slope,i=e.windowWidth,o=e.windowCenter,l=e.minPixelValue,u=e.maxPixelValue;return function(){if(e.color=t,e.rgba=r,e.cachedLut=n,e.slope=a,e.windowWidth=i,e.windowCenter=o,e.minPixelValue=l,e.maxPixelValue=u,e.origPixelData){var d=e.origPixelData;e.getPixelData=function(){return d}}e.origPixelData=void 0,e.colormapId=void 0,e.falseColor=void 0}}function i(e){return e&&"string"==typeof e&&(e=(0,m.getColormap)(e)),e}function o(e){return!(!e.restore||"function"!=typeof e.restore)&&(e.restore(),!0)}function l(e,t){if(e.color&&!e.falseColor)throw new Error("Color transforms are not implemented yet");t=i(t);var r=t.getId();if(e.colormapId===r)return!1;if(o(e),r){var l=e.minPixelValue||0,u=e.maxPixelValue||255;e.restore=a(e);var d=t.createLookupTable();d.setTableRange(l,u),(0,f.default)(e,d);var s=n(e.getPixelData());e.minPixelValue=s.minPixelValue,e.maxPixelValue=s.maxPixelValue,e.windowWidth=255,e.windowCenter=128,e.colormapId=r}return!0}function u(e,t){return l((0,d.getEnabledElement)(e).image,t)}Object.defineProperty(t,"__esModule",{value:!0}),t.restoreImage=t.convertToFalseColorImage=t.convertImageToFalseColorImage=void 0;var d=r(0),s=r(28),f=function(e){return e&&e.__esModule?e:{default:e}}(s),m=r(30);t.convertImageToFalseColorImage=l,t.convertToFalseColorImage=u,t.restoreImage=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){if(e.color&&!e.falseColor)throw new Error("Color transforms are not implemented yet");var r=e.minPixelValue,n=0,i=0,o=e.width*e.height,l=e.origPixelData||e.getPixelData(),u=new Uint8Array(4*o),d=t,s=void 0,f=void 0;if(e.color=!0,e.falseColor=!0,e.origPixelData=l,t instanceof a.default.LookupTable)for(t.build();i<o;)s=l[i++],f=t.mapValue(s),u[n++]=f[0],u[n++]=f[1],u[n++]=f[2],u[n++]=f[3];else if(r<0)for(;i<o;)s=l[i++],u[n++]=d[s+-r][0],u[n++]=d[s+-r][1],u[n++]=d[s+-r][2],u[n++]=d[s+-r][3];else for(;i<o;)s=l[i++],u[n++]=d[s][0],u[n++]=d[s][1],u[n++]=d[s][2],u[n++]=d[s][3];e.rgba=!0,e.cachedLut=void 0,e.render=void 0,e.slope=1,e.intercept=0,e.minPixelValue=0,e.maxPixelValue=255,e.windowWidth=255,e.windowCenter=128,e.getPixelData=function(){return u}};var n=r(29),a=function(e){return e&&e.__esModule?e:{default:e}}(n)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(30),a=r(31),i=function(e){return e&&e.__esModule?e:{default:e}}(a);t.default={getColormap:n.getColormap,getColormapsList:n.getColormapsList,LookupTable:i.default}},function(e,t,r){"use strict";function n(e,t,r){r=null===r?100:r;for(var n=(t-e)/(r-1),a=[];r-- >0;)a.push(e),e+=n;return a[a.length-1]=t,a}function a(e,t){for(var r=0,n=e.length-1;r<=n;){var a=r+Math.floor((n-r)/2),i=e[a];if(i===t)return a;t<i?n=a-1:r=a+1}return r}function i(e,t){var r=void 0,n=[],i=t.length;for(e.sort(function(e,t){return e-t}),r=0;r<i;r++)n[r]=a(e,t[r]);return n}function o(e,t,r){var a=void 0,o=[],l=[],u=[],d=[];for(r=null===r?1:r,a=0;a<t.length;a++){var s=t[a];o.push((e-1)*s[0]),l.push(s[1]),u.push(s[1])}var f=n(0,1,e);for(a=0;a<e;a++)f[a]=(e-1)*Math.pow(f[a],r);var m=i(o,f);for(a=1;a<e-1;a++){var c=m[a],g=(f[a]-o[c-1])/(o[c]-o[c-1]),v=l[c]-u[c-1];d[a]=g*v+u[c-1]}return d[0]=u[0],d[e-1]=l[t.length-1],d}function l(e,t,r){var n=void 0,a=[];t=null===t?256:t,r=null===r?1:r;var i=o(t,e.red,r),l=o(t,e.green,r),u=o(t,e.blue,r);for(n=0;n<t;n++){var d=Math.round(255*i[n]),s=Math.round(255*l[n]),f=Math.round(255*u[n]),m=[d,s,f,255];a.push(m)}return a}function u(){var e=[];return Object.keys(c).forEach(function(t){if(c.hasOwnProperty(t)){var r=c[t];e.push({id:t,name:r.name})}}),e.sort(function(e,t){var r=e.name.toLowerCase(),n=t.name.toLowerCase();return r===n?0:r<n?-1:1}),e}function d(e,t){var r=c[e];return r||(r=c[e]=t||{name:"",colors:[]}),!r.colors&&r.segmentedData&&(r.colors=l(r.segmentedData,r.numColors,r.gamma)),{getId:function(){return e},getColorSchemeName:function(){return r.name},setColorSchemeName:function(e){r.name=e},getNumberOfColors:function(){return r.colors.length},setNumberOfColors:function(e){for(;r.colors.length<e;)r.colors.push(m);r.colors.length=e},getColor:function(e){return this.isValidIndex(e)?r.colors[e]:m},getColorRepeating:function(e){var t=r.colors.length;return e=t?e%t:0,this.getColor(e)},setColor:function(e,t){this.isValidIndex(e)&&(r.colors[e]=t)},addColor:function(e){r.colors.push(e)},insertColor:function(e,t){this.isValidIndex(e)&&r.colors.splice(e,1,t)},removeColor:function(e){this.isValidIndex(e)&&r.colors.splice(e,1)},clearColors:function(){r.colors=[]},buildLookupTable:function(e){if(e){var t=void 0,n=r.colors.length;for(e.setNumberOfTableValues(n),t=0;t<n;t++)e.setTableValue(t,r.colors[t])}},createLookupTable:function(){var e=new f.default;return this.buildLookupTable(e),e},isValidIndex:function(e){return e>=0&&e<r.colors.length}}}Object.defineProperty(t,"__esModule",{value:!0}),t.getColormapsList=u,t.getColormap=d;var s=r(31),f=function(e){return e&&e.__esModule?e:{default:e}}(s),m=[0,0,0,255],c={hotIron:{name:"Hot Iron",numOfColors:256,colors:[[0,0,0,255],[2,0,0,255],[4,0,0,255],[6,0,0,255],[8,0,0,255],[10,0,0,255],[12,0,0,255],[14,0,0,255],[16,0,0,255],[18,0,0,255],[20,0,0,255],[22,0,0,255],[24,0,0,255],[26,0,0,255],[28,0,0,255],[30,0,0,255],[32,0,0,255],[34,0,0,255],[36,0,0,255],[38,0,0,255],[40,0,0,255],[42,0,0,255],[44,0,0,255],[46,0,0,255],[48,0,0,255],[50,0,0,255],[52,0,0,255],[54,0,0,255],[56,0,0,255],[58,0,0,255],[60,0,0,255],[62,0,0,255],[64,0,0,255],[66,0,0,255],[68,0,0,255],[70,0,0,255],[72,0,0,255],[74,0,0,255],[76,0,0,255],[78,0,0,255],[80,0,0,255],[82,0,0,255],[84,0,0,255],[86,0,0,255],[88,0,0,255],[90,0,0,255],[92,0,0,255],[94,0,0,255],[96,0,0,255],[98,0,0,255],[100,0,0,255],[102,0,0,255],[104,0,0,255],[106,0,0,255],[108,0,0,255],[110,0,0,255],[112,0,0,255],[114,0,0,255],[116,0,0,255],[118,0,0,255],[120,0,0,255],[122,0,0,255],[124,0,0,255],[126,0,0,255],[128,0,0,255],[130,0,0,255],[132,0,0,255],[134,0,0,255],[136,0,0,255],[138,0,0,255],[140,0,0,255],[142,0,0,255],[144,0,0,255],[146,0,0,255],[148,0,0,255],[150,0,0,255],[152,0,0,255],[154,0,0,255],[156,0,0,255],[158,0,0,255],[160,0,0,255],[162,0,0,255],[164,0,0,255],[166,0,0,255],[168,0,0,255],[170,0,0,255],[172,0,0,255],[174,0,0,255],[176,0,0,255],[178,0,0,255],[180,0,0,255],[182,0,0,255],[184,0,0,255],[186,0,0,255],[188,0,0,255],[190,0,0,255],[192,0,0,255],[194,0,0,255],[196,0,0,255],[198,0,0,255],[200,0,0,255],[202,0,0,255],[204,0,0,255],[206,0,0,255],[208,0,0,255],[210,0,0,255],[212,0,0,255],[214,0,0,255],[216,0,0,255],[218,0,0,255],[220,0,0,255],[222,0,0,255],[224,0,0,255],[226,0,0,255],[228,0,0,255],[230,0,0,255],[232,0,0,255],[234,0,0,255],[236,0,0,255],[238,0,0,255],[240,0,0,255],[242,0,0,255],[244,0,0,255],[246,0,0,255],[248,0,0,255],[250,0,0,255],[252,0,0,255],[254,0,0,255],[255,0,0,255],[255,2,0,255],[255,4,0,255],[255,6,0,255],[255,8,0,255],[255,10,0,255],[255,12,0,255],[255,14,0,255],[255,16,0,255],[255,18,0,255],[255,20,0,255],[255,22,0,255],[255,24,0,255],[255,26,0,255],[255,28,0,255],[255,30,0,255],[255,32,0,255],[255,34,0,255],[255,36,0,255],[255,38,0,255],[255,40,0,255],[255,42,0,255],[255,44,0,255],[255,46,0,255],[255,48,0,255],[255,50,0,255],[255,52,0,255],[255,54,0,255],[255,56,0,255],[255,58,0,255],[255,60,0,255],[255,62,0,255],[255,64,0,255],[255,66,0,255],[255,68,0,255],[255,70,0,255],[255,72,0,255],[255,74,0,255],[255,76,0,255],[255,78,0,255],[255,80,0,255],[255,82,0,255],[255,84,0,255],[255,86,0,255],[255,88,0,255],[255,90,0,255],[255,92,0,255],[255,94,0,255],[255,96,0,255],[255,98,0,255],[255,100,0,255],[255,102,0,255],[255,104,0,255],[255,106,0,255],[255,108,0,255],[255,110,0,255],[255,112,0,255],[255,114,0,255],[255,116,0,255],[255,118,0,255],[255,120,0,255],[255,122,0,255],[255,124,0,255],[255,126,0,255],[255,128,4,255],[255,130,8,255],[255,132,12,255],[255,134,16,255],[255,136,20,255],[255,138,24,255],[255,140,28,255],[255,142,32,255],[255,144,36,255],[255,146,40,255],[255,148,44,255],[255,150,48,255],[255,152,52,255],[255,154,56,255],[255,156,60,255],[255,158,64,255],[255,160,68,255],[255,162,72,255],[255,164,76,255],[255,166,80,255],[255,168,84,255],[255,170,88,255],[255,172,92,255],[255,174,96,255],[255,176,100,255],[255,178,104,255],[255,180,108,255],[255,182,112,255],[255,184,116,255],[255,186,120,255],[255,188,124,255],[255,190,128,255],[255,192,132,255],[255,194,136,255],[255,196,140,255],[255,198,144,255],[255,200,148,255],[255,202,152,255],[255,204,156,255],[255,206,160,255],[255,208,164,255],[255,210,168,255],[255,212,172,255],[255,214,176,255],[255,216,180,255],[255,218,184,255],[255,220,188,255],[255,222,192,255],[255,224,196,255],[255,226,200,255],[255,228,204,255],[255,230,208,255],[255,232,212,255],[255,234,216,255],[255,236,220,255],[255,238,224,255],[255,240,228,255],[255,242,232,255],[255,244,236,255],[255,246,240,255],[255,248,244,255],[255,250,248,255],[255,252,252,255],[255,255,255,255]]},pet:{name:"PET",numColors:256,colors:[[0,0,0,255],[0,2,1,255],[0,4,3,255],[0,6,5,255],[0,8,7,255],[0,10,9,255],[0,12,11,255],[0,14,13,255],[0,16,15,255],[0,18,17,255],[0,20,19,255],[0,22,21,255],[0,24,23,255],[0,26,25,255],[0,28,27,255],[0,30,29,255],[0,32,31,255],[0,34,33,255],[0,36,35,255],[0,38,37,255],[0,40,39,255],[0,42,41,255],[0,44,43,255],[0,46,45,255],[0,48,47,255],[0,50,49,255],[0,52,51,255],[0,54,53,255],[0,56,55,255],[0,58,57,255],[0,60,59,255],[0,62,61,255],[0,65,63,255],[0,67,65,255],[0,69,67,255],[0,71,69,255],[0,73,71,255],[0,75,73,255],[0,77,75,255],[0,79,77,255],[0,81,79,255],[0,83,81,255],[0,85,83,255],[0,87,85,255],[0,89,87,255],[0,91,89,255],[0,93,91,255],[0,95,93,255],[0,97,95,255],[0,99,97,255],[0,101,99,255],[0,103,101,255],[0,105,103,255],[0,107,105,255],[0,109,107,255],[0,111,109,255],[0,113,111,255],[0,115,113,255],[0,117,115,255],[0,119,117,255],[0,121,119,255],[0,123,121,255],[0,125,123,255],[0,128,125,255],[1,126,127,255],[3,124,129,255],[5,122,131,255],[7,120,133,255],[9,118,135,255],[11,116,137,255],[13,114,139,255],[15,112,141,255],[17,110,143,255],[19,108,145,255],[21,106,147,255],[23,104,149,255],[25,102,151,255],[27,100,153,255],[29,98,155,255],[31,96,157,255],[33,94,159,255],[35,92,161,255],[37,90,163,255],[39,88,165,255],[41,86,167,255],[43,84,169,255],[45,82,171,255],[47,80,173,255],[49,78,175,255],[51,76,177,255],[53,74,179,255],[55,72,181,255],[57,70,183,255],[59,68,185,255],[61,66,187,255],[63,64,189,255],[65,63,191,255],[67,61,193,255],[69,59,195,255],[71,57,197,255],[73,55,199,255],[75,53,201,255],[77,51,203,255],[79,49,205,255],[81,47,207,255],[83,45,209,255],[85,43,211,255],[86,41,213,255],[88,39,215,255],[90,37,217,255],[92,35,219,255],[94,33,221,255],[96,31,223,255],[98,29,225,255],[100,27,227,255],[102,25,229,255],[104,23,231,255],[106,21,233,255],[108,19,235,255],[110,17,237,255],[112,15,239,255],[114,13,241,255],[116,11,243,255],[118,9,245,255],[120,7,247,255],[122,5,249,255],[124,3,251,255],[126,1,253,255],[128,0,255,255],[130,2,252,255],[132,4,248,255],[134,6,244,255],[136,8,240,255],[138,10,236,255],[140,12,232,255],[142,14,228,255],[144,16,224,255],[146,18,220,255],[148,20,216,255],[150,22,212,255],[152,24,208,255],[154,26,204,255],[156,28,200,255],[158,30,196,255],[160,32,192,255],[162,34,188,255],[164,36,184,255],[166,38,180,255],[168,40,176,255],[170,42,172,255],[171,44,168,255],[173,46,164,255],[175,48,160,255],[177,50,156,255],[179,52,152,255],[181,54,148,255],[183,56,144,255],[185,58,140,255],[187,60,136,255],[189,62,132,255],[191,64,128,255],[193,66,124,255],[195,68,120,255],[197,70,116,255],[199,72,112,255],[201,74,108,255],[203,76,104,255],[205,78,100,255],[207,80,96,255],[209,82,92,255],[211,84,88,255],[213,86,84,255],[215,88,80,255],[217,90,76,255],[219,92,72,255],[221,94,68,255],[223,96,64,255],[225,98,60,255],[227,100,56,255],[229,102,52,255],[231,104,48,255],[233,106,44,255],[235,108,40,255],[237,110,36,255],[239,112,32,255],[241,114,28,255],[243,116,24,255],[245,118,20,255],[247,120,16,255],[249,122,12,255],[251,124,8,255],[253,126,4,255],[255,128,0,255],[255,130,4,255],[255,132,8,255],[255,134,12,255],[255,136,16,255],[255,138,20,255],[255,140,24,255],[255,142,28,255],[255,144,32,255],[255,146,36,255],[255,148,40,255],[255,150,44,255],[255,152,48,255],[255,154,52,255],[255,156,56,255],[255,158,60,255],[255,160,64,255],[255,162,68,255],[255,164,72,255],[255,166,76,255],[255,168,80,255],[255,170,85,255],[255,172,89,255],[255,174,93,255],[255,176,97,255],[255,178,101,255],[255,180,105,255],[255,182,109,255],[255,184,113,255],[255,186,117,255],[255,188,121,255],[255,190,125,255],[255,192,129,255],[255,194,133,255],[255,196,137,255],[255,198,141,255],[255,200,145,255],[255,202,149,255],[255,204,153,255],[255,206,157,255],[255,208,161,255],[255,210,165,255],[255,212,170,255],[255,214,174,255],[255,216,178,255],[255,218,182,255],[255,220,186,255],[255,222,190,255],[255,224,194,255],[255,226,198,255],[255,228,202,255],[255,230,206,255],[255,232,210,255],[255,234,214,255],[255,236,218,255],[255,238,222,255],[255,240,226,255],[255,242,230,255],[255,244,234,255],[255,246,238,255],[255,248,242,255],[255,250,246,255],[255,252,250,255],[255,255,255,255]]},hotMetalBlue:{name:"Hot Metal Blue",numColors:256,colors:[[0,0,0,255],[0,0,2,255],[0,0,4,255],[0,0,6,255],[0,0,8,255],[0,0,10,255],[0,0,12,255],[0,0,14,255],[0,0,16,255],[0,0,17,255],[0,0,19,255],[0,0,21,255],[0,0,23,255],[0,0,25,255],[0,0,27,255],[0,0,29,255],[0,0,31,255],[0,0,33,255],[0,0,35,255],[0,0,37,255],[0,0,39,255],[0,0,41,255],[0,0,43,255],[0,0,45,255],[0,0,47,255],[0,0,49,255],[0,0,51,255],[0,0,53,255],[0,0,55,255],[0,0,57,255],[0,0,59,255],[0,0,61,255],[0,0,63,255],[0,0,65,255],[0,0,67,255],[0,0,69,255],[0,0,71,255],[0,0,73,255],[0,0,75,255],[0,0,77,255],[0,0,79,255],[0,0,81,255],[0,0,83,255],[0,0,84,255],[0,0,86,255],[0,0,88,255],[0,0,90,255],[0,0,92,255],[0,0,94,255],[0,0,96,255],[0,0,98,255],[0,0,100,255],[0,0,102,255],[0,0,104,255],[0,0,106,255],[0,0,108,255],[0,0,110,255],[0,0,112,255],[0,0,114,255],[0,0,116,255],[0,0,117,255],[0,0,119,255],[0,0,121,255],[0,0,123,255],[0,0,125,255],[0,0,127,255],[0,0,129,255],[0,0,131,255],[0,0,133,255],[0,0,135,255],[0,0,137,255],[0,0,139,255],[0,0,141,255],[0,0,143,255],[0,0,145,255],[0,0,147,255],[0,0,149,255],[0,0,151,255],[0,0,153,255],[0,0,155,255],[0,0,157,255],[0,0,159,255],[0,0,161,255],[0,0,163,255],[0,0,165,255],[0,0,167,255],[3,0,169,255],[6,0,171,255],[9,0,173,255],[12,0,175,255],[15,0,177,255],[18,0,179,255],[21,0,181,255],[24,0,183,255],[26,0,184,255],[29,0,186,255],[32,0,188,255],[35,0,190,255],[38,0,192,255],[41,0,194,255],[44,0,196,255],[47,0,198,255],[50,0,200,255],[52,0,197,255],[55,0,194,255],[57,0,191,255],[59,0,188,255],[62,0,185,255],[64,0,182,255],[66,0,179,255],[69,0,176,255],[71,0,174,255],[74,0,171,255],[76,0,168,255],[78,0,165,255],[81,0,162,255],[83,0,159,255],[85,0,156,255],[88,0,153,255],[90,0,150,255],[93,2,144,255],[96,4,138,255],[99,6,132,255],[102,8,126,255],[105,9,121,255],[108,11,115,255],[111,13,109,255],[114,15,103,255],[116,17,97,255],[119,19,91,255],[122,21,85,255],[125,23,79,255],[128,24,74,255],[131,26,68,255],[134,28,62,255],[137,30,56,255],[140,32,50,255],[143,34,47,255],[146,36,44,255],[149,38,41,255],[152,40,38,255],[155,41,35,255],[158,43,32,255],[161,45,29,255],[164,47,26,255],[166,49,24,255],[169,51,21,255],[172,53,18,255],[175,55,15,255],[178,56,12,255],[181,58,9,255],[184,60,6,255],[187,62,3,255],[190,64,0,255],[194,66,0,255],[198,68,0,255],[201,70,0,255],[205,72,0,255],[209,73,0,255],[213,75,0,255],[217,77,0,255],[221,79,0,255],[224,81,0,255],[228,83,0,255],[232,85,0,255],[236,87,0,255],[240,88,0,255],[244,90,0,255],[247,92,0,255],[251,94,0,255],[255,96,0,255],[255,98,3,255],[255,100,6,255],[255,102,9,255],[255,104,12,255],[255,105,15,255],[255,107,18,255],[255,109,21,255],[255,111,24,255],[255,113,26,255],[255,115,29,255],[255,117,32,255],[255,119,35,255],[255,120,38,255],[255,122,41,255],[255,124,44,255],[255,126,47,255],[255,128,50,255],[255,130,53,255],[255,132,56,255],[255,134,59,255],[255,136,62,255],[255,137,65,255],[255,139,68,255],[255,141,71,255],[255,143,74,255],[255,145,76,255],[255,147,79,255],[255,149,82,255],[255,151,85,255],[255,152,88,255],[255,154,91,255],[255,156,94,255],[255,158,97,255],[255,160,100,255],[255,162,103,255],[255,164,106,255],[255,166,109,255],[255,168,112,255],[255,169,115,255],[255,171,118,255],[255,173,121,255],[255,175,124,255],[255,177,126,255],[255,179,129,255],[255,181,132,255],[255,183,135,255],[255,184,138,255],[255,186,141,255],[255,188,144,255],[255,190,147,255],[255,192,150,255],[255,194,153,255],[255,196,156,255],[255,198,159,255],[255,200,162,255],[255,201,165,255],[255,203,168,255],[255,205,171,255],[255,207,174,255],[255,209,176,255],[255,211,179,255],[255,213,182,255],[255,215,185,255],[255,216,188,255],[255,218,191,255],[255,220,194,255],[255,222,197,255],[255,224,200,255],[255,226,203,255],[255,228,206,255],[255,229,210,255],[255,231,213,255],[255,233,216,255],[255,235,219,255],[255,237,223,255],[255,239,226,255],[255,240,229,255],[255,242,232,255],[255,244,236,255],[255,246,239,255],[255,248,242,255],[255,250,245,255],[255,251,249,255],[255,253,252,255],[255,255,255,255]]},pet20Step:{name:"PET 20 Step",numColors:256,colors:[[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[0,0,0,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[96,0,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,80,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[48,48,112,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[80,80,128,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[96,96,176,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[112,112,192,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[128,128,224,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,96,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[48,144,48,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[80,192,80,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[64,224,64,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[224,224,80,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,208,96,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,176,64,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[208,144,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[192,96,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[176,48,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,0,0,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255],[255,255,255,255]]},gray:{name:"Gray",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[1,1,1]],green:[[0,0,0],[1,1,1]],blue:[[0,0,0],[1,1,1]]}},jet:{name:"Jet",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[.35,0,0],[.66,1,1],[.89,1,1],[1,.5,.5]],green:[[0,0,0],[.125,0,0],[.375,1,1],[.64,1,1],[.91,0,0],[1,0,0]],blue:[[0,.5,.5],[.11,1,1],[.34,1,1],[.65,0,0],[1,0,0]]}},hsv:{name:"HSV",numColors:256,gamma:1,segmentedData:{red:[[0,1,1],[.15873,1,1],[.174603,.96875,.96875],[.333333,.03125,.03125],[.349206,0,0],[.666667,0,0],[.68254,.03125,.03125],[.84127,.96875,.96875],[.857143,1,1],[1,1,1]],green:[[0,0,0],[.15873,.9375,.9375],[.174603,1,1],[.507937,1,1],[.666667,.0625,.0625],[.68254,0,0],[1,0,0]],blue:[[0,0,0],[.333333,0,0],[.349206,.0625,.0625],[.507937,1,1],[.84127,1,1],[.857143,.9375,.9375],[1,.09375,.09375]]}},hot:{name:"Hot",numColors:256,gamma:1,segmentedData:{red:[[0,.0416,.0416],[.365079,1,1],[1,1,1]],green:[[0,0,0],[.365079,0,0],[.746032,1,1],[1,1,1]],blue:[[0,0,0],[.746032,0,0],[1,1,1]]}},cool:{name:"Cool",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[1,1,1]],green:[[0,1,1],[1,0,0]],blue:[[0,1,1],[1,1,1]]}},spring:{name:"Spring",numColors:256,gamma:1,segmentedData:{red:[[0,1,1],[1,1,1]],green:[[0,0,0],[1,1,1]],blue:[[0,1,1],[1,0,0]]}},summer:{name:"Summer",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[1,1,1]],green:[[0,.5,.5],[1,1,1]],blue:[[0,.4,.4],[1,.4,.4]]}},autumn:{name:"Autumn",numColors:256,gamma:1,segmentedData:{red:[[0,1,1],[1,1,1]],green:[[0,0,0],[1,1,1]],blue:[[0,0,0],[1,0,0]]}},winter:{name:"Winter",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[1,0,0]],green:[[0,0,0],[1,1,1]],blue:[[0,1,1],[1,.5,.5]]}},bone:{name:"Bone",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[.746032,.652778,.652778],[1,1,1]],green:[[0,0,0],[.365079,.319444,.319444],[.746032,.777778,.777778],[1,1,1]],blue:[[0,0,0],[.365079,.444444,.444444],[1,1,1]]}},copper:{name:"Copper",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[.809524,1,1],[1,1,1]],green:[[0,0,0],[1,.7812,.7812]],blue:[[0,0,0],[1,.4975,.4975]]}},spectral:{name:"Spectral",numColors:256,gamma:1,segmentedData:{red:[[0,0,0],[.05,.4667,.4667],[.1,.5333,.5333],[.15,0,0],[.2,0,0],[.25,0,0],[.3,0,0],[.35,0,0],[.4,0,0],[.45,0,0],[.5,0,0],[.55,0,0],[.6,0,0],[.65,.7333,.7333],[.7,.9333,.9333],[.75,1,1],[.8,1,1],[.85,1,1],[.9,.8667,.8667],[.95,.8,.8],[1,.8,.8]],green:[[0,0,0],[.05,0,0],[.1,0,0],[.15,0,0],[.2,0,0],[.25,.4667,.4667],[.3,.6,.6],[.35,.6667,.6667],[.4,.6667,.6667],[.45,.6,.6],[.5,.7333,.7333],[.55,.8667,.8667],[.6,1,1],[.65,1,1],[.7,.9333,.9333],[.75,.8,.8],[.8,.6,.6],[.85,0,0],[.9,0,0],[.95,0,0],[1,.8,.8]],blue:[[0,0,0],[.05,.5333,.5333],[.1,.6,.6],[.15,.6667,.6667],[.2,.8667,.8667],[.25,.8667,.8667],[.3,.8667,.8667],[.35,.6667,.6667],[.4,.5333,.5333],[.45,0,0],[.5,0,0],[.55,0,0],[.6,0,0],[.65,0,0],[.7,0,0],[.75,0,0],[.8,0,0],[.85,0,0],[.9,0,0],[.95,0,0],[1,.8,.8]]}},coolwarm:{name:"CoolWarm",numColors:256,gamma:1,segmentedData:{red:[[0,.2298057,.2298057],[.03125,.26623388,.26623388],[.0625,.30386891,.30386891],[.09375,.342804478,.342804478],[.125,.38301334,.38301334],[.15625,.424369608,.424369608],[.1875,.46666708,.46666708],[.21875,.509635204,.509635204],[.25,.552953156,.552953156],[.28125,.596262162,.596262162],[.3125,.639176211,.639176211],[.34375,.681291281,.681291281],[.375,.722193294,.722193294],[.40625,.761464949,.761464949],[.4375,.798691636,.798691636],[.46875,.833466556,.833466556],[.5,.865395197,.865395197],[.53125,.897787179,.897787179],[.5625,.924127593,.924127593],[.59375,.944468518,.944468518],[.625,.958852946,.958852946],[.65625,.96732803,.96732803],[.6875,.969954137,.969954137],[.71875,.966811177,.966811177],[.75,.958003065,.958003065],[.78125,.943660866,.943660866],[.8125,.923944917,.923944917],[.84375,.89904617,.89904617],[.875,.869186849,.869186849],[.90625,.834620542,.834620542],[.9375,.795631745,.795631745],[.96875,.752534934,.752534934],[1,.705673158,.705673158]],green:[[0,.298717966,.298717966],[.03125,.353094838,.353094838],[.0625,.406535296,.406535296],[.09375,.458757618,.458757618],[.125,.50941904,.50941904],[.15625,.558148092,.558148092],[.1875,.604562568,.604562568],[.21875,.648280772,.648280772],[.25,.688929332,.688929332],[.28125,.726149107,.726149107],[.3125,.759599947,.759599947],[.34375,.788964712,.788964712],[.375,.813952739,.813952739],[.40625,.834302879,.834302879],[.4375,.849786142,.849786142],[.46875,.860207984,.860207984],[.5,.86541021,.86541021],[.53125,.848937047,.848937047],[.5625,.827384882,.827384882],[.59375,.800927443,.800927443],[.625,.769767752,.769767752],[.65625,.734132809,.734132809],[.6875,.694266682,.694266682],[.71875,.650421156,.650421156],[.75,.602842431,.602842431],[.78125,.551750968,.551750968],[.8125,.49730856,.49730856],[.84375,.439559467,.439559467],[.875,.378313092,.378313092],[.90625,.312874446,.312874446],[.9375,.24128379,.24128379],[.96875,.157246067,.157246067],[1,.01555616,.01555616]],blue:[[0,.753683153,.753683153],[.03125,.801466763,.801466763],[.0625,.84495867,.84495867],[.09375,.883725899,.883725899],[.125,.917387822,.917387822],[.15625,.945619588,.945619588],[.1875,.968154911,.968154911],[.21875,.98478814,.98478814],[.25,.995375608,.995375608],[.28125,.999836203,.999836203],[.3125,.998151185,.998151185],[.34375,.990363227,.990363227],[.375,.976574709,.976574709],[.40625,.956945269,.956945269],[.4375,.931688648,.931688648],[.46875,.901068838,.901068838],[.5,.865395561,.865395561],[.53125,.820880546,.820880546],[.5625,.774508472,.774508472],[.59375,.726736146,.726736146],[.625,.678007945,.678007945],[.65625,.628751763,.628751763],[.6875,.579375448,.579375448],[.71875,.530263762,.530263762],[.75,.481775914,.481775914],[.78125,.434243684,.434243684],[.8125,.387970225,.387970225],[.84375,.343229596,.343229596],[.875,.300267182,.300267182],[.90625,.259301199,.259301199],[.9375,.220525627,.220525627],[.96875,.184115123,.184115123],[1,.150232812,.150232812]]}},blues:{name:"Blues",numColors:256,gamma:1,segmentedData:{red:[[0,.9686274528503418,.9686274528503418],[.125,.8705882430076599,.8705882430076599],[.25,.7764706015586853,.7764706015586853],[.375,.6196078658103943,.6196078658103943],[.5,.41960784792900085,.41960784792900085],[.625,.25882354378700256,.25882354378700256],[.75,.12941177189350128,.12941177189350128],[.875,.0313725508749485,.0313725508749485],[1,.0313725508749485,.0313725508749485]],green:[[0,.9843137264251709,.9843137264251709],[.125,.9215686321258545,.9215686321258545],[.25,.8588235378265381,.8588235378265381],[.375,.7921568751335144,.7921568751335144],[.5,.6823529601097107,.6823529601097107],[.625,.572549045085907,.572549045085907],[.75,.4431372582912445,.4431372582912445],[.875,.3176470696926117,.3176470696926117],[1,.1882352977991104,.1882352977991104]],blue:[[0,1,1],[.125,.9686274528503418,.9686274528503418],[.25,.9372549057006836,.9372549057006836],[.375,.8823529481887817,.8823529481887817],[.5,.8392156958580017,.8392156958580017],[.625,.7764706015586853,.7764706015586853],[.75,.7098039388656616,.7098039388656616],[.875,.6117647290229797,.6117647290229797],[1,.41960784792900085,.41960784792900085]]}}}},function(e,t,r){"use strict";function n(){this.NumberOfColors=256,this.Ramp="linear",this.TableRange=[0,255],this.HueRange=[0,.66667],this.SaturationRange=[1,1],this.ValueRange=[1,1],this.AlphaRange=[1,1],this.NaNColor=[128,0,0,255],this.BelowRangeColor=[0,0,0,255],this.UseBelowRangeColor=!0,this.AboveRangeColor=[255,255,255,255],this.UseAboveRangeColor=!0,this.InputRange=[0,255],this.Table=[],this.setNumberOfTableValues=function(e){this.NumberOfColors=e},this.setRamp=function(e){this.Ramp=e},this.setTableRange=function(e,t){this.TableRange[0]=e,this.TableRange[1]=t},this.setHueRange=function(e,t){this.HueRange[0]=e,this.HueRange[1]=t},this.setSaturationRange=function(e,t){this.SaturationRange[0]=e,this.SaturationRange[1]=t},this.setValueRange=function(e,t){this.ValueRange[0]=e,this.ValueRange[1]=t},this.setRange=function(e,t){this.InputRange[0]=e,this.InputRange[1]=t},this.setAlphaRange=function(e,t){this.AlphaRange[0]=e,this.AlphaRange[1]=t},this.getColor=function(e){return this.mapValue(e)},this.HSVToRGB=function(e,t,r){if(e>1)throw new Error("HSVToRGB expects hue < 1");var n=[];if(0===t)return n[0]=r,n[1]=r,n[2]=r,n;var a=Math.floor(6*e),i=6*e-a,o=r*(1-t),l=r*(1-t*i),u=r*(1-t*(1-i));switch(a){case 0:case 6:n[0]=r,n[1]=u,n[2]=o;break;case 1:n[0]=l,n[1]=r,n[2]=o;break;case 2:n[0]=o,n[1]=r,n[2]=u;break;case 3:n[0]=o,n[1]=l,n[2]=r;break;case 4:n[0]=u,n[1]=o,n[2]=r;break;case 5:n[0]=r,n[1]=o,n[2]=l}return n},this.build=function(e){if(!(this.Table.length>1)||e){this.Table=[];var t=this.NumberOfColors-1,r=void 0,n=void 0,a=void 0,i=void 0;t?(r=(this.HueRange[1]-this.HueRange[0])/t,n=(this.SaturationRange[1]-this.SaturationRange[0])/t,a=(this.ValueRange[1]-this.ValueRange[0])/t,i=(this.AlphaRange[1]-this.AlphaRange[0])/t):r=n=a=i=0;for(var o=0;o<=t;o++){var l=this.HueRange[0]+o*r,u=this.SaturationRange[0]+o*n,d=this.ValueRange[0]+o*a,s=this.AlphaRange[0]+o*i,f=this.HSVToRGB(l,u,d),m=[];switch(this.Ramp){case"scurve":m[0]=Math.floor(127.5*(1+Math.cos((1-f[0])*Math.PI))),m[1]=Math.floor(127.5*(1+Math.cos((1-f[1])*Math.PI))),m[2]=Math.floor(127.5*(1+Math.cos((1-f[2])*Math.PI))),m[3]=Math.floor(255*s);break;case"linear":m[0]=Math.floor(255*f[0]+.5),m[1]=Math.floor(255*f[1]+.5),m[2]=Math.floor(255*f[2]+.5),m[3]=Math.floor(255*s+.5);break;case"sqrt":m[0]=Math.floor(255*Math.sqrt(f[0])+.5),m[1]=Math.floor(255*Math.sqrt(f[1])+.5),m[2]=Math.floor(255*Math.sqrt(f[2])+.5),m[3]=Math.floor(255*Math.sqrt(s)+.5);break;default:throw new Error("Invalid Ramp value ("+this.Ramp+")")}this.Table.push(m)}this.buildSpecialColors()}},this.buildSpecialColors=function(){var e=this.NumberOfColors,t=e+a,r=e+i,n=e+o;this.UseBelowRangeColor||0===e?this.Table[t]=this.BelowRangeColor:this.Table[t]=this.Table[0],this.UseAboveRangeColor||0===e?this.Table[r]=this.AboveRangeColor:this.Table[r]=this.Table[e-1],this.Table[n]=this.NaNColor},this.mapValue=function(e){var t=this.getIndex(e);if(t<0)return this.NaNColor;if(0===t){if(this.UseBelowRangeColor&&e<this.TableRange[0])return this.BelowRangeColor}else if(t===this.NumberOfColors-1&&this.UseAboveRangeColor&&e>this.TableRange[1])return this.AboveRangeColor;return this.Table[t]},this.linearIndexLookupMain=function(e,t){var r=void 0;return r=e<t.Range[0]?t.MaxIndex+a+1.5:e>t.Range[1]?t.MaxIndex+i+1.5:(e+t.Shift)*t.Scale,Math.floor(r)},this.getIndex=function(e){var t={};if(t.Range=[],t.MaxIndex=this.NumberOfColors-1,t.Shift=-this.TableRange[0],this.TableRange[1]<=this.TableRange[0]?t.Scale=Number.MAX_VALUE:t.Scale=t.MaxIndex/(this.TableRange[1]-this.TableRange[0]),t.Range[0]=this.TableRange[0],t.Range[1]=this.TableRange[1],isNaN(e))return-1;var r=this.linearIndexLookupMain(e,t);return r===this.NumberOfColors+a?r=0:r===this.NumberOfColors+i&&(r=this.NumberOfColors-1),r},this.setTableValue=function(e,t){if(5===arguments.length&&(t=Array.prototype.slice.call(arguments,1)),e<0)throw new Error("Can't set the table value for negative index ("+e+")");e>=this.NumberOfColors&&new Error("Index "+e+" is greater than the number of colors "+this.NumberOfColors),this.Table[e]=t,0!==e&&e!==this.NumberOfColors-1||this.buildSpecialColors()}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=n;var a=0,i=1,o=2},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r,a,i){if(void 0===e)throw new Error("getStoredPixels: parameter element must not be undefined");t=Math.round(t),r=Math.round(r);for(var o=(0,n.getEnabledElement)(e),l=[],u=0,d=o.image.getPixelData(),s=0;s<i;s++)for(var f=0;f<a;f++){var m=(s+r)*o.image.columns+(f+t);l[u++]=d[m]}return l};var n=r(0)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e){if(void 0===e)throw new Error("setMaximumSizeBytes: parameter numBytes must not be undefined");if(void 0===e.toFixed)throw new Error("setMaximumSizeBytes: parameter numBytes must be a number");w=e,c.external.$(v.default).trigger("CornerstoneImageCacheMaximumSizeChanged"),(0,p.default)(v.default,"CornerstoneImageCacheMaximumSizeChanged"),i()}function i(){function e(e,t){return e.timeStamp>t.timeStamp?-1:e.timeStamp<t.timeStamp?1:0}if(!(b<=w)){for(I.sort(e);b>w;){var t=I[I.length-1],r=t.imageId;u(r),c.external.$(v.default).trigger("CornerstoneImageCachePromiseRemoved",{imageId:r}),(0,p.default)(v.default,"CornerstoneImageCachePromiseRemoved",{imageId:r})}var n=d();c.external.$(v.default).trigger("CornerstoneImageCacheFull",n),(0,p.default)(v.default,"CornerstoneImageCacheFull",n)}}function o(e,t){if(void 0===e)throw new Error("putImagePromise: imageId must not be undefined");if(void 0===t)throw new Error("putImagePromise: imagePromise must not be undefined");if(!0===y.hasOwnProperty(e))throw new Error("putImagePromise: imageId already in cache");var r={loaded:!1,imageId:e,sharedCacheKey:void 0,imagePromise:t,timeStamp:Date.now(),sizeInBytes:0};y[e]=r,I.push(r),t.then(function(e){if(-1!==I.indexOf(r)){if(r.loaded=!0,r.image=e,void 0===e.sizeInBytes)throw new Error("putImagePromise: sizeInBytes must not be undefined");if(void 0===e.sizeInBytes.toFixed)throw new Error("putImagePromise: image.sizeInBytes is not a number");r.sizeInBytes=e.sizeInBytes,b+=r.sizeInBytes;var t={action:"addImage",image:r};c.external.$(v.default).trigger("CornerstoneImageCacheChanged",t),(0,p.default)(v.default,"CornerstoneImageCacheChanged",t),r.sharedCacheKey=e.sharedCacheKey,i()}})}function l(e){if(void 0===e)throw new Error("getImagePromise: imageId must not be undefined");var t=y[e];if(void 0!==t)return t.timeStamp=Date.now(),t.imagePromise}function u(e){if(void 0===e)throw new Error("removeImagePromise: imageId must not be undefined");var t=y[e];if(void 0===t)throw new Error("removeImagePromise: imageId was not present in imageCache");t.imagePromise.reject(),I.splice(I.indexOf(t),1),b-=t.sizeInBytes;var r={action:"deleteImage",image:t};c.external.$(v.default).trigger("CornerstoneImageCacheChanged",r),(0,p.default)(v.default,"CornerstoneImageCacheChanged",r),s(t.imagePromise),delete y[e]}function d(){return{maximumSizeInBytes:w,cacheSizeInBytes:b,numberOfImagesCached:I.length}}function s(e){e.then(function(e){e.decache&&e.decache()})}function f(){for(;I.length>0;){u(I[0].imageId)}}function m(e,t){var r=y[e];r&&r.imagePromise.then(function(e){var n=t-e.sizeInBytes;e.sizeInBytes=t,r.sizeInBytes=t,b+=n;var a={action:"changeImageSize",image:e};c.external.$(v.default).trigger("CornerstoneImageCacheChanged",a),(0,p.default)(v.default,"CornerstoneImageCacheChanged",a)})}Object.defineProperty(t,"__esModule",{value:!0}),t.cachedImages=void 0,t.setMaximumSizeBytes=a,t.putImagePromise=o,t.getImagePromise=l,t.removeImagePromise=u,t.getCacheInfo=d,t.purgeCache=f,t.changeImageIdCacheSize=m;var c=r(1),g=r(12),v=n(g),h=r(2),p=n(h),w=1073741824,b=0,y={},I=t.cachedImages=[];t.default={imageCache:y,cachedImages:I,setMaximumSizeBytes:a,putImagePromise:o,getImagePromise:l,removeImagePromise:u,getCacheInfo:d,purgeCache:f,changeImageIdCacheSize:m}},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=r(4);Object.defineProperty(t,"drawImage",{enumerable:!0,get:function(){return n(a).default}});var i=r(9);Object.defineProperty(t,"generateLut",{enumerable:!0,get:function(){return n(i).default}});var o=r(5);Object.defineProperty(t,"getDefaultViewport",{enumerable:!0,get:function(){return n(o).default}});var l=r(14);Object.defineProperty(t,"requestAnimationFrame",{enumerable:!0,get:function(){return n(l).default}});var u=r(15);Object.defineProperty(t,"storedPixelDataToCanvasImageData",{enumerable:!0,get:function(){return n(u).default}});var d=r(16);Object.defineProperty(t,"storedColorPixelDataToCanvasImageData",{enumerable:!0,get:function(){return n(d).default}});var s=r(36);Object.defineProperty(t,"internal",{enumerable:!0,get:function(){return n(s).default}});var f=r(7);Object.defineProperty(t,"renderColorImage",{enumerable:!0,get:function(){return f.renderColorImage}});var m=r(13);Object.defineProperty(t,"renderGrayscaleImage",{enumerable:!0,get:function(){return m.renderGrayscaleImage}});var c=r(23);Object.defineProperty(t,"renderWebImage",{enumerable:!0,get:function(){return c.renderWebImage}});var g=r(46);Object.defineProperty(t,"canvasToPixel",{enumerable:!0,get:function(){return n(g).default}});var v=r(47);Object.defineProperty(t,"disable",{enumerable:!0,get:function(){return n(v).default}});var h=r(48);Object.defineProperty(t,"displayImage",{enumerable:!0,get:function(){return n(h).default}});var p=r(50);Object.defineProperty(t,"draw",{enumerable:!0,get:function(){return n(p).default}});var w=r(51);Object.defineProperty(t,"drawInvalidated",{enumerable:!0,get:function(){return n(w).default}});var b=r(52);Object.defineProperty(t,"enable",{enumerable:!0,get:function(){return n(b).default}});var y=r(55);Object.defineProperty(t,"getElementData",{enumerable:!0,get:function(){return y.getElementData}}),Object.defineProperty(t,"removeElementData",{enumerable:!0,get:function(){return y.removeElementData}});var I=r(0);Object.defineProperty(t,"getEnabledElement",{enumerable:!0,get:function(){return I.getEnabledElement}}),Object.defineProperty(t,"addEnabledElement",{enumerable:!0,get:function(){return I.addEnabledElement}}),Object.defineProperty(t,"getEnabledElementsByImageId",{enumerable:!0,get:function(){return I.getEnabledElementsByImageId}}),Object.defineProperty(t,"getEnabledElements",{enumerable:!0,get:function(){return I.getEnabledElements}});var C=r(18);Object.defineProperty(t,"addLayer",{enumerable:!0,get:function(){return C.addLayer}}),Object.defineProperty(t,"removeLayer",{enumerable:!0,get:function(){return C.removeLayer}}),Object.defineProperty(t,"getLayer",{enumerable:!0,get:function(){return C.getLayer}}),Object.defineProperty(t,"getLayers",{enumerable:!0,get:function(){return C.getLayers}}),Object.defineProperty(t,"getVisibleLayers",{enumerable:!0,get:function(){return C.getVisibleLayers}}),Object.defineProperty(t,"setActiveLayer",{enumerable:!0,get:function(){return C.setActiveLayer}}),Object.defineProperty(t,"getActiveLayer",{enumerable:!0,get:function(){return C.getActiveLayer}});var _=r(26);Object.defineProperty(t,"fitToWindow",{enumerable:!0,get:function(){return n(_).default}});var x=r(56);Object.defineProperty(t,"getDefaultViewportForImage",{enumerable:!0,get:function(){return n(x).default}});var P=r(57);Object.defineProperty(t,"getImage",{enumerable:!0,get:function(){return n(P).default}});var E=r(58);Object.defineProperty(t,"getPixels",{enumerable:!0,get:function(){return n(E).default}});var T=r(32);Object.defineProperty(t,"getStoredPixels",{enumerable:!0,get:function(){return n(T).default}});var R=r(59);Object.defineProperty(t,"getViewport",{enumerable:!0,get:function(){return n(R).default}});var L=r(60);Object.defineProperty(t,"loadImage",{enumerable:!0,get:function(){return L.loadImage}}),Object.defineProperty(t,"loadAndCacheImage",{enumerable:!0,get:function(){return L.loadAndCacheImage}}),Object.defineProperty(t,"registerImageLoader",{enumerable:!0,get:function(){return L.registerImageLoader}}),Object.defineProperty(t,"registerUnknownImageLoader",{enumerable:!0,get:function(){return L.registerUnknownImageLoader}});var M=r(61);Object.defineProperty(t,"invalidate",{enumerable:!0,get:function(){return n(M).default}});var O=r(62);Object.defineProperty(t,"invalidateImageId",{enumerable:!0,get:function(){return n(O).default}});var S=r(63);Object.defineProperty(t,"pageToPixel",{enumerable:!0,get:function(){return n(S).default}});var D=r(64);Object.defineProperty(t,"pixelToCanvas",{enumerable:!0,get:function(){return n(D).default}});var j=r(65);Object.defineProperty(t,"reset",{enumerable:!0,get:function(){return n(j).default}});var A=r(25);Object.defineProperty(t,"resize",{enumerable:!0,get:function(){return n(A).default}});var U=r(8);Object.defineProperty(t,"setToPixelCoordinateSystem",{enumerable:!0,get:function(){return n(U).default}});var V=r(66);Object.defineProperty(t,"setViewport",{enumerable:!0,get:function(){return n(V).default}});var B=r(3);Object.defineProperty(t,"updateImage",{enumerable:!0,get:function(){return n(B).default}});var W=r(28);Object.defineProperty(t,"pixelDataToFalseColorData",{enumerable:!0,get:function(){return n(W).default}});var F=r(67);Object.defineProperty(t,"rendering",{enumerable:!0,get:function(){return n(F).default}});var z=r(33);Object.defineProperty(t,"imageCache",{enumerable:!0,get:function(){return n(z).default}});var G=r(24);Object.defineProperty(t,"metaData",{enumerable:!0,get:function(){return n(G).default}});var N=r(11);Object.defineProperty(t,"webGL",{enumerable:!0,get:function(){return n(N).default}});var k=r(29);Object.defineProperty(t,"colors",{enumerable:!0,get:function(){return n(k).default}});var H=r(27);Object.defineProperty(t,"convertImageToFalseColorImage",{enumerable:!0,get:function(){return H.convertImageToFalseColorImage}}),Object.defineProperty(t,"convertToFalseColorImage",{enumerable:!0,get:function(){return H.convertToFalseColorImage}}),Object.defineProperty(t,"restoreImage",{enumerable:!0,get:function(){return H.restoreImage}});var $=r(12);Object.defineProperty(t,"events",{enumerable:!0,get:function(){return n($).default}});var X=r(1);Object.defineProperty(t,"external",{enumerable:!0,get:function(){return X.external}})},function(e,t,r){"use strict";function n(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}function a(e,t){return function(r){return 255*((r-t)/e+.5)}}function i(e){var t=Math.max.apply(Math,n(e.lut)).toString(2).length,r=t-8,a=e.lut[0]>>r,i=e.lut[e.lut.length-1]>>r,o=e.firstValueMapped+e.lut.length-1;return function(t){return t<e.firstValueMapped?a:t>=o?i:e.lut[t-e.firstValueMapped]>>r}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){return r?i(r):a(e,t)}},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=r(4),i=n(a),o=r(9),l=n(o),u=r(5),d=n(u),s=r(14),f=n(s),m=r(15),c=n(m),g=r(16),v=n(g),h=r(10),p=n(h),w=r(17),b=n(w),y=r(20);t.default={drawImage:i.default,generateLut:l.default,getDefaultViewport:d.default,requestAnimationFrame:f.default,storedPixelDataToCanvasImageData:c.default,storedColorPixelDataToCanvasImageData:v.default,getTransform:p.default,calculateTransform:b.default,Transform:y.Transform}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){var n=(0,a.default)(),i=e.getPixelData();e.stats.lastGetPixelDataTime=(0,a.default)()-n;var o=e.minPixelValue,l=0,u=0,d=i.length;if(n=(0,a.default)(),o<0)for(;u<d;)r[l++]=t[i[u++]+-o],r[l++]=t[i[u++]+-o],r[l++]=t[i[u++]+-o],r[l++]=i[u++];else for(;u<d;)r[l++]=t[i[u++]],r[l++]=t[i[u++]],r[l++]=t[i[u++]],r[l++]=i[u++];e.stats.lastStoredPixelDataToCanvasImageDataTime=(0,a.default)()-n};var n=r(6),a=function(e){return e&&e.__esModule?e:{default:e}}(n)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(){return P}function i(){for(var e in b.shaders){var t=b.shaders[e];t.attributes={},t.uniforms={},t.vert=y.vertexShader,t.program=(0,x.default)(E,t.vert,t.frag),t.attributes.texCoordLocation=E.getAttribLocation(t.program,"a_texCoord"),E.enableVertexAttribArray(t.attributes.texCoordLocation),t.attributes.positionLocation=E.getAttribLocation(t.program,"a_position"),E.enableVertexAttribArray(t.attributes.positionLocation),t.uniforms.resolutionLocation=E.getUniformLocation(t.program,"u_resolution")}}function o(){!0!==L&&s(P)&&(v(),i(),t.isWebGLInitialized=L=!0)}function l(e,t,r){e.bufferData(e.ARRAY_BUFFER,new Float32Array([t,r,0,r,t,0,0,0]),e.STATIC_DRAW)}function u(e){e.preventDefault(),console.warn("WebGL Context Lost!")}function d(e){e.preventDefault(),t.isWebGLInitialized=L=!1,C.default.purgeCache(),o()}function s(e){E=null;try{var t={preserveDrawingBuffer:!0};E=e.getContext("webgl",t)||e.getContext("experimental-webgl",t),e.removeEventListener("webglcontextlost",u,!1),e.addEventListener("webglcontextlost",u,!1),e.removeEventListener("webglcontextrestored",d,!1),e.addEventListener("webglcontextrestored",d,!1)}catch(e){throw new Error("Error creating WebGL context")}return E||(console.error("Unable to initialize WebGL. Your browser may not support it."),E=null),E}function f(e){if(e.color)return"rgb";var t="int";return e.minPixelValue>=0&&(t="u"+t),e.maxPixelValue>255?t+="16":t+="8",t}function m(e){var t=f(e);return b.shaders.hasOwnProperty(t)?b.shaders[t]:b.shaders.rgb}function c(e){var t={uint8:E.LUMINANCE,int8:E.LUMINANCE_ALPHA,uint16:E.LUMINANCE_ALPHA,int16:E.RGB,rgb:E.RGB},r={int8:1,uint16:2,int16:3,rgb:3},n=f(e),a=t[n],i=E.createTexture();E.bindTexture(E.TEXTURE_2D,i),E.texParameteri(E.TEXTURE_2D,E.TEXTURE_MIN_FILTER,E.NEAREST),E.texParameteri(E.TEXTURE_2D,E.TEXTURE_MAG_FILTER,E.NEAREST),E.texParameteri(E.TEXTURE_2D,E.TEXTURE_WRAP_S,E.CLAMP_TO_EDGE),E.texParameteri(E.TEXTURE_2D,E.TEXTURE_WRAP_T,E.CLAMP_TO_EDGE),E.pixelStorei(E.UNPACK_ALIGNMENT,1);var o=b.dataUtilities[n].storedPixelDataToImageData(e,e.width,e.height);return E.texImage2D(E.TEXTURE_2D,0,a,e.width,e.height,0,a,E.UNSIGNED_BYTE,o),{texture:i,sizeInBytes:e.width*e.height*r[n]}}function g(e){var t=C.default.getImageTexture(e.imageId);return t||(t=c(e),C.default.putImageTexture(e,t)),t.texture}function v(){R=E.createBuffer(),E.bindBuffer(E.ARRAY_BUFFER,R),E.bufferData(E.ARRAY_BUFFER,new Float32Array([1,1,0,1,1,0,0,0]),E.STATIC_DRAW),T=E.createBuffer(),E.bindBuffer(E.ARRAY_BUFFER,T),E.bufferData(E.ARRAY_BUFFER,new Float32Array([1,1,0,1,1,0,0,0]),E.STATIC_DRAW)}function h(e,t,r,n,a){E.clearColor(1,0,0,1),E.viewport(0,0,n,a),E.clear(E.COLOR_BUFFER_BIT|E.DEPTH_BUFFER_BIT),E.useProgram(e.program),E.bindBuffer(E.ARRAY_BUFFER,T),E.vertexAttribPointer(e.attributes.texCoordLocation,2,E.FLOAT,!1,0,0),E.bindBuffer(E.ARRAY_BUFFER,R),E.vertexAttribPointer(e.attributes.positionLocation,2,E.FLOAT,!1,0,0);for(var i in t){var o=E.getUniformLocation(e.program,i);if(o){var u=t[i],d=u.type,s=u.value;"i"===d?E.uniform1i(o,s):"f"===d?E.uniform1f(o,s):"2f"===d&&E.uniform2f(o,s[0],s[1])}}l(E,n,a),E.activeTexture(E.TEXTURE0),E.bindTexture(E.TEXTURE_2D,r),E.drawArrays(E.TRIANGLE_STRIP,0,4)}function p(e){var t=e.image;P.width=t.width,P.height=t.height;var r=e.viewport,n=m(t),a=g(t);return h(n,{u_resolution:{type:"2f",value:[t.width,t.height]},wc:{type:"f",value:r.voi.windowCenter},ww:{type:"f",value:r.voi.windowWidth},slope:{type:"f",value:t.slope},intercept:{type:"f",value:t.intercept},minPixelValue:{type:"f",value:t.minPixelValue},invert:{type:"i",value:r.invert?1:0}},a,t.width,t.height),P}function w(){var e={failIfMajorPerformanceCaveat:!0};try{var t=document.createElement("canvas");return Boolean(window.WebGLRenderingContext)&&(t.getContext("webgl",e)||t.getContext("experimental-webgl",e))}catch(e){return!1}}Object.defineProperty(t,"__esModule",{value:!0}),t.isWebGLInitialized=void 0,t.getRenderCanvas=a,t.initRenderer=o,t.render=p,t.isWebGLAvailable=w;var b=r(39),y=r(45),I=r(21),C=n(I),_=r(22),x=n(_),P=document.createElement("canvas"),E=void 0,T=void 0,R=void 0,L=!1;t.isWebGLInitialized=L},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.dataUtilities=t.shaders=void 0;var n=r(40),a=r(41),i=r(42),o=r(43),l=r(44),u={int16:n.int16Shader,int8:a.int8Shader,rgb:i.rgbShader,uint16:o.uint16Shader,uint8:l.uint8Shader},d={int16:n.int16DataUtilities,int8:a.int8DataUtilities,rgb:i.rgbDataUtilities,uint16:o.uint16DataUtilities,uint8:l.uint8DataUtilities};t.shaders=u,t.dataUtilities=d},function(e,t,r){"use strict";function n(e){for(var t=e.getPixelData(),r=new Uint8Array(e.width*e.height*3),n=0,a=0;a<t.length;a++){var i=Math.abs(t[a]);r[n++]=255&i,r[n++]=i>>8,r[n++]=t[a]<0?0:1}return r}Object.defineProperty(t,"__esModule",{value:!0});var a={};t.int16DataUtilities={storedPixelDataToImageData:n};a.frag="precision mediump float;uniform sampler2D u_image;uniform float ww;uniform float wc;uniform float slope;uniform float intercept;uniform int invert;varying vec2 v_texCoord;void main() {vec4 color = texture2D(u_image, v_texCoord);float intensity = color.r*256.0 + color.g*65536.0;if (color.b == 0.0)intensity = -intensity;intensity = intensity * slope + intercept;float center0 = wc - 0.5;float width0 = max(ww, 1.0);intensity = (intensity - center0) / width0 + 0.5;intensity = clamp(intensity, 0.0, 1.0);gl_FragColor = vec4(intensity, intensity, intensity, 1.0);if (invert == 1)gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;}",t.int16Shader=a},function(e,t,r){"use strict";function n(e){for(var t=e.getPixelData(),r=new Uint8Array(e.width*e.height*2),n=0,a=0;a<t.length;a++)r[n++]=t[a],r[n++]=t[a]<0?0:1;return r}Object.defineProperty(t,"__esModule",{value:!0});var a={};t.int8DataUtilities={storedPixelDataToImageData:n};a.frag="precision mediump float;uniform sampler2D u_image;uniform float ww;uniform float wc;uniform float slope;uniform float intercept;uniform int invert;varying vec2 v_texCoord;void main() {vec4 color = texture2D(u_image, v_texCoord);float intensity = color.r*256.;if (color.a == 0.0)intensity = -intensity;intensity = intensity * slope + intercept;float center0 = wc - 0.5;float width0 = max(ww, 1.0);intensity = (intensity - center0) / width0 + 0.5;intensity = clamp(intensity, 0.0, 1.0);gl_FragColor = vec4(intensity, intensity, intensity, 1.0);if (invert == 1)gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;}",t.int8Shader=a},function(e,t,r){"use strict";function n(e){var t=e.minPixelValue,r=0,n=0,a=e.width*e.height*4,i=e.width*e.height*3,o=e.getPixelData(),l=new Uint8Array(i);if(t<0)for(;n<a;)l[r++]=o[n++]+-t,l[r++]=o[n++]+-t,l[r++]=o[n++]+-t,n+=1;else for(;n<a;)l[r++]=o[n++],l[r++]=o[n++],l[r++]=o[n++],n+=1;return l}Object.defineProperty(t,"__esModule",{value:!0});var a={};t.rgbDataUtilities={storedPixelDataToImageData:n};a.frag="precision mediump float;uniform sampler2D u_image;uniform float ww;uniform float wc;uniform float slope;uniform float intercept;uniform float minPixelValue;uniform int invert;varying vec2 v_texCoord;void main() {vec3 color = texture2D(u_image, v_texCoord).xyz;color = color * 256.0 * slope + intercept;float center0 = wc - 0.5 - minPixelValue;float width0 = max(ww, 1.0);color = (color - center0) / width0 + 0.5;gl_FragColor = vec4(color, 1);if (invert == 1)gl_FragColor.rgb = 1. - gl_FragColor.rgb;}",t.rgbShader=a},function(e,t,r){"use strict";function n(e){for(var t=e.getPixelData(),r=new Uint8Array(e.width*e.height*2),n=0,a=0;a<t.length;a++){var i=t[a];r[n++]=255&i,r[n++]=i>>8}return r}Object.defineProperty(t,"__esModule",{value:!0});var a={};t.uint16DataUtilities={storedPixelDataToImageData:n};a.frag="precision mediump float;uniform sampler2D u_image;uniform float ww;uniform float wc;uniform float slope;uniform float intercept;uniform int invert;varying vec2 v_texCoord;void main() {vec4 color = texture2D(u_image, v_texCoord);float intensity = color.r*256.0 + color.a*65536.0;intensity = intensity * slope + intercept;float center0 = wc - 0.5;float width0 = max(ww, 1.0);intensity = (intensity - center0) / width0 + 0.5;intensity = clamp(intensity, 0.0, 1.0);gl_FragColor = vec4(intensity, intensity, intensity, 1.0);if (invert == 1)gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;}",t.uint16Shader=a},function(e,t,r){"use strict";function n(e){return e.getPixelData()}Object.defineProperty(t,"__esModule",{value:!0});var a={};t.uint8DataUtilities={storedPixelDataToImageData:n};a.frag="precision mediump float;uniform sampler2D u_image;uniform float ww;uniform float wc;uniform float slope;uniform float intercept;uniform int invert;varying vec2 v_texCoord;void main() {vec4 color = texture2D(u_image, v_texCoord);float intensity = color.r*256.0;intensity = intensity * slope + intercept;float center0 = wc - 0.5;float width0 = max(ww, 1.0);intensity = (intensity - center0) / width0 + 0.5;intensity = clamp(intensity, 0.0, 1.0);gl_FragColor = vec4(intensity, intensity, intensity, 1.0);if (invert == 1)gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;}",t.uint8Shader=a},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.vertexShader="attribute vec2 a_position;attribute vec2 a_texCoord;uniform vec2 u_resolution;varying vec2 v_texCoord;void main() {vec2 zeroToOne = a_position / u_resolution;vec2 zeroToTwo = zeroToOne * 2.0;vec2 clipSpace = zeroToTwo - 1.0;gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);v_texCoord = a_texCoord;}"},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=(0,n.getEnabledElement)(e),a=(0,i.default)(r);return a.invert(),a.transformPoint(t.x,t.y)};var n=r(0),a=r(10),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){if(void 0===e)throw new Error("disable: element must not be undefined");for(var t=(0,a.getEnabledElements)(),r=0;r<t.length;r++)if(t[r].element===e){var i={element:e};n.external.$(e).trigger("CornerstoneElementDisabled",i),$(e).trigger("CornerstoneElementDisabled",i),(0,o.default)(e,"CornerstoneElementDisabled",i),t[r].element.removeChild(t[r].canvas),t[r].canvas=void 0,t.splice(r,1);break}};var n=r(1),a=r(0),i=r(2),o=function(e){return e&&e.__esModule?e:{default:e}}(i)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){if(void 0===e)throw new Error("displayImage: parameter element must not be undefined");if(void 0===t)throw new Error("displayImage: parameter image must not be undefined");var n=(0,i.getEnabledElement)(e),o=n.image;if(n.image=t,n.layers&&n.layers.length){(0,m.getActiveLayer)(e).image=t}if(void 0===n.viewport&&(n.viewport=(0,l.default)(n.canvas,t)),r)for(var u in r)null!==r[u]&&(n.viewport[u]=r[u]);var s=void 0;if(void 0!==n.lastImageTimeStamp){s=(1e3/((0,f.default)()-n.lastImageTimeStamp)).toFixed()}n.lastImageTimeStamp=(0,f.default)();var c={viewport:n.viewport,element:n.element,image:n.image,oldImage:o,enabledElement:n,frameRate:s};a.external.$(n.element).trigger("CornerstoneNewImage",c),(0,g.default)(n.element,"CornerstoneNewImage",c),(0,d.default)(e)};var a=r(1),i=r(0),o=r(5),l=n(o),u=r(3),d=n(u),s=r(6),f=n(s),m=r(18),c=r(2),g=n(c)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(){function e(){return Math.floor(65536*(1+Math.random())).toString(16).substring(1)}return e()+e()+"-"+e()+"-"+e()+"-"+e()+"-"+e()+e()+e()}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){var t=(0,n.getEnabledElement)(e);if(void 0===t.image)throw new Error("draw: image has not been loaded yet");(0,i.default)(t)};var n=r(0),a=r(4),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(){for(var e=(0,n.getEnabledElements)(),t=0;t<e.length;t++){var r=e[t];!0===r.invalid&&(0,i.default)(r,!0)}};var n=r(0),a=r(4),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e){return void 0!==e.image||e.layers.length}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){function r(e){if(void 0!==l.canvas){var t={enabledElement:l,timestamp:e};i.external.$(l.element).trigger("CornerstonePreRender",t),(0,h.default)(l.element,"CornerstonePreRender",t),l.needsRedraw&&a(l)&&(0,s.default)(l,l.invalid),(0,m.default)(r)}}if(void 0===e)throw new Error("enable: parameter element cannot be undefined");t&&t.renderer&&"webgl"===t.renderer.toLowerCase()&&(g.default.renderer.isWebGLAvailable()?(g.default.renderer.initRenderer(),t.renderer="webgl"):(console.error("WebGL not available, falling back to Canvas renderer"),delete t.renderer));var n=document.createElement("canvas");e.appendChild(n);var l={element:e,canvas:n,image:void 0,invalid:!1,needsRedraw:!0,options:t,layers:[],data:{},renderingTools:{}};(0,o.addEnabledElement)(l),(0,u.default)(e,!0),r()};var i=r(1),o=r(0),l=r(25),u=n(l),d=r(53),s=n(d),f=r(14),m=n(f),c=r(11),g=n(c),v=r(2),h=n(v)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=e.image,n=e.element,i=e.layers||[];if(e.canvas&&(e.image||i.length)){var l=(0,o.default)();if(r.stats={lastGetPixelDataTime:-1,lastStoredPixelDataToCanvasImageDataTime:-1,lastPutImageDataTime:-1,lastRenderTime:-1,lastLutGenerateTime:-1},i&&i.length)(0,u.default)(e,t);else if(r){var f=r.render;f||(f=r.color?d.renderColorImage:s.renderGrayscaleImage),f(e,t)}var c=(0,o.default)()-l,g={viewport:e.viewport,element:n,image:r,enabledElement:e,canvasContext:e.canvas.getContext("2d"),renderTimeInMs:c};r.stats.lastRenderTime=c,e.invalid=!1,e.needsRedraw=!1,a.external.$(n).trigger("CornerstoneImageRendered",g),(0,m.default)(n,"CornerstoneImageRendered",g)}};var a=r(1),i=r(6),o=n(i),l=r(54),u=n(l),d=r(7),s=r(13),f=r(2),m=n(f)},function(e,t,r){"use strict";function n(e){return{rotation:e.rotation,scale:e.scale,translation:{x:e.translation.x,y:e.translation.y},hflip:e.hflip,vflip:e.vflip}}function a(e,t){e.forEach(function(e){if(e!==t){var r=m[t.layerId],n=m[e.layerId]||e.viewport,a=n.scale/r.scale;e.viewport.scale=t.viewport.scale*a,e.viewport.rotation=t.viewport.rotation,e.viewport.translation={x:t.viewport.translation.x/a,y:t.viewport.translation.y/a},e.viewport.hflip=t.viewport.hflip,e.viewport.vflip=t.viewport.vflip}})}function i(e,t,r,n){var a=e.canvas;r.forEach(function(t){if(e.save(),t.image){t.canvas=a,(0,f.default)(t,e);var r=void 0;t.options.colormap&&t.image.colormapId!==t.options.colormap?(r=(0,d.convertImageToFalseColorImage)(t.image,t.options.colormap),t.viewport.voi={windowWidth:t.image.windowWidth,windowCenter:t.image.windowCenter}):!t.options.colormap&&t.image.colormapId&&(r=(0,d.restoreImage)(t.image),t.viewport.voi={windowWidth:t.image.windowWidth,windowCenter:t.image.windowCenter}),n=n||r,!0===t.image.color?(0,l.addColorLayer)(t,n):(0,u.addGrayscaleLayer)(t,n),t.options&&t.options.opacity?e.globalAlpha=t.options.opacity:e.globalAlpha=1,t.options&&t.options.fillStyle&&(e.fillStyle=t.options.fillStyle),!0===t.viewport.pixelReplication?(e.imageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1):(e.imageSmoothingEnabled=!0,e.mozImageSmoothingEnabled=!0),e.drawImage(t.canvas,0,0,t.image.width,t.image.height,0,0,t.image.width,t.image.height),e.restore()}})}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=e.element,l=(0,o.getLayers)(r),u=(0,o.getActiveLayer)(r),d=(0,o.getVisibleLayers)(r),s=!e.lastSyncViewportsState&&e.syncViewports;e.lastSyncViewportsState=e.syncViewports,s&&l.forEach(function(e){m[e.layerId]=n(e.viewport)}),!0===e.syncViewports&&a(d,u);var f=e.canvas.getContext("2d");f.setTransform(1,0,0,1,0,0),f.fillStyle="black",f.fillRect(0,0,e.canvas.width,e.canvas.height),i(f,u,d,t)};var o=r(18),l=r(7),u=r(13),d=r(27),s=r(8),f=function(e){return e&&e.__esModule?e:{default:e}}(s),m={}},function(e,t,r){"use strict";function n(e,t){var r=(0,i.getEnabledElement)(e);return!1===r.data.hasOwnProperty(t)&&(r.data[t]={}),r.data[t]}function a(e,t){delete(0,i.getEnabledElement)(e).data[t]}Object.defineProperty(t,"__esModule",{value:!0}),t.getElementData=n,t.removeElementData=a;var i=r(0)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=(0,n.getEnabledElement)(e);return(0,i.default)(r.canvas,t)};var n=r(0),a=r(5),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){return(0,n.getEnabledElement)(e).image};var n=r(0)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r,n,i){var l=(0,o.default)(e,t,r,n,i),d=(0,a.getEnabledElement)(e),s=(0,u.default)(d.image.slope,d.image.intercept,d.viewport.modalityLUT);return l.map(s)};var a=r(0),i=r(32),o=n(i),l=r(19),u=n(l)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){var t=(0,n.getEnabledElement)(e),r=t.viewport;if(void 0!==r)return{scale:r.scale,translation:{x:r.translation.x,y:r.translation.y},voi:{windowWidth:r.voi.windowWidth,windowCenter:r.voi.windowCenter},invert:r.invert,pixelReplication:r.pixelReplication,rotation:r.rotation,hflip:r.hflip,vflip:r.vflip,modalityLUT:r.modalityLUT,voiLUT:r.voiLUT}};var n=r(0)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function a(e,t){var r=e.indexOf(":"),n=e.substring(0,r),a=v[n],i=void 0;if(void 0===a||null===a){if(void 0!==h)return i=h(e);throw new Error("loadImageFromImageLoader: no image loader for imageId")}return i=a(e,t),i.then(function(e){d.external.$(m.default).trigger("CornerstoneImageLoaded",{image:e}),(0,g.default)(m.default,"CornerstoneImageLoaded",{image:e})}),i}function i(e,t){if(void 0===e)throw new Error("loadImage: parameter imageId must not be undefined");var r=(0,s.getImagePromise)(e);return void 0!==r?r:r=a(e,t)}function o(e,t){if(void 0===e)throw new Error("loadAndCacheImage: parameter imageId must not be undefined");var r=(0,s.getImagePromise)(e);return void 0!==r?r:(r=a(e,t),(0,s.putImagePromise)(e,r),r)}function l(e,t){v[e]=t}function u(e){var t=h;return h=e,t}Object.defineProperty(t,"__esModule",{value:!0}),t.loadImage=i,t.loadAndCacheImage=o,t.registerImageLoader=l,t.registerUnknownImageLoader=u;var d=r(1),s=r(33),f=r(12),m=n(f),c=r(2),g=n(c),v={},h=void 0},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){var t=(0,a.getEnabledElement)(e);t.invalid=!0,t.needsRedraw=!0;var r={element:e};n.external.$(e).trigger("CornerstoneInvalidated",r),(0,o.default)(e,"CornerstoneInvalidated",r)};var n=r(1),a=r(0),i=r(2),o=function(e){return e&&e.__esModule?e:{default:e}}(i)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){(0,n.getEnabledElementsByImageId)(e).forEach(function(e){(0,i.default)(e,!0)})};var n=r(0),a=r(4),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t,r){var a=(0,n.getEnabledElement)(e);if(void 0===a.image)throw new Error("image has not been loaded yet");var o=e.getBoundingClientRect(),l=t-o.left-window.pageXOffset,u=r-o.top-window.pageYOffset,d={x:l,y:u},s=(0,i.default)(a);return s.invert(),s.transformPoint(d.x,d.y)};var n=r(0),a=r(10),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=(0,n.getEnabledElement)(e);return(0,i.default)(r).transformPoint(t.x,t.y)};var n=r(0),a=r(10),i=function(e){return e&&e.__esModule?e:{default:e}}(a)},function(e,t,r){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){var t=(0,a.getEnabledElement)(e);t.viewport=(0,o.default)(t.canvas,t.image),(0,u.default)(e)};var a=r(0),i=r(5),o=n(i),l=r(3),u=n(l)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){var r=(0,n.getEnabledElement)(e);r.viewport.scale=t.scale,r.viewport.translation.x=t.translation.x,r.viewport.translation.y=t.translation.y,r.viewport.voi.windowWidth=t.voi.windowWidth,r.viewport.voi.windowCenter=t.voi.windowCenter,r.viewport.invert=t.invert,r.viewport.pixelReplication=t.pixelReplication,r.viewport.rotation=t.rotation,r.viewport.hflip=t.hflip,r.viewport.vflip=t.vflip,r.viewport.modalityLUT=t.modalityLUT,r.viewport.voiLUT=t.voiLUT,r.viewport.voi.windowWidth=Math.max(r.viewport.voi.windowWidth,o),r.viewport.scale=Math.max(r.viewport.scale,l),r.viewport.rotation%=360,r.viewport.rotation<0&&(r.viewport.rotation+=360),(0,i.default)(e)};var n=r(0),a=r(3),i=function(e){return e&&e.__esModule?e:{default:e}}(a),o=1e-6,l=1e-4},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(7),a=r(13),i=r(23);t.default={colorImage:n.renderColorImage,grayscaleImage:a.renderGrayscaleImage,webImage:i.renderWebImage}}])});
-//# sourceMappingURL=cornerstone.min.js.map
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -1965,7 +1957,7 @@ exports.getBrowserInfo = getBrowserInfo;
 exports.isMobileDevice = isMobileDevice;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2000,7 +1992,7 @@ exports.default = function (mouseWheelCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2074,7 +2066,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2177,7 +2169,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2220,7 +2212,7 @@ exports.default = function (onImageRendered) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2354,7 +2346,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2369,13 +2361,9 @@ exports.createUndoStep = createUndoStep;
 exports.getConfiguration = getConfiguration;
 exports.setConfiguration = setConfiguration;
 
-var _cornerstoneCore = __webpack_require__(19);
-
-var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 // UNUSED const toolType = 'thresholding';
 
@@ -2424,7 +2412,7 @@ function performThresholding(stack, afterwards) {
   var slices = imageIds.length;
 
   // Get slope and intercept
-  return cornerstone.loadImage(imageIds[0]).then(function (image) {
+  return _externalModules.external.cornerstone.loadImage(imageIds[0]).then(function (image) {
     width = image.width;
     height = image.height;
 
@@ -2435,7 +2423,7 @@ function performThresholding(stack, afterwards) {
     // Thresholding promises
     var promises = imageIds.map(function (imageId, imageIdx) {
 
-      return cornerstone.loadImage(imageId).then(function (image) {
+      return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
         var slope = image.slope;
         var intercept = image.intercept;
         var pixelData = image.getPixelData();
@@ -2474,8 +2462,9 @@ var imgdata = null;
 /**
  * Draw regions on image
  */
-function onImageRendered(e, eventData) {
+function onImageRendered(e) {
   console.log("onImageRendered");
+  var eventData = e.detail;
   var element = eventData.element;
   var stackData = (0, _toolState.getToolState)(element, 'stack');
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
@@ -2521,7 +2510,7 @@ function onImageRendered(e, eventData) {
   }
   doubleBufferContext.putImageData(imgdata, 0, 0);
 
-  cornerstone.setToPixelCoordinateSystem(enabledElement, context);
+  _externalModules.external.cornerstone.setToPixelCoordinateSystem(enabledElement, context);
   context.drawImage(doubleBuffer, 0, 0);
 }
 
@@ -2562,10 +2551,10 @@ function enable(element, doneCallback) {
       thresholdingData.data[0].width = regions.width;
       thresholdingData.data[0].height = regions.height;
       // Draw regions on image
-      element.addEventListener('CornerstoneImageRendered', onImageRendered);
+      element.addEventListener('cornerstoneimagerendered', onImageRendered);
 
       // Update the element to apply the viewport and tool changes
-      cornerstone.updateImage(element);
+      _externalModules.external.cornerstone.updateImage(element);
 
       typeof doneCallback === 'function' && doneCallback();
     });
@@ -2630,7 +2619,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2765,7 +2754,7 @@ function planePlaneIntersection(targetImagePlane, referenceImagePlane) {
 }
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2777,7 +2766,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _getMaxSimultaneousRequests = __webpack_require__(20);
+var _getMaxSimultaneousRequests = __webpack_require__(19);
 
 var requestPool = {
   interaction: [],
@@ -2982,7 +2971,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3046,7 +3035,7 @@ exports.default = function (touchDragCallback, options) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3081,7 +3070,7 @@ exports.default = function (element, images) {
   (0, _scrollToIndex2.default)(element, newImageIdIndex);
 };
 
-var _scrollToIndex = __webpack_require__(44);
+var _scrollToIndex = __webpack_require__(43);
 
 var _scrollToIndex2 = _interopRequireDefault(_scrollToIndex);
 
@@ -3090,7 +3079,7 @@ var _toolState = __webpack_require__(1);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3107,7 +3096,7 @@ exports.default = function (value, precision) {
 };
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3146,7 +3135,7 @@ exports.default = function (ellipse, location) {
 };
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3172,7 +3161,7 @@ exports.default = function (e) {
 };
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3220,7 +3209,7 @@ exports.default = function (element, x, y, width, height) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3247,7 +3236,7 @@ exports.default = function (points) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3274,7 +3263,7 @@ var toolCoordinates = {
 exports.default = toolCoordinates;
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3330,7 +3319,7 @@ function getActiveHandle(handles) {
 }
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3422,7 +3411,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3509,7 +3498,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3532,10 +3521,10 @@ exports.default = function (targetImagePlane, referenceImagePlane) {
   };
 };
 
-var _pointProjector = __webpack_require__(27);
+var _pointProjector = __webpack_require__(26);
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3606,7 +3595,7 @@ exports.default = function (context, eventData, targetElement, referenceElement)
 
 var _externalModules = __webpack_require__(0);
 
-var _calculateReferenceLine = __webpack_require__(40);
+var _calculateReferenceLine = __webpack_require__(39);
 
 var _calculateReferenceLine2 = _interopRequireDefault(_calculateReferenceLine);
 
@@ -3621,7 +3610,7 @@ var _toolStyle2 = _interopRequireDefault(_toolStyle);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3631,11 +3620,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getOrientationString = __webpack_require__(65);
+var _getOrientationString = __webpack_require__(64);
 
 var _getOrientationString2 = _interopRequireDefault(_getOrientationString);
 
-var _invertOrientationString = __webpack_require__(66);
+var _invertOrientationString = __webpack_require__(65);
 
 var _invertOrientationString2 = _interopRequireDefault(_invertOrientationString);
 
@@ -3649,7 +3638,7 @@ var orientation = {
 exports.default = orientation;
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3678,7 +3667,7 @@ exports.default = function (enabledElement, context, fontSize) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3802,7 +3791,7 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _requestPoolManager = __webpack_require__(28);
+var _requestPoolManager = __webpack_require__(27);
 
 var _requestPoolManager2 = _interopRequireDefault(_requestPoolManager);
 
@@ -3810,7 +3799,7 @@ var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
-var _stackScroll = __webpack_require__(45);
+var _stackScroll = __webpack_require__(44);
 
 var _triggerEvent = __webpack_require__(3);
 
@@ -3819,7 +3808,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3836,7 +3825,7 @@ var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _multiTouchDragTool = __webpack_require__(29);
+var _multiTouchDragTool = __webpack_require__(28);
 
 var _multiTouchDragTool2 = _interopRequireDefault(_multiTouchDragTool);
 
@@ -3844,7 +3833,7 @@ var _simpleMouseButtonTool = __webpack_require__(13);
 
 var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
 
-var _mouseWheelTool = __webpack_require__(21);
+var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
@@ -3852,7 +3841,7 @@ var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _scroll = __webpack_require__(30);
+var _scroll = __webpack_require__(29);
 
 var _scroll2 = _interopRequireDefault(_scroll);
 
@@ -3964,7 +3953,7 @@ exports.stackScrollTouchDrag = stackScrollTouchDrag;
 exports.stackScrollMultiTouch = stackScrollMultiTouch;
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4016,7 +4005,7 @@ exports.default = function (element, x, y, width, height) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4051,7 +4040,7 @@ exports.default = function (context, x, y, w, h) {
 };
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4072,7 +4061,7 @@ exports.default = function (context, start, color, lineWidth) {
 };
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4117,7 +4106,7 @@ exports.default = function (context, start, end, color, lineWidth) {
 };
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4172,14 +4161,14 @@ exports.default = function (sp, ellipse) {
   };
 };
 
-var _pointInEllipse = __webpack_require__(32);
+var _pointInEllipse = __webpack_require__(31);
 
 var _pointInEllipse2 = _interopRequireDefault(_pointInEllipse);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4220,7 +4209,7 @@ exports.default = function (keyDownCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4311,7 +4300,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4460,7 +4449,7 @@ function animate(lastTime, handle, runAnimation, enabledElement, targetLocation)
 }
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4547,7 +4536,7 @@ var preventGhostClick = {
 exports.default = preventGhostClick;
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4580,7 +4569,7 @@ exports.default = function (doubleTapCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4809,7 +4798,7 @@ exports.default = function (mouseToolInterface, preventHandleOutsideImage) {
 
 var _externalModules = __webpack_require__(0);
 
-var _toolCoordinates = __webpack_require__(36);
+var _toolCoordinates = __webpack_require__(35);
 
 var _toolCoordinates2 = _interopRequireDefault(_toolCoordinates);
 
@@ -4817,15 +4806,15 @@ var _getHandleNearImagePoint = __webpack_require__(18);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _handleActivator = __webpack_require__(37);
+var _handleActivator = __webpack_require__(36);
 
 var _handleActivator2 = _interopRequireDefault(_handleActivator);
 
-var _moveHandle = __webpack_require__(22);
+var _moveHandle = __webpack_require__(21);
 
 var _moveHandle2 = _interopRequireDefault(_moveHandle);
 
-var _moveAllHandles = __webpack_require__(38);
+var _moveAllHandles = __webpack_require__(37);
 
 var _moveAllHandles2 = _interopRequireDefault(_moveAllHandles);
 
@@ -4842,7 +4831,7 @@ var _toolState = __webpack_require__(1);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4877,7 +4866,7 @@ exports.default = function (touchPinchCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5065,7 +5054,7 @@ var TOOL_STATE_TOOL_TYPE = 'brush';
 var brushLayerId = void 0;
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5113,7 +5102,7 @@ function getCircle(radius, rows, columns) {
 }
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5165,7 +5154,7 @@ exports.drawBrushPixels = drawBrushPixels;
 exports.drawBrushOnCanvas = drawBrushOnCanvas;
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5184,7 +5173,7 @@ Object.defineProperty(exports, 'external', {
   }
 });
 
-var _index = __webpack_require__(63);
+var _index = __webpack_require__(62);
 
 Object.defineProperty(exports, 'referenceLines', {
   enumerable: true,
@@ -5193,7 +5182,7 @@ Object.defineProperty(exports, 'referenceLines', {
   }
 });
 
-var _index2 = __webpack_require__(42);
+var _index2 = __webpack_require__(41);
 
 Object.defineProperty(exports, 'orientation', {
   enumerable: true,
@@ -5202,7 +5191,7 @@ Object.defineProperty(exports, 'orientation', {
   }
 });
 
-var _requestPoolManager = __webpack_require__(28);
+var _requestPoolManager = __webpack_require__(27);
 
 Object.defineProperty(exports, 'requestPoolManager', {
   enumerable: true,
@@ -5211,7 +5200,7 @@ Object.defineProperty(exports, 'requestPoolManager', {
   }
 });
 
-var _setContextToDisplayFontSize = __webpack_require__(43);
+var _setContextToDisplayFontSize = __webpack_require__(42);
 
 Object.defineProperty(exports, 'setContextToDisplayFontSize', {
   enumerable: true,
@@ -5220,7 +5209,7 @@ Object.defineProperty(exports, 'setContextToDisplayFontSize', {
   }
 });
 
-var _scrollToIndex = __webpack_require__(44);
+var _scrollToIndex = __webpack_require__(43);
 
 Object.defineProperty(exports, 'scrollToIndex', {
   enumerable: true,
@@ -5229,7 +5218,7 @@ Object.defineProperty(exports, 'scrollToIndex', {
   }
 });
 
-var _scroll = __webpack_require__(30);
+var _scroll = __webpack_require__(29);
 
 Object.defineProperty(exports, 'scroll', {
   enumerable: true,
@@ -5238,7 +5227,7 @@ Object.defineProperty(exports, 'scroll', {
   }
 });
 
-var _roundToDecimal = __webpack_require__(31);
+var _roundToDecimal = __webpack_require__(30);
 
 Object.defineProperty(exports, 'roundToDecimal', {
   enumerable: true,
@@ -5247,7 +5236,7 @@ Object.defineProperty(exports, 'roundToDecimal', {
   }
 });
 
-var _pointProjector = __webpack_require__(27);
+var _pointProjector = __webpack_require__(26);
 
 Object.defineProperty(exports, 'projectPatientPointToImagePlane', {
   enumerable: true,
@@ -5277,7 +5266,7 @@ Object.defineProperty(exports, 'pointInsideBoundingBox', {
   }
 });
 
-var _pointInEllipse = __webpack_require__(32);
+var _pointInEllipse = __webpack_require__(31);
 
 Object.defineProperty(exports, 'pointInEllipse', {
   enumerable: true,
@@ -5286,7 +5275,7 @@ Object.defineProperty(exports, 'pointInEllipse', {
   }
 });
 
-var _pauseEvent = __webpack_require__(33);
+var _pauseEvent = __webpack_require__(32);
 
 Object.defineProperty(exports, 'pauseEvent', {
   enumerable: true,
@@ -5304,7 +5293,7 @@ Object.defineProperty(exports, 'isMouseButtonEnabled', {
   }
 });
 
-var _getRGBPixels = __webpack_require__(34);
+var _getRGBPixels = __webpack_require__(33);
 
 Object.defineProperty(exports, 'getRGBPixels', {
   enumerable: true,
@@ -5313,7 +5302,7 @@ Object.defineProperty(exports, 'getRGBPixels', {
   }
 });
 
-var _getMaxSimultaneousRequests = __webpack_require__(20);
+var _getMaxSimultaneousRequests = __webpack_require__(19);
 
 Object.defineProperty(exports, 'getDefaultSimultaneousRequests', {
   enumerable: true,
@@ -5340,7 +5329,7 @@ Object.defineProperty(exports, 'isMobileDevice', {
   }
 });
 
-var _getLuminance = __webpack_require__(46);
+var _getLuminance = __webpack_require__(45);
 
 Object.defineProperty(exports, 'getLuminance', {
   enumerable: true,
@@ -5358,7 +5347,7 @@ Object.defineProperty(exports, 'drawTextBox', {
   }
 });
 
-var _drawEllipse = __webpack_require__(47);
+var _drawEllipse = __webpack_require__(46);
 
 Object.defineProperty(exports, 'drawEllipse', {
   enumerable: true,
@@ -5367,7 +5356,7 @@ Object.defineProperty(exports, 'drawEllipse', {
   }
 });
 
-var _drawCircle = __webpack_require__(48);
+var _drawCircle = __webpack_require__(47);
 
 Object.defineProperty(exports, 'drawCircle', {
   enumerable: true,
@@ -5376,7 +5365,7 @@ Object.defineProperty(exports, 'drawCircle', {
   }
 });
 
-var _drawArrow = __webpack_require__(49);
+var _drawArrow = __webpack_require__(48);
 
 Object.defineProperty(exports, 'drawArrow', {
   enumerable: true,
@@ -5385,7 +5374,7 @@ Object.defineProperty(exports, 'drawArrow', {
   }
 });
 
-var _copyPoints = __webpack_require__(35);
+var _copyPoints = __webpack_require__(34);
 
 Object.defineProperty(exports, 'copyPoints', {
   enumerable: true,
@@ -5403,7 +5392,7 @@ Object.defineProperty(exports, 'calculateSUV', {
   }
 });
 
-var _calculateEllipseStatistics = __webpack_require__(50);
+var _calculateEllipseStatistics = __webpack_require__(49);
 
 Object.defineProperty(exports, 'calculateEllipseStatistics', {
   enumerable: true,
@@ -5412,7 +5401,7 @@ Object.defineProperty(exports, 'calculateEllipseStatistics', {
   }
 });
 
-var _probeTool4D = __webpack_require__(67);
+var _probeTool4D = __webpack_require__(66);
 
 Object.defineProperty(exports, 'probeTool4D', {
   enumerable: true,
@@ -5421,7 +5410,7 @@ Object.defineProperty(exports, 'probeTool4D', {
   }
 });
 
-var _incrementTimePoint = __webpack_require__(39);
+var _incrementTimePoint = __webpack_require__(38);
 
 Object.defineProperty(exports, 'incrementTimePoint', {
   enumerable: true,
@@ -5430,7 +5419,7 @@ Object.defineProperty(exports, 'incrementTimePoint', {
   }
 });
 
-var _timeSeriesPlayer = __webpack_require__(70);
+var _timeSeriesPlayer = __webpack_require__(69);
 
 Object.defineProperty(exports, 'timeSeriesPlayer', {
   enumerable: true,
@@ -5439,7 +5428,7 @@ Object.defineProperty(exports, 'timeSeriesPlayer', {
   }
 });
 
-var _timeSeriesScroll = __webpack_require__(71);
+var _timeSeriesScroll = __webpack_require__(70);
 
 Object.defineProperty(exports, 'timeSeriesScroll', {
   enumerable: true,
@@ -5460,7 +5449,7 @@ Object.defineProperty(exports, 'timeSeriesScrollTouchDrag', {
   }
 });
 
-var _wwwcSynchronizer = __webpack_require__(72);
+var _wwwcSynchronizer = __webpack_require__(71);
 
 Object.defineProperty(exports, 'wwwcSynchronizer', {
   enumerable: true,
@@ -5469,7 +5458,7 @@ Object.defineProperty(exports, 'wwwcSynchronizer', {
   }
 });
 
-var _updateImageSynchronizer = __webpack_require__(73);
+var _updateImageSynchronizer = __webpack_require__(72);
 
 Object.defineProperty(exports, 'updateImageSynchronizer', {
   enumerable: true,
@@ -5478,7 +5467,7 @@ Object.defineProperty(exports, 'updateImageSynchronizer', {
   }
 });
 
-var _Synchronizer = __webpack_require__(74);
+var _Synchronizer = __webpack_require__(73);
 
 Object.defineProperty(exports, 'Synchronizer', {
   enumerable: true,
@@ -5487,7 +5476,7 @@ Object.defineProperty(exports, 'Synchronizer', {
   }
 });
 
-var _stackScrollSynchronizer = __webpack_require__(75);
+var _stackScrollSynchronizer = __webpack_require__(74);
 
 Object.defineProperty(exports, 'stackScrollSynchronizer', {
   enumerable: true,
@@ -5496,7 +5485,7 @@ Object.defineProperty(exports, 'stackScrollSynchronizer', {
   }
 });
 
-var _stackImagePositionSynchronizer = __webpack_require__(76);
+var _stackImagePositionSynchronizer = __webpack_require__(75);
 
 Object.defineProperty(exports, 'stackImagePositionSynchronizer', {
   enumerable: true,
@@ -5505,7 +5494,7 @@ Object.defineProperty(exports, 'stackImagePositionSynchronizer', {
   }
 });
 
-var _stackImagePositionOffsetSynchronizer = __webpack_require__(77);
+var _stackImagePositionOffsetSynchronizer = __webpack_require__(76);
 
 Object.defineProperty(exports, 'stackImagePositionOffsetSynchronizer', {
   enumerable: true,
@@ -5514,7 +5503,7 @@ Object.defineProperty(exports, 'stackImagePositionOffsetSynchronizer', {
   }
 });
 
-var _stackImageIndexSynchronizer = __webpack_require__(78);
+var _stackImageIndexSynchronizer = __webpack_require__(77);
 
 Object.defineProperty(exports, 'stackImageIndexSynchronizer', {
   enumerable: true,
@@ -5523,7 +5512,7 @@ Object.defineProperty(exports, 'stackImageIndexSynchronizer', {
   }
 });
 
-var _panZoomSynchronizer = __webpack_require__(79);
+var _panZoomSynchronizer = __webpack_require__(78);
 
 Object.defineProperty(exports, 'panZoomSynchronizer', {
   enumerable: true,
@@ -5580,7 +5569,7 @@ Object.defineProperty(exports, 'getElementToolStateManager', {
   }
 });
 
-var _toolCoordinates = __webpack_require__(36);
+var _toolCoordinates = __webpack_require__(35);
 
 Object.defineProperty(exports, 'toolCoordinates', {
   enumerable: true,
@@ -5598,7 +5587,7 @@ Object.defineProperty(exports, 'toolColors', {
   }
 });
 
-var _timeSeriesSpecificStateManager = __webpack_require__(80);
+var _timeSeriesSpecificStateManager = __webpack_require__(79);
 
 Object.defineProperty(exports, 'addTimeSeriesStateManager', {
   enumerable: true,
@@ -5622,7 +5611,7 @@ Object.defineProperty(exports, 'textStyle', {
   }
 });
 
-var _stackSpecificStateManager = __webpack_require__(81);
+var _stackSpecificStateManager = __webpack_require__(80);
 
 Object.defineProperty(exports, 'stackSpecificStateManager', {
   enumerable: true,
@@ -5667,7 +5656,7 @@ Object.defineProperty(exports, 'globalImageIdSpecificToolStateManager', {
   }
 });
 
-var _frameOfReferenceStateManager = __webpack_require__(82);
+var _frameOfReferenceStateManager = __webpack_require__(81);
 
 Object.defineProperty(exports, 'newFrameOfReferenceSpecificToolStateManager', {
   enumerable: true,
@@ -5682,7 +5671,7 @@ Object.defineProperty(exports, 'globalFrameOfReferenceSpecificToolStateManager',
   }
 });
 
-var _appState = __webpack_require__(83);
+var _appState = __webpack_require__(82);
 
 Object.defineProperty(exports, 'appState', {
   enumerable: true,
@@ -5691,7 +5680,7 @@ Object.defineProperty(exports, 'appState', {
   }
 });
 
-var _stackScrollKeyboard = __webpack_require__(84);
+var _stackScrollKeyboard = __webpack_require__(83);
 
 Object.defineProperty(exports, 'stackScrollKeyboard', {
   enumerable: true,
@@ -5700,7 +5689,7 @@ Object.defineProperty(exports, 'stackScrollKeyboard', {
   }
 });
 
-var _stackScroll = __webpack_require__(45);
+var _stackScroll = __webpack_require__(44);
 
 Object.defineProperty(exports, 'stackScroll', {
   enumerable: true,
@@ -5727,7 +5716,7 @@ Object.defineProperty(exports, 'stackScrollMultiTouch', {
   }
 });
 
-var _stackPrefetch = __webpack_require__(85);
+var _stackPrefetch = __webpack_require__(84);
 
 Object.defineProperty(exports, 'stackPrefetch', {
   enumerable: true,
@@ -5736,7 +5725,7 @@ Object.defineProperty(exports, 'stackPrefetch', {
   }
 });
 
-var _scrollIndicator = __webpack_require__(86);
+var _scrollIndicator = __webpack_require__(85);
 
 Object.defineProperty(exports, 'scrollIndicator', {
   enumerable: true,
@@ -5745,7 +5734,7 @@ Object.defineProperty(exports, 'scrollIndicator', {
   }
 });
 
-var _stackRenderers = __webpack_require__(87);
+var _stackRenderers = __webpack_require__(86);
 
 Object.defineProperty(exports, 'stackRenderers', {
   enumerable: true,
@@ -5754,7 +5743,7 @@ Object.defineProperty(exports, 'stackRenderers', {
   }
 });
 
-var _playClip = __webpack_require__(89);
+var _playClip = __webpack_require__(88);
 
 Object.defineProperty(exports, 'playClip', {
   enumerable: true,
@@ -5796,7 +5785,7 @@ Object.defineProperty(exports, 'getHandleNearImagePoint', {
   }
 });
 
-var _handleActivator = __webpack_require__(37);
+var _handleActivator = __webpack_require__(36);
 
 Object.defineProperty(exports, 'handleActivator', {
   enumerable: true,
@@ -5805,7 +5794,7 @@ Object.defineProperty(exports, 'handleActivator', {
   }
 });
 
-var _moveAllHandles = __webpack_require__(38);
+var _moveAllHandles = __webpack_require__(37);
 
 Object.defineProperty(exports, 'moveAllHandles', {
   enumerable: true,
@@ -5814,7 +5803,7 @@ Object.defineProperty(exports, 'moveAllHandles', {
   }
 });
 
-var _moveHandle = __webpack_require__(22);
+var _moveHandle = __webpack_require__(21);
 
 Object.defineProperty(exports, 'moveHandle', {
   enumerable: true,
@@ -5823,7 +5812,7 @@ Object.defineProperty(exports, 'moveHandle', {
   }
 });
 
-var _moveNewHandle = __webpack_require__(23);
+var _moveNewHandle = __webpack_require__(22);
 
 Object.defineProperty(exports, 'moveNewHandle', {
   enumerable: true,
@@ -5832,7 +5821,7 @@ Object.defineProperty(exports, 'moveNewHandle', {
   }
 });
 
-var _moveNewHandleTouch = __webpack_require__(25);
+var _moveNewHandleTouch = __webpack_require__(24);
 
 Object.defineProperty(exports, 'moveNewHandleTouch', {
   enumerable: true,
@@ -5841,7 +5830,7 @@ Object.defineProperty(exports, 'moveNewHandleTouch', {
   }
 });
 
-var _touchMoveAllHandles = __webpack_require__(52);
+var _touchMoveAllHandles = __webpack_require__(51);
 
 Object.defineProperty(exports, 'touchMoveAllHandles', {
   enumerable: true,
@@ -5850,7 +5839,7 @@ Object.defineProperty(exports, 'touchMoveAllHandles', {
   }
 });
 
-var _touchMoveHandle = __webpack_require__(53);
+var _touchMoveHandle = __webpack_require__(52);
 
 Object.defineProperty(exports, 'touchMoveHandle', {
   enumerable: true,
@@ -5859,7 +5848,7 @@ Object.defineProperty(exports, 'touchMoveHandle', {
   }
 });
 
-var _keyboardInput = __webpack_require__(90);
+var _keyboardInput = __webpack_require__(89);
 
 Object.defineProperty(exports, 'keyboardInput', {
   enumerable: true,
@@ -5868,7 +5857,7 @@ Object.defineProperty(exports, 'keyboardInput', {
   }
 });
 
-var _mouseInput = __webpack_require__(91);
+var _mouseInput = __webpack_require__(90);
 
 Object.defineProperty(exports, 'mouseInput', {
   enumerable: true,
@@ -5877,7 +5866,7 @@ Object.defineProperty(exports, 'mouseInput', {
   }
 });
 
-var _mouseWheelInput = __webpack_require__(92);
+var _mouseWheelInput = __webpack_require__(91);
 
 Object.defineProperty(exports, 'mouseWheelInput', {
   enumerable: true,
@@ -5886,7 +5875,7 @@ Object.defineProperty(exports, 'mouseWheelInput', {
   }
 });
 
-var _preventGhostClick = __webpack_require__(54);
+var _preventGhostClick = __webpack_require__(53);
 
 Object.defineProperty(exports, 'preventGhostClick', {
   enumerable: true,
@@ -5895,7 +5884,7 @@ Object.defineProperty(exports, 'preventGhostClick', {
   }
 });
 
-var _touchInput = __webpack_require__(93);
+var _touchInput = __webpack_require__(92);
 
 Object.defineProperty(exports, 'touchInput', {
   enumerable: true,
@@ -5904,7 +5893,7 @@ Object.defineProperty(exports, 'touchInput', {
   }
 });
 
-var _angleTool = __webpack_require__(94);
+var _angleTool = __webpack_require__(93);
 
 Object.defineProperty(exports, 'angle', {
   enumerable: true,
@@ -5919,7 +5908,7 @@ Object.defineProperty(exports, 'angleTouch', {
   }
 });
 
-var _arrowAnnotate = __webpack_require__(95);
+var _arrowAnnotate = __webpack_require__(94);
 
 Object.defineProperty(exports, 'arrowAnnotate', {
   enumerable: true,
@@ -5934,7 +5923,7 @@ Object.defineProperty(exports, 'arrowAnnotateTouch', {
   }
 });
 
-var _crosshairs = __webpack_require__(96);
+var _crosshairs = __webpack_require__(95);
 
 Object.defineProperty(exports, 'crosshairs', {
   enumerable: true,
@@ -5949,7 +5938,7 @@ Object.defineProperty(exports, 'crosshairsTouch', {
   }
 });
 
-var _displayTool = __webpack_require__(24);
+var _displayTool = __webpack_require__(23);
 
 Object.defineProperty(exports, 'displayTool', {
   enumerable: true,
@@ -5958,7 +5947,7 @@ Object.defineProperty(exports, 'displayTool', {
   }
 });
 
-var _doubleTapTool = __webpack_require__(55);
+var _doubleTapTool = __webpack_require__(54);
 
 Object.defineProperty(exports, 'doubleTapTool', {
   enumerable: true,
@@ -5967,7 +5956,7 @@ Object.defineProperty(exports, 'doubleTapTool', {
   }
 });
 
-var _doubleTapZoom = __webpack_require__(97);
+var _doubleTapZoom = __webpack_require__(96);
 
 Object.defineProperty(exports, 'doubleTapZoom', {
   enumerable: true,
@@ -5976,7 +5965,7 @@ Object.defineProperty(exports, 'doubleTapZoom', {
   }
 });
 
-var _dragProbe = __webpack_require__(98);
+var _dragProbe = __webpack_require__(97);
 
 Object.defineProperty(exports, 'dragProbe', {
   enumerable: true,
@@ -5991,7 +5980,7 @@ Object.defineProperty(exports, 'dragProbeTouch', {
   }
 });
 
-var _ellipticalRoi = __webpack_require__(99);
+var _ellipticalRoi = __webpack_require__(98);
 
 Object.defineProperty(exports, 'ellipticalRoi', {
   enumerable: true,
@@ -6006,7 +5995,7 @@ Object.defineProperty(exports, 'ellipticalRoiTouch', {
   }
 });
 
-var _freehand = __webpack_require__(100);
+var _freehand = __webpack_require__(99);
 
 Object.defineProperty(exports, 'freehand', {
   enumerable: true,
@@ -6015,7 +6004,7 @@ Object.defineProperty(exports, 'freehand', {
   }
 });
 
-var _highlight = __webpack_require__(101);
+var _highlight = __webpack_require__(100);
 
 Object.defineProperty(exports, 'highlight', {
   enumerable: true,
@@ -6030,7 +6019,7 @@ Object.defineProperty(exports, 'highlightTouch', {
   }
 });
 
-var _imageStats = __webpack_require__(102);
+var _imageStats = __webpack_require__(101);
 
 Object.defineProperty(exports, 'imageStats', {
   enumerable: true,
@@ -6039,7 +6028,7 @@ Object.defineProperty(exports, 'imageStats', {
   }
 });
 
-var _keyboardTool = __webpack_require__(51);
+var _keyboardTool = __webpack_require__(50);
 
 Object.defineProperty(exports, 'keyboardTool', {
   enumerable: true,
@@ -6048,7 +6037,7 @@ Object.defineProperty(exports, 'keyboardTool', {
   }
 });
 
-var _length = __webpack_require__(103);
+var _length = __webpack_require__(102);
 
 Object.defineProperty(exports, 'length', {
   enumerable: true,
@@ -6063,7 +6052,7 @@ Object.defineProperty(exports, 'lengthTouch', {
   }
 });
 
-var _magnify = __webpack_require__(104);
+var _magnify = __webpack_require__(103);
 
 Object.defineProperty(exports, 'magnify', {
   enumerable: true,
@@ -6078,7 +6067,7 @@ Object.defineProperty(exports, 'magnifyTouchDrag', {
   }
 });
 
-var _mouseButtonRectangleTool = __webpack_require__(56);
+var _mouseButtonRectangleTool = __webpack_require__(55);
 
 Object.defineProperty(exports, 'mouseButtonRectangleTool', {
   enumerable: true,
@@ -6096,7 +6085,7 @@ Object.defineProperty(exports, 'mouseButtonTool', {
   }
 });
 
-var _mouseWheelTool = __webpack_require__(21);
+var _mouseWheelTool = __webpack_require__(20);
 
 Object.defineProperty(exports, 'mouseWheelTool', {
   enumerable: true,
@@ -6105,7 +6094,7 @@ Object.defineProperty(exports, 'mouseWheelTool', {
   }
 });
 
-var _multiTouchDragTool = __webpack_require__(29);
+var _multiTouchDragTool = __webpack_require__(28);
 
 Object.defineProperty(exports, 'multiTouchDragTool', {
   enumerable: true,
@@ -6114,7 +6103,7 @@ Object.defineProperty(exports, 'multiTouchDragTool', {
   }
 });
 
-var _orientationMarkers = __webpack_require__(105);
+var _orientationMarkers = __webpack_require__(104);
 
 Object.defineProperty(exports, 'orientationMarkers', {
   enumerable: true,
@@ -6123,7 +6112,7 @@ Object.defineProperty(exports, 'orientationMarkers', {
   }
 });
 
-var _pan = __webpack_require__(106);
+var _pan = __webpack_require__(105);
 
 Object.defineProperty(exports, 'pan', {
   enumerable: true,
@@ -6138,7 +6127,7 @@ Object.defineProperty(exports, 'panTouchDrag', {
   }
 });
 
-var _panMultiTouch = __webpack_require__(107);
+var _panMultiTouch = __webpack_require__(106);
 
 Object.defineProperty(exports, 'panMultiTouch', {
   enumerable: true,
@@ -6147,7 +6136,7 @@ Object.defineProperty(exports, 'panMultiTouch', {
   }
 });
 
-var _probe = __webpack_require__(108);
+var _probe = __webpack_require__(107);
 
 Object.defineProperty(exports, 'probe', {
   enumerable: true,
@@ -6162,7 +6151,7 @@ Object.defineProperty(exports, 'probeTouch', {
   }
 });
 
-var _rectangleRoi = __webpack_require__(109);
+var _rectangleRoi = __webpack_require__(108);
 
 Object.defineProperty(exports, 'rectangleRoi', {
   enumerable: true,
@@ -6177,7 +6166,7 @@ Object.defineProperty(exports, 'rectangleRoiTouch', {
   }
 });
 
-var _rotate = __webpack_require__(110);
+var _rotate = __webpack_require__(109);
 
 Object.defineProperty(exports, 'rotate', {
   enumerable: true,
@@ -6192,7 +6181,7 @@ Object.defineProperty(exports, 'rotateTouchDrag', {
   }
 });
 
-var _rotateTouch = __webpack_require__(111);
+var _rotateTouch = __webpack_require__(110);
 
 Object.defineProperty(exports, 'rotateTouch', {
   enumerable: true,
@@ -6201,7 +6190,7 @@ Object.defineProperty(exports, 'rotateTouch', {
   }
 });
 
-var _saveAs = __webpack_require__(112);
+var _saveAs = __webpack_require__(111);
 
 Object.defineProperty(exports, 'saveAs', {
   enumerable: true,
@@ -6210,7 +6199,7 @@ Object.defineProperty(exports, 'saveAs', {
   }
 });
 
-var _seedAnnotate = __webpack_require__(113);
+var _seedAnnotate = __webpack_require__(112);
 
 Object.defineProperty(exports, 'seedAnnotate', {
   enumerable: true,
@@ -6225,7 +6214,7 @@ Object.defineProperty(exports, 'seedAnnotateTouch', {
   }
 });
 
-var _simpleAngle = __webpack_require__(114);
+var _simpleAngle = __webpack_require__(113);
 
 Object.defineProperty(exports, 'simpleAngle', {
   enumerable: true,
@@ -6249,7 +6238,7 @@ Object.defineProperty(exports, 'simpleMouseButtonTool', {
   }
 });
 
-var _textMarker = __webpack_require__(115);
+var _textMarker = __webpack_require__(114);
 
 Object.defineProperty(exports, 'textMarker', {
   enumerable: true,
@@ -6273,7 +6262,7 @@ Object.defineProperty(exports, 'touchDragTool', {
   }
 });
 
-var _touchPinchTool = __webpack_require__(57);
+var _touchPinchTool = __webpack_require__(56);
 
 Object.defineProperty(exports, 'touchPinchTool', {
   enumerable: true,
@@ -6291,7 +6280,7 @@ Object.defineProperty(exports, 'touchTool', {
   }
 });
 
-var _wwwc = __webpack_require__(116);
+var _wwwc = __webpack_require__(115);
 
 Object.defineProperty(exports, 'wwwc', {
   enumerable: true,
@@ -6306,7 +6295,7 @@ Object.defineProperty(exports, 'wwwcTouchDrag', {
   }
 });
 
-var _wwwcRegion = __webpack_require__(117);
+var _wwwcRegion = __webpack_require__(116);
 
 Object.defineProperty(exports, 'wwwcRegion', {
   enumerable: true,
@@ -6321,7 +6310,7 @@ Object.defineProperty(exports, 'wwwcRegionTouch', {
   }
 });
 
-var _zoom = __webpack_require__(118);
+var _zoom = __webpack_require__(117);
 
 Object.defineProperty(exports, 'zoom', {
   enumerable: true,
@@ -6348,7 +6337,7 @@ Object.defineProperty(exports, 'zoomTouchDrag', {
   }
 });
 
-var _brush = __webpack_require__(119);
+var _brush = __webpack_require__(118);
 
 Object.defineProperty(exports, 'brush', {
   enumerable: true,
@@ -6357,7 +6346,7 @@ Object.defineProperty(exports, 'brush', {
   }
 });
 
-var _adaptiveBrush = __webpack_require__(120);
+var _adaptiveBrush = __webpack_require__(119);
 
 Object.defineProperty(exports, 'adaptiveBrush', {
   enumerable: true,
@@ -6366,7 +6355,7 @@ Object.defineProperty(exports, 'adaptiveBrush', {
   }
 });
 
-var _index3 = __webpack_require__(121);
+var _index3 = __webpack_require__(120);
 
 Object.defineProperty(exports, 'regionsThreshold', {
   enumerable: true,
@@ -6399,7 +6388,7 @@ Object.defineProperty(exports, 'regionsUndo', {
   }
 });
 
-var _version = __webpack_require__(126);
+var _version = __webpack_require__(125);
 
 Object.defineProperty(exports, 'version', {
   enumerable: true,
@@ -6411,13 +6400,13 @@ Object.defineProperty(exports, 'version', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_62__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_61__;
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6427,15 +6416,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _calculateReferenceLine = __webpack_require__(40);
+var _calculateReferenceLine = __webpack_require__(39);
 
 var _calculateReferenceLine2 = _interopRequireDefault(_calculateReferenceLine);
 
-var _referenceLinesTool = __webpack_require__(64);
+var _referenceLinesTool = __webpack_require__(63);
 
 var _referenceLinesTool2 = _interopRequireDefault(_referenceLinesTool);
 
-var _renderActiveReferenceLine = __webpack_require__(41);
+var _renderActiveReferenceLine = __webpack_require__(40);
 
 var _renderActiveReferenceLine2 = _interopRequireDefault(_renderActiveReferenceLine);
 
@@ -6450,7 +6439,7 @@ var referenceLines = {
 exports.default = referenceLines;
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6464,7 +6453,7 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _renderActiveReferenceLine = __webpack_require__(41);
+var _renderActiveReferenceLine = __webpack_require__(40);
 
 var _renderActiveReferenceLine2 = _interopRequireDefault(_renderActiveReferenceLine);
 
@@ -6536,7 +6525,7 @@ var tool = {
 exports.default = tool;
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6579,7 +6568,7 @@ exports.default = function (vector) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6603,7 +6592,7 @@ exports.default = function (string) {
 };
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6623,17 +6612,17 @@ var _drawHandles = __webpack_require__(8);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _setContextToDisplayFontSize = __webpack_require__(43);
+var _setContextToDisplayFontSize = __webpack_require__(42);
 
 var _setContextToDisplayFontSize2 = _interopRequireDefault(_setContextToDisplayFontSize);
 
 var _toolState = __webpack_require__(1);
 
-var _measurementManager = __webpack_require__(68);
+var _measurementManager = __webpack_require__(67);
 
 var _measurementManager2 = _interopRequireDefault(_measurementManager);
 
-var _lineSampleMeasurement = __webpack_require__(69);
+var _lineSampleMeasurement = __webpack_require__(68);
 
 var _lineSampleMeasurement2 = _interopRequireDefault(_lineSampleMeasurement);
 
@@ -6752,7 +6741,7 @@ var probeTool4D = (0, _mouseButtonTool2.default)({
 exports.default = probeTool4D;
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6806,7 +6795,7 @@ var manager = new MeasurementManager();
 exports.default = manager;
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6837,7 +6826,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6849,7 +6838,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _toolState = __webpack_require__(1);
 
-var _incrementTimePoint = __webpack_require__(39);
+var _incrementTimePoint = __webpack_require__(38);
 
 var _incrementTimePoint2 = _interopRequireDefault(_incrementTimePoint);
 
@@ -6935,7 +6924,7 @@ var timeSeriesPlayer = {
 exports.default = timeSeriesPlayer;
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6956,11 +6945,11 @@ var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _mouseWheelTool = __webpack_require__(21);
+var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
-var _incrementTimePoint = __webpack_require__(39);
+var _incrementTimePoint = __webpack_require__(38);
 
 var _incrementTimePoint2 = _interopRequireDefault(_incrementTimePoint);
 
@@ -7064,7 +7053,7 @@ exports.timeSeriesScrollWheel = timeSeriesScrollWheel;
 exports.timeSeriesScrollTouchDrag = timeSeriesScrollTouchDrag;
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7101,7 +7090,7 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7124,7 +7113,7 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7421,7 +7410,7 @@ function Synchronizer(event, handler) {
 exports.default = Synchronizer;
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7502,7 +7491,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7592,7 +7581,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7685,7 +7674,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7762,7 +7751,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7799,7 +7788,7 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7889,7 +7878,7 @@ exports.addTimeSeriesStateManager = addTimeSeriesStateManager;
 exports.newTimeSeriesSpecificToolStateManager = newTimeSeriesSpecificToolStateManager;
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8001,7 +7990,7 @@ exports.newStackSpecificToolStateManager = newStackSpecificToolStateManager;
 exports.addStackStateManager = addStackStateManager;
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8103,7 +8092,7 @@ exports.newFrameOfReferenceSpecificToolStateManager = newFrameOfReferenceSpecifi
 exports.globalFrameOfReferenceSpecificToolStateManager = globalFrameOfReferenceSpecificToolStateManager;
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8193,7 +8182,7 @@ var appState = {
 exports.default = appState;
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8203,11 +8192,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _scroll = __webpack_require__(30);
+var _scroll = __webpack_require__(29);
 
 var _scroll2 = _interopRequireDefault(_scroll);
 
-var _keyboardTool = __webpack_require__(51);
+var _keyboardTool = __webpack_require__(50);
 
 var _keyboardTool2 = _interopRequireDefault(_keyboardTool);
 
@@ -8240,7 +8229,7 @@ var stackScrollKeyboard = (0, _keyboardTool2.default)(keyDownCallback);
 exports.default = stackScrollKeyboard;
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8252,7 +8241,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _requestPoolManager = __webpack_require__(28);
+var _requestPoolManager = __webpack_require__(27);
 
 var _requestPoolManager2 = _interopRequireDefault(_requestPoolManager);
 
@@ -8262,7 +8251,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
 var _toolState = __webpack_require__(1);
 
-var _getMaxSimultaneousRequests = __webpack_require__(20);
+var _getMaxSimultaneousRequests = __webpack_require__(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8597,7 +8586,7 @@ var stackPrefetch = {
 exports.default = stackPrefetch;
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8607,7 +8596,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _displayTool = __webpack_require__(24);
+var _displayTool = __webpack_require__(23);
 
 var _displayTool2 = _interopRequireDefault(_displayTool);
 
@@ -8683,7 +8672,7 @@ scrollIndicator.setConfiguration(configuration);
 exports.default = scrollIndicator;
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8693,7 +8682,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _fusionRenderer = __webpack_require__(88);
+var _fusionRenderer = __webpack_require__(87);
 
 var _fusionRenderer2 = _interopRequireDefault(_fusionRenderer);
 
@@ -8706,7 +8695,7 @@ stackRenderers.FusionRenderer = _fusionRenderer2.default;
 exports.default = stackRenderers;
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8816,7 +8805,7 @@ var FusionRenderer = function () {
 exports.default = FusionRenderer;
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9105,7 +9094,7 @@ exports.playClip = playClip;
 exports.stopClip = stopClip;
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9187,7 +9176,7 @@ var keyboardInput = {
 exports.default = keyboardInput;
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9199,11 +9188,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _copyPoints = __webpack_require__(35);
+var _copyPoints = __webpack_require__(34);
 
 var _copyPoints2 = _interopRequireDefault(_copyPoints);
 
-var _pauseEvent = __webpack_require__(33);
+var _pauseEvent = __webpack_require__(32);
 
 var _pauseEvent2 = _interopRequireDefault(_pauseEvent);
 
@@ -9512,7 +9501,7 @@ var mouseInput = {
 exports.default = mouseInput;
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9618,7 +9607,7 @@ var mouseWheelInput = {
 exports.default = mouseWheelInput;
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9630,15 +9619,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _copyPoints = __webpack_require__(35);
+var _copyPoints = __webpack_require__(34);
 
 var _copyPoints2 = _interopRequireDefault(_copyPoints);
 
-var _pauseEvent = __webpack_require__(33);
+var _pauseEvent = __webpack_require__(32);
 
 var _pauseEvent2 = _interopRequireDefault(_pauseEvent);
 
-var _preventGhostClick = __webpack_require__(54);
+var _preventGhostClick = __webpack_require__(53);
 
 var _preventGhostClick2 = _interopRequireDefault(_preventGhostClick);
 
@@ -10138,7 +10127,7 @@ var touchInput = {
 exports.default = touchInput;
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10163,7 +10152,7 @@ var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _roundToDecimal = __webpack_require__(31);
+var _roundToDecimal = __webpack_require__(30);
 
 var _roundToDecimal2 = _interopRequireDefault(_roundToDecimal);
 
@@ -10358,7 +10347,7 @@ exports.angle = angle;
 exports.angleTouch = angleTouch;
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10399,15 +10388,15 @@ var _drawHandles = __webpack_require__(8);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawArrow = __webpack_require__(49);
+var _drawArrow = __webpack_require__(48);
 
 var _drawArrow2 = _interopRequireDefault(_drawArrow);
 
-var _moveNewHandle = __webpack_require__(23);
+var _moveNewHandle = __webpack_require__(22);
 
 var _moveNewHandle2 = _interopRequireDefault(_moveNewHandle);
 
-var _moveNewHandleTouch = __webpack_require__(25);
+var _moveNewHandleTouch = __webpack_require__(24);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
@@ -10889,7 +10878,7 @@ exports.arrowAnnotate = arrowAnnotate;
 exports.arrowAnnotateTouch = arrowAnnotateTouch;
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10912,7 +10901,7 @@ var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _pointProjector = __webpack_require__(27);
+var _pointProjector = __webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11119,7 +11108,7 @@ exports.crosshairs = crosshairs;
 exports.crosshairsTouch = crosshairsTouch;
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11131,7 +11120,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _doubleTapTool = __webpack_require__(55);
+var _doubleTapTool = __webpack_require__(54);
 
 var _doubleTapTool2 = _interopRequireDefault(_doubleTapTool);
 
@@ -11158,7 +11147,7 @@ doubleTapZoom.strategy = fitToWindowStrategy;
 exports.default = doubleTapZoom;
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11191,7 +11180,7 @@ var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _getRGBPixels = __webpack_require__(34);
+var _getRGBPixels = __webpack_require__(33);
 
 var _getRGBPixels2 = _interopRequireDefault(_getRGBPixels);
 
@@ -11435,7 +11424,7 @@ exports.dragProbe = dragProbe;
 exports.dragProbeTouch = dragProbeTouch;
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11472,15 +11461,15 @@ var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _drawEllipse = __webpack_require__(47);
+var _drawEllipse = __webpack_require__(46);
 
 var _drawEllipse2 = _interopRequireDefault(_drawEllipse);
 
-var _pointInEllipse = __webpack_require__(32);
+var _pointInEllipse = __webpack_require__(31);
 
 var _pointInEllipse2 = _interopRequireDefault(_pointInEllipse);
 
-var _calculateEllipseStatistics = __webpack_require__(50);
+var _calculateEllipseStatistics = __webpack_require__(49);
 
 var _calculateEllipseStatistics2 = _interopRequireDefault(_calculateEllipseStatistics);
 
@@ -11894,7 +11883,7 @@ exports.ellipticalRoi = ellipticalRoi;
 exports.ellipticalRoiTouch = ellipticalRoiTouch;
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12375,7 +12364,7 @@ var freehand = {
 exports.freehand = freehand;
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12388,7 +12377,7 @@ exports.highlightTouch = exports.highlight = undefined;
 
 var _externalModules = __webpack_require__(0);
 
-var _mouseButtonRectangleTool = __webpack_require__(56);
+var _mouseButtonRectangleTool = __webpack_require__(55);
 
 var _mouseButtonRectangleTool2 = _interopRequireDefault(_mouseButtonRectangleTool);
 
@@ -12579,7 +12568,7 @@ exports.highlight = highlight;
 exports.highlightTouch = highlightTouch;
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12589,7 +12578,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _displayTool = __webpack_require__(24);
+var _displayTool = __webpack_require__(23);
 
 var _displayTool2 = _interopRequireDefault(_displayTool);
 
@@ -12627,7 +12616,7 @@ var imageStats = (0, _displayTool2.default)(onImageRendered);
 exports.default = imageStats;
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12909,7 +12898,7 @@ exports.length = length;
 exports.lengthTouch = lengthTouch;
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12926,7 +12915,7 @@ var _touchDragTool = __webpack_require__(11);
 
 var _touchDragTool2 = _interopRequireDefault(_touchDragTool);
 
-var _getMaxSimultaneousRequests = __webpack_require__(20);
+var _getMaxSimultaneousRequests = __webpack_require__(19);
 
 var _isMouseButtonEnabled = __webpack_require__(2);
 
@@ -13169,7 +13158,7 @@ exports.magnify = magnify;
 exports.magnifyTouchDrag = magnifyTouchDrag;
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13181,11 +13170,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _index = __webpack_require__(42);
+var _index = __webpack_require__(41);
 
 var _index2 = _interopRequireDefault(_index);
 
-var _displayTool = __webpack_require__(24);
+var _displayTool = __webpack_require__(23);
 
 var _displayTool2 = _interopRequireDefault(_displayTool);
 
@@ -13301,7 +13290,7 @@ var orientationMarkers = (0, _displayTool2.default)(onImageRendered);
 exports.default = orientationMarkers;
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13370,7 +13359,7 @@ exports.pan = pan;
 exports.panTouchDrag = panTouchDrag;
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13382,7 +13371,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _multiTouchDragTool = __webpack_require__(29);
+var _multiTouchDragTool = __webpack_require__(28);
 
 var _multiTouchDragTool2 = _interopRequireDefault(_multiTouchDragTool);
 
@@ -13413,7 +13402,7 @@ panMultiTouch.setConfiguration(configuration);
 exports.default = panMultiTouch;
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13450,7 +13439,7 @@ var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _getRGBPixels = __webpack_require__(34);
+var _getRGBPixels = __webpack_require__(33);
 
 var _getRGBPixels2 = _interopRequireDefault(_getRGBPixels);
 
@@ -13588,7 +13577,7 @@ exports.probe = probe;
 exports.probeTouch = probeTouch;
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14053,7 +14042,7 @@ exports.rectangleRoi = rectangleRoi;
 exports.rectangleRoiTouch = rectangleRoiTouch;
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14157,7 +14146,7 @@ exports.rotate = rotate;
 exports.rotateTouchDrag = rotateTouchDrag;
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14193,7 +14182,7 @@ var rotateTouch = {
 exports.default = rotateTouch;
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14237,7 +14226,7 @@ exports.default = function (element, filename, mimetype) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14278,7 +14267,7 @@ var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _moveHandle = __webpack_require__(22);
+var _moveHandle = __webpack_require__(21);
 
 var _moveHandle2 = _interopRequireDefault(_moveHandle);
 
@@ -14286,7 +14275,7 @@ var _drawHandles = __webpack_require__(8);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawCircle = __webpack_require__(48);
+var _drawCircle = __webpack_require__(47);
 
 var _drawCircle2 = _interopRequireDefault(_drawCircle);
 
@@ -14728,7 +14717,7 @@ exports.seedAnnotate = seedAnnotate;
 exports.seedAnnotateTouch = seedAnnotateTouch;
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14749,7 +14738,7 @@ var _drawTextBox = __webpack_require__(6);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _roundToDecimal = __webpack_require__(31);
+var _roundToDecimal = __webpack_require__(30);
 
 var _roundToDecimal2 = _interopRequireDefault(_roundToDecimal);
 
@@ -14769,11 +14758,11 @@ var _anyHandlesOutsideImage = __webpack_require__(12);
 
 var _anyHandlesOutsideImage2 = _interopRequireDefault(_anyHandlesOutsideImage);
 
-var _moveNewHandle = __webpack_require__(23);
+var _moveNewHandle = __webpack_require__(22);
 
 var _moveNewHandle2 = _interopRequireDefault(_moveNewHandle);
 
-var _moveNewHandleTouch = __webpack_require__(25);
+var _moveNewHandleTouch = __webpack_require__(24);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
@@ -15169,7 +15158,7 @@ exports.simpleAngle = simpleAngle;
 exports.simpleAngleTouch = simpleAngleTouch;
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15500,7 +15489,7 @@ exports.textMarker = textMarker;
 exports.textMarkerTouch = textMarkerTouch;
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15610,7 +15599,7 @@ exports.wwwc = wwwc;
 exports.wwwcTouchDrag = wwwcTouchDrag;
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15633,7 +15622,7 @@ var _toolColors2 = _interopRequireDefault(_toolColors);
 
 var _toolState = __webpack_require__(1);
 
-var _getLuminance = __webpack_require__(46);
+var _getLuminance = __webpack_require__(45);
 
 var _getLuminance2 = _interopRequireDefault(_getLuminance);
 
@@ -16011,7 +16000,7 @@ exports.wwwcRegion = wwwcRegion;
 exports.wwwcRegionTouch = wwwcRegionTouch;
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16032,11 +16021,11 @@ var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _mouseWheelTool = __webpack_require__(21);
+var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
-var _touchPinchTool = __webpack_require__(57);
+var _touchPinchTool = __webpack_require__(56);
 
 var _touchPinchTool2 = _interopRequireDefault(_touchPinchTool);
 
@@ -16334,7 +16323,7 @@ exports.zoomTouchPinch = zoomTouchPinch;
 exports.zoomTouchDrag = zoomTouchDrag;
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16349,15 +16338,15 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _brushTool = __webpack_require__(58);
+var _brushTool = __webpack_require__(57);
 
 var _brushTool2 = _interopRequireDefault(_brushTool);
 
-var _getCircle = __webpack_require__(59);
+var _getCircle = __webpack_require__(58);
 
 var _getCircle2 = _interopRequireDefault(_getCircle);
 
-var _drawBrush = __webpack_require__(60);
+var _drawBrush = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16469,7 +16458,7 @@ brush.setConfiguration(configuration);
 exports.brush = brush;
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16484,15 +16473,15 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _brushTool = __webpack_require__(58);
+var _brushTool = __webpack_require__(57);
 
 var _brushTool2 = _interopRequireDefault(_brushTool);
 
-var _getCircle = __webpack_require__(59);
+var _getCircle = __webpack_require__(58);
 
 var _getCircle2 = _interopRequireDefault(_getCircle);
 
-var _drawBrush = __webpack_require__(60);
+var _drawBrush = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16723,7 +16712,7 @@ adaptiveBrush.setConfiguration(configuration);
 exports.adaptiveBrush = adaptiveBrush;
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16733,7 +16722,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _thresholding = __webpack_require__(26);
+var _thresholding = __webpack_require__(25);
 
 Object.defineProperty(exports, 'regionsThreshold', {
   enumerable: true,
@@ -16742,7 +16731,7 @@ Object.defineProperty(exports, 'regionsThreshold', {
   }
 });
 
-var _grow = __webpack_require__(122);
+var _grow = __webpack_require__(121);
 
 Object.defineProperty(exports, 'regionsGrow', {
   enumerable: true,
@@ -16751,7 +16740,7 @@ Object.defineProperty(exports, 'regionsGrow', {
   }
 });
 
-var _draw = __webpack_require__(123);
+var _draw = __webpack_require__(122);
 
 Object.defineProperty(exports, 'regionsDraw', {
   enumerable: true,
@@ -16760,7 +16749,7 @@ Object.defineProperty(exports, 'regionsDraw', {
   }
 });
 
-var _score = __webpack_require__(124);
+var _score = __webpack_require__(123);
 
 Object.defineProperty(exports, 'regionsScore', {
   enumerable: true,
@@ -16769,7 +16758,7 @@ Object.defineProperty(exports, 'regionsScore', {
   }
 });
 
-var _undo = __webpack_require__(125);
+var _undo = __webpack_require__(124);
 
 Object.defineProperty(exports, 'regionsUndo', {
   enumerable: true,
@@ -16781,7 +16770,7 @@ Object.defineProperty(exports, 'regionsUndo', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16793,9 +16782,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _cornerstoneCore = __webpack_require__(19);
-
-var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
@@ -16803,11 +16790,9 @@ var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _thresholding = __webpack_require__(26);
+var _thresholding = __webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 // UNUSED const toolType = 'regionsGrow';
 
@@ -16894,7 +16879,7 @@ function regionGrowing(element, regions, slices, point) {
 
         activeVoxels = nextVoxels;
       }
-      cornerstone.updateImage(element);
+      _externalModules.external.cornerstone.updateImage(element);
       setTimeout(chunk, 0);
     }
 
@@ -16937,11 +16922,11 @@ function enable(element, mouseButtonMask) {
     return;
   }
 
-  element.addEventListener('CornerstoneToolsMouseDown', { mouseButtonMask: mouseButtonMask }, onMouseDown);
+  _externalModules.external.$(element).on('CornerstoneToolsMouseDown', { mouseButtonMask: mouseButtonMask }, onMouseDown);
 }
 
 function disable(element) {
-  element.removeEventListener('CornerstoneToolsMouseDown', onMouseDown);
+  _externalModules.external.$(element).on('CornerstoneToolsMouseDown', onMouseDown);
 }
 
 exports.default = {
@@ -16952,7 +16937,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16967,9 +16952,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 exports.getConfiguration = getConfiguration;
 exports.setConfiguration = setConfiguration;
 
-var _cornerstoneCore = __webpack_require__(19);
-
-var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
@@ -16977,13 +16960,13 @@ var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _thresholding = __webpack_require__(26);
+var _thresholding = __webpack_require__(25);
 
 var regionsThreshold = _interopRequireWildcard(_thresholding);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var toolType = 'drawing';
 
@@ -17026,7 +17009,7 @@ function onImageRendered(e, eventData) {
 
   // Set the canvas context to the image coordinate system
 
-  cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
+  _externalModules.external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
 
   // Points
   var drawingData = (0, _toolState.getToolState)(element, toolType);
@@ -17109,11 +17092,11 @@ function updateRegions(element) {
 
 // Disable drawing and tracking on mouse up also update regions
 function mouseUpCallback(e, eventData) {
-  eventData.element.removeEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);
-  eventData.element.removeEventListener('CornerstoneToolsMouseUp', mouseUpCallback);
-  eventData.element.removeEventListener('CornerstoneImageRendered', onImageRendered);
+  _externalModules.external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
+  _externalModules.external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
+  _externalModules.external.$(eventData.element).off('CornerstoneImageRendered', onImageRendered);
   updateRegions(eventData.element);
-  cornerstone.updateImage(eventData.element);
+  _externalModules.external.cornerstone.updateImage(eventData.element);
 }
 
 function mouseDownCallback(e, eventData) {
@@ -17122,9 +17105,9 @@ function mouseDownCallback(e, eventData) {
 
     toolData.data[0].points = [];
 
-    eventData.element.addEventListener('CornerstoneToolsMouseDrag', mouseDragCallback);
-    eventData.element.addEventListener('CornerstoneToolsMouseUp', mouseUpCallback);
-    eventData.element.addEventListener('CornerstoneImageRendered', onImageRendered);
+    _externalModules.external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
+    _externalModules.external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);
+    _externalModules.external.$(eventData.element).on('CornerstoneImageRendered', onImageRendered);
 
     return mouseDragCallback(e, eventData);
   }
@@ -17144,7 +17127,7 @@ function mouseDragCallback(e, eventData) {
 
   toolData.data[0].points.push([point.x, point.y]);
 
-  cornerstone.updateImage(eventData.element);
+  _externalModules.external.cornerstone.updateImage(eventData.element);
 
   return false; // False = causes jquery to preventDefault() and stopPropagation() this event
 }
@@ -17161,12 +17144,12 @@ function enable(element, mouseButtonMask) {
     points: []
   });
 
-  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);
-  element.addEventListener('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
+  _externalModules.external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
+  _externalModules.external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
 }
 
 function disable(element) {
-  element.removeEventListener('CornerstoneToolsMouseDown', mouseDownCallback);
+  _externalModules.external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
 }
 
 function getConfiguration() {
@@ -17189,7 +17172,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17200,15 +17183,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.score = score;
 
-var _cornerstoneCore = __webpack_require__(19);
+var _externalModules = __webpack_require__(0);
 
-var cornerstone = _interopRequireWildcard(_cornerstoneCore);
-
-var _thresholding = __webpack_require__(26);
+var _thresholding = __webpack_require__(25);
 
 var _toolState = __webpack_require__(1);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function getDensityFactor(hu) {
   if (hu < 200) {
@@ -17274,7 +17253,7 @@ function score() {
   var overlapFactors = [];
 
   var promises = imageIds.map(function (imageId, imageIndex) {
-    return cornerstone.loadImage(imageId).then(function (image) {
+    return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
       var dataSet = image.data;
       var sliceLocation = dataSet.floatString('x00201041');
       // TODO: use these as attributes instead of the ones from Viewers
@@ -17380,7 +17359,7 @@ function score() {
 exports.default = score;
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17390,13 +17369,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _cornerstoneCore = __webpack_require__(19);
-
-var cornerstone = _interopRequireWildcard(_cornerstoneCore);
+var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function enable(element) {
   console.log("ENABLE UNDO");
@@ -17411,7 +17386,7 @@ function enable(element) {
   console.log("HIST", state.history);
 
   state.buffer = replacement;
-  cornerstone.updateImage(element);
+  _externalModules.external.cornerstone.updateImage(element);
 }
 
 function disable(element) {}
@@ -17427,7 +17402,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
