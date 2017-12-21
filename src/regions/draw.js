@@ -123,8 +123,9 @@ function mouseUpCallback (e, eventData) {
 }
 
 function mouseDownCallback (e, eventData) {
-  console.log('*** e.data ***', e.data);
-  console.log('*** eventData ***', eventData);
+  console.log('*** e.data (draw.js) ***', e.data);
+  console.log('*** eventData (draw.js) ***', eventData);
+
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
     const toolData = getToolState(e.currentTarget, toolType);
 

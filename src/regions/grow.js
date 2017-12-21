@@ -89,6 +89,9 @@ function regionGrowing (element, regions, slices, point) {
 function onMouseDown (e, eventData) {
   const { element } = eventData;
 
+  console.log('*** e.data (grow.js) ***', e.data);
+  console.log('*** eventData (grow.js) ***', eventData);
+
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
     createUndoStep(element);
     const [stackData] = getToolState(element, 'stack').data;
