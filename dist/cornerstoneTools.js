@@ -17101,6 +17101,8 @@ function mouseUpCallback(e, eventData) {
 }
 
 function mouseDownCallback(e, eventData) {
+  console.log('*** e.data ***', e.data);
+  console.log('*** eventData ***', eventData);
   if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
     var toolData = (0, _toolState.getToolState)(e.currentTarget, toolType);
 
