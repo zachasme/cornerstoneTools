@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2017-11-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2017-12-21 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -2379,7 +2379,7 @@ var configuration = {
   historySize: 4,
   historyPosition: 0,
   toolRegionValue: 2,
-  calciumThresholdHu: '-', // placeholder until it gets set ('-' shows up nicely in text input)
+  calciumThresholdHu: '-', // Placeholder until it gets set ('-' shows up nicely in text input)
   layersAbove: 0,
   layersBelow: 0,
   drawAlpha: 1,
@@ -16971,7 +16971,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var toolType = 'drawing';
 
 var configuration = {
-  snap: false // snap to thresholded region or not
+  snap: false // Snap to thresholded region or not
 };
 
 // Determine if a point is inside a polygon
@@ -17077,6 +17077,7 @@ function updateRegions(element) {
         var prevValue = view[index];
 
         var snapBool = void 0;
+
         if (configuration.snap) {
           snapBool = prevValue > 0;
         } else {
@@ -17190,36 +17191,48 @@ var _thresholding = __webpack_require__(25);
 var _toolState = __webpack_require__(1);
 
 function getDensityFactor(hu) {
-  if (hu < 200) {
+  if (hu < 130) {
+    return 0;
+  } else if (hu < 200) {
     return 1;
   } else if (hu < 300) {
     return 2;
   } else if (hu < 400) {
     return 3;
   }
+
   return 4;
 }
 
 // Finds the value with the most occurrences in array
 // Should be O(n)
 function mode(array) {
-  if (array.length == 0) return null;
+  if (array.length === 0) {
+    return null;
+  }
   var modeMap = {};
-  var maxEl = array[0],
-      maxCount = 1;
+  var maxEl = array[0];
+  var maxCount = 1;
+
   for (var i = 0; i < array.length; i++) {
     var el = array[i];
-    if (modeMap[el] == null) modeMap[el] = 1;else modeMap[el]++;
+
+    if (modeMap[el] === null) {
+      modeMap[el] = 1;
+    } else {
+      modeMap[el]++;
+    }
+
     if (modeMap[el] > maxCount) {
       maxEl = el;
       maxCount = modeMap[el];
     }
   }
+
   return maxEl;
 }
 
 function score() {
-  console.log("SCORE");
   var element = (0, _thresholding.getLastElement)();
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
   var stackData = (0, _toolState.getToolState)(element, 'stack');
@@ -17270,20 +17283,6 @@ function score() {
       yLength = pixelSpacing[1];
       voxelSize = zLength * xLength * yLength; // In mm
       kvpMultiplier = kvpToMultiplier[kVP];
-      // TODO: display these in application before score calculation
-      // const scanLocation = dataSet.string('x00080080');
-      // const patientId = dataSet.string('x00100020');
-      // const patientBirthDate = dataSet.string('x00100030');
-      // const studyDate = dataSet.string('x00080020');
-
-      // If you want to see all the metadata on image
-      // for (let property in dataSet.elements) {
-      //   if (dataSet.elements.hasOwnProperty(property)) {
-      //     console.log(property.toString() + ': ' + dataSet.string(property.toString()))
-      //   }
-      // }
-      // const collimation = dataSet.floatString('x00189307')
-      // console.log('collimation: ', collimation)
 
       if (prevSliceLocation) {
         var absPrevLocation = Math.abs(prevSliceLocation);
