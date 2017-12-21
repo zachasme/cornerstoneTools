@@ -118,10 +118,11 @@ export function score () {
         const value = pixelData[i];
         const hu = (value * parseInt(rescaleSlope)) + parseInt(rescaleIntercept);
         const currentMax = maxHUEachRegion[label - 2];
-
-        voxelsEachRegion[label - 2].push(hu);
-        if (hu > currentMax) {
-          maxHUEachRegion[label - 2] = hu;
+        if (hu > 130) {
+          voxelsEachRegion[label - 2].push(hu);
+          if (hu > currentMax) {
+            maxHUEachRegion[label - 2] = hu;
+          }
         }
       }
     }

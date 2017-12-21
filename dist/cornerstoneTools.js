@@ -16891,6 +16891,9 @@ function onMouseDown(e, eventData) {
   var element = eventData.element;
 
 
+  console.log('*** e.data (grow.js) ***', e.data);
+  console.log('*** eventData (grow.js) ***', eventData);
+
   if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
     (0, _thresholding.createUndoStep)(element);
 
@@ -16926,7 +16929,7 @@ function enable(element, mouseButtonMask) {
 }
 
 function disable(element) {
-  _externalModules.external.$(element).on('CornerstoneToolsMouseDown', onMouseDown);
+  _externalModules.external.$(element).off('CornerstoneToolsMouseDown', onMouseDown);
 }
 
 exports.default = {
@@ -17101,8 +17104,9 @@ function mouseUpCallback(e, eventData) {
 }
 
 function mouseDownCallback(e, eventData) {
-  console.log('*** e.data ***', e.data);
-  console.log('*** eventData ***', eventData);
+  console.log('*** e.data (draw.js) ***', e.data);
+  console.log('*** eventData (draw.js) ***', eventData);
+
   if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
     var toolData = (0, _toolState.getToolState)(e.currentTarget, toolType);
 
@@ -17316,10 +17320,11 @@ function score() {
           var value = pixelData[i];
           var hu = value * parseInt(rescaleSlope) + parseInt(rescaleIntercept);
           var currentMax = maxHUEachRegion[label - 2];
-
-          voxelsEachRegion[label - 2].push(hu);
-          if (hu > currentMax) {
-            maxHUEachRegion[label - 2] = hu;
+          if (hu > 130) {
+            voxelsEachRegion[label - 2].push(hu);
+            if (hu > currentMax) {
+              maxHUEachRegion[label - 2] = hu;
+            }
           }
         }
       }

@@ -119,7 +119,7 @@ function enable (element, mouseButtonMask) {
 }
 
 function disable (element) {
-  external.$(element).on('CornerstoneToolsMouseDown', onMouseDown);
+  external.$(element).off('CornerstoneToolsMouseDown', onMouseDown);
 }
 
 export default {
