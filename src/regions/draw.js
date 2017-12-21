@@ -6,7 +6,7 @@ import * as regionsThreshold from './thresholding.js';
 const toolType = 'drawing';
 
 let configuration = {
-  snap: false // snap to thresholded region or not
+  snap: false // Snap to thresholded region or not
 };
 
 // Determine if a point is inside a polygon
@@ -99,6 +99,7 @@ function updateRegions (element) {
         const prevValue = view[index];
 
         let snapBool;
+
         if (configuration.snap) {
           snapBool = prevValue > 0;
         } else {
@@ -138,7 +139,7 @@ function mouseDownCallback (e, eventData) {
 function mouseDragCallback (e, eventData) {
   e.stopImmediatePropagation(); // Prevent CornerstoneToolsTouchStartActive from killing any press events
 
-    // If we have no toolData for this element, return immediately as there is nothing to do
+  // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = getToolState(e.currentTarget, toolType);
 
   if (!toolData) {

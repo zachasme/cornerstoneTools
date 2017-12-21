@@ -3,42 +3,48 @@ import { getConfiguration, getLastElement } from './thresholding.js';
 import { getToolState } from '../stateManagement/toolState';
 
 function getDensityFactor (hu) {
-  if (hu < 200) {
+  if (hu < 130) {
+    return 0;
+  } else if (hu < 200) {
     return 1;
   } else if (hu < 300) {
     return 2;
   } else if (hu < 400) {
     return 3;
   }
+
   return 4;
 }
 
 // Finds the value with the most occurrences in array
 // Should be O(n)
-function mode(array)
-{
-  if(array.length == 0)
+function mode (array) {
+  if (array.length === 0) {
     return null;
+  }
   const modeMap = {};
-  let maxEl = array[0], maxCount = 1;
-  for(let i = 0; i < array.length; i++)
-  {
+  let maxEl = array[0];
+  let maxCount = 1;
+
+  for (let i = 0; i < array.length; i++) {
     const el = array[i];
-    if(modeMap[el] == null)
-        modeMap[el] = 1;
-    else
-        modeMap[el]++;
-    if(modeMap[el] > maxCount)
-    {
+
+    if (modeMap[el] === null) {
+      modeMap[el] = 1;
+    } else {
+      modeMap[el]++;
+    }
+
+    if(modeMap[el] > maxCount) {
       maxEl = el;
       maxCount = modeMap[el];
     }
   }
+
   return maxEl;
 }
 
 export function score () {
-  console.log("SCORE");
   const element = getLastElement();
   const thresholdingData = getToolState(element, 'regions');
   const stackData = getToolState(element, 'stack');
@@ -62,7 +68,7 @@ export function score () {
   let modeOverlapFactor;
   const overlapFactors = [];
 
-  const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then(image => {
+  const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then((image) => {
     const dataSet = image.data;
     const sliceLocation = dataSet.floatString('x00201041');
     // TODO: use these as attributes instead of the ones from Viewers
@@ -79,20 +85,6 @@ export function score () {
     yLength = pixelSpacing[1];
     voxelSize = zLength * xLength * yLength; // In mm
     kvpMultiplier = kvpToMultiplier[kVP];
-    // TODO: display these in application before score calculation
-    // const scanLocation = dataSet.string('x00080080');
-    // const patientId = dataSet.string('x00100020');
-    // const patientBirthDate = dataSet.string('x00100030');
-    // const studyDate = dataSet.string('x00080020');
-
-    // If you want to see all the metadata on image
-    // for (let property in dataSet.elements) {
-    //   if (dataSet.elements.hasOwnProperty(property)) {
-    //     console.log(property.toString() + ': ' + dataSet.string(property.toString()))
-    //   }
-    // }
-    // const collimation = dataSet.floatString('x00189307')
-    // console.log('collimation: ', collimation)
 
     if (prevSliceLocation) {
       const absPrevLocation = Math.abs(prevSliceLocation);
