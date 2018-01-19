@@ -1,4 +1,4 @@
-import { external } from '../externalModules.js';
+import { cornerstoneMath, external } from '../externalModules.js';
 import { getConfiguration, getLastElement } from './thresholding.js';
 import { getToolState } from '../stateManagement/toolState';
 
@@ -44,12 +44,101 @@ function mode (array) {
   return maxEl;
 }
 
+function computeVoxelSize (metaData) {
+  if (metaData.sliceThickness === 0 ||
+      metaData.pixelSpacing[0] === 0 ||
+      metaData.pixelSpacing[1] === 0) {
+    throw new Error('sliceThickness or pixelSpacing was 0');
+  }
+  const zLength = metaData.sliceThickness;
+  const xLength = metaData.pixelSpacing[0];
+  const yLength = metaData.pixelSpacing[1];
+
+
+  return zLength * xLength * yLength; // In mm³
+}
+
+function computeScore (metaData, voxels) {
+  // Division by 3 because Agatson score assumes a slice thickness of 3 mm
+  const voxelSizeScaled = computeVoxelSize(metaData) / 3;
+  const densityFactor = getDensityFactor(metaData.maxHU);
+  const volume = voxels.length * voxelSizeScaled;
+
+  const { KVPToMultiplier } = getConfiguration();
+  const KVPMultiplier = KVPToMultiplier[metaData.KVP];
+  const cascore = volume * densityFactor * KVPMultiplier;
+  //
+  console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
+  console.log("voxels.length: " + voxels.length);
+  console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
+  console.log(`Volume: ${volume}`);
+  console.log(`Max HU: ${metaData.maxHU}`);
+  console.log(`densityFactor: ${densityFactor}`);
+  console.log(`KVPMultiplier: ${KVPMultiplier}`);
+  console.log(`CAscore: ${cascore}`);
+
+  // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
+  // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
+  if (metaData.modeOverlapFactor) {
+    return cascore * metaData.modeOverlapFactor;
+  }
+
+  return cascore;
+
+}
+
+/*
+* Computes the distance between two slices based on the DICOM Image Plane Module
+* @param imagePositions {Array[2][3]} - DICOM tag (0020, 0032) of two slices
+* @param imageOrientation {Array[2][3]} - DICOM tag (0020, 0037) of first slice
+*/
+function computeIOPProjectedDistance (imagePositions, imageOrientation) {
+  const imagePosition1Vector = new cornerstoneMath.Vector3();
+
+  imagePosition1Vector.fromArray(imagePositions[0]);
+
+  const imagePosition2Vector = new cornerstoneMath.Vector3();
+
+  imagePosition2Vector.fromArray(imagePositions[1]);
+
+  const imageOrientationRowVector = new cornerstoneMath.Vector3();
+
+  imageOrientationRowVector.fromArray(imageOrientation[0]);
+
+  const imageOrientationColumnVector = new cornerstoneMath.Vector3();
+
+  imageOrientationColumnVector.fromArray(imageOrientation[1]);
+
+  // Compute unit normal of Image Orientation crossVectors
+  const orientationNormal = new cornerstoneMath.Vector3();
+
+  orientationNormal.crossVectors(imageOrientationRowVector, imageOrientationColumnVector);
+
+  // Project both position vectors on normal
+  const projection1 = imagePosition1Vector.projectOnVector(orientationNormal);
+  const projection2 = imagePosition2Vector.projectOnVector(orientationNormal);
+
+  // Compute distance of projected vectors
+  return projection1.distanceTo(projection2);
+}
+
+function computeOverlapFactor (distance, sliceThickness) {
+  if (distance <= 0) {
+    throw new Error('Distance must be > 0');
+  }
+  if (distance >= sliceThickness) {
+    return 1;
+  }
+
+  return (sliceThickness + distance) / (2 * sliceThickness);
+}
+
 export function score () {
   const element = getLastElement();
   const thresholdingData = getToolState(element, 'regions');
   const stackData = getToolState(element, 'stack');
   const imageIds = stackData.data[0].imageIds;
-  const { regionColorsRGB, kvpToMultiplier } = getConfiguration();
+  const { regionColorsRGB, KVPToMultiplier } = getConfiguration();
 
   // Extract and group region-voxels
   const voxelsEachRegion = regionColorsRGB.slice(1).map(() => []);
@@ -58,51 +147,52 @@ export function score () {
   const regionBuffer = thresholdingData.data[0].buffer;
   const view = new Uint8Array(regionBuffer);
 
-  let zLength;
-  let xLength;
-  let yLength;
-  let voxelSize;
-  let kvpMultiplier;
   let prevSliceLocation;
   let overlapFactor;
   let modeOverlapFactor;
+  let prevImagePosition;
   const overlapFactors = [];
+
+  let metaData = {};
+
+  external.cornerstone.loadImage(imageIds).then((image) => {
+    const dataSet = image.data;
+    metaData.sliceThickness = dataSet.floatString('x00180050');
+    metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
+    metaData.KVP = dataSet.floatString('x00180060');
+    metaData.rescaleSlope = dataSet.floatString('x00281053');
+    metaData.rescaleIntercept = dataSet.floatString('x00281052');
+    metaData.rescaleType = dataSet.floatString('00281054');
+  });
 
   const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then((image) => {
     const dataSet = image.data;
     const sliceLocation = dataSet.floatString('x00201041');
-    // TODO: use these as attributes instead of the ones from Viewers
-    // Test that it is indeed the same values    const sliceThickness = dataSet.floatString('x00180050');
-    const sliceThickness = dataSet.floatString('x00180050');
-    const pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
-    const kVP = dataSet.floatString('x00180060');
-    const rescaleSlope = dataSet.floatString('x00281053');
-    const rescaleIntercept = dataSet.floatString('x00281052');
+    const imagePositionPatient = dataSet.floatString('00200032').split('\\').map(parseFloat);
+    const imageOrientationTmp = dataSet.floatString('00200037').split('\\').map(parseFloat);
+    const imageOrientation = [
+      imageOrientationTmp.split(0, 2),
+      imageOrientationTmp.split(3)
+    ];
 
-    // Ca score is compute with slice thickness of 3 mm (jvf. mail from Axel)
-    zLength = sliceThickness / 3;
-    xLength = pixelSpacing[0];
-    yLength = pixelSpacing[1];
-    voxelSize = zLength * xLength * yLength; // In mm
-    kvpMultiplier = kvpToMultiplier[kVP];
+    if (metaData.rescaleType !== 'HU') {
+      alert(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
 
-    if (prevSliceLocation) {
-      const absPrevLocation = Math.abs(prevSliceLocation);
-      const absCurrentLocation = Math.abs(sliceLocation);
-      const overlap = absPrevLocation > absCurrentLocation
-                      ? absPrevLocation - absCurrentLocation
-                      : absCurrentLocation - absPrevLocation;
-      // console.log(absPrevLocation)
-      // console.log("overlap", overlap)
-      // console.log("sliceThickness", sliceThickness)
-      // overlapFactor = overlap <= 3 ? (3 - overlap) / 3 : 1;
-      overlapFactor = overlap < sliceThickness ? (sliceThickness - overlap) / sliceThickness : 1;
-      // console.log(overlapFactor)
+      return;
+    }
+
+    if (prevImagePosition) {
+      const distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
+      overlapFactor = computeOverlapFactor(distance, metaData.sliceThickness);
+
+      // Find overlapfactor with the highest occurance
       overlapFactors.push(overlapFactor);
-      modeOverlapFactor = mode(overlapFactors);
-      prevSliceLocation = sliceLocation;
+      metaData.modeOverlapFactor = mode(overlapFactors);
+
+      // Save imagePositionPatient for next overlapFactor computation
+      prevImagePosition = imagePositionPatient;
     } else {
-      prevSliceLocation = sliceLocation;
+      prevImagePosition = imagePositionPatient;
     }
 
     const width = image.width;
@@ -116,8 +206,9 @@ export function score () {
 
       if (label > 1) {
         const value = pixelData[i];
-        const hu = (value * parseInt(rescaleSlope)) + parseInt(rescaleIntercept);
+        const hu = (value * parseInt(metaData.rescaleSlope)) + parseInt(metaData.rescaleIntercept);
         const currentMax = maxHUEachRegion[label - 2];
+
         if (hu > 130) {
           voxelsEachRegion[label - 2].push(hu);
           if (hu > currentMax) {
@@ -129,35 +220,22 @@ export function score () {
   }));
 
   return Promise.all(promises).then(function () {
+
     return voxelsEachRegion.map((voxels, i) => {
-      console.log("SCORE -> voxelsEachRegion");
-      // UNUSED??    const mean_HU = sum / region.length
-      const maxHU = maxHUEachRegion[i];
+      metaData.maxHU = maxHUEachRegion[i];
 
-      const densityFactor = getDensityFactor(maxHU);
-      const area = voxels.length * voxelSize;
-
-      const cascore = area * densityFactor * kvpMultiplier;
-      //
-      // console.log("modeOverlapFactor", modeOverlapFactor)
-      // console.log("voxels.length: " + voxels.length);
-      // console.log("voxelSize: " + voxelSize);
-      // console.log("Area: " + area);
-      // console.log("Max HU: " + maxHU);
-      // console.log("densityFactor: " + densityFactor);
-      // console.log("kvpMultiplier: " + kvpMultiplier);
-      // console.log("CAscore: " + cascore);
+      const cascore = computeScore(metaData, voxels);
 
       // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
       // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
-      if (modeOverlapFactor) {
-        return cascore * modeOverlapFactor;
-      } else {
-        return cascore;
+      if (metaData.modeOverlapFactor) {
+        return cascore * metaData.modeOverlapFactor;
       }
+
+      return cascore;
+
     });
   });
-
 }
 
-export default score;
+export default score

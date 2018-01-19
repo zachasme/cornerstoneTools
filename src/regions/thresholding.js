@@ -27,7 +27,7 @@ let configuration = {
     [184, 74, 41],
     [106, 58, 45]
   ],
-  kvpToMultiplier: {
+  KVPToMultiplier: {
     150: 1.06,
     140: 1.04,
     130: 1.02,
@@ -36,19 +36,17 @@ let configuration = {
     100: 0.96,
     90: 0.93,
     80: 0.89,
-    70: 0.85,
+    70: 0.85
   },
   growIterationsPerChunk: 2
 };
 
-console.log("CONFIGURATION");
 configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
 
 /**
  * Perform the thresholding on a stack
  */
 function performThresholding (stack, afterwards) {
-  console.log("PERFORM_THRESHOLDING");
   let width, height;
   const imageIds = stack.imageIds;
   const slices = imageIds.length;
@@ -106,7 +104,6 @@ let imgdata = null;
  * Draw regions on image
  */
 function onImageRendered (e) {
-  console.log("onImageRendered");
   const eventData = e.detail;
   const element = eventData.element;
   const stackData = getToolState(element, 'stack');
@@ -160,8 +157,10 @@ function onImageRendered (e) {
 function enable (element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
   const thresholdingData = getToolState(element, 'regions');
-  if (thresholdingData.data[0] && thresholdingData.data[0].enabled) { return; }
-  console.log('*** ENABLING regionsThreshold ***');
+
+  if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
+    return;
+  }
 
   LASTELEMENT = element;
   // First check that there is stack data available
@@ -219,11 +218,10 @@ export function update (element) {
     enable(enabledElement, () => {
       resolve();
     });
-  })
+  });
 }
 
 export function createUndoStep (element) {
-  console.log("CREATE UNDO STEP");
   const thresholdingData = getToolState(element, 'regions');
 
   const state = thresholdingData.data[0];
@@ -236,16 +234,13 @@ export function createUndoStep (element) {
   if (state.history.length > configuration.historySize) {
     state.history.shift();
   }
-
 }
 
 export function getConfiguration () {
-  console.log("GETCONFIGURATION");
   return configuration;
 }
 
 export function setConfiguration (config) {
-  console.log("SETCONFIGURATION");
   configuration = config;
 }
 

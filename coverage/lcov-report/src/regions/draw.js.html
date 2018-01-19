@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.35% </span>
+        <span class="strong">2.3% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/85</span>
+        <span class='fraction'>2/87</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.35% </span>
+        <span class="strong">2.3% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/85</span>
+        <span class='fraction'>2/87</span>
       </div>
     </div>
   </div>
@@ -237,7 +237,11 @@
 192
 193
 194
-195</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+195
+196
+197
+198
+199</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -338,14 +342,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -360,6 +365,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -439,7 +447,7 @@ import * as regionsThreshold from './thresholding.js';
 const toolType = 'drawing';
 &nbsp;
 let configuration = {
-  snap: false // snap to thresholded region or not
+  snap: false // Snap to thresholded region or not
 };
 &nbsp;
 // Determine if a point is inside a polygon
@@ -532,6 +540,7 @@ function updateRegions (element) <span class="fstat-no" title="function not cove
         const prevValue = <span class="cstat-no" title="statement not covered" >view[index];</span>
 &nbsp;
         let snapBool;
+&nbsp;
 <span class="cstat-no" title="statement not covered" >        if (configuration.snap) {</span>
 <span class="cstat-no" title="statement not covered" >          snapBool = prevValue &gt; 0;</span>
         } else {
@@ -555,6 +564,9 @@ function mouseUpCallback (e, eventData) <span class="fstat-no" title="function n
 }
 &nbsp;
 function mouseDownCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  console.log('*** e.data (draw.js) ***', e.data);</span>
+<span class="cstat-no" title="statement not covered" >  console.log('*** eventData (draw.js) ***', eventData);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
     const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
 &nbsp;
@@ -571,7 +583,7 @@ function mouseDownCallback (e, eventData) <span class="fstat-no" title="function
 function mouseDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  e.stopImmediatePropagation(); </span>// Prevent CornerstoneToolsTouchStartActive from killing any press events
 &nbsp;
-    // If we have no toolData for this element, return immediately as there is nothing to do
+  // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!toolData) {</span>
@@ -631,7 +643,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 22 2017 14:34:12 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

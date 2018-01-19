@@ -149,13 +149,7 @@ is used by our example image loader-->
     })
 
     document.getElementById('calculate').addEventListener('click', function(){
-      var scores = cornerstoneTools.regionsScore({
-        SliceThickness: 3,
-        PixelSpacing: [0.6, 0.6],
-        KVP: 120,
-        RescaleSlope: 1,
-        RescaleIntercept: 1024,
-      }).then(function(scores){
+      var scores = cornerstoneTools.regionsScore().then(function(scores){
         console.log("YO", scores);
       });
     })
