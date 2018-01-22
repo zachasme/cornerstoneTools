@@ -17357,16 +17357,16 @@ function score() {
     metaData.KVP = dataSet.floatString('x00180060');
     metaData.rescaleSlope = dataSet.floatString('x00281053');
     metaData.rescaleIntercept = dataSet.floatString('x00281052');
-    metaData.rescaleType = dataSet.floatString('00281054');
+    metaData.rescaleType = dataSet.string('x00281054');
   });
 
   var promises = imageIds.map(function (imageId, imageIndex) {
     return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
       var dataSet = image.data;
       var sliceLocation = dataSet.floatString('x00201041');
-      var imagePositionPatient = dataSet.floatString('00200032').split('\\').map(parseFloat);
-      var imageOrientationTmp = dataSet.floatString('00200037').split('\\').map(parseFloat);
-      var imageOrientation = [imageOrientationTmp.split(0, 2), imageOrientationTmp.split(3)];
+      var imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
+      var imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
+      var imageOrientation = [imageOrientationTmp.slice(0, 2), imageOrientationTmp.slice(3)];
 
       if (metaData.rescaleType !== 'HU') {
         alert('Modality LUT does not convert to Hounsfield units but to ' + metaData.rescaleType + '. Agatston score is not defined for this unit type.');

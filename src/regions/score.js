@@ -162,17 +162,17 @@ export function score () {
     metaData.KVP = dataSet.floatString('x00180060');
     metaData.rescaleSlope = dataSet.floatString('x00281053');
     metaData.rescaleIntercept = dataSet.floatString('x00281052');
-    metaData.rescaleType = dataSet.floatString('00281054');
+    metaData.rescaleType = dataSet.string('x00281054');
   });
 
   const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then((image) => {
     const dataSet = image.data;
     const sliceLocation = dataSet.floatString('x00201041');
-    const imagePositionPatient = dataSet.floatString('00200032').split('\\').map(parseFloat);
-    const imageOrientationTmp = dataSet.floatString('00200037').split('\\').map(parseFloat);
+    const imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
+    const imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
     const imageOrientation = [
-      imageOrientationTmp.split(0, 2),
-      imageOrientationTmp.split(3)
+      imageOrientationTmp.slice(0, 2),
+      imageOrientationTmp.slice(3)
     ];
 
     if (metaData.rescaleType !== 'HU') {
