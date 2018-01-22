@@ -155,7 +155,7 @@ export function score () {
 
   let metaData = {};
 
-  external.cornerstone.loadImage(imageIds).then((image) => {
+  external.cornerstone.loadImage(imageIds[0]).then((image) => {
     const dataSet = image.data;
     metaData.sliceThickness = dataSet.floatString('x00180050');
     metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);

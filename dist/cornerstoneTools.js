@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-01-19 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-01-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -17350,7 +17350,7 @@ function score() {
 
   var metaData = {};
 
-  _externalModules.external.cornerstone.loadImage(imageIds).then(function (image) {
+  _externalModules.external.cornerstone.loadImage(imageIds[0]).then(function (image) {
     var dataSet = image.data;
     metaData.sliceThickness = dataSet.floatString('x00180050');
     metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
