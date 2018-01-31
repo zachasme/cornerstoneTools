@@ -69,7 +69,7 @@ function performThresholding (stack, afterwards) {
         const pixelData = image.getPixelData();
         const n = width * height;
         console.log("pixelData: ", pixelData.length);
-        console.log("n: ", n); 
+        console.log("n: ", n);
 
         for (let i = 0; i < n; i++) {
           const pixel = pixelData[i];
@@ -159,6 +159,9 @@ function onImageRendered (e) {
 function enable (element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
   const thresholdingData = getToolState(element, 'regions');
+
+  // Reset imgData buffer
+  imgdata = null;
 
   if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;

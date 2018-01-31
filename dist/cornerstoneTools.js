@@ -2517,6 +2517,9 @@ function enable(element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
 
+  // Reset imgData buffer
+  imgdata = null;
+
   if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;
   }
