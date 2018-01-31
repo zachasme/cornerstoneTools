@@ -153,9 +153,9 @@ export function score () {
   let prevImagePosition;
   const overlapFactors = [];
 
-  let metaData = {};
+  var metaData = {};
 
-  external.cornerstone.loadImage(imageIds[0]).then((image) => {
+  const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then((image) => {
     const dataSet = image.data;
     metaData.sliceThickness = dataSet.floatString('x00180050');
     metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
@@ -163,21 +163,16 @@ export function score () {
     metaData.rescaleSlope = dataSet.floatString('x00281053');
     metaData.rescaleIntercept = dataSet.floatString('x00281052');
     metaData.rescaleType = dataSet.string('x00281054');
-  });
-
-  const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then((image) => {
-    const dataSet = image.data;
     const sliceLocation = dataSet.floatString('x00201041');
     const imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
     const imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
     const imageOrientation = [
-      imageOrientationTmp.slice(0, 2),
+      imageOrientationTmp.slice(0, 3),
       imageOrientationTmp.slice(3)
     ];
 
     if (metaData.rescaleType !== 'HU') {
-      alert(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
-
+      console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
       return;
     }
 

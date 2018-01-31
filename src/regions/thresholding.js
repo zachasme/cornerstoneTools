@@ -68,6 +68,8 @@ function performThresholding (stack, afterwards) {
         const intercept = image.intercept;
         const pixelData = image.getPixelData();
         const n = width * height;
+        console.log("pixelData: ", pixelData.length);
+        console.log("n: ", n); 
 
         for (let i = 0; i < n; i++) {
           const pixel = pixelData[i];

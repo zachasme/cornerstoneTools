@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-01-22 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-01-31 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -2426,6 +2426,8 @@ function performThresholding(stack, afterwards) {
         var intercept = image.intercept;
         var pixelData = image.getPixelData();
         var n = width * height;
+        console.log("pixelData: ", pixelData.length);
+        console.log("n: ", n);
 
         for (var i = 0; i < n; i++) {
           var pixel = pixelData[i];
@@ -17350,27 +17352,22 @@ function score() {
 
   var metaData = {};
 
-  _externalModules.external.cornerstone.loadImage(imageIds[0]).then(function (image) {
-    var dataSet = image.data;
-    metaData.sliceThickness = dataSet.floatString('x00180050');
-    metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
-    metaData.KVP = dataSet.floatString('x00180060');
-    metaData.rescaleSlope = dataSet.floatString('x00281053');
-    metaData.rescaleIntercept = dataSet.floatString('x00281052');
-    metaData.rescaleType = dataSet.string('x00281054');
-  });
-
   var promises = imageIds.map(function (imageId, imageIndex) {
     return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
       var dataSet = image.data;
+      metaData.sliceThickness = dataSet.floatString('x00180050');
+      metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
+      metaData.KVP = dataSet.floatString('x00180060');
+      metaData.rescaleSlope = dataSet.floatString('x00281053');
+      metaData.rescaleIntercept = dataSet.floatString('x00281052');
+      metaData.rescaleType = dataSet.string('x00281054');
       var sliceLocation = dataSet.floatString('x00201041');
       var imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
       var imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
-      var imageOrientation = [imageOrientationTmp.slice(0, 2), imageOrientationTmp.slice(3)];
+      var imageOrientation = [imageOrientationTmp.slice(0, 3), imageOrientationTmp.slice(3)];
 
       if (metaData.rescaleType !== 'HU') {
-        alert('Modality LUT does not convert to Hounsfield units but to ' + metaData.rescaleType + '. Agatston score is not defined for this unit type.');
-
+        console.warn('Modality LUT does not convert to Hounsfield units but to ' + metaData.rescaleType + '. Agatston score is not defined for this unit type.');
         return;
       }
 
