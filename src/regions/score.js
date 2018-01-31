@@ -204,7 +204,7 @@ export function score () {
         const hu = (value * parseInt(metaData.rescaleSlope)) + parseInt(metaData.rescaleIntercept);
         const currentMax = maxHUEachRegion[label - 2];
 
-        if (hu > 130) {
+        if (hu >= 130) {
           voxelsEachRegion[label - 2].push(hu);
           if (hu > currentMax) {
             maxHUEachRegion[label - 2] = hu;
