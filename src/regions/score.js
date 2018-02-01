@@ -68,14 +68,14 @@ function computeScore (metaData, voxels) {
   const KVPMultiplier = KVPToMultiplier[metaData.KVP];
   const cascore = volume * densityFactor * KVPMultiplier;
   //
-  console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
-  console.log("voxels.length: " + voxels.length);
-  console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
-  console.log(`Volume: ${volume}`);
-  console.log(`Max HU: ${metaData.maxHU}`);
-  console.log(`densityFactor: ${densityFactor}`);
-  console.log(`KVPMultiplier: ${KVPMultiplier}`);
-  console.log(`CAscore: ${cascore}`);
+  // console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
+  // console.log("voxels.length: " + voxels.length);
+  // console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
+  // console.log(`Volume: ${volume}`);
+  // console.log(`Max HU: ${metaData.maxHU}`);
+  // console.log(`densityFactor: ${densityFactor}`);
+  // console.log(`KVPMultiplier: ${KVPMultiplier}`);
+  // console.log(`CAscore: ${cascore}`);
 
   // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
   // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
@@ -141,8 +141,8 @@ export function score () {
   const { regionColorsRGB, KVPToMultiplier } = getConfiguration();
 
   // Extract and group region-voxels
-  const voxelsEachRegion = regionColorsRGB.slice(1).map(() => []);
-  const maxHUEachRegion = regionColorsRGB.slice(1).map(() => -Infinity);
+  const voxelsEachRegion = regionColorsRGB.slice(1).map(() => imageIds.map(() => []));
+  const maxHUEachRegion = regionColorsRGB.slice(1).map(() => imageIds.map(() => -Infinity));
 
   const regionBuffer = thresholdingData.data[0].buffer;
   const view = new Uint8Array(regionBuffer);
@@ -202,12 +202,12 @@ export function score () {
       if (label > 1) {
         const value = pixelData[i];
         const hu = (value * parseInt(metaData.rescaleSlope)) + parseInt(metaData.rescaleIntercept);
-        const currentMax = maxHUEachRegion[label - 2];
+        const currentMax = maxHUEachRegion[label - 2][imageIndex];
 
         if (hu >= 130) {
-          voxelsEachRegion[label - 2].push(hu);
+          voxelsEachRegion[label - 2][imageIndex].push(hu);
           if (hu > currentMax) {
-            maxHUEachRegion[label - 2] = hu;
+            maxHUEachRegion[label - 2][imageIndex] = hu;
           }
         }
       }
@@ -216,19 +216,18 @@ export function score () {
 
   return Promise.all(promises).then(function () {
 
-    return voxelsEachRegion.map((voxels, i) => {
-      metaData.maxHU = maxHUEachRegion[i];
+    return voxelsEachRegion.map((slicesInLabel, labelIdx) => {
+      const cascore = [];
+      slicesInLabel.map((voxels, sliceIdx) => {
+        metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx];
+        let cascoreCurrent = computeScore(metaData, voxels);
 
-      const cascore = computeScore(metaData, voxels);
+        cascore.push(cascoreCurrent);
+      });
+      let cascoreAccumulated = cascore.reduce((acc, val) => acc + val, 0);
+      console.log("cascoreAccumulated: ", cascoreAccumulated);
 
-      // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
-      // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
-      if (metaData.modeOverlapFactor) {
-        return cascore * metaData.modeOverlapFactor;
-      }
-
-      return cascore;
-
+      return cascoreAccumulated;
     });
   });
 }

@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-01-31 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-02-01 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -17260,14 +17260,14 @@ function computeScore(metaData, voxels) {
   var KVPMultiplier = KVPToMultiplier[metaData.KVP];
   var cascore = volume * densityFactor * KVPMultiplier;
   //
-  console.log('modeOverlapFactor", ' + metaData.modeOverlapFactor);
-  console.log("voxels.length: " + voxels.length);
-  console.log('voxelSizeScaled: ' + voxelSizeScaled);
-  console.log('Volume: ' + volume);
-  console.log('Max HU: ' + metaData.maxHU);
-  console.log('densityFactor: ' + densityFactor);
-  console.log('KVPMultiplier: ' + KVPMultiplier);
-  console.log('CAscore: ' + cascore);
+  // console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
+  // console.log("voxels.length: " + voxels.length);
+  // console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
+  // console.log(`Volume: ${volume}`);
+  // console.log(`Max HU: ${metaData.maxHU}`);
+  // console.log(`densityFactor: ${densityFactor}`);
+  // console.log(`KVPMultiplier: ${KVPMultiplier}`);
+  // console.log(`CAscore: ${cascore}`);
 
   // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
   // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
@@ -17338,10 +17338,14 @@ function score() {
 
 
   var voxelsEachRegion = regionColorsRGB.slice(1).map(function () {
-    return [];
+    return imageIds.map(function () {
+      return [];
+    });
   });
   var maxHUEachRegion = regionColorsRGB.slice(1).map(function () {
-    return -Infinity;
+    return imageIds.map(function () {
+      return -Infinity;
+    });
   });
 
   var regionBuffer = thresholdingData.data[0].buffer;
@@ -17400,12 +17404,12 @@ function score() {
         if (label > 1) {
           var value = pixelData[i];
           var hu = value * parseInt(metaData.rescaleSlope) + parseInt(metaData.rescaleIntercept);
-          var currentMax = maxHUEachRegion[label - 2];
+          var currentMax = maxHUEachRegion[label - 2][imageIndex];
 
           if (hu >= 130) {
-            voxelsEachRegion[label - 2].push(hu);
+            voxelsEachRegion[label - 2][imageIndex].push(hu);
             if (hu > currentMax) {
-              maxHUEachRegion[label - 2] = hu;
+              maxHUEachRegion[label - 2][imageIndex] = hu;
             }
           }
         }
@@ -17415,18 +17419,20 @@ function score() {
 
   return Promise.all(promises).then(function () {
 
-    return voxelsEachRegion.map(function (voxels, i) {
-      metaData.maxHU = maxHUEachRegion[i];
+    return voxelsEachRegion.map(function (slicesInLabel, labelIdx) {
+      var cascore = [];
+      slicesInLabel.map(function (voxels, sliceIdx) {
+        metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx];
+        var cascoreCurrent = computeScore(metaData, voxels);
 
-      var cascore = computeScore(metaData, voxels);
+        cascore.push(cascoreCurrent);
+      });
+      var cascoreAccumulated = cascore.reduce(function (acc, val) {
+        return acc + val;
+      }, 0);
+      console.log("cascoreAccumulated: ", cascoreAccumulated);
 
-      // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
-      // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
-      if (metaData.modeOverlapFactor) {
-        return cascore * metaData.modeOverlapFactor;
-      }
-
-      return cascore;
+      return cascoreAccumulated;
     });
   });
 }
