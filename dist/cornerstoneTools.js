@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-02-01 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-02-06 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -17260,14 +17260,14 @@ function computeScore(metaData, voxels) {
   var KVPMultiplier = KVPToMultiplier[metaData.KVP];
   var cascore = volume * densityFactor * KVPMultiplier;
   //
-  // console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
-  // console.log("voxels.length: " + voxels.length);
-  // console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
-  // console.log(`Volume: ${volume}`);
-  // console.log(`Max HU: ${metaData.maxHU}`);
-  // console.log(`densityFactor: ${densityFactor}`);
-  // console.log(`KVPMultiplier: ${KVPMultiplier}`);
-  // console.log(`CAscore: ${cascore}`);
+  console.log('modeOverlapFactor", ' + metaData.modeOverlapFactor);
+  console.log("voxels.length: " + voxels.length);
+  console.log('voxelSizeScaled: ' + voxelSizeScaled);
+  console.log('Volume: ' + volume);
+  console.log('Max HU: ' + metaData.maxHU);
+  console.log('densityFactor: ' + densityFactor);
+  console.log('KVPMultiplier: ' + KVPMultiplier);
+  console.log('CAscore: ' + cascore);
 
   // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
   // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.

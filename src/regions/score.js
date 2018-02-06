@@ -68,14 +68,14 @@ function computeScore (metaData, voxels) {
   const KVPMultiplier = KVPToMultiplier[metaData.KVP];
   const cascore = volume * densityFactor * KVPMultiplier;
   //
-  // console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
-  // console.log("voxels.length: " + voxels.length);
-  // console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
-  // console.log(`Volume: ${volume}`);
-  // console.log(`Max HU: ${metaData.maxHU}`);
-  // console.log(`densityFactor: ${densityFactor}`);
-  // console.log(`KVPMultiplier: ${KVPMultiplier}`);
-  // console.log(`CAscore: ${cascore}`);
+  console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
+  console.log("voxels.length: " + voxels.length);
+  console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
+  console.log(`Volume: ${volume}`);
+  console.log(`Max HU: ${metaData.maxHU}`);
+  console.log(`densityFactor: ${densityFactor}`);
+  console.log(`KVPMultiplier: ${KVPMultiplier}`);
+  console.log(`CAscore: ${cascore}`);
 
   // If modeOverlapFactor factor is undefined it is because there is only one slice in the series.
   // In this case obviously modeOverlapFactor is meaningless and should not be multiplied with cascore.
