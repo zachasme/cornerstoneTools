@@ -2427,9 +2427,6 @@ function performThresholding(stack, afterwards) {
         var pixelData = image.getPixelData();
         var n = width * height;
 
-        console.log('pixelData: ', pixelData.length);
-        console.log('n: ', n);
-
         for (var i = 0; i < n; i++) {
           var pixel = pixelData[i];
           var hu = pixel * slope + intercept;
@@ -17261,9 +17258,8 @@ function computeScore(metaData, voxels) {
   var KVPMultiplier = KVPToMultiplier[metaData.KVP];
   var cascore = volume * densityFactor * KVPMultiplier;
   //
-
   console.log('modeOverlapFactor", ' + metaData.modeOverlapFactor);
-  console.log('voxels.length: ' + voxels.length);
+  console.log("voxels.length: " + voxels.length);
   console.log('voxelSizeScaled: ' + voxelSizeScaled);
   console.log('Volume: ' + volume);
   console.log('Max HU: ' + metaData.maxHU);
@@ -17306,6 +17302,7 @@ function computeIOPProjectedDistance(imagePositions, imageOrientation) {
   var orientationNormal = new _externalModules.cornerstoneMath.Vector3();
 
   orientationNormal.crossVectors(imageOrientationRowVector, imageOrientationColumnVector);
+
   // Project both position vectors on normal
   var projection1 = imagePosition1Vector.projectOnVector(orientationNormal);
   var projection2 = imagePosition2Vector.projectOnVector(orientationNormal);
@@ -17323,36 +17320,6 @@ function computeOverlapFactor(distance, sliceThickness) {
   }
 
   return (sliceThickness + distance) / (2 * sliceThickness);
-}
-
-function bfs(i, j, searchArray, resultMatrix, label, lesionVoxels, pixelData, metaData) {
-  var stack = [[i, j]];
-
-  while (stack.length > 0) {
-    var indexes = stack.shift();
-    var _i = indexes[0];
-    var _j = indexes[1];
-
-    if (searchArray[_j] && searchArray[_j][_i] === label && resultMatrix[_j][_i] == 0 // If 0, the element has not been visisted before
-    ) {
-
-        stack.push([_i - 1, _j]);
-        stack.push([_i + 1, _j]);
-        stack.push([_i, _j - 1]);
-        stack.push([_i, _j + 1]);
-
-        var length = searchArray[0].length;
-        var value = pixelData[_i + _j * length];
-        var hu = value * parseInt(metaData.rescaleSlope) + parseInt(metaData.rescaleIntercept);
-
-        if (hu >= 130) {
-          lesionVoxels.push(hu);
-        }
-        resultMatrix[_j][_i] = 1;
-      }
-  }
-
-  return lesionVoxels.length > 0;
 }
 
 function score() {
@@ -17375,7 +17342,7 @@ function score() {
   });
   var maxHUEachRegion = regionColorsRGB.slice(1).map(function () {
     return imageIds.map(function () {
-      return [];
+      return -Infinity;
     });
   });
 
@@ -17393,7 +17360,6 @@ function score() {
   var promises = imageIds.map(function (imageId, imageIndex) {
     return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
       var dataSet = image.data;
-
       metaData.sliceThickness = dataSet.floatString('x00180050');
       metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
       metaData.KVP = dataSet.floatString('x00180060');
@@ -17407,13 +17373,11 @@ function score() {
 
       if (metaData.rescaleType !== 'HU') {
         console.warn('Modality LUT does not convert to Hounsfield units but to ' + metaData.rescaleType + '. Agatston score is not defined for this unit type.');
-
         return;
       }
 
       if (prevImagePosition) {
         var distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
-
         overlapFactor = computeOverlapFactor(distance, metaData.sliceThickness);
 
         // Find overlapfactor with the highest occurance
@@ -17432,29 +17396,19 @@ function score() {
       var pixelData = image.getPixelData();
       var offset = imageIndex * sliceSize;
 
-      var searchMatrix = [];
-      var resultMatrix = [];
+      for (var i = 0; i < pixelData.length; i += 1) {
+        var label = view[offset + i];
 
-      for (var i = 0; i < height; i += 1) {
-        searchMatrix[i] = view.slice(offset + width * i, offset + width * i + width);
+        if (label > 1) {
+          var value = pixelData[i];
+          var hu = value * parseInt(metaData.rescaleSlope) + parseInt(metaData.rescaleIntercept);
+          var currentMax = maxHUEachRegion[label - 2][imageIndex];
 
-        // Initialze with 0's (same dimensions as searchMatrix)
-        resultMatrix[i] = view.slice(offset + width * i, offset + width * i + width).map(function () {
-          return 0;
-        });
-      }
-
-      var colorStart = 2;
-      var numberOfColors = 5;
-
-      for (var _i2 = 0; _i2 < resultMatrix.length; _i2 += 1) {
-        for (var j = 0; j < resultMatrix[_i2].length; j += 1) {
-          var lesionVoxels = [];
-          var label = resultMatrix[j][_i2];
-
-          if (resultMatrix[j] && label > 1 && bfs(_i2, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
-            voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
-            maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels));
+          if (hu >= 130) {
+            voxelsEachRegion[label - 2][imageIndex].push(hu);
+            if (hu > currentMax) {
+              maxHUEachRegion[label - 2][imageIndex] = hu;
+            }
           }
         }
       }
@@ -17465,21 +17419,16 @@ function score() {
 
     return voxelsEachRegion.map(function (slicesInLabel, labelIdx) {
       var cascore = [];
+      slicesInLabel.map(function (voxels, sliceIdx) {
+        metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx];
+        var cascoreCurrent = voxels.length > 0 ? computeScore(metaData, voxels) : 0;
 
-      slicesInLabel.map(function (lesions, sliceIdx) {
-        lesions.map(function (voxels, lesionIdx) {
-          metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx][lesionIdx];
-          var cascoreCurrent = computeScore(metaData, voxels);
-
-          cascore.push(cascoreCurrent);
-        });
+        cascore.push(cascoreCurrent);
       });
-      console.log(cascore);
       var cascoreAccumulated = cascore.reduce(function (acc, val) {
         return acc + val;
       }, 0);
-
-      console.log('cascoreAccumulated: ', cascoreAccumulated);
+      console.log("cascoreAccumulated: ", cascoreAccumulated);
 
       return cascoreAccumulated;
     });
