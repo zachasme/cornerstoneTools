@@ -236,7 +236,7 @@ export function score () {
       const resultMatrix = [];
 
       for (let i = 0; i < height; i += 1) {
-        searchMatrix[i] = view.slice(offset + width * i, offset + width * i + width);
+        searchMatrix[i] = new Uint8Array(buffer, offset + width * i, width);
         // Initialze with 0's (same dimensions as searchMatrix)
         resultMatrix[i] = view.
           slice(offset + width * i, offset + width * i + width).
@@ -269,7 +269,7 @@ export function score () {
         cascore.push(cascoreCurrent);
       });
     });
-    const sum = cascore.reduce((acc, val) => acc + val);
+    const sum = cascore.reduce((acc, val) => acc + val, 0);
 
     return sum;
   }));
