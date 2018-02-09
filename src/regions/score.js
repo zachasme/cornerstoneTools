@@ -1,5 +1,6 @@
 import { cornerstoneMath, external } from '../externalModules.js';
 import { getConfiguration, getLastElement } from './thresholding.js';
+import { TYPED_ARRAY, TOOL_TYPE } from './constants';
 import { getToolState } from '../stateManagement/toolState';
 
 function getDensityFactor (hu) {
@@ -132,34 +133,34 @@ function computeOverlapFactor (distance, sliceThickness) {
   return (sliceThickness + distance) / (2 * sliceThickness);
 }
 
-function bfs (i, j, searchArray, resultMatrix, label, lesionVoxels, pixelData, metaData) {
-  let stack = [[i, j]]
+function bfs (x, y, view, visitedVoxels, label, image) {
+  const { intercept, slope, width } = image;
+  const pixelData = image.getPixelData();
+  const lesionVoxels = [];
+  const stack = [[x, y]];
+
   while (stack.length > 0) {
-    let indexes = stack.shift()
-    let i = indexes[0]
-    let j = indexes[1]
-    if (searchArray[j]
-          && searchArray[j][i] === label
-          && resultMatrix[j][i] == 0 // If 0, the element has not been visisted before
-      ) {
+    const [x, y] = stack.shift();
 
-      stack.push([i - 1, j])
-      stack.push([i + 1, j])
-      stack.push([i, j - 1])
-      stack.push([i, j + 1])
+    // If visited is 0, the element has not been visisted before
+    if (visitedVoxels[x][y] === 0 && view[y * width + x] === label) {
+      stack.push([x - 1, y]);
+      stack.push([x + 1, y]);
+      stack.push([x, y - 1]);
+      stack.push([x, y + 1]);
 
-      let length = searchArray[0].length
-      const value = pixelData[i + j * length];
-      const hu = (value * parseInt(metaData.rescaleSlope)) + parseInt(metaData.rescaleIntercept);
+      const value = pixelData[x + y * width];
+      const hu = (value * slope) + intercept;
+
       if (hu >= 130) {
         lesionVoxels.push(hu);
       }
-      resultMatrix[j][i] = 1;
+      visitedVoxels[x][y] = 1;
     }
 
   }
 
-  return lesionVoxels.length > 0;
+  return lesionVoxels;
 }
 
 /**
@@ -170,7 +171,7 @@ export function score () {
   const element = getLastElement();
   const { regionColorsRGB } = getConfiguration();
 
-  const regionsToolData = getToolState(element, 'regions');
+  const regionsToolData = getToolState(element, TOOL_TYPE);
   const stackToolData = getToolState(element, 'stack');
   const { buffer } = regionsToolData.data[0];
   const { imageIds } = stackToolData.data[0];
@@ -178,8 +179,6 @@ export function score () {
   // Extract and group region-voxels
   const voxelsEachRegion = regionColorsRGB.slice(1).map(() => imageIds.map(() => []));
   const maxHUEachRegion = regionColorsRGB.slice(1).map(() => imageIds.map(() => []));
-
-  const view = new Uint8Array(buffer);
 
   let overlapFactor;
   let prevImagePosition;
@@ -226,32 +225,31 @@ export function score () {
         prevImagePosition = imagePositionPatient;
       }
 
-      const width = image.width;
-      const height = image.height;
+      // Overlap has been calculated, now we investigate voxels
+
+      const { height, width } = image;
       const sliceSize = width * height;
-      const pixelData = image.getPixelData();
       const offset = imageIndex * sliceSize;
 
-      const searchMatrix = [];
-      const resultMatrix = [];
+      const view = new TYPED_ARRAY(buffer, offset, sliceSize);
 
-      for (let i = 0; i < height; i += 1) {
-        searchMatrix[i] = new Uint8Array(buffer, offset + width * i, width);
-        // Initialze with 0's (same dimensions as searchMatrix)
-        resultMatrix[i] = view.
-          slice(offset + width * i, offset + width * i + width).
-          map(() => 0);
-      }
+      // Initialze with 0's
+      const visitedVoxels = Array(width).fill().map(() => Array(height).fill(0));
 
-      for (let i = 0; i < resultMatrix.length; i += 1) {
-        for (let j = 0; j < resultMatrix[i].length; j += 1) {
-          const lesionVoxels = [];
-          const label = searchMatrix[j][i];
+      for (let x = 0; x < width; x += 1) {
+        for (let y = 0; y < height; y += 1) {
+          // Extract label from view into ArrayBuffer
+          const label = view[y * width + x];
 
-          if (searchMatrix[j] && (label > 1) &&
-              bfs(i, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
-            voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
-            maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels));
+          if (label > 1) {
+            const lesionVoxels = bfs(x, y, view, visitedVoxels, label, image);
+
+            if (lesionVoxels.length) {
+              const maxHU = Math.max(...lesionVoxels);
+
+              voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
+              maxHUEachRegion[label - 2][imageIndex].push(maxHU);
+            }
           }
         }
       }

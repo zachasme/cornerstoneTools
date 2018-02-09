@@ -2365,13 +2365,17 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-// UNUSED const toolType = 'thresholding';
+var _constants = __webpack_require__(126);
+
+/* HAXX BEGIN */
 
 var HACKY_LASTELEMENT = null;
 
 function getLastElement() {
   return HACKY_LASTELEMENT;
 }
+
+/* HAXX END */
 
 var configuration = {
   historySize: 4,
@@ -2418,7 +2422,7 @@ function performThresholding(imageIds) {
         var length = width * height * imageIds.length;
 
         buffer = new ArrayBuffer(length);
-        view = new Uint8Array(buffer);
+        view = new _constants.TYPED_ARRAY(buffer);
       }
 
       var intercept = image.intercept,
@@ -2465,7 +2469,7 @@ function onImageRendered(_ref) {
 
 
   var stackToolData = (0, _toolState.getToolState)(element, 'stack');
-  var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
+  var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
 
   // Ensure tool is enabled
   if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
@@ -2485,7 +2489,7 @@ function onImageRendered(_ref) {
   var pixels = imageData.data;
   var sliceSize = width * height;
   var sliceOffset = currentImageIdIndex * sliceSize;
-  var view = new Uint8Array(buffer, sliceOffset, sliceSize);
+  var view = new _constants.TYPED_ARRAY(buffer, sliceOffset, sliceSize);
 
   for (var offset = 0; offset < view.length; offset += 1) {
     // Each pixel is represented by four elements in the imageData array
@@ -2514,7 +2518,7 @@ function onImageRendered(_ref) {
 
 function enable(element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
-  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
 
   if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;
@@ -2538,14 +2542,14 @@ function enable(element, doneCallback) {
     drawBuffer: null
   };
 
-  (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
+  (0, _toolState.addToolState)(element, _constants.TOOL_TYPE, initialThresholdingData);
 
   var stackData = stackToolData.data[0];
 
   setTimeout(function () {
     performThresholding(stackData.imageIds).then(function (regions) {
       // Add threshold data to tool state
-      var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
+      var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
       var regionsData = regionsToolData.data[0];
 
       // Initialize rendering double buffer canvas
@@ -2580,7 +2584,7 @@ function enable(element, doneCallback) {
 }
 
 function disable(element) {
-  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
 
   // If there is actually something to disable, disable it
   if (thresholdingData && thresholdingData.data.length) {
@@ -2600,7 +2604,7 @@ function update(element) {
 }
 
 function createUndoStep(element) {
-  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
 
   var state = thresholdingData.data[0];
   // Make a copy using .slice()
@@ -17203,13 +17207,20 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 exports.score = score;
 
 var _externalModules = __webpack_require__(0);
 
 var _thresholding = __webpack_require__(25);
 
+var _constants = __webpack_require__(126);
+
 var _toolState = __webpack_require__(1);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function getDensityFactor(hu) {
   if (hu < 130) {
@@ -17339,31 +17350,41 @@ function computeOverlapFactor(distance, sliceThickness) {
   return (sliceThickness + distance) / (2 * sliceThickness);
 }
 
-function bfs(i, j, searchArray, resultMatrix, label, lesionVoxels, pixelData, metaData) {
-  var stack = [[i, j]];
+function bfs(x, y, view, visitedVoxels, label, image) {
+  var intercept = image.intercept,
+      slope = image.slope,
+      width = image.width;
+
+  var pixelData = image.getPixelData();
+  var lesionVoxels = [];
+  var stack = [[x, y]];
+
   while (stack.length > 0) {
-    var indexes = stack.shift();
-    var _i = indexes[0];
-    var _j = indexes[1];
-    if (searchArray[_j] && searchArray[_j][_i] === label && resultMatrix[_j][_i] == 0 // If 0, the element has not been visisted before
-    ) {
+    var _stack$shift = stack.shift(),
+        _stack$shift2 = _slicedToArray(_stack$shift, 2),
+        _x = _stack$shift2[0],
+        _y = _stack$shift2[1];
 
-        stack.push([_i - 1, _j]);
-        stack.push([_i + 1, _j]);
-        stack.push([_i, _j - 1]);
-        stack.push([_i, _j + 1]);
+    // If visited is 0, the element has not been visisted before
 
-        var length = searchArray[0].length;
-        var value = pixelData[_i + _j * length];
-        var hu = value * parseInt(metaData.rescaleSlope) + parseInt(metaData.rescaleIntercept);
-        if (hu >= 130) {
-          lesionVoxels.push(hu);
-        }
-        resultMatrix[_j][_i] = 1;
+
+    if (visitedVoxels[_x][_y] === 0 && view[_y * width + _x] === label) {
+      stack.push([_x - 1, _y]);
+      stack.push([_x + 1, _y]);
+      stack.push([_x, _y - 1]);
+      stack.push([_x, _y + 1]);
+
+      var value = pixelData[_x + _y * width];
+      var hu = value * slope + intercept;
+
+      if (hu >= 130) {
+        lesionVoxels.push(hu);
       }
+      visitedVoxels[_x][_y] = 1;
+    }
   }
 
-  return lesionVoxels.length > 0;
+  return lesionVoxels;
 }
 
 /**
@@ -17376,7 +17397,7 @@ function score() {
   var _getConfiguration2 = (0, _thresholding.getConfiguration)(),
       regionColorsRGB = _getConfiguration2.regionColorsRGB;
 
-  var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
+  var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
   var stackToolData = (0, _toolState.getToolState)(element, 'stack');
   var buffer = regionsToolData.data[0].buffer;
   var imageIds = stackToolData.data[0].imageIds;
@@ -17393,8 +17414,6 @@ function score() {
       return [];
     });
   });
-
-  var view = new Uint8Array(buffer);
 
   var overlapFactor = void 0;
   var prevImagePosition = void 0;
@@ -17438,31 +17457,35 @@ function score() {
         prevImagePosition = imagePositionPatient;
       }
 
-      var width = image.width;
-      var height = image.height;
+      // Overlap has been calculated, now we investigate voxels
+
+      var height = image.height,
+          width = image.width;
+
       var sliceSize = width * height;
-      var pixelData = image.getPixelData();
       var offset = imageIndex * sliceSize;
 
-      var searchMatrix = [];
-      var resultMatrix = [];
+      var view = new _constants.TYPED_ARRAY(buffer, offset, sliceSize);
 
-      for (var i = 0; i < height; i += 1) {
-        searchMatrix[i] = new Uint8Array(buffer, offset + width * i, width);
-        // Initialze with 0's (same dimensions as searchMatrix)
-        resultMatrix[i] = view.slice(offset + width * i, offset + width * i + width).map(function () {
-          return 0;
-        });
-      }
+      // Initialze with 0's
+      var visitedVoxels = Array(width).fill().map(function () {
+        return Array(height).fill(0);
+      });
 
-      for (var _i2 = 0; _i2 < resultMatrix.length; _i2 += 1) {
-        for (var j = 0; j < resultMatrix[_i2].length; j += 1) {
-          var lesionVoxels = [];
-          var label = searchMatrix[j][_i2];
+      for (var x = 0; x < width; x += 1) {
+        for (var y = 0; y < height; y += 1) {
+          // Extract label from view into ArrayBuffer
+          var label = view[y * width + x];
 
-          if (searchMatrix[j] && label > 1 && bfs(_i2, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
-            voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
-            maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels));
+          if (label > 1) {
+            var lesionVoxels = bfs(x, y, view, visitedVoxels, label, image);
+
+            if (lesionVoxels.length) {
+              var maxHU = Math.max.apply(Math, _toConsumableArray(lesionVoxels));
+
+              voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
+              maxHUEachRegion[label - 2][imageIndex].push(maxHU);
+            }
           }
         }
       }
@@ -17548,6 +17571,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = '1.1.0';
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var TYPED_ARRAY = exports.TYPED_ARRAY = Uint8Array;
+var TOOL_TYPE = exports.TOOL_TYPE = 'regions';
 
 /***/ })
 /******/ ]);

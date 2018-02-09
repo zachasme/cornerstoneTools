@@ -1,13 +1,16 @@
 import { external } from '../externalModules.js';
 import { addToolState, getToolState } from '../stateManagement/toolState';
+import { TYPED_ARRAY, TOOL_TYPE } from './constants';
 
-// UNUSED const toolType = 'thresholding';
+/* HAXX BEGIN */
 
 let HACKY_LASTELEMENT = null;
 
 export function getLastElement () {
   return HACKY_LASTELEMENT;
 }
+
+/* HAXX END */
 
 let configuration = {
   historySize: 4,
@@ -58,7 +61,7 @@ function performThresholding (imageIds) {
         const length = width * height * imageIds.length;
 
         buffer = new ArrayBuffer(length);
-        view = new Uint8Array(buffer);
+        view = new TYPED_ARRAY(buffer);
       }
 
       const { intercept, slope } = image;
@@ -94,7 +97,7 @@ function onImageRendered ({ detail }) {
   const { width, height } = image;
 
   const stackToolData = getToolState(element, 'stack');
-  const regionsToolData = getToolState(element, 'regions');
+  const regionsToolData = getToolState(element, TOOL_TYPE);
 
   // Ensure tool is enabled
   if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
@@ -111,7 +114,7 @@ function onImageRendered ({ detail }) {
   const pixels = imageData.data;
   const sliceSize = width * height;
   const sliceOffset = currentImageIdIndex * sliceSize;
-  const view = new Uint8Array(buffer, sliceOffset, sliceSize);
+  const view = new TYPED_ARRAY(buffer, sliceOffset, sliceSize);
 
   for (let offset = 0; offset < view.length; offset += 1) {
     // Each pixel is represented by four elements in the imageData array
@@ -140,7 +143,7 @@ function onImageRendered ({ detail }) {
 
 function enable (element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
-  const thresholdingData = getToolState(element, 'regions');
+  const thresholdingData = getToolState(element, TOOL_TYPE);
 
   if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;
@@ -164,14 +167,14 @@ function enable (element, doneCallback) {
     drawBuffer: null
   };
 
-  addToolState(element, 'regions', initialThresholdingData);
+  addToolState(element, TOOL_TYPE, initialThresholdingData);
 
   const stackData = stackToolData.data[0];
 
   setTimeout(() => {
     performThresholding(stackData.imageIds).then((regions) => {
       // Add threshold data to tool state
-      const regionsToolData = getToolState(element, 'regions');
+      const regionsToolData = getToolState(element, TOOL_TYPE);
       const regionsData = regionsToolData.data[0];
 
       // Initialize rendering double buffer canvas
@@ -204,7 +207,7 @@ function enable (element, doneCallback) {
 }
 
 function disable (element) {
-  const thresholdingData = getToolState(element, 'regions');
+  const thresholdingData = getToolState(element, TOOL_TYPE);
 
   // If there is actually something to disable, disable it
   if (thresholdingData && thresholdingData.data.length) {
@@ -224,7 +227,7 @@ export function update (element) {
 }
 
 export function createUndoStep (element) {
-  const thresholdingData = getToolState(element, 'regions');
+  const thresholdingData = getToolState(element, TOOL_TYPE);
 
   const state = thresholdingData.data[0];
   // Make a copy using .slice()
