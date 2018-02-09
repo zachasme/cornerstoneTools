@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- support for mobile touch devices -->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- twitter bootstrap CSS stylesheet - not required by cornerstoneTools -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../cornerstone.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div id="original" style="width:512px;height:512px;"></div>
+      </div>
+      <div class="col-xs-6">
+        <div id="mpr" style="width:512px;height:512px;"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- jquery - included to make things easier to demo, not needed or used by the cornerstone library but
+is used by our example image loader-->
+<script src="../jquery.min.js"></script>
+
+<!-- include the cornerstone library -->
+<script src="../cornerstone.min.js"></script>
+<script src="../cornerstoneMath.min.js"></script>
+
+<!-- include the cornerstone tools library -->
+<script src="../../dist/cornerstoneTools.js"></script>
+
+<!-- include special code for these examples which provides images -->
+<script src="../exampleImageLoader.js"></script>
+
+<script>
+    var element = document.getElementById('original');
+    var elementMPR = document.getElementById('mpr');
+
+    var imageIds = [
+        'example://1',
+        'example://2',
+        'example://3'
+    ];
+
+    var stack = {
+        currentImageIdIndex : 0,
+        imageIds: imageIds
+    };
+
+    cornerstone.enable(element);
+    cornerstoneTools.mouseInput.enable(element);
+    cornerstoneTools.mouseWheelInput.enable(element);
+    cornerstone.loadImage(imageIds[0]).then(function(image) {
+        // Display the image
+        cornerstone.displayImage(element, image);
+
+        // Set the stack as tool state
+        cornerstoneTools.addStackStateManager(element, ['stack']);
+        cornerstoneTools.addToolState(element, 'stack', stack);
+
+        // Enable all tools we want to use with this element
+        cornerstoneTools.stackScroll.activate(element, 1);
+        cornerstoneTools.stackScrollWheel.activate(element);
+
+        cornerstoneTools.scrollIndicator.enable(element);
+    });
+
+    const SIZE = 8;
+    function createMPRLoader(stack) {
+      let width, height;
+      const imageIds = stack.imageIds;
+      const slices = imageIds.length;
+
+      // Get slope and intercept
+      const getData = cornerstone.loadImage(imageIds[0]).then(function (image) {
+        width = image.width;
+        height = image.height;
+
+        const length = width * height * slices * SIZE;
+        const buffer = new ArrayBuffer(length);
+        const view = new Uint8Array(buffer);
+        let test;
+
+        // Thresholding promises
+        const promises = imageIds.map(function (imageId, imageIdx) {
+
+          return cornerstone.loadImage(imageId).then(function (image) {
+            const pixelData = image.getPixelData();
+            test = pixelData;
+            const n = width * height;
+
+            for (let i = 0; i < n; i++) {
+              const pixel = pixelData[i];
+              const viewIdx = (imageIdx) * n + i;
+
+              view[viewIdx] = pixel;
+            }
+          });
+        });
+
+        return Promise.all(promises).then(() => test);
+      });
+
+      return {
+        loader: async (imageId) => {
+          const data = await getData;
+          const schemeLength = 6;
+          const slice = imageId.slice(schemeLength);
+          console.log(data);
+          return {
+              imageId,
+              /*minPixelValue : nifti.image.minPixelValue,
+              maxPixelValue : nifti.image.maxPixelValue,
+              slope: !!nifti.header.scl_slope ? nifti.header.scl_slope : 1,
+              intercept: !!nifti.header.scl_inter ? nifti.header.scl_inter : 0,
+              windowCenter : nifti.image.windowCenter,
+              windowWidth : nifti.image.windowWidth,*/
+              getPixelData: () => data,
+              sizeInBytes: data.byteLength,
+              /*rows: slice.rowCount,
+              columns: slice.columnCount,
+              height: slice.rowCount,
+              width: slice.columnCount,
+              color: false,
+              rowPixelSpacing: slice.rowSpacing,
+              columnPixelSpacing: slice.columnSpacing,
+              */
+          };
+
+                      let sliceIndex = this.nav.skip[2] * (this.nav.dir[2] > 0 ? slice : this.nav.dim[2] - slice);
+                      let xStart = this.nav.dir[0] > 0 ? 0 : this.nav.dim[0] - 1;
+                      let xEnd = this.nav.dir[0] > 0 ? this.nav.dim[0] : -1;
+                      let yStart = this.nav.dir[1] > 0 ? 0 : this.nav.dim[1] - 1;
+                      let yEnd = this.nav.dir[1] > 0 ? this.nav.dim[1] : -1;
+
+                      let i = 0;
+                      for (let y = yStart; y !== yEnd; y = y + this.nav.dir[1]) {
+                          for (let x = xStart; x !== xEnd; x = x + this.nav.dir[0]) {
+                              array[i++] = data[sliceIndex + this.nav.skip[0] * x + this.nav.skip[1] * y];
+                          }
+                      }
+                      return array;
+        },
+        stack: {
+          currentImageIdIndex: 0,
+          imageIds: Array.from({length: width}, (v, k) => `mpr://${k}`),
+        },
+      };
+    }
+
+    const x = createMPRLoader(stack);
+    const loader = x.loader;
+    const mprstack = x.stack;
+    console.log(mprstack);
+
+    cornerstone.registerImageLoader('mpr', loader);
+
+    // Enable the dicomImage element and the mouse inputs
+    cornerstone.enable(elementMPR);
+    cornerstoneTools.mouseInput.enable(elementMPR);
+    cornerstoneTools.mouseWheelInput.enable(elementMPR);
+    cornerstone.loadImage(mprstack.imageIds[0]).then(function(image) {
+      // Display the image
+      cornerstone.displayImage(elementMPR, image);
+
+      // Set the stack as tool state
+      cornerstoneTools.addStackStateManager(elementMPR, ['stack']);
+      cornerstoneTools.addToolState(elementMPR, 'stack', mprstack);
+
+      // Enable all tools we want to use with this element
+      cornerstoneTools.stackScroll.activate(elementMPR, 1);
+      cornerstoneTools.stackScrollWheel.activate(elementMPR);
+
+      cornerstoneTools.scrollIndicator.enable(elementMPR);
+    });
+
+
+</script>
+</html>
