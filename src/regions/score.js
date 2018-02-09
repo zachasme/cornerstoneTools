@@ -1,7 +1,6 @@
 import { cornerstoneMath, external } from '../externalModules.js';
 import { getConfiguration, getLastElement } from './thresholding.js';
 import { getToolState } from '../stateManagement/toolState';
-import { cloneDeep } from 'lodash'
 
 function getDensityFactor (hu) {
   if (hu < 130) {
@@ -133,34 +132,33 @@ function computeOverlapFactor (distance, sliceThickness) {
   return (sliceThickness + distance) / (2 * sliceThickness);
 }
 
-function bfs (i, j, searchArray, label, lesionVoxels, pixelData, metaData) {
+function bfs (i, j, searchArray, resultMatrix, label, lesionVoxels, pixelData, metaData) {
   let stack = [[i, j]]
   while (stack.length > 0) {
     let indexes = stack.shift()
     let i = indexes[0]
     let j = indexes[1]
-    if (searchArray[j] && searchArray[j][i] === label) {
-      
+    if (searchArray[j]
+        && searchArray[j][i] === label
+        && resultMatrix[j][i] == 0 // If 0, the element has not been visisted before
+    ) {
+
       stack.push([i - 1, j])
       stack.push([i + 1, j])
       stack.push([i, j - 1])
       stack.push([i, j + 1])
-    
+
       let length = searchArray[0].length
       const value = pixelData[i + j * length];
       const hu = (value * parseInt(metaData.rescaleSlope)) + parseInt(metaData.rescaleIntercept);
       if (hu >= 130) {
         lesionVoxels.push(hu);
       }
-      searchArray[j][i] = 0;
+      resultMatrix[j][i] = 1;
     }
-    
+
   }
-  
-  // bfs(searchArray, i - 1, j, label, lesionVoxels, pixelData, metaData);
-  // bfs(searchArray, i + 1, j, label, lesionVoxels, pixelData, metaData);
-  // bfs(searchArray, i, j - 1, label, lesionVoxels, pixelData, metaData);
-  // bfs(searchArray, i, j + 1, label, lesionVoxels, pixelData, metaData);
+
   return lesionVoxels.length > 0;
 }
 
@@ -226,25 +224,31 @@ export function score () {
     const pixelData = image.getPixelData();
     const offset = imageIndex * sliceSize;
 
-    var searchMatrix = []
+    var searchMatrix = [];
+    var resultMatrix = [];
     for (let i = 0; i < height; i += 1) {
       searchMatrix[i] = view.slice(offset + width * i, offset + width * i + width);
+
+      // Initialze with 0's (same dimensions as searchMatrix)
+      resultMatrix[i] = view
+        .slice(offset + width * i, offset + width * i + width)
+        .map(() => 0);
     }
-    const clonedSearchMatrix = cloneDeep(searchMatrix)
+
     let colorStart = 2
     let numberOfColors = 5
-    for (let i = 0; i < clonedSearchMatrix.length; i += 1) {
-      for (let j = 0; j < clonedSearchMatrix[i].length; j += 1) {
+    for (let i = 0; i < resultMatrix.length; i += 1) {
+      for (let j = 0; j < resultMatrix[i].length; j += 1) {
         let lesionVoxels = []
-        let label = clonedSearchMatrix[j][i]
-        if (clonedSearchMatrix[j] && (label > 1) &&
-            bfs(i, j, clonedSearchMatrix, label, lesionVoxels, pixelData, metaData)) {
+        let label = resultMatrix[j][i]
+        if (resultMatrix[j] && (label > 1) &&
+            bfs(i, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
           voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels)
           maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels))
         }
       }
     }
-    
+
   }));
 
   return Promise.all(promises).then(function () {
