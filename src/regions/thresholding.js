@@ -3,13 +3,11 @@ import { addToolState, getToolState } from '../stateManagement/toolState';
 
 // UNUSED const toolType = 'thresholding';
 
-let LASTELEMENT = null;
+let HACKY_LASTELEMENT = null;
 
 export function getLastElement () {
-  return LASTELEMENT;
+  return HACKY_LASTELEMENT;
 }
-
-const LABEL_SIZE_BYTES = 1;
 
 let configuration = {
   historySize: 4,
@@ -46,130 +44,114 @@ configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThreshold
 /**
  * Perform the thresholding on a stack
  */
-function performThresholding (stack, afterwards) {
-  let width, height;
-  const imageIds = stack.imageIds;
-  const slices = imageIds.length;
+function performThresholding (imageIds) {
+  let width, height, view, buffer;
 
-  // Get slope and intercept
-  return external.cornerstone.loadImage(imageIds[0]).then(function (image) {
-    width = image.width;
-    height = image.height;
+  // Thresholding promises
+  return Promise.all(imageIds.map((imageId, imageIdIndex) =>
+    external.cornerstone.loadImage(imageId).then((image) => {
+      if (!buffer) {
+        // Initialize variables on first loaded image
+        width = image.width;
+        height = image.height;
 
-    const length = width * height * slices * LABEL_SIZE_BYTES;
-    const buffer = new ArrayBuffer(length);
-    const view = new Uint8Array(buffer);
+        const length = width * height * imageIds.length;
 
-    // Thresholding promises
-    const promises = imageIds.map(function (imageId, imageIdx) {
-
-      return external.cornerstone.loadImage(imageId).then(function (image) {
-        const slope = image.slope;
-        const intercept = image.intercept;
-        const pixelData = image.getPixelData();
-        const n = width * height;
-
-        for (let i = 0; i < n; i++) {
-          const pixel = pixelData[i];
-          const hu = (pixel * slope) + intercept;
-          const label = (hu >= configuration.calciumThresholdHu) ? 1 : 0;
-          const viewIdx = (imageIdx) * n + i;
-
-          view[viewIdx] = label;
-        }
-      });
-    });
-
-    // Callback with buffer
-    return Promise.all(promises).then(function () {
-      const result = {
-        buffer,
-        width,
-        height
-      };
-
-      if (afterwards) {
-        afterwards(result);
+        buffer = new ArrayBuffer(length);
+        view = new Uint8Array(buffer);
       }
 
-      return result;
-    });
+      const { intercept, slope } = image;
+      const pixelData = image.getPixelData();
+      const sliceSize = width * height;
 
-  });
+      for (let i = 0; i < sliceSize; i++) {
+        const value = pixelData[i];
+        // Calculate hu-value
+        const hu = (value * slope) + intercept;
+        // Check against threshold
+        const label = (hu >= configuration.calciumThresholdHu) ? 1 : 0;
+        // Calculate offset within view into ArrayBufer
+        const offset = imageIdIndex * sliceSize + i;
+
+        // Finally, assign label
+        view[offset] = label;
+      }
+    })
+  // When all promises resolve, return the buffer and its dimensions
+  )).then(() => ({
+    buffer,
+    width,
+    height
+  }));
 }
-
-let imgdata = null;
 
 /**
  * Draw regions on image
  */
-function onImageRendered (e) {
-  const eventData = e.detail;
-  const element = eventData.element;
-  const stackData = getToolState(element, 'stack');
-  const thresholdingData = getToolState(element, 'regions');
+function onImageRendered ({ detail }) {
+  const { canvasContext, element, enabledElement, image } = detail;
+  const { width, height } = image;
 
-  if (!thresholdingData || !thresholdingData.data || !thresholdingData.data.length) {
+  const stackToolData = getToolState(element, 'stack');
+  const regionsToolData = getToolState(element, 'regions');
+
+  // Ensure tool is enabled
+  if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
     return;
   }
 
-  const slice = stackData.data[0].currentImageIdIndex;
-  const buffer = thresholdingData.data[0].buffer;
-  const context = eventData.canvasContext;
-  const enabledElement = eventData.enabledElement;
-  const image = eventData.image;
-  const width = image.width;
-  const height = image.height;
+  // Extract tool data
+  const { currentImageIdIndex } = stackToolData.data[0];
+  const { drawBuffer, buffer } = regionsToolData.data[0];
 
-  const doubleBuffer = document.createElement('canvas');
-  const doubleBufferContext = doubleBuffer.getContext('2d');
+  const doubleBuffer = drawBuffer.canvas;
+  const imageData = drawBuffer.imageData;
 
-  doubleBuffer.width = width;
-  doubleBuffer.height = height;
-  imgdata = imgdata || doubleBufferContext.createImageData(width, height);
-
-  const pixels = imgdata.data;
+  const pixels = imageData.data;
   const sliceSize = width * height;
-  const sliceOffset = slice * sliceSize;
+  const sliceOffset = currentImageIdIndex * sliceSize;
   const view = new Uint8Array(buffer, sliceOffset, sliceSize);
 
-  for (let i = 0; i < view.length; i += 1) {
-    const label = view[i];
-    const pi = i * 4;
+  for (let offset = 0; offset < view.length; offset += 1) {
+    // Each pixel is represented by four elements in the imageData array
+    const imageDataOffset = offset * 4;
+    const label = view[offset];
 
     if (label) {
       const color = configuration.regionColorsRGB[label - 1];
 
-      pixels[pi + 0] = color[0];
-      pixels[pi + 1] = color[1];
-      pixels[pi + 2] = color[2];
-      pixels[pi + 3] = configuration.drawAlpha * 255;
+      pixels[imageDataOffset + 0] = color[0];
+      pixels[imageDataOffset + 1] = color[1];
+      pixels[imageDataOffset + 2] = color[2];
+      pixels[imageDataOffset + 3] = configuration.drawAlpha * 255;
     } else {
-      pixels[pi + 3] = 0;
+      pixels[imageDataOffset + 3] = 0;
     }
   }
-  doubleBufferContext.putImageData(imgdata, 0, 0);
 
-  external.cornerstone.setToPixelCoordinateSystem(enabledElement, context);
-  context.drawImage(doubleBuffer, 0, 0);
+  // Put image data back into offscreen canvas
+  doubleBuffer.getContext('2d').putImageData(imageData, 0, 0);
+  // Set transforms based on zoom/pan/etc
+  external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
+  // Finally, draw offscreen canvas onto context
+  canvasContext.drawImage(doubleBuffer, 0, 0);
 }
 
 function enable (element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
   const thresholdingData = getToolState(element, 'regions');
 
-  // Reset imgData buffer
-  imgdata = null;
-
   if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;
   }
 
-  LASTELEMENT = element;
-  // First check that there is stack data available
-  const stackData = getToolState(element, 'stack');
+  HACKY_LASTELEMENT = element;
 
-  if (!stackData || !stackData.data || !stackData.data.length) {
+  // First check that there is stack data available
+  const stackToolData = getToolState(element, 'stack');
+
+  if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
     return;
   }
 
@@ -178,28 +160,45 @@ function enable (element, doneCallback) {
     buffer: null,
     width: null,
     height: null,
-    history: []
+    history: [],
+    drawBuffer: null
   };
 
   addToolState(element, 'regions', initialThresholdingData);
 
-  const stack = stackData.data[0];
+  const stackData = stackToolData.data[0];
 
   setTimeout(() => {
-    performThresholding(stack, function (regions) {
+    performThresholding(stackData.imageIds).then((regions) => {
       // Add threshold data to tool state
-      const thresholdingData = getToolState(element, 'regions');
+      const regionsToolData = getToolState(element, 'regions');
+      const regionsData = regionsToolData.data[0];
 
-      thresholdingData.data[0].buffer = regions.buffer;
-      thresholdingData.data[0].width = regions.width;
-      thresholdingData.data[0].height = regions.height;
+      // Initialize rendering double buffer canvas
+      const { width, height } = regions;
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      const imageData = context.createImageData(width, height);
+
+      canvas.width = width;
+      canvas.height = height;
+
+      regionsData.drawBuffer = {
+        canvas,
+        imageData
+      };
+      regionsData.buffer = regions.buffer;
+      regionsData.width = regions.width;
+      regionsData.height = regions.height;
       // Draw regions on image
       element.addEventListener('cornerstoneimagerendered', onImageRendered);
 
       // Update the element to apply the viewport and tool changes
       external.cornerstone.updateImage(element);
 
-      typeof doneCallback === 'function' && doneCallback();
+      if (typeof doneCallback === 'function') {
+        doneCallback();
+      }
     });
   }, 100);
 }
@@ -214,7 +213,7 @@ function disable (element) {
 }
 
 export function update (element) {
-  const enabledElement = element || LASTELEMENT;
+  const enabledElement = element || HACKY_LASTELEMENT;
 
   return new Promise((resolve, reject) => {
     disable(enabledElement);

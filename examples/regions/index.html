@@ -24,7 +24,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-md-6">
             <div style="width:512px;height:512px;position:relative;display:inline-block;color:white;"
                  oncontextmenu="return false"
                  class='cornerstone-enabled-image'
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-6">
+        <!--<div class="col-md-6">
             <div style="width:512px;height:512px;position:relative;display:inline-block;color:white;"
                  oncontextmenu="return false"
                  class='cornerstone-enabled-image'
@@ -53,7 +53,7 @@
                     Coronal
                 </div>
             </div>
-        </div>
+        </div>//-->
 
 
     </div>
@@ -121,6 +121,7 @@ is used by our example image loader-->
         };
         console.log("LOAD AND VIEW", imageIds)
         cornerstone.loadImage(imageIds[0]).then(function(image) {
+          console.log(image);
             // Display the image
             cornerstone.displayImage(element1, image);
 

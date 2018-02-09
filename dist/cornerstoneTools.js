@@ -2367,13 +2367,11 @@ var _toolState = __webpack_require__(1);
 
 // UNUSED const toolType = 'thresholding';
 
-var LASTELEMENT = null;
+var HACKY_LASTELEMENT = null;
 
 function getLastElement() {
-  return LASTELEMENT;
+  return HACKY_LASTELEMENT;
 }
-
-var LABEL_SIZE_BYTES = 1;
 
 var configuration = {
   historySize: 4,
@@ -2403,130 +2401,131 @@ configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThreshold
 /**
  * Perform the thresholding on a stack
  */
-function performThresholding(stack, afterwards) {
+function performThresholding(imageIds) {
   var width = void 0,
-      height = void 0;
-  var imageIds = stack.imageIds;
-  var slices = imageIds.length;
+      height = void 0,
+      view = void 0,
+      buffer = void 0;
 
-  // Get slope and intercept
-  return _externalModules.external.cornerstone.loadImage(imageIds[0]).then(function (image) {
-    width = image.width;
-    height = image.height;
+  // Thresholding promises
+  return Promise.all(imageIds.map(function (imageId, imageIdIndex) {
+    return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
+      if (!buffer) {
+        // Initialize variables on first loaded image
+        width = image.width;
+        height = image.height;
 
-    var length = width * height * slices * LABEL_SIZE_BYTES;
-    var buffer = new ArrayBuffer(length);
-    var view = new Uint8Array(buffer);
+        var length = width * height * imageIds.length;
 
-    // Thresholding promises
-    var promises = imageIds.map(function (imageId, imageIdx) {
-
-      return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
-        var slope = image.slope;
-        var intercept = image.intercept;
-        var pixelData = image.getPixelData();
-        var n = width * height;
-
-        for (var i = 0; i < n; i++) {
-          var pixel = pixelData[i];
-          var hu = pixel * slope + intercept;
-          var label = hu >= configuration.calciumThresholdHu ? 1 : 0;
-          var viewIdx = imageIdx * n + i;
-
-          view[viewIdx] = label;
-        }
-      });
-    });
-
-    // Callback with buffer
-    return Promise.all(promises).then(function () {
-      var result = {
-        buffer: buffer,
-        width: width,
-        height: height
-      };
-
-      if (afterwards) {
-        afterwards(result);
+        buffer = new ArrayBuffer(length);
+        view = new Uint8Array(buffer);
       }
 
-      return result;
+      var intercept = image.intercept,
+          slope = image.slope;
+
+      var pixelData = image.getPixelData();
+      var sliceSize = width * height;
+
+      for (var i = 0; i < sliceSize; i++) {
+        var value = pixelData[i];
+        // Calculate hu-value
+        var hu = value * slope + intercept;
+        // Check against threshold
+        var label = hu >= configuration.calciumThresholdHu ? 1 : 0;
+        // Calculate offset within view into ArrayBufer
+        var offset = imageIdIndex * sliceSize + i;
+
+        // Finally, assign label
+        view[offset] = label;
+      }
     });
+  }
+  // When all promises resolve, return the buffer and its dimensions
+  )).then(function () {
+    return {
+      buffer: buffer,
+      width: width,
+      height: height
+    };
   });
 }
-
-var imgdata = null;
 
 /**
  * Draw regions on image
  */
-function onImageRendered(e) {
-  var eventData = e.detail;
-  var element = eventData.element;
-  var stackData = (0, _toolState.getToolState)(element, 'stack');
-  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+function onImageRendered(_ref) {
+  var detail = _ref.detail;
+  var canvasContext = detail.canvasContext,
+      element = detail.element,
+      enabledElement = detail.enabledElement,
+      image = detail.image;
+  var width = image.width,
+      height = image.height;
 
-  if (!thresholdingData || !thresholdingData.data || !thresholdingData.data.length) {
+
+  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
+  var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
+
+  // Ensure tool is enabled
+  if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
     return;
   }
 
-  var slice = stackData.data[0].currentImageIdIndex;
-  var buffer = thresholdingData.data[0].buffer;
-  var context = eventData.canvasContext;
-  var enabledElement = eventData.enabledElement;
-  var image = eventData.image;
-  var width = image.width;
-  var height = image.height;
+  // Extract tool data
+  var currentImageIdIndex = stackToolData.data[0].currentImageIdIndex;
+  var _regionsToolData$data = regionsToolData.data[0],
+      drawBuffer = _regionsToolData$data.drawBuffer,
+      buffer = _regionsToolData$data.buffer;
 
-  var doubleBuffer = document.createElement('canvas');
-  var doubleBufferContext = doubleBuffer.getContext('2d');
 
-  doubleBuffer.width = width;
-  doubleBuffer.height = height;
-  imgdata = imgdata || doubleBufferContext.createImageData(width, height);
+  var doubleBuffer = drawBuffer.canvas;
+  var imageData = drawBuffer.imageData;
 
-  var pixels = imgdata.data;
+  var pixels = imageData.data;
   var sliceSize = width * height;
-  var sliceOffset = slice * sliceSize;
+  var sliceOffset = currentImageIdIndex * sliceSize;
   var view = new Uint8Array(buffer, sliceOffset, sliceSize);
 
-  for (var i = 0; i < view.length; i += 1) {
-    var label = view[i];
-    var pi = i * 4;
+  for (var offset = 0; offset < view.length; offset += 1) {
+    // Each pixel is represented by four elements in the imageData array
+    var imageDataOffset = offset * 4;
+    var label = view[offset];
 
     if (label) {
       var color = configuration.regionColorsRGB[label - 1];
 
-      pixels[pi + 0] = color[0];
-      pixels[pi + 1] = color[1];
-      pixels[pi + 2] = color[2];
-      pixels[pi + 3] = configuration.drawAlpha * 255;
+      pixels[imageDataOffset + 0] = color[0];
+      pixels[imageDataOffset + 1] = color[1];
+      pixels[imageDataOffset + 2] = color[2];
+      pixels[imageDataOffset + 3] = configuration.drawAlpha * 255;
     } else {
-      pixels[pi + 3] = 0;
+      pixels[imageDataOffset + 3] = 0;
     }
   }
-  doubleBufferContext.putImageData(imgdata, 0, 0);
 
-  _externalModules.external.cornerstone.setToPixelCoordinateSystem(enabledElement, context);
-  context.drawImage(doubleBuffer, 0, 0);
+  // Put image data back into offscreen canvas
+  doubleBuffer.getContext('2d').putImageData(imageData, 0, 0);
+  // Set transforms based on zoom/pan/etc
+  _externalModules.external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
+  // Finally, draw offscreen canvas onto context
+  canvasContext.drawImage(doubleBuffer, 0, 0);
 }
 
 function enable(element, doneCallback) {
   // Check if tool is already enabled. If so, don't reenable
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
 
-  // Reset imgData buffer
-  imgdata = null;
-
   if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
     return;
   }
 
-  LASTELEMENT = element;
-  // First check that there is stack data available
-  var stackData = (0, _toolState.getToolState)(element, 'stack');
+  HACKY_LASTELEMENT = element;
 
-  if (!stackData || !stackData.data || !stackData.data.length) {
+  // First check that there is stack data available
+  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
+
+  if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
     return;
   }
 
@@ -2535,28 +2534,47 @@ function enable(element, doneCallback) {
     buffer: null,
     width: null,
     height: null,
-    history: []
+    history: [],
+    drawBuffer: null
   };
 
   (0, _toolState.addToolState)(element, 'regions', initialThresholdingData);
 
-  var stack = stackData.data[0];
+  var stackData = stackToolData.data[0];
 
   setTimeout(function () {
-    performThresholding(stack, function (regions) {
+    performThresholding(stackData.imageIds).then(function (regions) {
       // Add threshold data to tool state
-      var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
+      var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
+      var regionsData = regionsToolData.data[0];
 
-      thresholdingData.data[0].buffer = regions.buffer;
-      thresholdingData.data[0].width = regions.width;
-      thresholdingData.data[0].height = regions.height;
+      // Initialize rendering double buffer canvas
+      var width = regions.width,
+          height = regions.height;
+
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var imageData = context.createImageData(width, height);
+
+      canvas.width = width;
+      canvas.height = height;
+
+      regionsData.drawBuffer = {
+        canvas: canvas,
+        imageData: imageData
+      };
+      regionsData.buffer = regions.buffer;
+      regionsData.width = regions.width;
+      regionsData.height = regions.height;
       // Draw regions on image
       element.addEventListener('cornerstoneimagerendered', onImageRendered);
 
       // Update the element to apply the viewport and tool changes
       _externalModules.external.cornerstone.updateImage(element);
 
-      typeof doneCallback === 'function' && doneCallback();
+      if (typeof doneCallback === 'function') {
+        doneCallback();
+      }
     });
   }, 100);
 }
@@ -2571,7 +2589,7 @@ function disable(element) {
 }
 
 function update(element) {
-  var enabledElement = element || LASTELEMENT;
+  var enabledElement = element || HACKY_LASTELEMENT;
 
   return new Promise(function (resolve, reject) {
     disable(enabledElement);
@@ -17348,18 +17366,22 @@ function bfs(i, j, searchArray, resultMatrix, label, lesionVoxels, pixelData, me
   return lesionVoxels.length > 0;
 }
 
+/**
+ * Calculate CaScore per label per slice per lesion
+ *
+ */
 function score() {
   var element = (0, _thresholding.getLastElement)();
-  var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
-  var stackData = (0, _toolState.getToolState)(element, 'stack');
-  var imageIds = stackData.data[0].imageIds;
 
   var _getConfiguration2 = (0, _thresholding.getConfiguration)(),
-      regionColorsRGB = _getConfiguration2.regionColorsRGB,
-      KVPToMultiplier = _getConfiguration2.KVPToMultiplier;
+      regionColorsRGB = _getConfiguration2.regionColorsRGB;
+
+  var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
+  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
+  var buffer = regionsToolData.data[0].buffer;
+  var imageIds = stackToolData.data[0].imageIds;
 
   // Extract and group region-voxels
-
 
   var voxelsEachRegion = regionColorsRGB.slice(1).map(function () {
     return imageIds.map(function () {
@@ -17372,37 +17394,38 @@ function score() {
     });
   });
 
-  var regionBuffer = thresholdingData.data[0].buffer;
-  var view = new Uint8Array(regionBuffer);
+  var view = new Uint8Array(buffer);
 
-  var prevSliceLocation = void 0;
   var overlapFactor = void 0;
-  var modeOverlapFactor = void 0;
   var prevImagePosition = void 0;
   var overlapFactors = [];
 
   var metaData = {};
 
-  var promises = imageIds.map(function (imageId, imageIndex) {
+  return Promise.all(imageIds.map(function (imageId, imageIndex) {
     return _externalModules.external.cornerstone.loadImage(imageId).then(function (image) {
       var dataSet = image.data;
+
       metaData.sliceThickness = dataSet.floatString('x00180050');
       metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
       metaData.KVP = dataSet.floatString('x00180060');
       metaData.rescaleSlope = dataSet.floatString('x00281053');
       metaData.rescaleIntercept = dataSet.floatString('x00281052');
       metaData.rescaleType = dataSet.string('x00281054');
-      var sliceLocation = dataSet.floatString('x00201041');
+
       var imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
       var imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
       var imageOrientation = [imageOrientationTmp.slice(0, 3), imageOrientationTmp.slice(3)];
+
       if (metaData.rescaleType !== 'HU') {
         console.warn('Modality LUT does not convert to Hounsfield units but to ' + metaData.rescaleType + '. Agatston score is not defined for this unit type.');
+
         return;
       }
 
       if (prevImagePosition) {
         var distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
+
         overlapFactor = computeOverlapFactor(distance, metaData.sliceThickness);
 
         // Find overlapfactor with the highest occurance
@@ -17432,12 +17455,11 @@ function score() {
         });
       }
 
-      var colorStart = 2;
-      var numberOfColors = 5;
       for (var _i2 = 0; _i2 < resultMatrix.length; _i2 += 1) {
         for (var j = 0; j < resultMatrix[_i2].length; j += 1) {
           var lesionVoxels = [];
           var label = searchMatrix[j][_i2];
+
           if (searchMatrix[j] && label > 1 && bfs(_i2, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
             voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
             maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels));
@@ -17445,24 +17467,26 @@ function score() {
         }
       }
     });
-  });
-
-  return Promise.all(promises).then(function () {
-
+  }
+  // When all images have been processed
+  )).then(function () {
     return voxelsEachRegion.map(function (slicesInLabel, labelIdx) {
       var cascore = [];
-      slicesInLabel.map(function (lesions, sliceIdx) {
-        lesions.map(function (voxels, lesionIdx) {
+
+      slicesInLabel.forEach(function (lesions, sliceIdx) {
+        lesions.forEach(function (voxels, lesionIdx) {
           metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx][lesionIdx];
+
           var cascoreCurrent = voxels.length > 0 ? computeScore(metaData, voxels) : 0;
+
           cascore.push(cascoreCurrent);
         });
       });
-      var cascoreAccumulated = cascore.reduce(function (acc, val) {
+      var sum = cascore.reduce(function (acc, val) {
         return acc + val;
-      }, 0);
+      });
 
-      return cascoreAccumulated;
+      return sum;
     });
   });
 }

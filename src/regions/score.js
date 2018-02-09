@@ -162,110 +162,117 @@ function bfs (i, j, searchArray, resultMatrix, label, lesionVoxels, pixelData, m
   return lesionVoxels.length > 0;
 }
 
+/**
+ * Calculate CaScore per label per slice per lesion
+ *
+ */
 export function score () {
   const element = getLastElement();
-  const thresholdingData = getToolState(element, 'regions');
-  const stackData = getToolState(element, 'stack');
-  const imageIds = stackData.data[0].imageIds;
-  const { regionColorsRGB, KVPToMultiplier } = getConfiguration();
+  const { regionColorsRGB } = getConfiguration();
+
+  const regionsToolData = getToolState(element, 'regions');
+  const stackToolData = getToolState(element, 'stack');
+  const { buffer } = regionsToolData.data[0];
+  const { imageIds } = stackToolData.data[0];
 
   // Extract and group region-voxels
   const voxelsEachRegion = regionColorsRGB.slice(1).map(() => imageIds.map(() => []));
   const maxHUEachRegion = regionColorsRGB.slice(1).map(() => imageIds.map(() => []));
 
-  const regionBuffer = thresholdingData.data[0].buffer;
-  const view = new Uint8Array(regionBuffer);
+  const view = new Uint8Array(buffer);
 
-  let prevSliceLocation;
   let overlapFactor;
-  let modeOverlapFactor;
   let prevImagePosition;
   const overlapFactors = [];
 
-  var metaData = {};
+  const metaData = {};
 
-  const promises = imageIds.map((imageId, imageIndex) => external.cornerstone.loadImage(imageId).then((image) => {
-    const dataSet = image.data;
-    metaData.sliceThickness = dataSet.floatString('x00180050');
-    metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
-    metaData.KVP = dataSet.floatString('x00180060');
-    metaData.rescaleSlope = dataSet.floatString('x00281053');
-    metaData.rescaleIntercept = dataSet.floatString('x00281052');
-    metaData.rescaleType = dataSet.string('x00281054');
-    const sliceLocation = dataSet.floatString('x00201041');
-    const imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
-    const imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
-    const imageOrientation = [
-      imageOrientationTmp.slice(0, 3),
-      imageOrientationTmp.slice(3)
-    ];
-    if (metaData.rescaleType !== 'HU') {
-      console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
-      return;
-    }
+  return Promise.all(imageIds.map((imageId, imageIndex) =>
+    external.cornerstone.loadImage(imageId).then((image) => {
+      const dataSet = image.data;
 
-    if (prevImagePosition) {
-      const distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
-      overlapFactor = computeOverlapFactor(distance, metaData.sliceThickness);
+      metaData.sliceThickness = dataSet.floatString('x00180050');
+      metaData.pixelSpacing = dataSet.string('x00280030').split('\\').map(parseFloat);
+      metaData.KVP = dataSet.floatString('x00180060');
+      metaData.rescaleSlope = dataSet.floatString('x00281053');
+      metaData.rescaleIntercept = dataSet.floatString('x00281052');
+      metaData.rescaleType = dataSet.string('x00281054');
 
-      // Find overlapfactor with the highest occurance
-      overlapFactors.push(overlapFactor);
-      metaData.modeOverlapFactor = mode(overlapFactors);
+      const imagePositionPatient = dataSet.string('x00200032').split('\\').map(parseFloat);
+      const imageOrientationTmp = dataSet.string('x00200037').split('\\').map(parseFloat);
+      const imageOrientation = [
+        imageOrientationTmp.slice(0, 3),
+        imageOrientationTmp.slice(3)
+      ];
 
-      // Save imagePositionPatient for next overlapFactor computation
-      prevImagePosition = imagePositionPatient;
-    } else {
-      prevImagePosition = imagePositionPatient;
-    }
+      if (metaData.rescaleType !== 'HU') {
+        console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
 
-    const width = image.width;
-    const height = image.height;
-    const sliceSize = width * height;
-    const pixelData = image.getPixelData();
-    const offset = imageIndex * sliceSize;
+        return;
+      }
 
-    var searchMatrix = []
-    var resultMatrix = [];
+      if (prevImagePosition) {
+        const distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
 
-    for (let i = 0; i < height; i += 1) {
-      searchMatrix[i] = view.slice(offset + width * i, offset + width * i + width);
-      // Initialze with 0's (same dimensions as searchMatrix)
-      resultMatrix[i] = view
-        .slice(offset + width * i, offset + width * i + width)
-        .map(() => 0);
-    }
+        overlapFactor = computeOverlapFactor(distance, metaData.sliceThickness);
 
-    let colorStart = 2
-    let numberOfColors = 5
-    for (let i = 0; i < resultMatrix.length; i += 1) {
-      for (let j = 0; j < resultMatrix[i].length; j += 1) {
-        let lesionVoxels = []
-        let label = searchMatrix[j][i]
-        if (searchMatrix[j] && (label > 1) &&
-            bfs(i, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
-          voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels)
-          maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels))
+        // Find overlapfactor with the highest occurance
+        overlapFactors.push(overlapFactor);
+        metaData.modeOverlapFactor = mode(overlapFactors);
+
+        // Save imagePositionPatient for next overlapFactor computation
+        prevImagePosition = imagePositionPatient;
+      } else {
+        prevImagePosition = imagePositionPatient;
+      }
+
+      const width = image.width;
+      const height = image.height;
+      const sliceSize = width * height;
+      const pixelData = image.getPixelData();
+      const offset = imageIndex * sliceSize;
+
+      const searchMatrix = [];
+      const resultMatrix = [];
+
+      for (let i = 0; i < height; i += 1) {
+        searchMatrix[i] = view.slice(offset + width * i, offset + width * i + width);
+        // Initialze with 0's (same dimensions as searchMatrix)
+        resultMatrix[i] = view.
+          slice(offset + width * i, offset + width * i + width).
+          map(() => 0);
+      }
+
+      for (let i = 0; i < resultMatrix.length; i += 1) {
+        for (let j = 0; j < resultMatrix[i].length; j += 1) {
+          const lesionVoxels = [];
+          const label = searchMatrix[j][i];
+
+          if (searchMatrix[j] && (label > 1) &&
+              bfs(i, j, searchMatrix, resultMatrix, label, lesionVoxels, pixelData, metaData)) {
+            voxelsEachRegion[label - 2][imageIndex].push(lesionVoxels);
+            maxHUEachRegion[label - 2][imageIndex].push(Math.max.apply(null, lesionVoxels));
+          }
         }
       }
-    }
-  }));
+    })
+  // When all images have been processed
+  )).then(() => voxelsEachRegion.map((slicesInLabel, labelIdx) => {
+    const cascore = [];
 
-  return Promise.all(promises).then(function () {
+    slicesInLabel.forEach((lesions, sliceIdx) => {
+      lesions.forEach((voxels, lesionIdx) => {
+        metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx][lesionIdx];
 
-    return voxelsEachRegion.map((slicesInLabel, labelIdx) => {
-      const cascore = [];
-      slicesInLabel.map((lesions, sliceIdx) => {
-        lesions.map((voxels, lesionIdx) => {
-          metaData.maxHU = maxHUEachRegion[labelIdx][sliceIdx][lesionIdx];
-          let cascoreCurrent = voxels.length > 0 ? computeScore(metaData, voxels) : 0;
-          cascore.push(cascoreCurrent);
-        })
+        const cascoreCurrent = voxels.length > 0 ? computeScore(metaData, voxels) : 0;
+
+        cascore.push(cascoreCurrent);
       });
-      let cascoreAccumulated = cascore.reduce((acc, val) => acc + val, 0);
-
-      return cascoreAccumulated;
     });
-  });
+    const sum = cascore.reduce((acc, val) => acc + val);
+
+    return sum;
+  }));
 }
 
-export default score
+export default score;
