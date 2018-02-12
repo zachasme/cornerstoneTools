@@ -16840,6 +16840,7 @@ function regionGrowing(element, regions, slices, point) {
     if (fromValue === 0 || fromValue === toolRegionValue) {
       return;
     }
+    (0, _history.createUndoStep)(element);
 
     // Growing starts at clicked voxel
     var activeVoxels = [linearIndex];
@@ -16885,8 +16886,6 @@ function onMouseDown(e, eventData) {
 
 
   if ((0, _isMouseButtonEnabled2.default)(eventData.which, e.data.mouseButtonMask)) {
-    (0, _history.createUndoStep)(element);
-
     var _getToolState$data = _slicedToArray((0, _toolState.getToolState)(element, 'stack').data, 1),
         stackData = _getToolState$data[0];
 

@@ -60,6 +60,7 @@ function regionGrowing (element, regions, slices, point) {
     if (fromValue === 0 || fromValue === toolRegionValue) {
       return;
     }
+    createUndoStep(element);
 
     // Growing starts at clicked voxel
     let activeVoxels = [linearIndex];
@@ -101,7 +102,6 @@ function onMouseDown (e, eventData) {
   const { element } = eventData;
 
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
-    createUndoStep(element);
     const [stackData] = getToolState(element, 'stack').data;
     const [regionsData] = getToolState(element, 'regions').data;
     const { currentImageIdIndex, imageIds } = stackData;
