@@ -175,8 +175,7 @@ is used by our example image loader-->
         cornerstone.loadImage(imageIds[0]).then(function(image) {
           console.log(image);
             // Display the image
-            var defViewport = cornerstone.getDefaultViewport(element1, image);
-            cornerstone.displayImage(element1, image, defViewport);
+            cornerstone.displayImage(element1, image);
 
             cornerstoneTools.stackScrollWheel.activate(element1);
             cornerstoneTools.scrollIndicator.enable(element1);
