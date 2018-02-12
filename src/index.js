@@ -150,5 +150,14 @@ export { zoom,
   zoomTouchDrag } from './imageTools/zoom.js';
 export { brush } from './paintingTools/brush.js';
 export { adaptiveBrush } from './paintingTools/adaptiveBrush.js';
-export { lesionIndicator, regionsToolState, regionsThreshold, regionsGrow, regionsDraw, regionsScore, regionsUndo } from './regions/index.js';
+export {
+  lesionIndicator,
+  regionsToolState,
+  regionsThreshold,
+  regionsGrow,
+  regionsDraw,
+  regionsScore,
+  regionsUndo,
+  regionsRedo
+} from './regions/index.js';
 export { default as version } from './version.js';

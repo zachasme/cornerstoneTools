@@ -141,10 +141,6 @@ is used by our example image loader-->
 
 
     // Enable the dicomImage element1 and the mouse inputs
-    cornerstone.enable(element1);
-    cornerstoneTools.mouseInput.enable(element1);
-    cornerstoneTools.mouseWheelInput.enable(element1);
-
     cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 
     var config = {
@@ -157,9 +153,16 @@ is used by our example image loader-->
      };
      cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
 
-     cornerstoneTools.addStackStateManager(element1, ['stack', 'regions']);
+
 
     function loadAndViewImages(imageIds) {
+        cornerstone.disable(element1);
+
+        cornerstone.enable(element1);
+        cornerstoneTools.mouseInput.enable(element1);
+        cornerstoneTools.mouseWheelInput.enable(element1);
+        cornerstoneTools.addStackStateManager(element1, ['stack', 'regions']);
+
         var stack = {
             currentImageIdIndex : 0,
             imageIds: imageIds
@@ -224,10 +227,10 @@ is used by our example image loader-->
       });
     })
     document.getElementById('undo').addEventListener('click', function(){
-      cornerstoneTools.regionsThreshold.undo(element1);
+      cornerstoneTools.regionsUndo(element1);
     });
     document.getElementById('redo').addEventListener('click', function(){
-      cornerstoneTools.regionsThreshold.redo(element1);
+      cornerstoneTools.regionsRedo(element1);
     });
 
     //--------------------------------------------------------------------------

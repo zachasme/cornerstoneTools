@@ -21,7 +21,7 @@ function createUndoStep (element) {
   }
 }
 
-function undo (element) {
+function regionsUndo (element) {
   const thresholdingData = getToolState(element, 'regions');
   const state = thresholdingData.data[0];
 
@@ -35,11 +35,11 @@ function undo (element) {
   external.cornerstone.updateImage(element);
 }
 
-function redo (element) {
+function regionsRedo (element) {
   // Not implemented
 }
 
 // Module/private exports
 export {
-  undo, redo, createUndoStep
+  regionsUndo, regionsRedo, createUndoStep
 };

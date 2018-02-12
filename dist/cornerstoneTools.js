@@ -3248,8 +3248,6 @@ var configuration = {
   historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: '-', // Placeholder until it gets set ('-' shows up nicely in text input)
-  layersAbove: 0,
-  layersBelow: 0,
   drawAlpha: 1,
   regionColorsRGB: [[255, 0, 255], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
   KVPToMultiplier: {
@@ -3388,7 +3386,7 @@ var TOOL_TYPE = exports.TOOL_TYPE = 'regions';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createUndoStep = exports.redo = exports.undo = undefined;
+exports.createUndoStep = exports.regionsRedo = exports.regionsUndo = undefined;
 
 var _toolState = __webpack_require__(1);
 
@@ -3414,7 +3412,7 @@ function createUndoStep(element) {
   }
 }
 
-function undo(element) {
+function regionsUndo(element) {
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
   var state = thresholdingData.data[0];
 
@@ -3428,13 +3426,13 @@ function undo(element) {
   _externalModules.external.cornerstone.updateImage(element);
 }
 
-function redo(element) {}
+function regionsRedo(element) {}
 // Not implemented
 
 
 // Module/private exports
-exports.undo = undo;
-exports.redo = redo;
+exports.regionsUndo = regionsUndo;
+exports.regionsRedo = regionsRedo;
 exports.createUndoStep = createUndoStep;
 
 /***/ }),
@@ -6337,6 +6335,12 @@ Object.defineProperty(exports, 'regionsUndo', {
   enumerable: true,
   get: function get() {
     return _index3.regionsUndo;
+  }
+});
+Object.defineProperty(exports, 'regionsRedo', {
+  enumerable: true,
+  get: function get() {
+    return _index3.regionsRedo;
   }
 });
 

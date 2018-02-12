@@ -7,8 +7,6 @@ let configuration = {
   historyPosition: 0,
   toolRegionValue: 2,
   calciumThresholdHu: '-', // Placeholder until it gets set ('-' shows up nicely in text input)
-  layersAbove: 0,
-  layersBelow: 0,
   drawAlpha: 1,
   regionColorsRGB: [
     [255, 0, 255],
