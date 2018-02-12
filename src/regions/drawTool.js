@@ -1,12 +1,16 @@
 import { external } from '../externalModules.js';
-import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
+import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState.js';
+import mouseButtonTool from '../imageTools/mouseButtonTool.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import * as regionsThreshold from './thresholding.js';
+import { createUndoStep } from './history.js';
 
-const toolType = 'drawing';
+const TOOL_STATE_TOOL_TYPE = 'draw';
 
-let configuration = {
-  snap: false // Snap to thresholded region or not
+const CONFIGURATION = {
+  snap: false, // Snap to thresholded region or not
+  layersAbove: 1,
+  layersBelow: 1,
+  toolRegionValue: 2
 };
 
 // Determine if a point is inside a polygon
@@ -31,17 +35,23 @@ function isInside (point, vs) {
 
 // Draw regions on the canvas
 function onImageRendered (e, eventData) {
-  const { canvasContext, enabledElement, element } = eventData;
+  const { canvasContext, enabledElement } = eventData;
 
   // Set the canvas context to the image coordinate system
   external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
 
   // Points
-  const drawingData = getToolState(element, toolType);
-  const context = eventData.canvasContext;
-  const points = drawingData.data[0].points;
+  const toolData = getToolState(e.currentTarget, TOOL_STATE_TOOL_TYPE);
 
-  if (points.length < 2) {
+  if (!toolData) {
+    return;
+  }
+
+  const points = toolData.data[0];
+
+  const context = eventData.canvasContext;
+
+  if (!points || points.length < 2) {
     return;
   }
 
@@ -62,20 +72,20 @@ function onImageRendered (e, eventData) {
 }
 
 function updateRegions (element) {
-  const { toolRegionValue, layersAbove, layersBelow } = regionsThreshold.getConfiguration();
+  const { toolRegionValue, layersAbove, layersBelow, snap } = drawTool.getConfiguration();
 
-  regionsThreshold.createUndoStep(element);
+  createUndoStep(element);
 
   // Get tool data
   const stackData = getToolState(element, 'stack');
   const thresholdingData = getToolState(element, 'regions');
-  const drawingData = getToolState(element, toolType);
+  const drawingData = getToolState(element, TOOL_STATE_TOOL_TYPE);
+  const points = drawingData.data[0];
 
   // Extract tool data
   const slice = stackData.data[0].currentImageIdIndex;
   const numSlices = stackData.data[0].imageIds.length;
   const regions = thresholdingData.data[0];
-  const points = drawingData.data[0].points;
 
   // Extract region data
   const buffer = regions.buffer;
@@ -100,7 +110,7 @@ function updateRegions (element) {
 
         let snapBool;
 
-        if (configuration.snap) {
+        if (snap) {
           snapBool = prevValue > 0;
         } else {
           snapBool = true;
@@ -113,86 +123,55 @@ function updateRegions (element) {
   }
 }
 
-// Disable drawing and tracking on mouse up also update regions
-function mouseUpCallback (e, eventData) {
-  external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
-  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
-  external.$(eventData.element).off('CornerstoneImageRendered', onImageRendered);
-  updateRegions(eventData.element);
-  external.cornerstone.updateImage(eventData.element);
-}
-
-function mouseDownCallback (e, eventData) {
-  console.log('*** e.data (draw.js) ***', e.data);
-  console.log('*** eventData (draw.js) ***', eventData);
-
+// On mousedown we register event handlers for dragging
+function mouseDownActivateCallback (e, eventData) {
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
-    const toolData = getToolState(e.currentTarget, toolType);
-
-    toolData.data[0].points = [];
+    // Reset tool state
+    clearToolState(e.currentTarget, TOOL_STATE_TOOL_TYPE);
+    addToolState(e.currentTarget, TOOL_STATE_TOOL_TYPE, []);
 
     external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
-    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);
-    external.$(eventData.element).on('CornerstoneImageRendered', onImageRendered);
-
-    return mouseDragCallback(e, eventData);
+    external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseDragStopCallback);
+    external.$(eventData.element).on('CornerstoneToolsMouseClick', mouseDragStopCallback);
   }
 }
 
 function mouseDragCallback (e, eventData) {
-  e.stopImmediatePropagation(); // Prevent CornerstoneToolsTouchStartActive from killing any press events
-
   // If we have no toolData for this element, return immediately as there is nothing to do
-  const toolData = getToolState(e.currentTarget, toolType);
+  const toolData = getToolState(e.currentTarget, TOOL_STATE_TOOL_TYPE);
 
-  if (!toolData) {
-    return;
-  }
+  const points = toolData.data[0];
 
   const point = eventData.currentPoints.image;
 
-  toolData.data[0].points.push([point.x, point.y]);
+  points.push([point.x, point.y]);
 
   external.cornerstone.updateImage(eventData.element);
-
-  return false; // False = causes jquery to preventDefault() and stopPropagation() this event
 }
 
-function enable (element, mouseButtonMask) {
-  const eventData = {
-    mouseButtonMask
-  };
+// Disable drawing and tracking on mouse up also update regions
+function mouseDragStopCallback (e, eventData) {
+  // Disable drag event listeners
+  external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
+  external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseDragStopCallback);
+  external.$(eventData.element).off('CornerstoneToolsMouseClick', mouseDragStopCallback);
 
-    // Clear any currently existing toolData
-  clearToolState(element, toolType);
+  // Update regions and clear tool state
+  updateRegions(eventData.element);
+  clearToolState(e.currentTarget, TOOL_STATE_TOOL_TYPE);
 
-  addToolState(element, toolType, {
-    points: []
-  });
-
-  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
-  external.$(element).on('CornerstoneToolsMouseDown', eventData, mouseDownCallback);
-}
-
-function disable (element) {
-  external.$(element).off('CornerstoneToolsMouseDown', mouseDownCallback);
-}
-
-export function getConfiguration () {
-  return configuration;
-}
-
-export function setConfiguration (config) {
-  configuration = config;
+  external.cornerstone.updateImage(eventData.element);
 }
 
 // Module/private exports
 
-export default {
-  enable,
-  disable,
-  activate: enable,
-  deactivate: disable,
-  getConfiguration,
-  setConfiguration
-};
+const drawTool = mouseButtonTool({
+  mouseDownActivateCallback,
+  onImageRendered,
+  mouseMoveCallback: () => {},
+  deactivate: () => {}
+});
+
+drawTool.setConfiguration(CONFIGURATION);
+
+export default drawTool;

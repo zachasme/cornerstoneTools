@@ -1,9 +1,20 @@
 import { external } from '../externalModules.js';
-import { getToolState } from '../stateManagement/toolState';
+import { getToolState } from '../stateManagement/toolState.js';
+import simpleMouseButtonTool from '../imageTools/simpleMouseButtonTool.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import { getConfiguration, createUndoStep } from './thresholding.js';
 
-// UNUSED const toolType = 'regionsGrow';
+import { createUndoStep } from './history.js';
+
+/**
+ * A simpleMouseButtonTool that grows from point in stack
+ */
+
+const CONFIGURATION = {
+  layersAbove: 1,
+  layersBelow: 1,
+  growIterationsPerChunk: 2,
+  toolRegionValue: 2
+};
 
 // Get neighbour linear indices within slice bounds
 function linearNeighbours (width, height, highSlice, lowSlice, index) {
@@ -30,7 +41,7 @@ function linearNeighbours (width, height, highSlice, lowSlice, index) {
 
 function regionGrowing (element, regions, slices, point) {
   return new Promise(function (resolve) {
-    const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = getConfiguration();
+    const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = growTool.getConfiguration();
     const { width, height, buffer } = regions;
     const [x, y, slice] = point;
     const highSlice = slice + layersBelow;
@@ -89,9 +100,6 @@ function regionGrowing (element, regions, slices, point) {
 function onMouseDown (e, eventData) {
   const { element } = eventData;
 
-  console.log('*** e.data (grow.js) ***', e.data);
-  console.log('*** eventData (grow.js) ***', eventData);
-
   if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
     createUndoStep(element);
     const [stackData] = getToolState(element, 'stack').data;
@@ -102,29 +110,13 @@ function onMouseDown (e, eventData) {
     const point = [Math.round(x), Math.round(y), currentImageIdIndex];
 
     regionGrowing(element, regionsData, imageIds.length, point);
+
+    return false; // False = causes jquery to preventDefault() and stopPropagation() this event
   }
 }
 
-function enable (element, mouseButtonMask) {
-  const stackData = getToolState(element, 'stack');
-  const regionsData = getToolState(element, 'regions');
+const growTool = simpleMouseButtonTool(onMouseDown);
 
-  // First check that there is stack/regions data available
-  if (!stackData || !stackData.data || !stackData.data.length ||
-      !regionsData || !regionsData.data || !regionsData.data.length) {
-    return;
-  }
+growTool.setConfiguration(CONFIGURATION);
 
-  external.$(element).on('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);
-}
-
-function disable (element) {
-  external.$(element).off('CornerstoneToolsMouseDown', onMouseDown);
-}
-
-export default {
-  enable,
-  disable,
-  activate: enable,
-  deactivate: disable
-};
+export default growTool;

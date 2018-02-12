@@ -4,9 +4,9 @@
     <!-- support for mobile touch devices -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- twitter bootstrap CSS stylesheet - not required by cornerstoneTools
+    <!-- twitter bootstrap CSS stylesheet - not required by cornerstoneTools -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    -->
+
 
     <link href="../cornerstone.min.css" rel="stylesheet">
 
@@ -82,15 +82,58 @@ is used by our example image loader-->
 <button id="undo">undo</button>
 <button id="redo">redo</button>
 
-  <div>
-    <label for="thresholdVal">Thresholding value:</label>
+  <fieldset>
+    <legend>Thresholding config</legend>
+    <label for="thresholdVal">calciumThresholdHu:</label>
     <input type="text" id="thresholdVal" value="130">
+  </fieldset>
+
+  <div class="row">
+      <fieldset class="col-sm-6">
+        <legend>Drawing config</legend>
+        <ol>
+          <li>
+            <label for="snap">snap to regions: <input id="snap" type="checkbox" name="snap"></label>
+          </li>
+          <li>
+            <label for="drawLayersAbove">layers above:</label>
+            <input type="text" id="drawLayersAbove" value="1">
+          </li>
+          <li>
+            <label for="drawLayersBelow">layers below:</label>
+            <input type="text" id="drawLayersBelow" value="1">
+          </li>
+          <li>
+            <label for="drawValue">tool vlue:</label>
+            <input type="text" id="drawValue" value="1">
+          </li>
+        </ol>
+      </fieldset>
+
+      <fieldset class="col-sm-6">
+        <legend>Growing config</legend>
+        <ol>
+          <li>
+            <label for="growLayersAbove">layers above:</label>
+            <input type="text" id="growLayersAbove" value="1">
+          </li>
+          <li>
+            <label for="growLayersBelow">layers below:</label>
+            <input type="text" id="growLayersBelow" value="1">
+          </li>
+          <li>
+            <label for="growValue">tool vlue:</label>
+            <input type="text" id="growValue" value="1">
+          </li>
+        </ol>
+      </fieldset>
+
   </div>
+
   <div>
     <input type="file" multiple id="selectFile" >
  </div>
  <button id="examples">or use example pictures</button>
- <label for="snap"><input id="snap" type="checkbox" name="snap">snap</label>
 
 <script>
     var element1 = $('#dicomImage1').get(0);
@@ -114,67 +157,108 @@ is used by our example image loader-->
      };
      cornerstoneWADOImageLoader.webWorkerManager.initialize(config);
 
+     cornerstoneTools.addStackStateManager(element1, ['stack', 'regions']);
+
     function loadAndViewImages(imageIds) {
         var stack = {
             currentImageIdIndex : 0,
             imageIds: imageIds
         };
-        console.log("LOAD AND VIEW", imageIds)
+
+        cornerstoneTools.lesionIndicator.disable(element1);
+        cornerstoneTools.scrollIndicator.disable(element1);
+        cornerstoneTools.stackScrollWheel.disable(element1);
+
+        cornerstoneTools.clearToolState(element1, 'stack');
+        cornerstoneTools.clearToolState(element1, 'regions');
+
         cornerstone.loadImage(imageIds[0]).then(function(image) {
           console.log(image);
             // Display the image
-            cornerstone.displayImage(element1, image);
+            var defViewport = cornerstone.getDefaultViewport(element1, image);
+            cornerstone.displayImage(element1, image, defViewport);
+
+            cornerstoneTools.stackScrollWheel.activate(element1);
+            cornerstoneTools.scrollIndicator.enable(element1);
 
             // Set the stack as tool state
-            cornerstoneTools.addStackStateManager(element1, ['stack', 'regions', 'drawing']);
             cornerstoneTools.addToolState(element1, 'stack', stack);
+            cornerstoneTools.addToolState(element1, 'regions', cornerstoneTools.regionsToolState());
 
             // Enable all tools we want to use with this element1
-            cornerstoneTools.regionsThreshold.activate(element1);
+            cornerstoneTools.lesionIndicator.enable(element1);
+
+            // Activate mouse tools
             cornerstoneTools.regionsDraw.activate(element1, 4);
             cornerstoneTools.regionsGrow.activate(element1, 1);
-            cornerstoneTools.stackScrollWheel.activate(element1);
-            // cornerstoneTools.mpr.performMPR(element1);
 
-            cornerstoneTools.scrollIndicator.enable(element1);
+
+            // thresholding and scoring are special,
+            // they perform action on activate
+            cornerstoneTools.regionsThreshold.activate(element1);
         });
     }
+
+    //--------------------------------------------------------------------------
+    // Handlers for loading new images
+    //--------------------------------------------------------------------------
     document.getElementById('examples').addEventListener('click', function(){
       loadAndViewImages([
           'example://1',
           'example://2',
           'example://3'
       ])
-    })
+    });
 
+    document.getElementById('selectFile').addEventListener('change', function(e){
+      var files = Array.from(e.target.files);
+      var imageIds = files.map(cornerstoneWADOImageLoader.wadouri.fileManager.add)
+      loadAndViewImages(imageIds);
+    });
+
+    //--------------------------------------------------------------------------
+    // Handlers for activating tools
+    //--------------------------------------------------------------------------
     document.getElementById('calculate').addEventListener('click', function(){
-      var scores = cornerstoneTools.regionsScore().then(function(scores){
+      var scores = cornerstoneTools.regionsScore(element1).then(function(scores){
         console.log("YO", scores);
       });
     })
-
     document.getElementById('undo').addEventListener('click', function(){
       cornerstoneTools.regionsThreshold.undo(element1);
     });
-
     document.getElementById('redo').addEventListener('click', function(){
       cornerstoneTools.regionsThreshold.redo(element1);
     });
 
-    document.getElementById('selectFile').addEventListener('change', function(e){
+    //--------------------------------------------------------------------------
+    // Handlers for configuration
+    //--------------------------------------------------------------------------
+    // configure tools
+    const thresholdConfig = cornerstoneTools.regionsThreshold.getConfiguration();
+    cornerstoneTools.regionsThreshold.setConfiguration({
+      ...thresholdConfig,
+      calciumThresholdHu: 130,
+    });
+    const drawConfig = cornerstoneTools.regionsDraw.getConfiguration();
+    document.getElementById('snap').checked = drawConfig.snap;
 
-      var files = Array.from(e.target.files);
-      var imageIds = files.map(cornerstoneWADOImageLoader.wadouri.fileManager.add)
-
-      loadAndViewImages(imageIds);
-    })
-
-    document.getElementById('thresholdVal').addEventListener('blur', function(event) {
-      var config = cornerstoneTools.regionsThreshold.getConfiguration();
-      config.calciumThresholdHu = parseInt(event.target.value);
-      cornerstoneTools.regionsThreshold.setConfiguration(config)
-      cornerstoneTools.regionsThreshold.update(element1);
-    })
+    function syncConfig(elementId, tool, prop) {
+      const element = document.getElementById(elementId);
+      var config = cornerstoneTools[tool].getConfiguration();
+      element.addEventListener('input', function(event) {
+        config[prop] = parseInt(event.target.value);
+        cornerstoneTools[tool].setConfiguration(config)
+      })
+      element.value = config[prop];
+    }
+    syncConfig('thresholdVal', 'regionsThreshold', 'calciumThresholdHu');
+    syncConfig('growLayersAbove', 'regionsGrow', 'layersAbove');
+    syncConfig('growLayersBelow', 'regionsGrow', 'layersBelow');
+    syncConfig('growValue', 'regionsGrow', 'toolRegionValue');
+    syncConfig('drawLayersAbove', 'regionsDraw', 'layersAbove');
+    syncConfig('drawLayersBelow', 'regionsDraw', 'layersBelow');
+    syncConfig('drawValue', 'regionsDraw', 'toolRegionValue');
 
     document.getElementById('snap').addEventListener('change', function(e) {
       e.preventDefault();
@@ -182,6 +266,7 @@ is used by our example image loader-->
       config.snap = e.target.checked;
       cornerstoneTools.regionsDraw.setConfiguration(config);
     })
+
 
 
 </script>

@@ -1,6 +1,9 @@
-export { default as regionsThreshold } from './thresholding.js';
-export { default as regionsGrow } from './grow.js';
-export { default as regionsDraw } from './draw.js';
-export { default as regionsScore } from './score.js';
+// Tools
+export { default as regionsThreshold } from './thresholdTool.js';
+export { default as regionsGrow } from './growTool.js';
+export { default as regionsDraw } from './drawTool.js';
+export { default as regionsScore } from './scoreTool.js';
 
-export { default as regionsUndo } from './undo.js';
+export { regionsUndo, regionsRedo } from './history.js';
+export { regionsToolState } from './state.js';
+export { default as lesionIndicator } from './lesionIndicator.js';

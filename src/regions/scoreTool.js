@@ -1,7 +1,10 @@
 import { cornerstoneMath, external } from '../externalModules.js';
-import { getConfiguration, getLastElement } from './thresholding.js';
-import { TYPED_ARRAY, TOOL_TYPE } from './constants';
-import { getToolState } from '../stateManagement/toolState';
+import { getToolState } from '../stateManagement/toolState.js';
+
+import { TYPED_ARRAY, TOOL_TYPE } from './constants.js';
+
+// Hm do we need to depend?
+import { getConfiguration } from './thresholdTool.js';
 
 function getDensityFactor (hu) {
   if (hu < 130) {
@@ -167,8 +170,7 @@ function bfs (x, y, view, visitedVoxels, label, image) {
  * Calculate CaScore per label per slice per lesion
  *
  */
-export function score () {
-  const element = getLastElement();
+export function score (element) {
   const { regionColorsRGB } = getConfiguration();
 
   const regionsToolData = getToolState(element, TOOL_TYPE);
