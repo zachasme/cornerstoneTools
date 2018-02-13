@@ -204,11 +204,11 @@ export function score () {
         imageOrientationTmp.slice(3)
       ];
 
-      if (metaData.rescaleType !== 'HU') {
-        console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
-
-        return;
-      }
+      // if (metaData.rescaleType !== 'HU') {
+      //   console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
+      //
+      //   return;
+      // }
 
       if (prevImagePosition) {
         const distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
