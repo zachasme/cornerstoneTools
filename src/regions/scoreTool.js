@@ -71,9 +71,9 @@ function computeScore (metaData, voxels) {
   const { KVPToMultiplier } = getConfiguration();
   const KVPMultiplier = KVPToMultiplier[metaData.KVP];
   const cascore = volume * densityFactor * KVPMultiplier;
-  //
+
   console.log(`modeOverlapFactor", ${metaData.modeOverlapFactor}`)
-  console.log("voxels.length: " + voxels.length);
+  console.log(`voxels.length: ${voxels.length}`);
   console.log(`voxelSizeScaled: ${voxelSizeScaled}`);
   console.log(`Volume: ${volume}`);
   console.log(`Max HU: ${metaData.maxHU}`);

@@ -25,6 +25,9 @@ function onImageRendered ({ detail }) {
   const stackToolData = getToolState(element, 'stack');
   const regionsToolData = getToolState(element, 'regions');
 
+  canvasContext.clearRect(0,0,100,100);
+  /*
+
   // Ensure tool is enabled
   if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
     return;
@@ -78,7 +81,7 @@ function onImageRendered ({ detail }) {
   // Set transforms based on zoom/pan/etc
   external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
   // Finally, draw offscreen canvas onto context
-  canvasContext.drawImage(doubleBuffer, 0, 0);
+  canvasContext.drawImage(doubleBuffer, 0, 0);*/
 }
 
 const lesionIndicator = displayTool(onImageRendered);
