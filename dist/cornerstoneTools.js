@@ -4962,8 +4962,6 @@ exports.drawBrushOnCanvas = drawBrushOnCanvas;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getConfiguration = getConfiguration;
-exports.setConfiguration = setConfiguration;
 
 var _externalModules = __webpack_require__(0);
 
@@ -5047,7 +5045,29 @@ function performThresholding(imageIds) {
   });
 }
 
-function activate(element, doneCallback) {
+function ensureToolData(element) {
+  var regionsData = void 0;
+
+  var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
+
+  if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
+    regionsData = {
+      enabled: 1,
+      buffer: null,
+      width: null,
+      height: null,
+      history: [],
+      drawBuffer: null
+    };
+    (0, _toolState.addToolState)(element, _constants.TOOL_TYPE, regionsData);
+  } else {
+    regionsData = regionsToolData.data[0];
+  }
+
+  return regionsData;
+}
+
+function threshold(element) {
   var stackToolData = (0, _toolState.getToolState)(element, 'stack');
 
   if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
@@ -5055,25 +5075,17 @@ function activate(element, doneCallback) {
   }
 
   var stackData = stackToolData.data[0];
+  var regionsData = ensureToolData(element);
 
-  setTimeout(function () {
-    performThresholding(stackData.imageIds).then(function (regions) {
-      // Add threshold data to tool state
-      var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
-      var regionsData = regionsToolData.data[0];
+  performThresholding(stackData.imageIds).then(function (regions) {
+    // Add threshold data to tool state
+    regionsData.buffer = regions.buffer;
+    regionsData.width = regions.width;
+    regionsData.height = regions.height;
 
-      regionsData.buffer = regions.buffer;
-      regionsData.width = regions.width;
-      regionsData.height = regions.height;
-
-      // Update the element to apply the viewport and tool changes
-      _externalModules.external.cornerstone.updateImage(element);
-
-      if (typeof doneCallback === 'function') {
-        doneCallback();
-      }
-    });
-  }, 100);
+    // Update the element to apply the viewport and tool changes
+    _externalModules.external.cornerstone.updateImage(element);
+  });
 }
 
 function getConfiguration() {
@@ -5086,7 +5098,7 @@ function setConfiguration(config) {
 
 // Module/private exports
 exports.default = {
-  activate: activate,
+  threshold: threshold,
   getConfiguration: getConfiguration,
   setConfiguration: setConfiguration
 };
@@ -6295,22 +6307,16 @@ Object.defineProperty(exports, 'adaptiveBrush', {
 
 var _index3 = __webpack_require__(122);
 
-Object.defineProperty(exports, 'lesionIndicator', {
-  enumerable: true,
-  get: function get() {
-    return _index3.lesionIndicator;
-  }
-});
-Object.defineProperty(exports, 'regionsToolState', {
-  enumerable: true,
-  get: function get() {
-    return _index3.regionsToolState;
-  }
-});
 Object.defineProperty(exports, 'regionsThreshold', {
   enumerable: true,
   get: function get() {
     return _index3.regionsThreshold;
+  }
+});
+Object.defineProperty(exports, 'lesionIndicator', {
+  enumerable: true,
+  get: function get() {
+    return _index3.lesionIndicator;
   }
 });
 Object.defineProperty(exports, 'regionsGrow', {
@@ -16729,15 +16735,6 @@ Object.defineProperty(exports, 'regionsRedo', {
   }
 });
 
-var _state = __webpack_require__(126);
-
-Object.defineProperty(exports, 'regionsToolState', {
-  enumerable: true,
-  get: function get() {
-    return _state.regionsToolState;
-  }
-});
-
 var _lesionIndicator = __webpack_require__(127);
 
 Object.defineProperty(exports, 'lesionIndicator', {
@@ -17448,29 +17445,7 @@ function score(element) {
 exports.default = score;
 
 /***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var regionsToolState = function regionsToolState() {
-  return {
-    enabled: 1,
-    buffer: null,
-    width: null,
-    height: null,
-    history: [],
-    drawBuffer: null
-  };
-};
-
-exports.regionsToolState = regionsToolState;
-
-/***/ }),
+/* 126 */,
 /* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17514,39 +17489,49 @@ function onImageRendered(_ref) {
   var stackToolData = (0, _toolState.getToolState)(element, 'stack');
   var regionsToolData = (0, _toolState.getToolState)(element, 'regions');
 
-  canvasContext.clearRect(0, 0, 100, 100);
-  /*
-   // Ensure tool is enabled
+  // Ensure tool is enabled
   if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
     return;
   }
-   if (!regionsToolData.data[0].drawBuffer || width !== regionsToolData.data[0].drawBuffer.canvas.width) {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    const imageData = context.createImageData(width, height);
-     canvas.width = width;
+
+  if (!regionsToolData.data[0].drawBuffer || width !== regionsToolData.data[0].drawBuffer.canvas.width) {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    var _imageData = context.createImageData(width, height);
+
+    canvas.width = width;
     canvas.height = height;
-     regionsToolData.data[0].drawBuffer = {
-      canvas,
-      imageData
+
+    regionsToolData.data[0].drawBuffer = {
+      canvas: canvas,
+      imageData: _imageData
     };
   }
-   // Extract tool data
-  const { currentImageIdIndex } = stackToolData.data[0];
-  const { drawBuffer, buffer } = regionsToolData.data[0];
-   const doubleBuffer = drawBuffer.canvas;
-  const imageData = drawBuffer.imageData;
-   const pixels = imageData.data;
-  const sliceSize = width * height;
-  const sliceOffset = currentImageIdIndex * sliceSize;
-  const view = new TYPED_ARRAY(buffer, sliceOffset, sliceSize);
-   for (let offset = 0; offset < view.length; offset += 1) {
+
+  // Extract tool data
+  var currentImageIdIndex = stackToolData.data[0].currentImageIdIndex;
+  var _regionsToolData$data = regionsToolData.data[0],
+      drawBuffer = _regionsToolData$data.drawBuffer,
+      buffer = _regionsToolData$data.buffer;
+
+
+  var doubleBuffer = drawBuffer.canvas;
+  var imageData = drawBuffer.imageData;
+
+  var pixels = imageData.data;
+  var sliceSize = width * height;
+  var sliceOffset = currentImageIdIndex * sliceSize;
+  var view = new _constants.TYPED_ARRAY(buffer, sliceOffset, sliceSize);
+
+  for (var offset = 0; offset < view.length; offset += 1) {
     // Each pixel is represented by four elements in the imageData array
-    const imageDataOffset = offset * 4;
-    const label = view[offset];
-     if (label) {
-      const color = configuration.regionColorsRGB[label - 1];
-       pixels[imageDataOffset + 0] = color[0];
+    var imageDataOffset = offset * 4;
+    var label = view[offset];
+
+    if (label) {
+      var color = configuration.regionColorsRGB[label - 1];
+
+      pixels[imageDataOffset + 0] = color[0];
       pixels[imageDataOffset + 1] = color[1];
       pixels[imageDataOffset + 2] = color[2];
       pixels[imageDataOffset + 3] = configuration.drawAlpha * 255;
@@ -17554,12 +17539,13 @@ function onImageRendered(_ref) {
       pixels[imageDataOffset + 3] = 0;
     }
   }
-   // Put image data back into offscreen canvas
+
+  // Put image data back into offscreen canvas
   doubleBuffer.getContext('2d').putImageData(imageData, 0, 0);
   // Set transforms based on zoom/pan/etc
-  external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
+  _externalModules.external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
   // Finally, draw offscreen canvas onto context
-  canvasContext.drawImage(doubleBuffer, 0, 0);*/
+  canvasContext.drawImage(doubleBuffer, 0, 0);
 }
 
 var lesionIndicator = (0, _displayTool2.default)(onImageRendered);

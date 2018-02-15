@@ -185,7 +185,6 @@ is used by our example image loader-->
 
             // Set the stack as tool state
             cornerstoneTools.addToolState(element1, 'stack', stack);
-            cornerstoneTools.addToolState(element1, 'regions', cornerstoneTools.regionsToolState());
 
             // Enable all tools we want to use with this element1
             cornerstoneTools.lesionIndicator.enable(element1);
@@ -197,7 +196,7 @@ is used by our example image loader-->
 
             // thresholding and scoring are special,
             // they perform action on activate
-            cornerstoneTools.regionsThreshold.activate(element1);
+            cornerstoneTools.regionsThreshold.threshold(element1);
         });
     }
 

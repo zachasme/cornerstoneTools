@@ -5,5 +5,4 @@ export { default as regionsDraw } from './drawTool.js';
 export { default as regionsScore } from './scoreTool.js';
 
 export { regionsUndo, regionsRedo } from './history.js';
-export { regionsToolState } from './state.js';
 export { default as lesionIndicator } from './lesionIndicator.js';

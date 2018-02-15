@@ -151,9 +151,8 @@ export { zoom,
 export { brush } from './paintingTools/brush.js';
 export { adaptiveBrush } from './paintingTools/adaptiveBrush.js';
 export {
-  lesionIndicator,
-  regionsToolState,
   regionsThreshold,
+  lesionIndicator,
   regionsGrow,
   regionsDraw,
   regionsScore,
