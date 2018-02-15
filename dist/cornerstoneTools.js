@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-02-13 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-02-15 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -17356,11 +17356,14 @@ function computeOverlapFactor(distance, sliceThickness) {
   if (distance <= 0) {
     throw new Error('Distance must be > 0');
   }
+
   if (distance >= sliceThickness) {
     return 1;
   }
 
-  return (sliceThickness + distance) / (2 * sliceThickness);
+  var overlap = sliceThickness - distance;
+
+  return (sliceThickness - overlap) / sliceThickness;
 }
 
 function bfs(x, y, view, visitedVoxels, label, image) {

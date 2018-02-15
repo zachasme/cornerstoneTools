@@ -126,11 +126,14 @@ function computeOverlapFactor (distance, sliceThickness) {
   if (distance <= 0) {
     throw new Error('Distance must be > 0');
   }
+  
   if (distance >= sliceThickness) {
     return 1;
   }
 
-  return (sliceThickness + distance) / (2 * sliceThickness);
+  const overlap = sliceThickness - distance;
+
+  return (sliceThickness - overlap) / (sliceThickness);
 }
 
 function bfs (x, y, view, visitedVoxels, label, image) {
