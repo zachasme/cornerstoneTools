@@ -101,14 +101,14 @@ function ensureToolData (element) {
 
 function threshold (element) {
   const stackToolData = getToolState(element, 'stack');
-
+console.log("got stack", stackToolData);
   if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
     return;
   }
 
   const stackData = stackToolData.data[0];
   const regionsData = ensureToolData(element);
-
+  console.log("ABOUT TO PERFORM");
   performThresholding(stackData.imageIds).then((regions) => {
     // Add threshold data to tool state
     regionsData.buffer = regions.buffer;

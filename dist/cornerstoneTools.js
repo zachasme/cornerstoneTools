@@ -5069,14 +5069,14 @@ function ensureToolData(element) {
 
 function threshold(element) {
   var stackToolData = (0, _toolState.getToolState)(element, 'stack');
-
+  console.log("got stack", stackToolData);
   if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
     return;
   }
 
   var stackData = stackToolData.data[0];
   var regionsData = ensureToolData(element);
-
+  console.log("ABOUT TO PERFORM");
   performThresholding(stackData.imageIds).then(function (regions) {
     // Add threshold data to tool state
     regionsData.buffer = regions.buffer;
@@ -6350,7 +6350,7 @@ Object.defineProperty(exports, 'regionsRedo', {
   }
 });
 
-var _version = __webpack_require__(128);
+var _version = __webpack_require__(127);
 
 Object.defineProperty(exports, 'version', {
   enumerable: true,
@@ -16735,7 +16735,7 @@ Object.defineProperty(exports, 'regionsRedo', {
   }
 });
 
-var _lesionIndicator = __webpack_require__(127);
+var _lesionIndicator = __webpack_require__(126);
 
 Object.defineProperty(exports, 'lesionIndicator', {
   enumerable: true,
@@ -17445,8 +17445,7 @@ function score(element) {
 exports.default = score;
 
 /***/ }),
-/* 126 */,
-/* 127 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17555,7 +17554,7 @@ lesionIndicator.setConfiguration(configuration);
 exports.default = lesionIndicator;
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
