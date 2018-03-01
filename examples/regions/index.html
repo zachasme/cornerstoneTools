@@ -4,9 +4,8 @@
     <!-- support for mobile touch devices -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- twitter bootstrap CSS stylesheet - not required by cornerstoneTools
+    <!-- twitter bootstrap CSS stylesheet - not required by cornerstoneTools -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    -->
 
     <link href="../cornerstone.min.css" rel="stylesheet">
 
@@ -93,8 +92,8 @@ is used by our example image loader-->
  <label for="snap"><input id="snap" type="checkbox" name="snap">snap</label>
 
 <script>
-    var element1 = $('#dicomImage1').get(0);
-    var element2 = $('#dicomImage2').get(0);
+    var element1 = document.getElementById('dicomImage1');
+    var element2 = document.getElementById('dicomImage2');
 
 
     // Enable the dicomImage element1 and the mouse inputs

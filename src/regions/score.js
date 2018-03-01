@@ -1,4 +1,4 @@
-import { cornerstoneMath, external } from '../externalModules.js';
+import external from '../externalModules.js';
 import { getConfiguration, getLastElement } from './thresholding.js';
 import { TYPED_ARRAY, TOOL_TYPE } from './constants';
 import { getToolState } from '../stateManagement/toolState';
@@ -94,24 +94,24 @@ function computeScore (metaData, voxels) {
 * @param imageOrientation {Array[2][3]} - DICOM tag (0020, 0037) of first slice
 */
 function computeIOPProjectedDistance (imagePositions, imageOrientation) {
-  const imagePosition1Vector = new cornerstoneMath.Vector3();
+  const imagePosition1Vector = new external.cornerstoneMath.Vector3();
 
   imagePosition1Vector.fromArray(imagePositions[0]);
 
-  const imagePosition2Vector = new cornerstoneMath.Vector3();
+  const imagePosition2Vector = new external.cornerstoneMath.Vector3();
 
   imagePosition2Vector.fromArray(imagePositions[1]);
 
-  const imageOrientationRowVector = new cornerstoneMath.Vector3();
+  const imageOrientationRowVector = new external.cornerstoneMath.Vector3();
 
   imageOrientationRowVector.fromArray(imageOrientation[0]);
 
-  const imageOrientationColumnVector = new cornerstoneMath.Vector3();
+  const imageOrientationColumnVector = new external.cornerstoneMath.Vector3();
 
   imageOrientationColumnVector.fromArray(imageOrientation[1]);
 
   // Compute unit normal of Image Orientation crossVectors
-  const orientationNormal = new cornerstoneMath.Vector3();
+  const orientationNormal = new external.cornerstoneMath.Vector3();
 
   orientationNormal.crossVectors(imageOrientationRowVector, imageOrientationColumnVector);
   // Project both position vectors on normal
@@ -126,7 +126,7 @@ function computeOverlapFactor (distance, sliceThickness) {
   if (distance <= 0) {
     throw new Error('Distance must be > 0');
   }
-  
+
   if (distance >= sliceThickness) {
     return 1;
   }

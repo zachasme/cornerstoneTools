@@ -1,9 +1,11 @@
-import { external } from '../externalModules.js';
+import EVENTS from '../events.js';
+import external from '../externalModules.js';
 import { getToolState } from '../stateManagement/toolState';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 import { getConfiguration, createUndoStep } from './thresholding.js';
+import { getToolOptions, setToolOptions } from '../toolOptions.js';
 
-// UNUSED const toolType = 'regionsGrow';
+const toolType = 'regionsGrow';
 
 // Get neighbour linear indices within slice bounds
 function linearNeighbours (width, height, highSlice, lowSlice, index) {
@@ -86,13 +88,12 @@ function regionGrowing (element, regions, slices, point) {
   });
 }
 
-function onMouseDown (e, eventData) {
+function onMouseDown (e) {
+  const eventData = e.detail;
   const { element } = eventData;
+  const options = getToolOptions(toolType, element);
 
-  console.log('*** e.data (grow.js) ***', e.data);
-  console.log('*** eventData (grow.js) ***', eventData);
-
-  if (isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {
+  if (isMouseButtonEnabled(eventData.which, options.mouseButtonMask)) {
     createUndoStep(element);
     const [stackData] = getToolState(element, 'stack').data;
     const [regionsData] = getToolState(element, 'regions').data;
@@ -106,6 +107,8 @@ function onMouseDown (e, eventData) {
 }
 
 function enable (element, mouseButtonMask) {
+  setToolOptions(toolType, element, { mouseButtonMask });
+
   const stackData = getToolState(element, 'stack');
   const regionsData = getToolState(element, 'regions');
 
@@ -115,11 +118,11 @@ function enable (element, mouseButtonMask) {
     return;
   }
 
-  external.$(element).on('CornerstoneToolsMouseDown', { mouseButtonMask }, onMouseDown);
+  element.addEventListener(EVENTS.MOUSE_DOWN, onMouseDown);
 }
 
 function disable (element) {
-  external.$(element).off('CornerstoneToolsMouseDown', onMouseDown);
+  element.removeEventListener(EVENTS.MOUSE_DOWN, onMouseDown);
 }
 
 export default {
