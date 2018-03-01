@@ -230,8 +230,17 @@ function onImageRendered (e) {
 
       // Retrieve the pixel spacing values, and if they are not
       // Real non-zero values, set them to 1
-      const columnPixelSpacing = image.columnPixelSpacing || 1;
-      const rowPixelSpacing = image.rowPixelSpacing || 1;
+      const imagePlane = cornerstone.metaData.get('imagePlaneModule', image.imageId);
+      let rowPixelSpacing;
+      let columnPixelSpacing;
+
+      if (imagePlane) {
+        rowPixelSpacing = imagePlane.rowPixelSpacing || imagePlane.rowImagePixelSpacing;
+        columnPixelSpacing = imagePlane.columnPixelSpacing || imagePlane.colImagePixelSpacing;
+      } else {
+        rowPixelSpacing = image.rowPixelSpacing || 1;
+        columnPixelSpacing = image.columnPixelSpacing || 1;
+      }
 
       // Calculate the image area from the ellipse dimensions and pixel spacing
       area = Math.PI * (ellipse.width * columnPixelSpacing / 2) * (ellipse.height * rowPixelSpacing / 2);
@@ -282,7 +291,19 @@ function onImageRendered (e) {
       // This uses Char code 178 for a superscript 2
       let suffix = ` mm${String.fromCharCode(178)}`;
 
-      if (!image.rowPixelSpacing || !image.columnPixelSpacing) {
+      const imagePlane = cornerstone.metaData.get('imagePlaneModule', image.imageId);
+      let rowPixelSpacing;
+      let columnPixelSpacing;
+
+      if (imagePlane) {
+        rowPixelSpacing = imagePlane.rowPixelSpacing || imagePlane.rowImagePixelSpacing;
+        columnPixelSpacing = imagePlane.columnPixelSpacing || imagePlane.colImagePixelSpacing;
+      } else {
+        rowPixelSpacing = image.rowPixelSpacing || 1;
+        columnPixelSpacing = image.columnPixelSpacing || 1;
+      }
+
+      if (!rowPixelSpacing || !columnPixelSpacing) {
         suffix = ` pixels${String.fromCharCode(178)}`;
       }
 
