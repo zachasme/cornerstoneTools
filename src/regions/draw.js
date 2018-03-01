@@ -119,8 +119,10 @@ function updateRegions (element) {
 // Disable drawing and tracking on mouse up also update regions
 function mouseUpCallback (e) {
   const eventData = e.detail;
+
   eventData.element.removeEventListener(EVENTS.MOUSE_DRAG, mouseDragCallback);
   eventData.element.removeEventListener(EVENTS.MOUSE_UP, mouseUpCallback);
+  eventData.element.removeEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);
   eventData.element.removeEventListener(EVENTS.IMAGE_RENDERED, onImageRendered);
   updateRegions(eventData.element);
   external.cornerstone.updateImage(eventData.element);
@@ -137,6 +139,7 @@ function mouseDownCallback (e) {
 
     eventData.element.addEventListener(EVENTS.MOUSE_DRAG, mouseDragCallback);
     eventData.element.addEventListener(EVENTS.MOUSE_UP, mouseUpCallback);
+    eventData.element.addEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);
     eventData.element.addEventListener(EVENTS.IMAGE_RENDERED, onImageRendered);
 
     return mouseDragCallback(e, eventData);
