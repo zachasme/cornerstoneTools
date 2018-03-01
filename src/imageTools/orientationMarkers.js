@@ -1,4 +1,4 @@
-import { external } from '../externalModules.js';
+import external from '../externalModules.js';
 import orientation from '../orientation/index.js';
 import displayTool from './displayTool.js';
 import toolColors from '../stateManagement/toolColors.js';
@@ -64,7 +64,8 @@ function getOrientationMarkerPositions (element) {
   };
 }
 
-function onImageRendered (e, eventData) {
+function onImageRendered (e) {
+  const eventData = e.detail;
   const element = eventData.element;
 
   const markers = getOrientationMarkers(element);

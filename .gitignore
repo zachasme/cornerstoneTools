@@ -3,6 +3,6 @@
 coverage
 bower_components
 node_modules
-build
 coverage
 documentation
+docs/_book

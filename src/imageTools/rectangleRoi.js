@@ -1,4 +1,4 @@
-import { cornerstoneMath, external } from '../externalModules.js';
+import external from '../externalModules.js';
 import mouseButtonTool from './mouseButtonTool.js';
 import touchTool from './touchTool.js';
 import toolStyle from '../stateManagement/toolStyle.js';
@@ -57,7 +57,7 @@ function pointNearTool (element, data, coords) {
     height: Math.abs(startCanvas.y - endCanvas.y)
   };
 
-  const distanceToPoint = cornerstoneMath.rect.distanceToPoint(rect, coords);
+  const distanceToPoint = external.cornerstoneMath.rect.distanceToPoint(rect, coords);
 
 
   return (distanceToPoint < 5);
@@ -111,7 +111,9 @@ function numberWithCommas (x) {
   return parts.join('.');
 }
 
-function onImageRendered (e, eventData) {
+function onImageRendered (e) {
+  const eventData = e.detail;
+
   // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = getToolState(e.currentTarget, toolType);
 
@@ -371,7 +373,7 @@ function onImageRendered (e, eventData) {
 
       // We obtain the link starting point by finding the closest point on the ellipse to the
       // Center of the textbox
-      link.start = cornerstoneMath.point.findClosestPoint(ellipsePoints, link.end);
+      link.start = external.cornerstoneMath.point.findClosestPoint(ellipsePoints, link.end);
 
       // Next we calculate the corners of the textbox bounding box
       const boundingBoxPoints = [{
@@ -394,7 +396,7 @@ function onImageRendered (e, eventData) {
 
       // Now we recalculate the link endpoint by identifying which corner of the bounding box
       // Is closest to the start point we just calculated.
-      link.end = cornerstoneMath.point.findClosestPoint(boundingBoxPoints, link.start);
+      link.end = external.cornerstoneMath.point.findClosestPoint(boundingBoxPoints, link.start);
 
       // Finally we draw the dashed linking line
       context.beginPath();

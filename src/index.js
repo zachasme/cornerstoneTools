@@ -1,4 +1,4 @@
-export { external } from './externalModules.js';
+export { default as external } from './externalModules.js';
 
 export { default as referenceLines } from './referenceLines/index.js';
 export { default as orientation } from './orientation/index.js';
@@ -152,3 +152,5 @@ export { brush } from './paintingTools/brush.js';
 export { adaptiveBrush } from './paintingTools/adaptiveBrush.js';
 export { regionsThreshold, regionsGrow, regionsDraw, regionsScore, regionsUndo } from './regions/index.js';
 export { default as version } from './version.js';
+
+export { setToolOptions, getToolOptions } from './toolOptions.js';

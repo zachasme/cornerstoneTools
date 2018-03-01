@@ -1,21 +1,19 @@
-import * as cornerstoneMath from 'cornerstone-math';
-
 let cornerstone = window.cornerstone;
-let $ = window.$;
+let cornerstoneMath = window.cornerstoneMath;
 let Hammer = window.Hammer;
 
-const external = {
+export default {
   set cornerstone (cs) {
     cornerstone = cs;
   },
   get cornerstone () {
     return cornerstone;
   },
-  set $ (module) {
-    $ = module;
+  set cornerstoneMath (cm) {
+    cornerstoneMath = cm;
   },
-  get $ () {
-    return $;
+  get cornerstoneMath () {
+    return cornerstoneMath;
   },
   set Hammer (module) {
     Hammer = module;
@@ -24,5 +22,3 @@ const external = {
     return Hammer;
   }
 };
-
-export { cornerstoneMath, external };
