@@ -126,11 +126,14 @@ function computeOverlapFactor (distance, sliceThickness) {
   if (distance <= 0) {
     throw new Error('Distance must be > 0');
   }
+  
   if (distance >= sliceThickness) {
     return 1;
   }
 
-  return (sliceThickness + distance) / (2 * sliceThickness);
+  const overlap = sliceThickness - distance;
+
+  return (sliceThickness - overlap) / (sliceThickness);
 }
 
 function bfs (x, y, view, visitedVoxels, label, image) {
@@ -204,11 +207,11 @@ export function score () {
         imageOrientationTmp.slice(3)
       ];
 
-      if (metaData.rescaleType !== 'HU') {
-        console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
-
-        return;
-      }
+      // if (metaData.rescaleType !== 'HU') {
+      //   console.warn(`Modality LUT does not convert to Hounsfield units but to ${metaData.rescaleType}. Agatston score is not defined for this unit type.`);
+      //
+      //   return;
+      // }
 
       if (prevImagePosition) {
         const distance = computeIOPProjectedDistance([prevImagePosition, imagePositionPatient], imageOrientation);
