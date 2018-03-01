@@ -304,7 +304,7 @@ function onImageRendered (e) {
       // This uses Char code 178 for a superscript 2
       let suffix = ` mm${String.fromCharCode(178)}`;
 
-      if (!rowPixelSpacing || !columnPixelSpacing) {
+      if (!rowPixelSpacing || !colPixelSpacing) {
         suffix = ` pixels${String.fromCharCode(178)}`;
       }
 
