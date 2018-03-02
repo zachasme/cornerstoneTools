@@ -1,68 +1,19 @@
 import EVENTS from '../events.js';
 import external from '../externalModules.js';
-import { addToolState, clearToolState, getToolState } from '../stateManagement/toolState';
-import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import * as regionsThreshold from './thresholding.js';
+import { getToolState } from '../stateManagement/toolState.js';
 import { getToolOptions, setToolOptions } from '../toolOptions.js';
+import simpleMouseButtonTool from '../imageTools/simpleMouseButtonTool.js';
+import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+import pointInsidePolygon from '../util/pointInsidePolygon.js';
+import * as regionsThreshold from './thresholding.js';
 
-const toolType = 'drawing';
+const toolType = 'draw';
 
 let configuration = {
-  snap: false // Snap to thresholded region or not
+  snap: false, // Snap to thresholded region or not
+  fillStyle: 'rgba(255,255,255,.2)',
+  strokeStyle: 'white'
 };
-
-// Determine if a point is inside a polygon
-function isInside (point, vs) {
-  const [x, y] = point;
-  let inside = false;
-
-  for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-    const [xi, yi] = vs[i];
-    const [xj, yj] = vs[j];
-
-    const intersect = ((yi > y) !== (yj > y)) &&
-      (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-
-    if (intersect) {
-      inside = !inside;
-    }
-  }
-
-  return inside;
-}
-
-// Draw regions on the canvas
-function onImageRendered (e) {
-  const eventData = e.detail;
-  const { canvasContext, enabledElement, element } = eventData;
-
-  // Set the canvas context to the image coordinate system
-  external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
-
-  // Points
-  const drawingData = getToolState(element, toolType);
-  const context = eventData.canvasContext;
-  const points = drawingData.data[0].points;
-
-  if (points.length < 2) {
-    return;
-  }
-
-  const first = points[0];
-  const xFirst = first[0];
-  const yFirst = first[1];
-
-  context.fillStyle = 'rgba(255,255,255,.2)';
-  context.strokeStyle = 'white';
-  context.beginPath();
-  context.moveTo(xFirst, yFirst);
-  points.slice(1).forEach(function (point) {
-    context.lineTo(point[0], point[1]);
-  });
-  context.closePath();
-  context.stroke();
-  context.fill();
-}
 
 function updateRegions (element) {
   const { toolRegionValue, layersAbove, layersBelow } = regionsThreshold.getConfiguration();
@@ -72,13 +23,13 @@ function updateRegions (element) {
   // Get tool data
   const stackData = getToolState(element, 'stack');
   const thresholdingData = getToolState(element, 'regions');
-  const drawingData = getToolState(element, toolType);
+  const options = getToolOptions(toolType, element);
 
   // Extract tool data
   const slice = stackData.data[0].currentImageIdIndex;
   const numSlices = stackData.data[0].imageIds.length;
   const regions = thresholdingData.data[0];
-  const points = drawingData.data[0].points;
+  const points = options.points.map(({ x, y }) => ([x, y]));
 
   // Extract region data
   const buffer = regions.buffer;
@@ -108,7 +59,7 @@ function updateRegions (element) {
         } else {
           snapBool = true;
         }
-        if (snapBool && isInside([x, y], points)) {
+        if (snapBool && pointInsidePolygon([x, y], points)) {
           view[index] = toolRegionValue;
         }
       }
@@ -116,89 +67,83 @@ function updateRegions (element) {
   }
 }
 
-// Disable drawing and tracking on mouse up also update regions
-function mouseUpCallback (e) {
-  const eventData = e.detail;
+// Draw regions on the canvas
+function imageRenderedCallback (e) {
+  const { canvasContext, enabledElement, element } = e.detail;
+  const { fillStyle, strokeStyle } = draw.getConfiguration();
 
-  eventData.element.removeEventListener(EVENTS.MOUSE_DRAG, mouseDragCallback);
-  eventData.element.removeEventListener(EVENTS.MOUSE_UP, mouseUpCallback);
-  eventData.element.removeEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);
-  eventData.element.removeEventListener(EVENTS.IMAGE_RENDERED, onImageRendered);
-  updateRegions(eventData.element);
-  external.cornerstone.updateImage(eventData.element);
-}
+  // Points
+  const options = getToolOptions(toolType, element);
+  const points = options.points;
 
-function mouseDownCallback (e) {
-  const eventData = e.detail;
-  const options = getToolOptions(toolType, eventData.element);
-
-  if (isMouseButtonEnabled(eventData.which, options.mouseButtonMask)) {
-    const toolData = getToolState(e.currentTarget, toolType);
-
-    toolData.data[0].points = [];
-
-    eventData.element.addEventListener(EVENTS.MOUSE_DRAG, mouseDragCallback);
-    eventData.element.addEventListener(EVENTS.MOUSE_UP, mouseUpCallback);
-    eventData.element.addEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);
-    eventData.element.addEventListener(EVENTS.IMAGE_RENDERED, onImageRendered);
-
-    return mouseDragCallback(e, eventData);
-  }
-}
-
-function mouseDragCallback (e) {
-  const eventData = e.detail;
-  e.stopImmediatePropagation(); // Prevent CornerstoneToolsTouchStartActive from killing any press events
-
-  // If we have no toolData for this element, return immediately as there is nothing to do
-  const toolData = getToolState(e.currentTarget, toolType);
-
-  if (!toolData) {
+  if (points.length < 2) {
     return;
   }
 
-  const point = eventData.currentPoints.image;
+  // Set the canvas context to the image coordinate system
+  external.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
 
-  toolData.data[0].points.push([point.x, point.y]);
-
-  external.cornerstone.updateImage(eventData.element);
-
-  return false; // False = causes jquery to preventDefault() and stopPropagation() this event
-}
-
-function enable (element, mouseButtonMask) {
-  setToolOptions(toolType, element, { mouseButtonMask });
-
-    // Clear any currently existing toolData
-  clearToolState(element, toolType);
-
-  addToolState(element, toolType, {
-    points: []
+  canvasContext.fillStyle = fillStyle;
+  canvasContext.strokeStyle = strokeStyle;
+  canvasContext.beginPath();
+  canvasContext.moveTo(points[0].x, points[0].y);
+  points.slice(1).forEach(function (point) {
+    canvasContext.lineTo(point.x, point.y);
   });
-
-  element.removeEventListener(EVENTS.MOUSE_DOWN, mouseDownCallback);
-  element.addEventListener(EVENTS.MOUSE_DOWN, mouseDownCallback);
+  canvasContext.closePath();
+  canvasContext.stroke();
+  canvasContext.fill();
 }
 
-function disable (element) {
-  element.removeEventListener(EVENTS.MOUSE_DOWN, mouseDownCallback);
+function dragCallback (e) {
+  const { currentPoints, element } = e.detail;
+  const options = getToolOptions(toolType, element);
+
+  options.points.push(currentPoints.image);
+  external.cornerstone.updateImage(element);
+
+  e.preventDefault();
+  e.stopPropagation();
 }
 
-export function getConfiguration () {
-  return configuration;
+// Disable drawing and tracking on mouse up also update regions
+function mouseUpCallback (e) {
+  const { element } = e.detail;
+
+  element.removeEventListener(EVENTS.MOUSE_DRAG, dragCallback);
+  element.removeEventListener(EVENTS.MOUSE_UP, mouseUpCallback);
+  element.removeEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);
+  element.removeEventListener(EVENTS.IMAGE_RENDERED, imageRenderedCallback);
+
+  updateRegions(element);
+  external.cornerstone.updateImage(element);
 }
 
-export function setConfiguration (config) {
+// Start drawing and tracking on mouse up, also reset points array
+function mouseDownCallback (e) {
+  const { element, which } = e.detail;
+  const options = getToolOptions(toolType, element);
+
+  if (isMouseButtonEnabled(which, options.mouseButtonMask)) {
+    options.points = [];
+
+    setToolOptions(toolType, element, options);
+
+    element.addEventListener(EVENTS.MOUSE_DRAG, dragCallback);
+    element.addEventListener(EVENTS.MOUSE_UP, mouseUpCallback);
+    element.addEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);
+    element.addEventListener(EVENTS.IMAGE_RENDERED, imageRenderedCallback);
+
+    e.preventDefault();
+    e.stopPropagation();
+  }
+}
+
+const draw = simpleMouseButtonTool(mouseDownCallback, toolType);
+
+draw.getConfiguration = () => configuration;
+draw.setConfiguration = (config) => {
   configuration = config;
-}
-
-// Module/private exports
-
-export default {
-  enable,
-  disable,
-  activate: enable,
-  deactivate: disable,
-  getConfiguration,
-  setConfiguration
 };
+
+export default draw;

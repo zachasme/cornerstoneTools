@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 2.0.0 - 2018-03-01 | (c) 2017 Chris Hafey | https://github.com/cornerstonejs/cornerstoneTools */
+/*! cornerstone-tools - 2.0.0 - 2018-03-02 | (c) 2017 Chris Hafey | https://github.com/cornerstonejs/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -17996,11 +17996,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-exports.getConfiguration = getConfiguration;
-exports.setConfiguration = setConfiguration;
-
 var _events = __webpack_require__(1);
 
 var _events2 = _interopRequireDefault(_events);
@@ -18011,88 +18006,35 @@ var _externalModules2 = _interopRequireDefault(_externalModules);
 
 var _toolState = __webpack_require__(2);
 
+var _toolOptions = __webpack_require__(3);
+
+var _simpleMouseButtonTool = __webpack_require__(16);
+
+var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
+
 var _isMouseButtonEnabled = __webpack_require__(4);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
+
+var _pointInsidePolygon = __webpack_require__(129);
+
+var _pointInsidePolygon2 = _interopRequireDefault(_pointInsidePolygon);
 
 var _thresholding = __webpack_require__(28);
 
 var regionsThreshold = _interopRequireWildcard(_thresholding);
 
-var _toolOptions = __webpack_require__(3);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var toolType = 'drawing';
+var toolType = 'draw';
 
 var configuration = {
-  snap: false // Snap to thresholded region or not
+  snap: false, // Snap to thresholded region or not
+  fillStyle: 'rgba(255,255,255,.2)',
+  strokeStyle: 'white'
 };
-
-// Determine if a point is inside a polygon
-function isInside(point, vs) {
-  var _point = _slicedToArray(point, 2),
-      x = _point[0],
-      y = _point[1];
-
-  var inside = false;
-
-  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-    var _vs$i = _slicedToArray(vs[i], 2),
-        xi = _vs$i[0],
-        yi = _vs$i[1];
-
-    var _vs$j = _slicedToArray(vs[j], 2),
-        xj = _vs$j[0],
-        yj = _vs$j[1];
-
-    var intersect = yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
-
-    if (intersect) {
-      inside = !inside;
-    }
-  }
-
-  return inside;
-}
-
-// Draw regions on the canvas
-function onImageRendered(e) {
-  var eventData = e.detail;
-  var canvasContext = eventData.canvasContext,
-      enabledElement = eventData.enabledElement,
-      element = eventData.element;
-
-  // Set the canvas context to the image coordinate system
-
-  _externalModules2.default.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
-
-  // Points
-  var drawingData = (0, _toolState.getToolState)(element, toolType);
-  var context = eventData.canvasContext;
-  var points = drawingData.data[0].points;
-
-  if (points.length < 2) {
-    return;
-  }
-
-  var first = points[0];
-  var xFirst = first[0];
-  var yFirst = first[1];
-
-  context.fillStyle = 'rgba(255,255,255,.2)';
-  context.strokeStyle = 'white';
-  context.beginPath();
-  context.moveTo(xFirst, yFirst);
-  points.slice(1).forEach(function (point) {
-    context.lineTo(point[0], point[1]);
-  });
-  context.closePath();
-  context.stroke();
-  context.fill();
-}
 
 function updateRegions(element) {
   var _regionsThreshold$get = regionsThreshold.getConfiguration(),
@@ -18105,13 +18047,17 @@ function updateRegions(element) {
   // Get tool data
   var stackData = (0, _toolState.getToolState)(element, 'stack');
   var thresholdingData = (0, _toolState.getToolState)(element, 'regions');
-  var drawingData = (0, _toolState.getToolState)(element, toolType);
+  var options = (0, _toolOptions.getToolOptions)(toolType, element);
 
   // Extract tool data
   var slice = stackData.data[0].currentImageIdIndex;
   var numSlices = stackData.data[0].imageIds.length;
   var regions = thresholdingData.data[0];
-  var points = drawingData.data[0].points;
+  var points = options.points.map(function (_ref) {
+    var x = _ref.x,
+        y = _ref.y;
+    return [x, y];
+  });
 
   // Extract region data
   var buffer = regions.buffer;
@@ -18141,7 +18087,7 @@ function updateRegions(element) {
         } else {
           snapBool = true;
         }
-        if (snapBool && isInside([x, y], points)) {
+        if (snapBool && (0, _pointInsidePolygon2.default)([x, y], points)) {
           view[index] = toolRegionValue;
         }
       }
@@ -18149,92 +18095,103 @@ function updateRegions(element) {
   }
 }
 
-// Disable drawing and tracking on mouse up also update regions
-function mouseUpCallback(e) {
-  var eventData = e.detail;
+// Draw regions on the canvas
+function imageRenderedCallback(e) {
+  var _e$detail = e.detail,
+      canvasContext = _e$detail.canvasContext,
+      enabledElement = _e$detail.enabledElement,
+      element = _e$detail.element;
 
-  eventData.element.removeEventListener(_events2.default.MOUSE_DRAG, mouseDragCallback);
-  eventData.element.removeEventListener(_events2.default.MOUSE_UP, mouseUpCallback);
-  eventData.element.removeEventListener(_events2.default.MOUSE_CLICK, mouseUpCallback);
-  eventData.element.removeEventListener(_events2.default.IMAGE_RENDERED, onImageRendered);
-  updateRegions(eventData.element);
-  _externalModules2.default.cornerstone.updateImage(eventData.element);
-}
+  var _draw$getConfiguratio = draw.getConfiguration(),
+      fillStyle = _draw$getConfiguratio.fillStyle,
+      strokeStyle = _draw$getConfiguratio.strokeStyle;
 
-function mouseDownCallback(e) {
-  var eventData = e.detail;
-  var options = (0, _toolOptions.getToolOptions)(toolType, eventData.element);
+  // Points
 
-  if ((0, _isMouseButtonEnabled2.default)(eventData.which, options.mouseButtonMask)) {
-    var toolData = (0, _toolState.getToolState)(e.currentTarget, toolType);
 
-    toolData.data[0].points = [];
+  var options = (0, _toolOptions.getToolOptions)(toolType, element);
+  var points = options.points;
 
-    eventData.element.addEventListener(_events2.default.MOUSE_DRAG, mouseDragCallback);
-    eventData.element.addEventListener(_events2.default.MOUSE_UP, mouseUpCallback);
-    eventData.element.addEventListener(_events2.default.MOUSE_CLICK, mouseUpCallback);
-    eventData.element.addEventListener(_events2.default.IMAGE_RENDERED, onImageRendered);
-
-    return mouseDragCallback(e, eventData);
-  }
-}
-
-function mouseDragCallback(e) {
-  var eventData = e.detail;
-  e.stopImmediatePropagation(); // Prevent CornerstoneToolsTouchStartActive from killing any press events
-
-  // If we have no toolData for this element, return immediately as there is nothing to do
-  var toolData = (0, _toolState.getToolState)(e.currentTarget, toolType);
-
-  if (!toolData) {
+  if (points.length < 2) {
     return;
   }
 
-  var point = eventData.currentPoints.image;
+  // Set the canvas context to the image coordinate system
+  _externalModules2.default.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
 
-  toolData.data[0].points.push([point.x, point.y]);
-
-  _externalModules2.default.cornerstone.updateImage(eventData.element);
-
-  return false; // False = causes jquery to preventDefault() and stopPropagation() this event
-}
-
-function enable(element, mouseButtonMask) {
-  (0, _toolOptions.setToolOptions)(toolType, element, { mouseButtonMask: mouseButtonMask });
-
-  // Clear any currently existing toolData
-  (0, _toolState.clearToolState)(element, toolType);
-
-  (0, _toolState.addToolState)(element, toolType, {
-    points: []
+  canvasContext.fillStyle = fillStyle;
+  canvasContext.strokeStyle = strokeStyle;
+  canvasContext.beginPath();
+  canvasContext.moveTo(points[0].x, points[0].y);
+  points.slice(1).forEach(function (point) {
+    canvasContext.lineTo(point.x, point.y);
   });
-
-  element.removeEventListener(_events2.default.MOUSE_DOWN, mouseDownCallback);
-  element.addEventListener(_events2.default.MOUSE_DOWN, mouseDownCallback);
+  canvasContext.closePath();
+  canvasContext.stroke();
+  canvasContext.fill();
 }
 
-function disable(element) {
-  element.removeEventListener(_events2.default.MOUSE_DOWN, mouseDownCallback);
+function dragCallback(e) {
+  var _e$detail2 = e.detail,
+      currentPoints = _e$detail2.currentPoints,
+      element = _e$detail2.element;
+
+  var options = (0, _toolOptions.getToolOptions)(toolType, element);
+
+  options.points.push(currentPoints.image);
+  _externalModules2.default.cornerstone.updateImage(element);
+
+  e.preventDefault();
+  e.stopPropagation();
 }
 
-function getConfiguration() {
+// Disable drawing and tracking on mouse up also update regions
+function mouseUpCallback(e) {
+  var element = e.detail.element;
+
+
+  element.removeEventListener(_events2.default.MOUSE_DRAG, dragCallback);
+  element.removeEventListener(_events2.default.MOUSE_UP, mouseUpCallback);
+  element.removeEventListener(_events2.default.MOUSE_CLICK, mouseUpCallback);
+  element.removeEventListener(_events2.default.IMAGE_RENDERED, imageRenderedCallback);
+
+  updateRegions(element);
+  _externalModules2.default.cornerstone.updateImage(element);
+}
+
+// Start drawing and tracking on mouse up, also reset points array
+function mouseDownCallback(e) {
+  var _e$detail3 = e.detail,
+      element = _e$detail3.element,
+      which = _e$detail3.which;
+
+  var options = (0, _toolOptions.getToolOptions)(toolType, element);
+
+  if ((0, _isMouseButtonEnabled2.default)(which, options.mouseButtonMask)) {
+    options.points = [];
+
+    (0, _toolOptions.setToolOptions)(toolType, element, options);
+
+    element.addEventListener(_events2.default.MOUSE_DRAG, dragCallback);
+    element.addEventListener(_events2.default.MOUSE_UP, mouseUpCallback);
+    element.addEventListener(_events2.default.MOUSE_CLICK, mouseUpCallback);
+    element.addEventListener(_events2.default.IMAGE_RENDERED, imageRenderedCallback);
+
+    e.preventDefault();
+    e.stopPropagation();
+  }
+}
+
+var draw = (0, _simpleMouseButtonTool2.default)(mouseDownCallback, toolType);
+
+draw.getConfiguration = function () {
   return configuration;
-}
-
-function setConfiguration(config) {
-  configuration = config;
-}
-
-// Module/private exports
-
-exports.default = {
-  enable: enable,
-  disable: disable,
-  activate: enable,
-  deactivate: disable,
-  getConfiguration: getConfiguration,
-  setConfiguration: setConfiguration
 };
+draw.setConfiguration = function (config) {
+  configuration = config;
+};
+
+exports.default = draw;
 
 /***/ }),
 /* 126 */
@@ -18249,6 +18206,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+exports.computeVoxelSize = computeVoxelSize;
+exports.computeScore = computeScore;
+exports.computeIOPProjectedDistance = computeIOPProjectedDistance;
+exports.computeOverlapFactor = computeOverlapFactor;
 exports.score = score;
 
 var _externalModules = __webpack_require__(0);
@@ -18617,6 +18578,47 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = '2.0.0';
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = pointInsidePolygon;
+// Determine if a point is inside a polygon
+function pointInsidePolygon(point, vs) {
+  var _point = _slicedToArray(point, 2),
+      x = _point[0],
+      y = _point[1];
+
+  var inside = false;
+
+  for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+    var _vs$i = _slicedToArray(vs[i], 2),
+        xi = _vs$i[0],
+        yi = _vs$i[1];
+
+    var _vs$j = _slicedToArray(vs[j], 2),
+        xj = _vs$j[0],
+        yj = _vs$j[1];
+
+    var intersect = yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
+
+    if (intersect) {
+      inside = !inside;
+    }
+  }
+
+  return inside;
+}
 
 /***/ })
 /******/ ]);

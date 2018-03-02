@@ -1,5 +1,27 @@
 import { expect } from 'chai';
+import { webWorkerManager } from 'cornerstone-wado-image-loader';
 import { computeScore, computeVoxelSize, computeIOPProjectedDistance, computeOverlapFactor} from '../../src/regions/score.js';
+
+describe('config', function () {
+  it('should initialize', function () {
+    // Initialize the web worker manager
+    let config = {
+      maxWebWorkers: 1,
+      startWebWorkersOnDemand: true,
+      webWorkerPath: '/base/node_modules/cornerstone-wado-image-loader/dist/cornerstoneWADOImageLoaderWebWorker.js',
+      taskConfiguration: {
+        decodeTask: {
+          loadCodecsOnStartup: true,
+          initializeCodecsOnStartup: false,
+          codecsPath: '/base/node_modules/cornerstone-wado-image-loader/dist/cornerstoneWADOImageLoaderCodecs.js',
+          usePDFJS: false
+        }
+      }
+    };
+
+    webWorkerManager.initialize(config);
+  });
+});
 
 describe('#computeVoxelSize', function() {
   let metaData;

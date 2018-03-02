@@ -45,7 +45,7 @@ function mode (array) {
   return maxEl;
 }
 
-function computeVoxelSize (metaData) {
+export function computeVoxelSize (metaData) {
   if (metaData.sliceThickness === 0 ||
       metaData.pixelSpacing[0] === 0 ||
       metaData.pixelSpacing[1] === 0) {
@@ -59,7 +59,7 @@ function computeVoxelSize (metaData) {
   return zLength * xLength * yLength; // In mm³
 }
 
-function computeScore (metaData, voxels) {
+export function computeScore (metaData, voxels) {
   // Division by 3 because Agatson score assumes a slice thickness of 3 mm
   const voxelSizeScaled = computeVoxelSize(metaData) / 3;
   const densityFactor = getDensityFactor(metaData.maxHU);
@@ -93,7 +93,7 @@ function computeScore (metaData, voxels) {
 * @param imagePositions {Array[2][3]} - DICOM tag (0020, 0032) of two slices
 * @param imageOrientation {Array[2][3]} - DICOM tag (0020, 0037) of first slice
 */
-function computeIOPProjectedDistance (imagePositions, imageOrientation) {
+export function computeIOPProjectedDistance (imagePositions, imageOrientation) {
   const imagePosition1Vector = new external.cornerstoneMath.Vector3();
 
   imagePosition1Vector.fromArray(imagePositions[0]);
@@ -122,7 +122,7 @@ function computeIOPProjectedDistance (imagePositions, imageOrientation) {
   return projection1.distanceTo(projection2);
 }
 
-function computeOverlapFactor (distance, sliceThickness) {
+export function computeOverlapFactor (distance, sliceThickness) {
   if (distance <= 0) {
     throw new Error('Distance must be > 0');
   }
