@@ -1,9 +1,9 @@
-import EVENTS from '../events.js';
 import external from '../externalModules.js';
-import { getToolState } from '../stateManagement/toolState';
+import { getToolState } from '../stateManagement/toolState.js';
+import simpleMouseButtonTool from '../imageTools/simpleMouseButtonTool.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
-import { getConfiguration, createUndoStep } from './thresholding.js';
-import { getToolOptions, setToolOptions } from '../toolOptions.js';
+import { getConfiguration, createUndoStep } from './threshold.js';
+import { getToolOptions } from '../toolOptions.js';
 
 const toolType = 'regionsGrow';
 
@@ -30,31 +30,31 @@ function linearNeighbours (width, height, highSlice, lowSlice, index) {
   return neighbours;
 }
 
-function regionGrowing (element, regions, slices, point) {
-  return new Promise(function (resolve) {
-    const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = getConfiguration();
-    const { width, height, buffer } = regions;
-    const [x, y, slice] = point;
-    const highSlice = slice + layersBelow;
-    const lowSlice = slice - layersAbove;
+function regionGrowing (regions, point) {
+  const { growIterationsPerChunk, toolRegionValue, layersAbove, layersBelow } = getConfiguration();
+  const { width, height, buffer } = regions;
+  const [x, y, slice] = point;
+  const highSlice = slice + layersBelow;
+  const lowSlice = slice - layersAbove;
 
-    const view = new Uint8Array(buffer);
+  const view = new Uint8Array(buffer);
 
-    // Calculate linear indices and offsets
-    const sliceSize = width * height;
-    const sliceOffset = sliceSize * slice;
-    const clickIndex = (y * width) + x;
-    const linearIndex = sliceOffset + clickIndex;
-    const fromValue = view[linearIndex];
+  // Calculate linear indices and offsets
+  const sliceSize = width * height;
+  const sliceOffset = sliceSize * slice;
+  const clickIndex = (y * width) + x;
+  const linearIndex = sliceOffset + clickIndex;
+  const fromValue = view[linearIndex];
 
-    // Only continue if we clicked in thresholded area in different color
-    if (fromValue === 0 || fromValue === toolRegionValue) {
-      return;
-    }
+  // Only continue if we clicked in thresholded area in different color
+  if (fromValue === 0 || fromValue === toolRegionValue) {
+    return;
+  }
 
-    // Growing starts at clicked voxel
-    let activeVoxels = [linearIndex];
+  // Growing starts at clicked voxel
+  let activeVoxels = [linearIndex];
 
+  return new Promise((resolve) => {
     function chunk () {
       for(let i = 0; i < growIterationsPerChunk; i++) {
         // While activeVoxels is not empty
@@ -80,7 +80,6 @@ function regionGrowing (element, regions, slices, point) {
 
         activeVoxels = nextVoxels;
       }
-      external.cornerstone.updateImage(element);
       setTimeout(chunk, 0);
     }
 
@@ -88,46 +87,24 @@ function regionGrowing (element, regions, slices, point) {
   });
 }
 
-function onMouseDown (e) {
-  const eventData = e.detail;
-  const { element } = eventData;
+function mouseDownCallback (e) {
+  const { currentPoints, element, which } = e.detail;
   const options = getToolOptions(toolType, element);
 
-  if (isMouseButtonEnabled(eventData.which, options.mouseButtonMask)) {
-    createUndoStep(element);
+  if (isMouseButtonEnabled(which, options.mouseButtonMask)) {
     const [stackData] = getToolState(element, 'stack').data;
     const [regionsData] = getToolState(element, 'regions').data;
-    const { currentImageIdIndex, imageIds } = stackData;
-    const { x, y } = eventData.currentPoints.image;
-
+    const { currentImageIdIndex } = stackData;
+    const { x, y } = currentPoints.image;
     const point = [Math.round(x), Math.round(y), currentImageIdIndex];
 
-    regionGrowing(element, regionsData, imageIds.length, point);
+    createUndoStep(element);
+    regionGrowing(regionsData, point).then(() => {
+      external.cornerstone.updateImage(element);
+    });
   }
 }
 
-function enable (element, mouseButtonMask) {
-  setToolOptions(toolType, element, { mouseButtonMask });
+const grow = simpleMouseButtonTool(mouseDownCallback, toolType);
 
-  const stackData = getToolState(element, 'stack');
-  const regionsData = getToolState(element, 'regions');
-
-  // First check that there is stack/regions data available
-  if (!stackData || !stackData.data || !stackData.data.length ||
-      !regionsData || !regionsData.data || !regionsData.data.length) {
-    return;
-  }
-
-  element.addEventListener(EVENTS.MOUSE_DOWN, onMouseDown);
-}
-
-function disable (element) {
-  element.removeEventListener(EVENTS.MOUSE_DOWN, onMouseDown);
-}
-
-export default {
-  enable,
-  disable,
-  activate: enable,
-  deactivate: disable
-};
+export default grow;

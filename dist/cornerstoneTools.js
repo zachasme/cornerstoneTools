@@ -2597,302 +2597,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getLastElement = getLastElement;
-exports.update = update;
-exports.createUndoStep = createUndoStep;
-exports.getConfiguration = getConfiguration;
-exports.setConfiguration = setConfiguration;
-
-var _externalModules = __webpack_require__(0);
-
-var _externalModules2 = _interopRequireDefault(_externalModules);
-
-var _toolState = __webpack_require__(2);
-
-var _constants = __webpack_require__(61);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* HAXX BEGIN */
-
-var HACKY_LASTELEMENT = null;
-
-function getLastElement() {
-  return HACKY_LASTELEMENT;
-}
-
-/* HAXX END */
-
-var configuration = {
-  historySize: 4,
-  historyPosition: 0,
-  toolRegionValue: 2,
-  calciumThresholdHu: '-', // Placeholder until it gets set ('-' shows up nicely in text input)
-  layersAbove: 0,
-  layersBelow: 0,
-  drawAlpha: 1,
-  regionColorsRGB: [[255, 0, 255], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
-  KVPToMultiplier: {
-    150: 1.06,
-    140: 1.04,
-    130: 1.02,
-    120: 1,
-    110: 0.98,
-    100: 0.96,
-    90: 0.93,
-    80: 0.89,
-    70: 0.85
-  },
-  growIterationsPerChunk: 2
-};
-
-configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
-
-/**
- * Perform the thresholding on a stack
- */
-function performThresholding(imageIds) {
-  var width = void 0,
-      height = void 0,
-      view = void 0,
-      buffer = void 0;
-
-  // Thresholding promises
-  return Promise.all(imageIds.map(function (imageId, imageIdIndex) {
-    return _externalModules2.default.cornerstone.loadImage(imageId).then(function (image) {
-      if (!buffer) {
-        // Initialize variables on first loaded image
-        width = image.width;
-        height = image.height;
-
-        var length = width * height * imageIds.length;
-
-        buffer = new ArrayBuffer(length);
-        view = new _constants.TYPED_ARRAY(buffer);
-      }
-
-      var intercept = image.intercept,
-          slope = image.slope;
-
-      var pixelData = image.getPixelData();
-      var sliceSize = width * height;
-
-      for (var i = 0; i < sliceSize; i++) {
-        var value = pixelData[i];
-        // Calculate hu-value
-        var hu = value * slope + intercept;
-        // Check against threshold
-        var label = hu >= configuration.calciumThresholdHu ? 1 : 0;
-        // Calculate offset within view into ArrayBufer
-        var offset = imageIdIndex * sliceSize + i;
-
-        // Finally, assign label
-        view[offset] = label;
-      }
-    });
-  }
-  // When all promises resolve, return the buffer and its dimensions
-  )).then(function () {
-    return {
-      buffer: buffer,
-      width: width,
-      height: height
-    };
-  });
-}
-
-/**
- * Draw regions on image
- */
-function onImageRendered(_ref) {
-  var detail = _ref.detail;
-  var canvasContext = detail.canvasContext,
-      element = detail.element,
-      enabledElement = detail.enabledElement,
-      image = detail.image;
-  var width = image.width,
-      height = image.height;
-
-
-  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
-  var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
-
-  // Ensure tool is enabled
-  if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
-    return;
-  }
-
-  // Extract tool data
-  var currentImageIdIndex = stackToolData.data[0].currentImageIdIndex;
-  var _regionsToolData$data = regionsToolData.data[0],
-      drawBuffer = _regionsToolData$data.drawBuffer,
-      buffer = _regionsToolData$data.buffer;
-
-
-  var doubleBuffer = drawBuffer.canvas;
-  var imageData = drawBuffer.imageData;
-
-  var pixels = imageData.data;
-  var sliceSize = width * height;
-  var sliceOffset = currentImageIdIndex * sliceSize;
-  var view = new _constants.TYPED_ARRAY(buffer, sliceOffset, sliceSize);
-
-  for (var offset = 0; offset < view.length; offset += 1) {
-    // Each pixel is represented by four elements in the imageData array
-    var imageDataOffset = offset * 4;
-    var label = view[offset];
-
-    if (label) {
-      var color = configuration.regionColorsRGB[label - 1];
-
-      pixels[imageDataOffset + 0] = color[0];
-      pixels[imageDataOffset + 1] = color[1];
-      pixels[imageDataOffset + 2] = color[2];
-      pixels[imageDataOffset + 3] = configuration.drawAlpha * 255;
-    } else {
-      pixels[imageDataOffset + 3] = 0;
-    }
-  }
-
-  // Put image data back into offscreen canvas
-  doubleBuffer.getContext('2d').putImageData(imageData, 0, 0);
-  // Set transforms based on zoom/pan/etc
-  _externalModules2.default.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
-  // Finally, draw offscreen canvas onto context
-  canvasContext.drawImage(doubleBuffer, 0, 0);
-}
-
-function enable(element, doneCallback) {
-  // Check if tool is already enabled. If so, don't reenable
-  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
-
-  if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
-    return;
-  }
-
-  HACKY_LASTELEMENT = element;
-
-  // First check that there is stack data available
-  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
-
-  if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
-    return;
-  }
-
-  var initialThresholdingData = {
-    enabled: 1,
-    buffer: null,
-    width: null,
-    height: null,
-    history: [],
-    drawBuffer: null
-  };
-
-  (0, _toolState.addToolState)(element, _constants.TOOL_TYPE, initialThresholdingData);
-
-  var stackData = stackToolData.data[0];
-
-  setTimeout(function () {
-    performThresholding(stackData.imageIds).then(function (regions) {
-      // Add threshold data to tool state
-      var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
-      var regionsData = regionsToolData.data[0];
-
-      // Initialize rendering double buffer canvas
-      var width = regions.width,
-          height = regions.height;
-
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      var imageData = context.createImageData(width, height);
-
-      canvas.width = width;
-      canvas.height = height;
-
-      regionsData.drawBuffer = {
-        canvas: canvas,
-        imageData: imageData
-      };
-      regionsData.buffer = regions.buffer;
-      regionsData.width = regions.width;
-      regionsData.height = regions.height;
-      // Draw regions on image
-      element.addEventListener('cornerstoneimagerendered', onImageRendered);
-
-      // Update the element to apply the viewport and tool changes
-      _externalModules2.default.cornerstone.updateImage(element);
-
-      if (typeof doneCallback === 'function') {
-        doneCallback();
-      }
-    });
-  }, 100);
-}
-
-function disable(element) {
-  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
-
-  // If there is actually something to disable, disable it
-  if (thresholdingData && thresholdingData.data.length) {
-    thresholdingData.data[0].enabled = false;
-  }
-}
-
-function update(element) {
-  var enabledElement = element || HACKY_LASTELEMENT;
-
-  return new Promise(function (resolve, reject) {
-    disable(enabledElement);
-    enable(enabledElement, function () {
-      resolve();
-    });
-  });
-}
-
-function createUndoStep(element) {
-  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
-
-  var state = thresholdingData.data[0];
-  // Make a copy using .slice()
-  var current = state.buffer.slice();
-
-  // Put at end of history
-  state.history.push(current);
-  // Remove oldest if too much history
-  if (state.history.length > configuration.historySize) {
-    state.history.shift();
-  }
-}
-
-function getConfiguration() {
-  return configuration;
-}
-
-function setConfiguration(config) {
-  configuration = config;
-}
-
-// Module/private exports
-exports.default = {
-  activate: enable,
-  deactivate: disable,
-  update: update,
-  enable: enable,
-  disable: disable,
-  getConfiguration: getConfiguration,
-  setConfiguration: setConfiguration
-};
-
-/***/ }),
+/* 28 */,
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6648,39 +6353,6 @@ Object.defineProperty(exports, 'adaptiveBrush', {
   }
 });
 
-var _index3 = __webpack_require__(123);
-
-Object.defineProperty(exports, 'regionsThreshold', {
-  enumerable: true,
-  get: function get() {
-    return _index3.regionsThreshold;
-  }
-});
-Object.defineProperty(exports, 'regionsGrow', {
-  enumerable: true,
-  get: function get() {
-    return _index3.regionsGrow;
-  }
-});
-Object.defineProperty(exports, 'regionsDraw', {
-  enumerable: true,
-  get: function get() {
-    return _index3.regionsDraw;
-  }
-});
-Object.defineProperty(exports, 'regionsScore', {
-  enumerable: true,
-  get: function get() {
-    return _index3.regionsScore;
-  }
-});
-Object.defineProperty(exports, 'regionsUndo', {
-  enumerable: true,
-  get: function get() {
-    return _index3.regionsUndo;
-  }
-});
-
 var _version = __webpack_require__(128);
 
 Object.defineProperty(exports, 'version', {
@@ -6702,6 +6374,51 @@ Object.defineProperty(exports, 'getToolOptions', {
   enumerable: true,
   get: function get() {
     return _toolOptions.getToolOptions;
+  }
+});
+
+var _threshold = __webpack_require__(130);
+
+Object.defineProperty(exports, 'regionsThreshold', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_threshold).default;
+  }
+});
+
+var _grow = __webpack_require__(124);
+
+Object.defineProperty(exports, 'regionsGrow', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_grow).default;
+  }
+});
+
+var _draw = __webpack_require__(125);
+
+Object.defineProperty(exports, 'regionsDraw', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_draw).default;
+  }
+});
+
+var _score = __webpack_require__(126);
+
+Object.defineProperty(exports, 'regionsScore', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_score).default;
+  }
+});
+
+var _undo = __webpack_require__(127);
+
+Object.defineProperty(exports, 'regionsUndo', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_undo).default;
   }
 });
 
@@ -17749,64 +17466,7 @@ adaptiveBrush.setConfiguration(configuration);
 exports.adaptiveBrush = adaptiveBrush;
 
 /***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _thresholding = __webpack_require__(28);
-
-Object.defineProperty(exports, 'regionsThreshold', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_thresholding).default;
-  }
-});
-
-var _grow = __webpack_require__(124);
-
-Object.defineProperty(exports, 'regionsGrow', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_grow).default;
-  }
-});
-
-var _draw = __webpack_require__(125);
-
-Object.defineProperty(exports, 'regionsDraw', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_draw).default;
-  }
-});
-
-var _score = __webpack_require__(126);
-
-Object.defineProperty(exports, 'regionsScore', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_score).default;
-  }
-});
-
-var _undo = __webpack_require__(127);
-
-Object.defineProperty(exports, 'regionsUndo', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_undo).default;
-  }
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
+/* 123 */,
 /* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17819,21 +17479,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _events = __webpack_require__(1);
-
-var _events2 = _interopRequireDefault(_events);
-
 var _externalModules = __webpack_require__(0);
 
 var _externalModules2 = _interopRequireDefault(_externalModules);
 
 var _toolState = __webpack_require__(2);
 
+var _simpleMouseButtonTool = __webpack_require__(16);
+
+var _simpleMouseButtonTool2 = _interopRequireDefault(_simpleMouseButtonTool);
+
 var _isMouseButtonEnabled = __webpack_require__(4);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
 
-var _thresholding = __webpack_require__(28);
+var _threshold = __webpack_require__(130);
 
 var _toolOptions = __webpack_require__(3);
 
@@ -17859,43 +17519,43 @@ function linearNeighbours(width, height, highSlice, lowSlice, index) {
   return neighbours;
 }
 
-function regionGrowing(element, regions, slices, point) {
+function regionGrowing(regions, point) {
+  var _getConfiguration = (0, _threshold.getConfiguration)(),
+      growIterationsPerChunk = _getConfiguration.growIterationsPerChunk,
+      toolRegionValue = _getConfiguration.toolRegionValue,
+      layersAbove = _getConfiguration.layersAbove,
+      layersBelow = _getConfiguration.layersBelow;
+
+  var width = regions.width,
+      height = regions.height,
+      buffer = regions.buffer;
+
+  var _point = _slicedToArray(point, 3),
+      x = _point[0],
+      y = _point[1],
+      slice = _point[2];
+
+  var highSlice = slice + layersBelow;
+  var lowSlice = slice - layersAbove;
+
+  var view = new Uint8Array(buffer);
+
+  // Calculate linear indices and offsets
+  var sliceSize = width * height;
+  var sliceOffset = sliceSize * slice;
+  var clickIndex = y * width + x;
+  var linearIndex = sliceOffset + clickIndex;
+  var fromValue = view[linearIndex];
+
+  // Only continue if we clicked in thresholded area in different color
+  if (fromValue === 0 || fromValue === toolRegionValue) {
+    return;
+  }
+
+  // Growing starts at clicked voxel
+  var activeVoxels = [linearIndex];
+
   return new Promise(function (resolve) {
-    var _getConfiguration = (0, _thresholding.getConfiguration)(),
-        growIterationsPerChunk = _getConfiguration.growIterationsPerChunk,
-        toolRegionValue = _getConfiguration.toolRegionValue,
-        layersAbove = _getConfiguration.layersAbove,
-        layersBelow = _getConfiguration.layersBelow;
-
-    var width = regions.width,
-        height = regions.height,
-        buffer = regions.buffer;
-
-    var _point = _slicedToArray(point, 3),
-        x = _point[0],
-        y = _point[1],
-        slice = _point[2];
-
-    var highSlice = slice + layersBelow;
-    var lowSlice = slice - layersAbove;
-
-    var view = new Uint8Array(buffer);
-
-    // Calculate linear indices and offsets
-    var sliceSize = width * height;
-    var sliceOffset = sliceSize * slice;
-    var clickIndex = y * width + x;
-    var linearIndex = sliceOffset + clickIndex;
-    var fromValue = view[linearIndex];
-
-    // Only continue if we clicked in thresholded area in different color
-    if (fromValue === 0 || fromValue === toolRegionValue) {
-      return;
-    }
-
-    // Growing starts at clicked voxel
-    var activeVoxels = [linearIndex];
-
     function chunk() {
       for (var i = 0; i < growIterationsPerChunk; i++) {
         // While activeVoxels is not empty
@@ -17924,7 +17584,6 @@ function regionGrowing(element, regions, slices, point) {
 
         activeVoxels = nextVoxels;
       }
-      _externalModules2.default.cornerstone.updateImage(element);
       setTimeout(chunk, 0);
     }
 
@@ -17932,58 +17591,38 @@ function regionGrowing(element, regions, slices, point) {
   });
 }
 
-function onMouseDown(e) {
-  var eventData = e.detail;
-  var element = eventData.element;
+function mouseDownCallback(e) {
+  var _e$detail = e.detail,
+      currentPoints = _e$detail.currentPoints,
+      element = _e$detail.element,
+      which = _e$detail.which;
 
   var options = (0, _toolOptions.getToolOptions)(toolType, element);
 
-  if ((0, _isMouseButtonEnabled2.default)(eventData.which, options.mouseButtonMask)) {
-    (0, _thresholding.createUndoStep)(element);
-
+  if ((0, _isMouseButtonEnabled2.default)(which, options.mouseButtonMask)) {
     var _getToolState$data = _slicedToArray((0, _toolState.getToolState)(element, 'stack').data, 1),
         stackData = _getToolState$data[0];
 
     var _getToolState$data2 = _slicedToArray((0, _toolState.getToolState)(element, 'regions').data, 1),
         regionsData = _getToolState$data2[0];
 
-    var currentImageIdIndex = stackData.currentImageIdIndex,
-        imageIds = stackData.imageIds;
-    var _eventData$currentPoi = eventData.currentPoints.image,
-        x = _eventData$currentPoi.x,
-        y = _eventData$currentPoi.y;
-
+    var currentImageIdIndex = stackData.currentImageIdIndex;
+    var _currentPoints$image = currentPoints.image,
+        x = _currentPoints$image.x,
+        y = _currentPoints$image.y;
 
     var point = [Math.round(x), Math.round(y), currentImageIdIndex];
 
-    regionGrowing(element, regionsData, imageIds.length, point);
+    (0, _threshold.createUndoStep)(element);
+    regionGrowing(regionsData, point).then(function () {
+      _externalModules2.default.cornerstone.updateImage(element);
+    });
   }
 }
 
-function enable(element, mouseButtonMask) {
-  (0, _toolOptions.setToolOptions)(toolType, element, { mouseButtonMask: mouseButtonMask });
+var grow = (0, _simpleMouseButtonTool2.default)(mouseDownCallback, toolType);
 
-  var stackData = (0, _toolState.getToolState)(element, 'stack');
-  var regionsData = (0, _toolState.getToolState)(element, 'regions');
-
-  // First check that there is stack/regions data available
-  if (!stackData || !stackData.data || !stackData.data.length || !regionsData || !regionsData.data || !regionsData.data.length) {
-    return;
-  }
-
-  element.addEventListener(_events2.default.MOUSE_DOWN, onMouseDown);
-}
-
-function disable(element) {
-  element.removeEventListener(_events2.default.MOUSE_DOWN, onMouseDown);
-}
-
-exports.default = {
-  enable: enable,
-  disable: disable,
-  activate: enable,
-  deactivate: disable
-};
+exports.default = grow;
 
 /***/ }),
 /* 125 */
@@ -18020,9 +17659,9 @@ var _pointInsidePolygon = __webpack_require__(129);
 
 var _pointInsidePolygon2 = _interopRequireDefault(_pointInsidePolygon);
 
-var _thresholding = __webpack_require__(28);
+var _threshold = __webpack_require__(130);
 
-var regionsThreshold = _interopRequireWildcard(_thresholding);
+var regionsThreshold = _interopRequireWildcard(_threshold);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -18216,7 +17855,7 @@ var _externalModules = __webpack_require__(0);
 
 var _externalModules2 = _interopRequireDefault(_externalModules);
 
-var _thresholding = __webpack_require__(28);
+var _threshold = __webpack_require__(130);
 
 var _constants = __webpack_require__(61);
 
@@ -18285,7 +17924,7 @@ function computeScore(metaData, voxels) {
   var densityFactor = getDensityFactor(metaData.maxHU);
   var volume = voxels.length * voxelSizeScaled;
 
-  var _getConfiguration = (0, _thresholding.getConfiguration)(),
+  var _getConfiguration = (0, _threshold.getConfiguration)(),
       KVPToMultiplier = _getConfiguration.KVPToMultiplier;
 
   var KVPMultiplier = KVPToMultiplier[metaData.KVP];
@@ -18399,9 +18038,9 @@ function bfs(x, y, view, visitedVoxels, label, image) {
  *
  */
 function score() {
-  var element = (0, _thresholding.getLastElement)();
+  var element = (0, _threshold.getLastElement)();
 
-  var _getConfiguration2 = (0, _thresholding.getConfiguration)(),
+  var _getConfiguration2 = (0, _threshold.getConfiguration)(),
       regionColorsRGB = _getConfiguration2.regionColorsRGB;
 
   var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
@@ -18555,7 +18194,7 @@ function enable(element) {
   _externalModules.external.cornerstone.updateImage(element);
 }
 
-function disable(element) {}
+function disable() {}
 // Pass
 
 
@@ -18619,6 +18258,302 @@ function pointInsidePolygon(point, vs) {
 
   return inside;
 }
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLastElement = getLastElement;
+exports.update = update;
+exports.createUndoStep = createUndoStep;
+exports.getConfiguration = getConfiguration;
+exports.setConfiguration = setConfiguration;
+
+var _externalModules = __webpack_require__(0);
+
+var _externalModules2 = _interopRequireDefault(_externalModules);
+
+var _toolState = __webpack_require__(2);
+
+var _constants = __webpack_require__(61);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* HAXX BEGIN */
+
+var HACKY_LASTELEMENT = null;
+
+function getLastElement() {
+  return HACKY_LASTELEMENT;
+}
+
+/* HAXX END */
+
+var configuration = {
+  historySize: 4,
+  historyPosition: 0,
+  toolRegionValue: 2,
+  calciumThresholdHu: '-', // Placeholder until it gets set ('-' shows up nicely in text input)
+  layersAbove: 0,
+  layersBelow: 0,
+  drawAlpha: 1,
+  regionColorsRGB: [[255, 0, 255], [246, 193, 91], [237, 148, 69], [230, 103, 49], [184, 74, 41], [106, 58, 45]],
+  KVPToMultiplier: {
+    150: 1.06,
+    140: 1.04,
+    130: 1.02,
+    120: 1,
+    110: 0.98,
+    100: 0.96,
+    90: 0.93,
+    80: 0.89,
+    70: 0.85
+  },
+  growIterationsPerChunk: 2
+};
+
+configuration.calciumThresholdHuParsed = parseInt(configuration.calciumThresholdHu);
+
+/**
+ * Perform the thresholding on a stack
+ */
+function performThresholding(imageIds) {
+  var width = void 0,
+      height = void 0,
+      view = void 0,
+      buffer = void 0;
+
+  // Thresholding promises
+  return Promise.all(imageIds.map(function (imageId, imageIdIndex) {
+    return _externalModules2.default.cornerstone.loadImage(imageId).then(function (image) {
+      if (!buffer) {
+        // Initialize variables on first loaded image
+        width = image.width;
+        height = image.height;
+
+        var length = width * height * imageIds.length;
+
+        buffer = new ArrayBuffer(length);
+        view = new _constants.TYPED_ARRAY(buffer);
+      }
+
+      var intercept = image.intercept,
+          slope = image.slope;
+
+      var pixelData = image.getPixelData();
+      var sliceSize = width * height;
+
+      for (var i = 0; i < sliceSize; i++) {
+        var value = pixelData[i];
+        // Calculate hu-value
+        var hu = value * slope + intercept;
+        // Check against threshold
+        var label = hu >= configuration.calciumThresholdHu ? 1 : 0;
+        // Calculate offset within view into ArrayBufer
+        var offset = imageIdIndex * sliceSize + i;
+
+        // Finally, assign label
+        view[offset] = label;
+      }
+    });
+  }
+  // When all promises resolve, return the buffer and its dimensions
+  )).then(function () {
+    return {
+      buffer: buffer,
+      width: width,
+      height: height
+    };
+  });
+}
+
+/**
+ * Draw regions on image
+ */
+function onImageRendered(_ref) {
+  var detail = _ref.detail;
+  var canvasContext = detail.canvasContext,
+      element = detail.element,
+      enabledElement = detail.enabledElement,
+      image = detail.image;
+  var width = image.width,
+      height = image.height;
+
+
+  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
+  var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
+
+  // Ensure tool is enabled
+  if (!regionsToolData || !regionsToolData.data || !regionsToolData.data.length) {
+    return;
+  }
+
+  // Extract tool data
+  var currentImageIdIndex = stackToolData.data[0].currentImageIdIndex;
+  var _regionsToolData$data = regionsToolData.data[0],
+      drawBuffer = _regionsToolData$data.drawBuffer,
+      buffer = _regionsToolData$data.buffer;
+
+
+  var doubleBuffer = drawBuffer.canvas;
+  var imageData = drawBuffer.imageData;
+
+  var pixels = imageData.data;
+  var sliceSize = width * height;
+  var sliceOffset = currentImageIdIndex * sliceSize;
+  var view = new _constants.TYPED_ARRAY(buffer, sliceOffset, sliceSize);
+
+  for (var offset = 0; offset < view.length; offset += 1) {
+    // Each pixel is represented by four elements in the imageData array
+    var imageDataOffset = offset * 4;
+    var label = view[offset];
+
+    if (label) {
+      var color = configuration.regionColorsRGB[label - 1];
+
+      pixels[imageDataOffset + 0] = color[0];
+      pixels[imageDataOffset + 1] = color[1];
+      pixels[imageDataOffset + 2] = color[2];
+      pixels[imageDataOffset + 3] = configuration.drawAlpha * 255;
+    } else {
+      pixels[imageDataOffset + 3] = 0;
+    }
+  }
+
+  // Put image data back into offscreen canvas
+  doubleBuffer.getContext('2d').putImageData(imageData, 0, 0);
+  // Set transforms based on zoom/pan/etc
+  _externalModules2.default.cornerstone.setToPixelCoordinateSystem(enabledElement, canvasContext);
+  // Finally, draw offscreen canvas onto context
+  canvasContext.drawImage(doubleBuffer, 0, 0);
+}
+
+function enable(element, doneCallback) {
+  // Check if tool is already enabled. If so, don't reenable
+  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
+
+  if (thresholdingData.data[0] && thresholdingData.data[0].enabled) {
+    return;
+  }
+
+  HACKY_LASTELEMENT = element;
+
+  // First check that there is stack data available
+  var stackToolData = (0, _toolState.getToolState)(element, 'stack');
+
+  if (!stackToolData || !stackToolData.data || !stackToolData.data.length) {
+    return;
+  }
+
+  var initialThresholdingData = {
+    enabled: 1,
+    buffer: null,
+    width: null,
+    height: null,
+    history: [],
+    drawBuffer: null
+  };
+
+  (0, _toolState.addToolState)(element, _constants.TOOL_TYPE, initialThresholdingData);
+
+  var stackData = stackToolData.data[0];
+
+  setTimeout(function () {
+    performThresholding(stackData.imageIds).then(function (regions) {
+      // Add threshold data to tool state
+      var regionsToolData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
+      var regionsData = regionsToolData.data[0];
+
+      // Initialize rendering double buffer canvas
+      var width = regions.width,
+          height = regions.height;
+
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var imageData = context.createImageData(width, height);
+
+      canvas.width = width;
+      canvas.height = height;
+
+      regionsData.drawBuffer = {
+        canvas: canvas,
+        imageData: imageData
+      };
+      regionsData.buffer = regions.buffer;
+      regionsData.width = regions.width;
+      regionsData.height = regions.height;
+      // Draw regions on image
+      element.addEventListener('cornerstoneimagerendered', onImageRendered);
+
+      // Update the element to apply the viewport and tool changes
+      _externalModules2.default.cornerstone.updateImage(element);
+
+      if (typeof doneCallback === 'function') {
+        doneCallback();
+      }
+    });
+  }, 100);
+}
+
+function disable(element) {
+  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
+
+  // If there is actually something to disable, disable it
+  if (thresholdingData && thresholdingData.data.length) {
+    thresholdingData.data[0].enabled = false;
+  }
+}
+
+function update(element) {
+  var enabledElement = element || HACKY_LASTELEMENT;
+
+  return new Promise(function (resolve, reject) {
+    disable(enabledElement);
+    enable(enabledElement, function () {
+      resolve();
+    });
+  });
+}
+
+function createUndoStep(element) {
+  var thresholdingData = (0, _toolState.getToolState)(element, _constants.TOOL_TYPE);
+
+  var state = thresholdingData.data[0];
+  // Make a copy using .slice()
+  var current = state.buffer.slice();
+
+  // Put at end of history
+  state.history.push(current);
+  // Remove oldest if too much history
+  if (state.history.length > configuration.historySize) {
+    state.history.shift();
+  }
+}
+
+function getConfiguration() {
+  return configuration;
+}
+
+function setConfiguration(config) {
+  configuration = config;
+}
+
+// Module/private exports
+exports.default = {
+  activate: enable,
+  deactivate: disable,
+  update: update,
+  enable: enable,
+  disable: disable,
+  getConfiguration: getConfiguration,
+  setConfiguration: setConfiguration
+};
 
 /***/ })
 /******/ ]);

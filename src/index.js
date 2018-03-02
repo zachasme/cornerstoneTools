@@ -150,7 +150,12 @@ export { zoom,
   zoomTouchDrag } from './imageTools/zoom.js';
 export { brush } from './paintingTools/brush.js';
 export { adaptiveBrush } from './paintingTools/adaptiveBrush.js';
-export { regionsThreshold, regionsGrow, regionsDraw, regionsScore, regionsUndo } from './regions/index.js';
 export { default as version } from './version.js';
 
 export { setToolOptions, getToolOptions } from './toolOptions.js';
+
+export { default as regionsThreshold } from './regions/threshold.js';
+export { default as regionsGrow } from './regions/grow.js';
+export { default as regionsDraw } from './regions/draw.js';
+export { default as regionsScore } from './regions/score.js';
+export { default as regionsUndo } from './regions/undo.js';

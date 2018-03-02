@@ -5,7 +5,7 @@ import { getToolOptions, setToolOptions } from '../toolOptions.js';
 import simpleMouseButtonTool from '../imageTools/simpleMouseButtonTool.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 import pointInsidePolygon from '../util/pointInsidePolygon.js';
-import * as regionsThreshold from './thresholding.js';
+import * as regionsThreshold from './threshold.js';
 
 const toolType = 'draw';
 

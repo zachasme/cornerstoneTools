@@ -1,5 +1,5 @@
 import { external } from '../externalModules.js';
-import { getToolState } from '../stateManagement/toolState';
+import { getToolState } from '../stateManagement/toolState.js';
 
 function enable (element) {
   console.log('ENABLE UNDO');
@@ -18,7 +18,7 @@ function enable (element) {
   external.cornerstone.updateImage(element);
 }
 
-function disable (element) {
+function disable () {
   // Pass
 }
 

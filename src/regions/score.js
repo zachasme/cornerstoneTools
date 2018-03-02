@@ -1,5 +1,5 @@
 import external from '../externalModules.js';
-import { getConfiguration, getLastElement } from './thresholding.js';
+import { getConfiguration, getLastElement } from './threshold.js';
 import { TYPED_ARRAY, TOOL_TYPE } from './constants';
 import { getToolState } from '../stateManagement/toolState';
 
