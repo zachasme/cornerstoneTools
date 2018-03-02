@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.94% </span>
+        <span class="strong">2.87% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/170</span>
+        <span class='fraction'>5/174</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/72</span>
+        <span class='fraction'>0/64</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.94% </span>
+        <span class="strong">2.87% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/170</span>
+        <span class='fraction'>5/174</span>
       </div>
     </div>
   </div>
@@ -491,7 +491,13 @@
 446
 447
 448
-449</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+449
+450
+451
+452
+453</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -609,6 +615,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -798,16 +805,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -842,11 +851,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -860,13 +871,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -912,6 +919,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -940,7 +948,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint no-alert:0 */
-import { cornerstoneMath, external } from '../externalModules.js';
+import EVENTS from '../events.js';
+import external from '../externalModules.js';
 import mouseButtonTool from './mouseButtonTool.js';
 import touchTool from './touchTool.js';
 import drawTextBox from '../util/drawTextBox.js';
@@ -954,6 +963,7 @@ import drawCircle from '../util/drawCircle.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
 import pointInsideBoundingBox from '../util/pointInsideBoundingBox.js';
 import { addToolState, removeToolState, getToolState } from '../stateManagement/toolState.js';
+import { getToolOptions } from '../toolOptions.js';
 &nbsp;
 const toolType = 'seedAnnotate';
 &nbsp;
@@ -1049,14 +1059,15 @@ function pointNearTool (element, data, coords) <span class="fstat-no" title="fun
   }
 &nbsp;
   const realCoords = <span class="cstat-no" title="statement not covered" >external.cornerstone.pixelToCanvas(element, data.handles.end);</span>
-  const distanceToPoint = <span class="cstat-no" title="statement not covered" >cornerstoneMath.point.distance(realCoords, coords);</span>
+  const distanceToPoint = <span class="cstat-no" title="statement not covered" >external.cornerstoneMath.point.distance(realCoords, coords);</span>
 &nbsp;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (distanceToPoint &lt; 25);</span>
 }
 &nbsp;
 // /////// BEGIN IMAGE RENDERING ///////
-function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onImageRendered (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
   // If we have no toolData for this element, return immediately as there is nothing to do
   const toolData = <span class="cstat-no" title="statement not covered" >getToolState(e.currentTarget, toolType);</span>
 &nbsp;
@@ -1190,7 +1201,7 @@ function onImageRendered (e, eventData) <span class="fstat-no" title="function n
           }
         ];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        link.end = cornerstoneMath.point.findClosestPoint(boundingBoxPoints, link.start);</span>
+<span class="cstat-no" title="statement not covered" >        link.end = external.cornerstoneMath.point.findClosestPoint(boundingBoxPoints, link.start);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        context.beginPath();</span>
 <span class="cstat-no" title="statement not covered" >        context.strokeStyle = color;</span>
@@ -1243,10 +1254,16 @@ function addNewMeasurementTouch (touchEventData) <span class="fstat-no" title="f
   });
 }
 &nbsp;
-function doubleClickCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function doubleClickCallback (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
   const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
   let data;
+  const options = <span class="cstat-no" title="statement not covered" >getToolOptions(toolType, element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!isMouseButtonEnabled(eventData.which, options.mouseButtonMask)) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
 &nbsp;
   function doneChangingTextCallback (data, updatedText, deleteTool) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    if (deleteTool === true) {</span>
@@ -1257,10 +1274,6 @@ function doubleClickCallback (e, eventData) <span class="fstat-no" title="functi
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    data.active = false;</span>
 <span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
-  }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  if (e.data &amp;&amp; e.data.mouseButtonMask &amp;&amp; !isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
   const config = <span class="cstat-no" title="statement not covered" >seedAnnotate.getConfiguration();</span>
@@ -1289,10 +1302,12 @@ function doubleClickCallback (e, eventData) <span class="fstat-no" title="functi
     }
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+<span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >  e.stopPropagation();</span>
 }
 &nbsp;
-function pressCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function pressCallback (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
   const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const element = <span class="cstat-no" title="statement not covered" >eventData.element;</span>
   let data;
@@ -1308,13 +1323,9 @@ function pressCallback (e, eventData) <span class="fstat-no" title="function not
 <span class="cstat-no" title="statement not covered" >    data.active = false;</span>
 <span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsTouchStart', seedAnnotateTouch.touchStartCallback);</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsTouchStartActive', seedAnnotateTouch.touchDownActivateCallback);</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).on('CornerstoneToolsTap', seedAnnotateTouch.tapCallback);</span>
-  }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  if (e.data &amp;&amp; e.data.mouseButtonMask &amp;&amp; !isMouseButtonEnabled(eventData.which, e.data.mouseButtonMask)) {</span>
-<span class="cstat-no" title="statement not covered" >    return false;</span>
+<span class="cstat-no" title="statement not covered" >    element.addEventListener(EVENTS.TOUCH_START, seedAnnotateTouch.touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.addEventListener(EVENTS.TOUCH_START_ACTIVE, seedAnnotateTouch.touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.addEventListener(EVENTS.TAP, seedAnnotateTouch.tapCallback);</span>
   }
 &nbsp;
   const config = <span class="cstat-no" title="statement not covered" >seedAnnotate.getConfiguration();</span>
@@ -1328,9 +1339,9 @@ function pressCallback (e, eventData) <span class="fstat-no" title="function not
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (eventData.handlePressed) {</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTouchStart', seedAnnotateTouch.touchStartCallback);</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTouchStartActive', seedAnnotateTouch.touchDownActivateCallback);</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsTap', seedAnnotateTouch.tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(EVENTS.TOUCH_START, seedAnnotateTouch.touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(EVENTS.TOUCH_START_ACTIVE, seedAnnotateTouch.touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(EVENTS.TAP, seedAnnotateTouch.tapCallback);</span>
 &nbsp;
     // Allow relabelling via a callback
 <span class="cstat-no" title="statement not covered" >    config.changeTextCallback(eventData.handlePressed, eventData, doneChangingTextCallback);</span>
@@ -1347,9 +1358,9 @@ function pressCallback (e, eventData) <span class="fstat-no" title="function not
 <span class="cstat-no" title="statement not covered" >      data.active = true;</span>
 <span class="cstat-no" title="statement not covered" >      cornerstone.updateImage(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsTouchStart', seedAnnotateTouch.touchStartCallback);</span>
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsTouchStartActive', seedAnnotateTouch.touchDownActivateCallback);</span>
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsTap', seedAnnotateTouch.tapCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.TOUCH_START, seedAnnotateTouch.touchStartCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.TOUCH_START_ACTIVE, seedAnnotateTouch.touchDownActivateCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.TAP, seedAnnotateTouch.tapCallback);</span>
 &nbsp;
       // Allow relabelling via a callback
 <span class="cstat-no" title="statement not covered" >      config.changeTextCallback(data, eventData, doneChangingTextCallback);</span>
@@ -1360,7 +1371,8 @@ function pressCallback (e, eventData) <span class="fstat-no" title="function not
     }
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return false; </span>// False = causes jquery to preventDefault() and stopPropagation() this event
+<span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >  e.stopPropagation();</span>
 }
 &nbsp;
 const seedAnnotate = mouseButtonTool({
@@ -1393,7 +1405,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

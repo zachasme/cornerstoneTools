@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/76</span>
+        <span class='fraction'>0/74</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -377,7 +377,9 @@
 332
 333
 334
-335</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+335
+336</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -711,7 +713,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import external from '../externalModules.js';
 import requestPoolManager from '../requestPool/requestPoolManager.js';
 import loadHandlerManager from '../stateManagement/loadHandlerManager.js';
 import { addToolState, getToolState } from '../stateManagement/toolState.js';
@@ -826,9 +829,9 @@ function prefetch (element) <span class="fstat-no" title="function not covered" 
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
 &nbsp;
-    const imagePromise = <span class="cstat-no" title="statement not covered" >external.cornerstone.imageCache.getImagePromise(imageId);</span>
+    const imageLoadObject = <span class="cstat-no" title="statement not covered" >external.cornerstone.imageCache.getImageLoadObject(imageId);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (imagePromise &amp;&amp; imagePromise.state() === 'resolved') {</span>
+<span class="cstat-no" title="statement not covered" >    if (imageLoadObject) {</span>
 <span class="cstat-no" title="statement not covered" >      removeFromList(imageIdIndex);</span>
     }
   });
@@ -996,22 +999,22 @@ function enable (element) <span class="fstat-no" title="function not covered" >{
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  prefetch(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstonenewimage', onImageUpdated);</span>
-<span class="cstat-no" title="statement not covered" >  element.addEventListener('cornerstonenewimage', onImageUpdated);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener(EVENTS.NEW_IMAGE, onImageUpdated);</span>
+<span class="cstat-no" title="statement not covered" >  element.addEventListener(EVENTS.NEW_IMAGE, onImageUpdated);</span>
 &nbsp;
   const promiseRemovedHandler = <span class="cstat-no" title="statement not covered" >getPromiseRemovedHandler(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  external.cornerstone.events.removeEventListener('cornerstoneimagecachepromiseremoved', promiseRemovedHandler);</span>
-<span class="cstat-no" title="statement not covered" >  external.cornerstone.events.addEventListener('cornerstoneimagecachepromiseremoved', promiseRemovedHandler);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.events.removeEventListener(EVENTS.IMAGE_CACHE_PROMISE_REMOVED, promiseRemovedHandler);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.events.addEventListener(EVENTS.IMAGE_CACHE_PROMISE_REMOVED, promiseRemovedHandler);</span>
 }
 &nbsp;
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >  clearTimeout(resetPrefetchTimeout);</span>
-<span class="cstat-no" title="statement not covered" >  element.removeEventListener('cornerstonenewimage', onImageUpdated);</span>
+<span class="cstat-no" title="statement not covered" >  element.removeEventListener(EVENTS.NEW_IMAGE, onImageUpdated);</span>
 &nbsp;
   const promiseRemovedHandler = <span class="cstat-no" title="statement not covered" >getPromiseRemovedHandler(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  external.cornerstone.events.removeEventListener('cornerstoneimagecachepromiseremoved', promiseRemovedHandler);</span>
+<span class="cstat-no" title="statement not covered" >  external.cornerstone.events.removeEventListener(EVENTS.IMAGE_CACHE_PROMISE_REMOVED, promiseRemovedHandler);</span>
 &nbsp;
   const stackPrefetchData = <span class="cstat-no" title="statement not covered" >getToolState(element, toolType);</span>
   // If there is actually something to disable, disable it
@@ -1051,7 +1054,7 @@ export default stackPrefetch;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

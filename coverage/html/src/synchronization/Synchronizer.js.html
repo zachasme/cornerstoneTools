@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/131</span>
+        <span class='fraction'>0/137</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/24</span>
+        <span class='fraction'>0/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/131</span>
+        <span class='fraction'>0/137</span>
       </div>
     </div>
   </div>
@@ -329,7 +329,23 @@
 284
 285
 286
-287</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,8 +353,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -461,8 +486,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -484,9 +511,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -532,9 +561,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -593,6 +624,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -615,12 +647,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import external from '../externalModules.js';
+import convertToVector3 from '../util/convertToVector3.js';
+import { clearToolOptionsByElement } from '../toolOptions.js';
+&nbsp;
+function unique (array) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return array.filter(function (value, index, self) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return self.indexOf(value) === index;</span>
+  });
+}
 &nbsp;
 // This object is responsible for synchronizing target elements when an event fires on a source
 // Element
+// @param event can contain more than one event, separated by a space
 function Synchronizer (event, handler) <span class="fstat-no" title="function not covered" >{</span>
-&nbsp;
   const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
   const that = <span class="cstat-no" title="statement not covered" >this;</span>
   const sourceElements = <span class="cstat-no" title="statement not covered" >[];</span> // Source elements fire the events we want to synchronize to
@@ -663,7 +704,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >        return;</span>
       }
 &nbsp;
-      const sourceImagePosition = <span class="cstat-no" title="statement not covered" >sourceImagePlane.imagePositionPatient;</span>
+      const sourceImagePosition = <span class="cstat-no" title="statement not covered" >convertToVector3(sourceImagePlane.imagePositionPatient);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (initialData.hasOwnProperty(sourceEnabledElement)) {</span>
 <span class="cstat-no" title="statement not covered" >        return;</span>
@@ -702,7 +743,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >          return;</span>
         }
 &nbsp;
-        const targetImagePosition = <span class="cstat-no" title="statement not covered" >targetImagePlane.imagePositionPatient;</span>
+        const targetImagePosition = <span class="cstat-no" title="statement not covered" >convertToVector3(targetImagePlane.imagePositionPatient);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        initialData.distances[sourceImageId][targetImageId] = targetImagePosition.clone().sub(sourceImagePosition);</span>
       });
@@ -749,7 +790,9 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >    ignoreFiredEvents = false;</span>
   }
 &nbsp;
-  function onEvent (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  function onEvent (e) <span class="fstat-no" title="function not covered" >{</span>
+    const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    if (ignoreFiredEvents === true) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
@@ -770,9 +813,11 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >    sourceElements.push(element);</span>
 &nbsp;
     // Subscribe to the event
-<span class="cstat-no" title="statement not covered" >    external.$(element).on(event, onEvent);</span>
+<span class="cstat-no" title="statement not covered" >    event.split(' ').forEach((oneEvent) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      element.addEventListener(oneEvent, onEvent);</span>
+    });
 &nbsp;
-    // Update the inital distances between elements
+    // Update the initial distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    that.updateDisableHandlers();</span>
@@ -790,7 +835,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
     // Add to our list of enabled elements
 <span class="cstat-no" title="statement not covered" >    targetElements.push(element);</span>
 &nbsp;
-    // Update the inital distances between elements
+    // Update the initial distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
     // Invoke the handler for this new target element
@@ -818,9 +863,11 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
 <span class="cstat-no" title="statement not covered" >    sourceElements.splice(index, 1);</span>
 &nbsp;
     // Stop listening for the event
-<span class="cstat-no" title="statement not covered" >    external.$(element).off(event, onEvent);</span>
+<span class="cstat-no" title="statement not covered" >    event.split(' ').forEach((oneEvent) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(oneEvent, onEvent);</span>
+    });
 &nbsp;
-    // Update the inital distances between elements
+    // Update the initial distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
     // Update everyone listening for events
@@ -840,7 +887,7 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
     // Remove this element from the array
 <span class="cstat-no" title="statement not covered" >    targetElements.splice(index, 1);</span>
 &nbsp;
-    // Update the inital distances between elements
+    // Update the initial distances between elements
 <span class="cstat-no" title="statement not covered" >    that.getDistances();</span>
 &nbsp;
     // Invoke the handler for the removed target
@@ -880,19 +927,20 @@ function Synchronizer (event, handler) <span class="fstat-no" title="function no
     const element = <span class="cstat-no" title="statement not covered" >e.detail.element;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    that.remove(element);</span>
+<span class="cstat-no" title="statement not covered" >    clearToolOptionsByElement(element);</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  this.updateDisableHandlers = function () <span class="fstat-no" title="function not covered" >{</span></span>
-    const elements = <span class="cstat-no" title="statement not covered" >external.$.unique(sourceElements.concat(targetElements));</span>
+    const elements = <span class="cstat-no" title="statement not covered" >unique(sourceElements.concat(targetElements));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    elements.forEach(function (element) <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >      element.removeEventListener('cornerstoneelementdisabled', disableHandler);</span>
-<span class="cstat-no" title="statement not covered" >      element.addEventListener('cornerstoneelementdisabled', disableHandler);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.ELEMENT_DISABLED, disableHandler);</span>
+<span class="cstat-no" title="statement not covered" >      element.addEventListener(EVENTS.ELEMENT_DISABLED, disableHandler);</span>
     });
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  this.destroy = function () <span class="fstat-no" title="function not covered" >{</span></span>
-    const elements = <span class="cstat-no" title="statement not covered" >external.$.unique(sourceElements.concat(targetElements));</span>
+    const elements = <span class="cstat-no" title="statement not covered" >unique(sourceElements.concat(targetElements));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    elements.forEach(function (element) <span class="fstat-no" title="function not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >      that.remove(element);</span>
@@ -907,7 +955,7 @@ export default Synchronizer;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

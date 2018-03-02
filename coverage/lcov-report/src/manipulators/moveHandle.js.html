@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/27</span>
+        <span class='fraction'>0/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/27</span>
+        <span class='fraction'>0/28</span>
       </div>
     </div>
   </div>
@@ -100,36 +100,15 @@
 55
 56
 57
-58</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+58
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,11 +118,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -157,7 +163,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import external from '../externalModules.js';
 import triggerEvent from '../util/triggerEvent.js';
 &nbsp;
 export default function (mouseEventData, toolType, data, handle, doneMovingCallback, preventHandleOutsideImage) <span class="fstat-no" title="function not covered" >{</span>
@@ -168,7 +175,9 @@ export default function (mouseEventData, toolType, data, handle, doneMovingCallb
     y: handle.y - mouseEventData.currentPoints.image.y
   };
 &nbsp;
-  function mouseDragCallback (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+  function mouseDragCallback (e) <span class="fstat-no" title="function not covered" >{</span>
+    const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    if (handle.hasMoved === false) {</span>
 <span class="cstat-no" title="statement not covered" >      handle.hasMoved = true;</span>
     }
@@ -187,7 +196,7 @@ export default function (mouseEventData, toolType, data, handle, doneMovingCallb
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
 &nbsp;
-    const eventType = <span class="cstat-no" title="statement not covered" >'CornerstoneToolsMeasurementModified';</span>
+    const eventType = <span class="cstat-no" title="statement not covered" >EVENTS.MEASUREMENT_MODIFIED;</span>
     const modifiedEventData = <span class="cstat-no" title="statement not covered" >{</span>
       toolType,
       element,
@@ -197,13 +206,13 @@ export default function (mouseEventData, toolType, data, handle, doneMovingCallb
 <span class="cstat-no" title="statement not covered" >    triggerEvent(element, eventType, modifiedEventData);</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.addEventListener(EVENTS.MOUSE_DRAG, mouseDragCallback);</span>
 &nbsp;
   function mouseUpCallback () <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    handle.active = false;</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsMouseDrag', mouseDragCallback);</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >    external.$(element).off('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(EVENTS.MOUSE_DRAG, mouseDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(EVENTS.MOUSE_UP, mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);</span>
 <span class="cstat-no" title="statement not covered" >    cornerstone.updateImage(element);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (typeof doneMovingCallback === 'function') {</span>
@@ -211,8 +220,8 @@ export default function (mouseEventData, toolType, data, handle, doneMovingCallb
     }
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseUp', mouseUpCallback);</span>
-<span class="cstat-no" title="statement not covered" >  external.$(element).on('CornerstoneToolsMouseClick', mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.addEventListener(EVENTS.MOUSE_UP, mouseUpCallback);</span>
+<span class="cstat-no" title="statement not covered" >  element.addEventListener(EVENTS.MOUSE_CLICK, mouseUpCallback);</span>
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -220,7 +229,7 @@ export default function (mouseEventData, toolType, data, handle, doneMovingCallb
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

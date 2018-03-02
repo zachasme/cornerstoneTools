@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.33% </span>
+        <span class="strong">12% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/45</span>
+        <span class='fraction'>6/50</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.33% </span>
+        <span class="strong">12% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/45</span>
+        <span class='fraction'>6/50</span>
       </div>
     </div>
   </div>
@@ -147,7 +147,17 @@
 102
 103
 104
-105</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,15 +203,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -209,10 +210,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -251,7 +271,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import external from '../externalModules.js';
 import { getToolState } from '../stateManagement/toolState.js';
 import brushTool from './brushTool.js';
 import getCircle from './getCircle.js';
@@ -295,29 +315,39 @@ function paint (eventData) <span class="fstat-no" title="function not covered" >
 <span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(element);</span>
 }
 &nbsp;
-function onMouseUp (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onMouseUp (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  lastImageCoords = eventData.currentPoints.image;</span>
 <span class="cstat-no" title="statement not covered" >  dragging = false;</span>
 }
 &nbsp;
-function onMouseDown (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onMouseDown (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  paint(eventData);</span>
 <span class="cstat-no" title="statement not covered" >  dragging = true;</span>
 <span class="cstat-no" title="statement not covered" >  lastImageCoords = eventData.currentPoints.image;</span>
 }
 &nbsp;
-function onMouseMove (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onMouseMove (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  lastImageCoords = eventData.currentPoints.image;</span>
 <span class="cstat-no" title="statement not covered" >  external.cornerstone.updateImage(eventData.element);</span>
 }
 &nbsp;
-function onDrag (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onDrag (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  paint(eventData);</span>
 <span class="cstat-no" title="statement not covered" >  dragging = true;</span>
 <span class="cstat-no" title="statement not covered" >  lastImageCoords = eventData.currentPoints.image;</span>
 }
 &nbsp;
-function onImageRendered (e, eventData) <span class="fstat-no" title="function not covered" >{</span>
+function onImageRendered (e) <span class="fstat-no" title="function not covered" >{</span>
+  const eventData = <span class="cstat-no" title="statement not covered" >e.detail;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!lastImageCoords) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
@@ -361,7 +391,7 @@ export { brush };
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

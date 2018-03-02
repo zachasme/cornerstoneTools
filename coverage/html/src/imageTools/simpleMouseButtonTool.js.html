@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.27% </span>
+        <span class="strong">23.08% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/11</span>
+        <span class='fraction'>3/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>1/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.27% </span>
+        <span class="strong">23.08% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/11</span>
+        <span class='fraction'>3/13</span>
       </div>
     </div>
   </div>
@@ -81,6 +81,11 @@
 36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7×</span>
@@ -88,9 +93,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,32 +113,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import { setToolOptions } from '../toolOptions.js';
 &nbsp;
-export default function (mouseDownCallback) {
+export default function (mouseDownCallback, toolType) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!toolType) {
+<span class="cstat-no" title="statement not covered" >    throw new Error('simpleMouseButtonTool: toolType is required');</span>
+  }
+&nbsp;
   let configuration = {};
 &nbsp;
-  const toolInterface = {
-    activate (element, mouseButtonMask, options) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
-      const eventData = <span class="cstat-no" title="statement not covered" >{</span>
-        mouseButtonMask,
-        options
-      };
+  return {
+    activate (element, mouseButtonMask, options = {}) {
+<span class="cstat-no" title="statement not covered" >      options.mouseButtonMask = mouseButtonMask;</span>
+<span class="cstat-no" title="statement not covered" >      setToolOptions(toolType, element, options);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      external.$(element).on('CornerstoneToolsMouseDownActivate', eventData, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.MOUSE_DOWN_ACTIVATE, mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.addEventListener(EVENTS.MOUSE_DOWN_ACTIVATE, mouseDownCallback);</span>
     },
     disable (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.MOUSE_DOWN_ACTIVATE, mouseDownCallback);</span>
     },
     enable (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.MOUSE_DOWN_ACTIVATE, mouseDownCallback);</span>
     },
     deactivate (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off('CornerstoneToolsMouseDownActivate', mouseDownCallback);</span>
+<span class="cstat-no" title="statement not covered" >      element.removeEventListener(EVENTS.MOUSE_DOWN_ACTIVATE, mouseDownCallback);</span>
     },
     getConfiguration () {
 <span class="cstat-no" title="statement not covered" >      return configuration;</span>
@@ -144,9 +147,6 @@ export default function (mouseDownCallback) {
 <span class="cstat-no" title="statement not covered" >      configuration = config;</span>
     }
   };
-&nbsp;
-&nbsp;
-  return toolInterface;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -154,7 +154,7 @@ export default function (mouseDownCallback) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

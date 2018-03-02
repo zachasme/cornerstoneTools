@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">17.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/20</span>
+        <span class='fraction'>4/23</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">16.67% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>4/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>1/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">17.39% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/20</span>
+        <span class='fraction'>4/23</span>
       </div>
     </div>
   </div>
@@ -89,7 +89,16 @@
 44
 45
 46
-47</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+47
+48
+49
+50
+51
+52
+53
+54
+55</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8×</span>
@@ -101,16 +110,7 @@
 <span class="cline-any cline-yes">8×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -118,68 +118,92 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import { setToolOptions } from '../toolOptions.js';
 &nbsp;
-export default function (touchDragCallback, options) {
-  let events = 'CornerstoneToolsTouchDrag';
+export default function (touchDragCallback, toolType, options) {
+  const events = [EVENTS.TOUCH_DRAG];
 &nbsp;
   if (options &amp;&amp; options.fireOnTouchStart === true) {
-    events += ' CornerstoneToolsTouchStart';
+    events.push(EVENTS.TOUCH_START);
   }
 &nbsp;
-  const toolInterface = {
+  return {
     activate (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off(events, touchDragCallback);</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >      if (options &amp;&amp; options.eventData) {</span>
-<span class="cstat-no" title="statement not covered" >        external.$(element).on(events, options.eventData, touchDragCallback);</span>
-      } else {
-<span class="cstat-no" title="statement not covered" >        external.$(element).on(events, touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >        setToolOptions(toolType, element, options.eventData);</span>
       }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      events.forEach((eventType) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        element.removeEventListener(eventType, touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >        element.addEventListener(eventType, touchDragCallback);</span>
+      });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      if (options &amp;&amp; options.activateCallback) {</span>
 <span class="cstat-no" title="statement not covered" >        options.activateCallback(element);</span>
       }
     },
     disable (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off(events, touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >      events.forEach((eventType) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        element.removeEventListener(eventType, touchDragCallback);</span>
+      });
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      if (options &amp;&amp; options.disableCallback) {</span>
 <span class="cstat-no" title="statement not covered" >        options.disableCallback(element);</span>
       }
     },
     enable (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off(events, touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >      events.forEach((eventType) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        element.removeEventListener(eventType, touchDragCallback);</span>
+      });
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      if (options &amp;&amp; options.enableCallback) {</span>
 <span class="cstat-no" title="statement not covered" >        options.enableCallback(element);</span>
       }
     },
     deactivate (element) {
-<span class="cstat-no" title="statement not covered" >      external.$(element).off(events, touchDragCallback);</span>
+<span class="cstat-no" title="statement not covered" >      events.forEach((eventType) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        element.removeEventListener(eventType, touchDragCallback);</span>
+      });
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      if (options &amp;&amp; options.deactivateCallback) {</span>
 <span class="cstat-no" title="statement not covered" >        options.deactivateCallback(element);</span>
       }
     }
   };
-&nbsp;
-&nbsp;
-  return toolInterface;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -187,7 +211,7 @@ export default function (touchDragCallback, options) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

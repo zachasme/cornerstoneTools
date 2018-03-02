@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/47</span>
+        <span class='fraction'>0/42</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/36</span>
+        <span class='fraction'>0/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/47</span>
+        <span class='fraction'>0/42</span>
       </div>
     </div>
   </div>
@@ -159,7 +159,9 @@
 114
 115
 116
-117</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+117
+118
+119</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,22 +250,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -275,11 +279,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import external from '../externalModules.js';
 import { getToolState } from '../stateManagement/toolState.js';
 import requestPoolManager from '../requestPool/requestPoolManager.js';
 import loadHandlerManager from '../stateManagement/loadHandlerManager.js';
-import { stackScroll } from '../stackTools/stackScroll.js';
 import triggerEvent from '../util/triggerEvent.js';
 &nbsp;
 export default function (element, newImageIdIndex) <span class="fstat-no" title="function not covered" >{</span>
@@ -364,15 +368,17 @@ export default function (element, newImageIdIndex) <span class="fstat-no" title=
 &nbsp;
   // Retry image loading in cases where previous image promise
   // Was rejected, if the option is set
-  const config = <span class="cstat-no" title="statement not covered" >stackScroll.getConfiguration();</span>
+  /*
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (config &amp;&amp; config.retryLoadOnScroll === true) {</span>
-    const newImagePromise = <span class="cstat-no" title="statement not covered" >cornerstone.imageCache.getImagePromise(newImageId);</span>
+    Const config = stackScroll.getConfiguration();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (newImagePromise &amp;&amp; newImagePromise.state() === 'rejected') {</span>
-<span class="cstat-no" title="statement not covered" >      cornerstone.imageCache.removeImagePromise(newImageId);</span>
+    TODO: Revisit this. It appears that Core's imageCache is not
+    keeping rejected promises anywhere, so we have no way to know
+    if something was previously rejected.
+&nbsp;
+    if (config &amp;&amp; config.retryLoadOnScroll === true) {
     }
-  }
+  */
 &nbsp;
   // Convert the preventCache value in stack data to a boolean
   const preventCache = <span class="cstat-no" title="statement not covered" >Boolean(stackData.preventCache);</span>
@@ -389,7 +395,7 @@ export default function (element, newImageIdIndex) <span class="fstat-no" title=
   // Make sure we kick off any changed download request pools
 <span class="cstat-no" title="statement not covered" >  requestPoolManager.startGrabbing();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  triggerEvent(element, 'CornerstoneStackScroll', eventData);</span>
+<span class="cstat-no" title="statement not covered" >  triggerEvent(element, EVENTS.STACK_SCROLL, eventData);</span>
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -397,7 +403,7 @@ export default function (element, newImageIdIndex) <span class="fstat-no" title=
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

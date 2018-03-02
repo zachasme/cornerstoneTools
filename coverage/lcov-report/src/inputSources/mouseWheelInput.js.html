@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.25% </span>
+        <span class="strong">5.88% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/32</span>
+        <span class='fraction'>2/34</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/35</span>
+        <span class='fraction'>0/26</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.25% </span>
+        <span class="strong">5.88% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/32</span>
+        <span class='fraction'>2/34</span>
       </div>
     </div>
   </div>
@@ -134,8 +134,22 @@
 89
 90
 91
-92</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+92
+93
+94
+95
+96
+97</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,18 +167,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,10 +218,14 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -225,27 +235,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EVENTS from '../events.js';
+import external from '../externalModules.js';
 import triggerEvent from '../util/triggerEvent.js';
 &nbsp;
 function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</span>
+  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
+  const element = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
+  const enabledElement = <span class="cstat-no" title="statement not covered" >cornerstone.getEnabledElement(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!enabledElement.image) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
   // !!!HACK/NOTE/WARNING!!!
   // For some reason I am getting mousewheel and DOMMouseScroll events on my
   // Mac os x mavericks system when middle mouse button dragging.
   // I couldn't find any info about this so this might break other systems
   // Webkit hack
-<span class="cstat-no" title="statement not covered" >  if (e.originalEvent.type === 'mousewheel' &amp;&amp; e.originalEvent.wheelDeltaY === 0) {</span>
+<span class="cstat-no" title="statement not covered" >  if (e.type === 'mousewheel' &amp;&amp; e.wheelDeltaY === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
   // Firefox hack
-<span class="cstat-no" title="statement not covered" >  if (e.originalEvent.type === 'DOMMouseScroll' &amp;&amp; e.originalEvent.axis === 1) {</span>
+<span class="cstat-no" title="statement not covered" >  if (e.type === 'DOMMouseScroll' &amp;&amp; e.axis === 1) {</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
-&nbsp;
-  const cornerstone = <span class="cstat-no" title="statement not covered" >external.cornerstone;</span>
-  const element = <span class="cstat-no" title="statement not covered" >e.currentTarget;</span>
 &nbsp;
   let x;
   let y;
@@ -253,11 +269,6 @@ function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</
 <span class="cstat-no" title="statement not covered" >  if (e.pageX !== undefined &amp;&amp; e.pageY !== undefined) {</span>
 <span class="cstat-no" title="statement not covered" >    x = e.pageX;</span>
 <span class="cstat-no" title="statement not covered" >    y = e.pageY;</span>
-  } else <span class="cstat-no" title="statement not covered" >if (e.originalEvent &amp;&amp;</span>
-               e.originalEvent.pageX !== undefined &amp;&amp;
-               e.originalEvent.pageY !== undefined) {
-<span class="cstat-no" title="statement not covered" >    x = e.originalEvent.pageX;</span>
-<span class="cstat-no" title="statement not covered" >    y = e.originalEvent.pageY;</span>
   } else {
     // IE9 &amp; IE10
 <span class="cstat-no" title="statement not covered" >    x = e.x;</span>
@@ -270,12 +281,12 @@ function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</
 &nbsp;
   let wheelDelta;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (e.originalEvent &amp;&amp; e.originalEvent.wheelDelta) {</span>
-<span class="cstat-no" title="statement not covered" >    wheelDelta = -e.originalEvent.wheelDelta;</span>
-  } else <span class="cstat-no" title="statement not covered" >if (e.originalEvent &amp;&amp; e.originalEvent.deltaY) {</span>
-<span class="cstat-no" title="statement not covered" >    wheelDelta = -e.originalEvent.deltaY;</span>
-  } else <span class="cstat-no" title="statement not covered" >if (e.originalEvent &amp;&amp; e.originalEvent.detail) {</span>
-<span class="cstat-no" title="statement not covered" >    wheelDelta = -e.originalEvent.detail;</span>
+<span class="cstat-no" title="statement not covered" >  if (e.wheelDelta) {</span>
+<span class="cstat-no" title="statement not covered" >    wheelDelta = e.wheelDelta;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (e.deltaY) {</span>
+<span class="cstat-no" title="statement not covered" >    wheelDelta = -e.deltaY;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (e.detail) {</span>
+<span class="cstat-no" title="statement not covered" >    wheelDelta = -e.detail;</span>
   } else {
 <span class="cstat-no" title="statement not covered" >    wheelDelta = e.wheelDelta;</span>
   }
@@ -285,7 +296,7 @@ function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</
   const mouseWheelData = <span class="cstat-no" title="statement not covered" >{</span>
     element,
     viewport: cornerstone.getViewport(element),
-    image: cornerstone.getEnabledElement(element).image,
+    image: enabledElement.image,
     direction,
     pageX: x,
     pageY: y,
@@ -293,20 +304,24 @@ function mouseWheel (e) <span class="fstat-no" title="function not covered" >{</
     imageY: startingCoords.y
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  triggerEvent(element, 'CornerstoneToolsMouseWheel', mouseWheelData);</span>
+<span class="cstat-no" title="statement not covered" >  triggerEvent(element, EVENTS.MOUSE_WHEEL, mouseWheelData);</span>
 }
 &nbsp;
-const mouseWheelEvents = 'mousewheel DOMMouseScroll';
+const mouseWheelEvents = ['mousewheel', 'DOMMouseScroll'];
 &nbsp;
 function enable (element) <span class="fstat-no" title="function not covered" >{</span>
   // Prevent handlers from being attached multiple times
 <span class="cstat-no" title="statement not covered" >  disable(element);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  external.$(element).on(mouseWheelEvents, mouseWheel);</span>
+<span class="cstat-no" title="statement not covered" >  mouseWheelEvents.forEach((eventType) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    element.addEventListener(eventType, mouseWheel);</span>
+  });
 }
 &nbsp;
 function disable (element) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >  external.$(element).unbind(mouseWheelEvents, mouseWheel);</span>
+<span class="cstat-no" title="statement not covered" >  mouseWheelEvents.forEach((eventType) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    element.removeEventListener(eventType, mouseWheel);</span>
+  });
 }
 &nbsp;
 // Module exports
@@ -322,7 +337,7 @@ export default mouseWheelInput;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

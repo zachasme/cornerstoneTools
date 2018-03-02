@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>0/10</span>
       </div>
     </div>
   </div>
@@ -70,17 +70,8 @@
 25
 26
 27
-28
-29
-30
-31
-32
-33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+28</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -97,48 +88,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { external } from '../externalModules.js';
-&nbsp;
-export default function (element, filename, mimetype) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function saveAs (element, filename, mimetype = 'image/png') <span class="fstat-no" title="function not covered" >{</span>
   // Setting the default value for mimetype to image/png
-<span class="cstat-no" title="statement not covered" >  mimetype = mimetype || 'image/png';</span>
-  const canvas = <span class="cstat-no" title="statement not covered" >external.$(element).find('canvas').get(0);</span>
+  const canvas = <span class="cstat-no" title="statement not covered" >element.querySelector('canvas');</span>
 &nbsp;
   // Thanks to Ken Fyrstenber
   // http://stackoverflow.com/questions/18480474/how-to-save-an-image-from-canvas
   const lnk = <span class="cstat-no" title="statement not covered" >document.createElement('a');</span>
 &nbsp;
-  // / the key here is to set the download attribute of the a tag
+  // The key here is to set the download attribute of the a tag
 <span class="cstat-no" title="statement not covered" >  lnk.download = filename;</span>
 &nbsp;
-  // / convert canvas content to data-uri for link. When download
-  // / attribute is set the content pointed to by link will be
-  // / pushed as 'download' in HTML5 capable browsers
-<span class="cstat-no" title="statement not covered" >  lnk.href = canvas.toDataURL(mimetype);</span>
+  // Convert canvas content to data-uri for link. When download
+  // Attribute is set the content pointed to by link will be
+  // Pushed as 'download' in HTML5 capable browsers
+<span class="cstat-no" title="statement not covered" >  lnk.href = canvas.toDataURL(mimetype, 1);</span>
 &nbsp;
   // / create a 'fake' click-event to trigger the download
 <span class="cstat-no" title="statement not covered" >  if (document.createEvent) {</span>
-&nbsp;
     const e = <span class="cstat-no" title="statement not covered" >document.createEvent('MouseEvents');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    e.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    lnk.dispatchEvent(e);</span>
-&nbsp;
   } else <span class="cstat-no" title="statement not covered" >if (lnk.fireEvent) {</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >    lnk.fireEvent('onclick');</span>
   }
 }
@@ -148,7 +130,7 @@ export default function (element, filename, mimetype) <span class="fstat-no" tit
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 19 2018 04:17:39 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 16:07:03 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../prettify.js"></script>
