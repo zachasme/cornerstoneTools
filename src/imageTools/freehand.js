@@ -242,6 +242,7 @@ function mouseMoveCallback (e, eventData) {
 
     if (config.freehand) { // JPETTS - Note: currently disabled
       data.handles[currentHandle - 1].lines.push(eventData.currentPoints.image);
+      addPoint(eventData);
     } else {
       // No snapping in freehand mode
       const handleNearby = pointNearHandle(eventData, config.currentTool);
@@ -486,7 +487,18 @@ function onImageRendered (e) {
   const element = eventData.element;
   const config = freehand.getConfiguration();
   const seriesModule = cornerstone.metaData.get('generalSeriesModule', image.imageId);
+  const imagePlane = cornerstone.metaData.get('imagePlaneModule', image.imageId);
   let modality;
+  let rowPixelSpacing;
+  let colPixelSpacing;
+
+  if (imagePlane) {
+    rowPixelSpacing = imagePlane.rowPixelSpacing || imagePlane.rowImagePixelSpacing;
+    colPixelSpacing = imagePlane.columnPixelSpacing || imagePlane.colImagePixelSpacing;
+  } else {
+    rowPixelSpacing = image.rowPixelSpacing;
+    colPixelSpacing = image.columnPixelSpacing;
+  }
 
   if (seriesModule) {
     modality = seriesModule.modality;
@@ -632,9 +644,7 @@ function onImageRendered (e) {
 
       // Retrieve the pixel spacing values, and if they are not
       // Real non-zero values, set them to 1
-      const columnPixelSpacing = image.columnPixelSpacing || 1;
-      const rowPixelSpacing = image.rowPixelSpacing || 1;
-      const scaling = columnPixelSpacing * rowPixelSpacing;
+      const scaling = (colPixelSpacing || 1) * (rowPixelSpacing || 1);
 
       area = freeHandArea(data.handles, scaling);
 
@@ -684,7 +694,7 @@ function onImageRendered (e) {
       // This uses Char code 178 for a superscript 2
       let suffix = ` mm${String.fromCharCode(178)}`;
 
-      if (!image.rowPixelSpacing || !image.columnPixelSpacing) {
+      if (!rowPixelSpacing || !colPixelSpacing) {
         suffix = ` pixels${String.fromCharCode(178)}`;
       }
 
