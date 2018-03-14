@@ -117,6 +117,7 @@ function updateRegions (element) {
 function mouseUpCallback (e, eventData) {
   external.$(eventData.element).off('CornerstoneToolsMouseDrag', mouseDragCallback);
   external.$(eventData.element).off('CornerstoneToolsMouseUp', mouseUpCallback);
+  external.$(eventData.element).off('CornerstoneToolsMouseClick', mouseUpCallback);
   external.$(eventData.element).off('CornerstoneImageRendered', onImageRendered);
   updateRegions(eventData.element);
   external.cornerstone.updateImage(eventData.element);
@@ -133,6 +134,7 @@ function mouseDownCallback (e, eventData) {
 
     external.$(eventData.element).on('CornerstoneToolsMouseDrag', mouseDragCallback);
     external.$(eventData.element).on('CornerstoneToolsMouseUp', mouseUpCallback);
+    external.$(eventData.element).on('CornerstoneToolsMouseClick', mouseUpCallback);
     external.$(eventData.element).on('CornerstoneImageRendered', onImageRendered);
 
     return mouseDragCallback(e, eventData);
