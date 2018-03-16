@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-03-14 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-03-16 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -8,7 +8,7 @@
 		exports["cornerstoneTools"] = factory(require("cornerstone-math"));
 	else
 		root["cornerstoneTools"] = factory(root["cornerstoneMath"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_62__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_63__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 62);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,7 +86,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.external = exports.cornerstoneMath = undefined;
 
-var _cornerstoneMath = __webpack_require__(62);
+var _cornerstoneMath = __webpack_require__(63);
 
 var cornerstoneMath = _interopRequireWildcard(_cornerstoneMath);
 
@@ -944,7 +944,7 @@ var _getHandleNearImagePoint = __webpack_require__(18);
 
 var _getHandleNearImagePoint2 = _interopRequireDefault(_getHandleNearImagePoint);
 
-var _touchMoveHandle = __webpack_require__(52);
+var _touchMoveHandle = __webpack_require__(53);
 
 var _touchMoveHandle2 = _interopRequireDefault(_touchMoveHandle);
 
@@ -952,7 +952,7 @@ var _moveNewHandleTouch = __webpack_require__(25);
 
 var _moveNewHandleTouch2 = _interopRequireDefault(_moveNewHandleTouch);
 
-var _touchMoveAllHandles = __webpack_require__(51);
+var _touchMoveAllHandles = __webpack_require__(52);
 
 var _touchMoveAllHandles2 = _interopRequireDefault(_touchMoveAllHandles);
 
@@ -2421,7 +2421,7 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _constants = __webpack_require__(60);
+var _constants = __webpack_require__(61);
 
 /* HAXX BEGIN */
 
@@ -3145,7 +3145,7 @@ exports.default = function (element, images) {
   (0, _scrollToIndex2.default)(element, newImageIdIndex);
 };
 
-var _scrollToIndex = __webpack_require__(43);
+var _scrollToIndex = __webpack_require__(44);
 
 var _scrollToIndex2 = _interopRequireDefault(_scrollToIndex);
 
@@ -3526,6 +3526,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.numberWithCommas = numberWithCommas;
+function numberWithCommas(x) {
+  return x.toString();
+  /*
+  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  const parts = x.toString().split('.');
+   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+   return parts.join('.');
+  */
+}
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 exports.default = function (targetImagePlane, referenceImagePlane) {
   var points = (0, _pointProjector.planePlaneIntersection)(targetImagePlane, referenceImagePlane);
@@ -3543,7 +3564,7 @@ exports.default = function (targetImagePlane, referenceImagePlane) {
 var _pointProjector = __webpack_require__(27);
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3614,7 +3635,7 @@ exports.default = function (context, eventData, targetElement, referenceElement)
 
 var _externalModules = __webpack_require__(0);
 
-var _calculateReferenceLine = __webpack_require__(39);
+var _calculateReferenceLine = __webpack_require__(40);
 
 var _calculateReferenceLine2 = _interopRequireDefault(_calculateReferenceLine);
 
@@ -3629,7 +3650,7 @@ var _toolStyle2 = _interopRequireDefault(_toolStyle);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3639,11 +3660,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getOrientationString = __webpack_require__(65);
+var _getOrientationString = __webpack_require__(66);
 
 var _getOrientationString2 = _interopRequireDefault(_getOrientationString);
 
-var _invertOrientationString = __webpack_require__(66);
+var _invertOrientationString = __webpack_require__(67);
 
 var _invertOrientationString2 = _interopRequireDefault(_invertOrientationString);
 
@@ -3657,7 +3678,7 @@ var orientation = {
 exports.default = orientation;
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3686,7 +3707,7 @@ exports.default = function (enabledElement, context, fontSize) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3818,7 +3839,7 @@ var _loadHandlerManager = __webpack_require__(10);
 
 var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 
-var _stackScroll = __webpack_require__(44);
+var _stackScroll = __webpack_require__(45);
 
 var _triggerEvent = __webpack_require__(3);
 
@@ -3827,7 +3848,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3972,7 +3993,7 @@ exports.stackScrollTouchDrag = stackScrollTouchDrag;
 exports.stackScrollMultiTouch = stackScrollMultiTouch;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4024,7 +4045,7 @@ exports.default = function (element, x, y, width, height) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4059,7 +4080,7 @@ exports.default = function (context, x, y, w, h) {
 };
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4080,7 +4101,7 @@ exports.default = function (context, start, color, lineWidth) {
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4125,7 +4146,7 @@ exports.default = function (context, start, end, color, lineWidth) {
 };
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4187,7 +4208,7 @@ var _pointInEllipse2 = _interopRequireDefault(_pointInEllipse);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4228,7 +4249,7 @@ exports.default = function (keyDownCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4319,7 +4340,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4468,7 +4489,7 @@ function animate(lastTime, handle, runAnimation, enabledElement, targetLocation)
 }
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4555,7 +4576,7 @@ var preventGhostClick = {
 exports.default = preventGhostClick;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4588,7 +4609,7 @@ exports.default = function (doubleTapCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4850,7 +4871,7 @@ var _toolState = __webpack_require__(1);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4885,7 +4906,7 @@ exports.default = function (touchPinchCallback) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5073,7 +5094,7 @@ var TOOL_STATE_TOOL_TYPE = 'brush';
 var brushLayerId = void 0;
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5121,7 +5142,7 @@ function getCircle(radius, rows, columns) {
 }
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5173,7 +5194,7 @@ exports.drawBrushPixels = drawBrushPixels;
 exports.drawBrushOnCanvas = drawBrushOnCanvas;
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5186,7 +5207,7 @@ var TYPED_ARRAY = exports.TYPED_ARRAY = Uint8Array;
 var TOOL_TYPE = exports.TOOL_TYPE = 'regions';
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5205,7 +5226,7 @@ Object.defineProperty(exports, 'external', {
   }
 });
 
-var _index = __webpack_require__(63);
+var _index = __webpack_require__(64);
 
 Object.defineProperty(exports, 'referenceLines', {
   enumerable: true,
@@ -5214,7 +5235,7 @@ Object.defineProperty(exports, 'referenceLines', {
   }
 });
 
-var _index2 = __webpack_require__(41);
+var _index2 = __webpack_require__(42);
 
 Object.defineProperty(exports, 'orientation', {
   enumerable: true,
@@ -5232,7 +5253,7 @@ Object.defineProperty(exports, 'requestPoolManager', {
   }
 });
 
-var _setContextToDisplayFontSize = __webpack_require__(42);
+var _setContextToDisplayFontSize = __webpack_require__(43);
 
 Object.defineProperty(exports, 'setContextToDisplayFontSize', {
   enumerable: true,
@@ -5241,7 +5262,7 @@ Object.defineProperty(exports, 'setContextToDisplayFontSize', {
   }
 });
 
-var _scrollToIndex = __webpack_require__(43);
+var _scrollToIndex = __webpack_require__(44);
 
 Object.defineProperty(exports, 'scrollToIndex', {
   enumerable: true,
@@ -5361,7 +5382,7 @@ Object.defineProperty(exports, 'isMobileDevice', {
   }
 });
 
-var _getLuminance = __webpack_require__(45);
+var _getLuminance = __webpack_require__(46);
 
 Object.defineProperty(exports, 'getLuminance', {
   enumerable: true,
@@ -5379,7 +5400,7 @@ Object.defineProperty(exports, 'drawTextBox', {
   }
 });
 
-var _drawEllipse = __webpack_require__(46);
+var _drawEllipse = __webpack_require__(47);
 
 Object.defineProperty(exports, 'drawEllipse', {
   enumerable: true,
@@ -5388,7 +5409,7 @@ Object.defineProperty(exports, 'drawEllipse', {
   }
 });
 
-var _drawCircle = __webpack_require__(47);
+var _drawCircle = __webpack_require__(48);
 
 Object.defineProperty(exports, 'drawCircle', {
   enumerable: true,
@@ -5397,7 +5418,7 @@ Object.defineProperty(exports, 'drawCircle', {
   }
 });
 
-var _drawArrow = __webpack_require__(48);
+var _drawArrow = __webpack_require__(49);
 
 Object.defineProperty(exports, 'drawArrow', {
   enumerable: true,
@@ -5424,7 +5445,7 @@ Object.defineProperty(exports, 'calculateSUV', {
   }
 });
 
-var _calculateEllipseStatistics = __webpack_require__(49);
+var _calculateEllipseStatistics = __webpack_require__(50);
 
 Object.defineProperty(exports, 'calculateEllipseStatistics', {
   enumerable: true,
@@ -5433,7 +5454,7 @@ Object.defineProperty(exports, 'calculateEllipseStatistics', {
   }
 });
 
-var _probeTool4D = __webpack_require__(67);
+var _probeTool4D = __webpack_require__(68);
 
 Object.defineProperty(exports, 'probeTool4D', {
   enumerable: true,
@@ -5451,7 +5472,7 @@ Object.defineProperty(exports, 'incrementTimePoint', {
   }
 });
 
-var _timeSeriesPlayer = __webpack_require__(70);
+var _timeSeriesPlayer = __webpack_require__(71);
 
 Object.defineProperty(exports, 'timeSeriesPlayer', {
   enumerable: true,
@@ -5460,7 +5481,7 @@ Object.defineProperty(exports, 'timeSeriesPlayer', {
   }
 });
 
-var _timeSeriesScroll = __webpack_require__(71);
+var _timeSeriesScroll = __webpack_require__(72);
 
 Object.defineProperty(exports, 'timeSeriesScroll', {
   enumerable: true,
@@ -5481,7 +5502,7 @@ Object.defineProperty(exports, 'timeSeriesScrollTouchDrag', {
   }
 });
 
-var _wwwcSynchronizer = __webpack_require__(72);
+var _wwwcSynchronizer = __webpack_require__(73);
 
 Object.defineProperty(exports, 'wwwcSynchronizer', {
   enumerable: true,
@@ -5490,7 +5511,7 @@ Object.defineProperty(exports, 'wwwcSynchronizer', {
   }
 });
 
-var _updateImageSynchronizer = __webpack_require__(73);
+var _updateImageSynchronizer = __webpack_require__(74);
 
 Object.defineProperty(exports, 'updateImageSynchronizer', {
   enumerable: true,
@@ -5499,7 +5520,7 @@ Object.defineProperty(exports, 'updateImageSynchronizer', {
   }
 });
 
-var _Synchronizer = __webpack_require__(74);
+var _Synchronizer = __webpack_require__(75);
 
 Object.defineProperty(exports, 'Synchronizer', {
   enumerable: true,
@@ -5508,7 +5529,7 @@ Object.defineProperty(exports, 'Synchronizer', {
   }
 });
 
-var _stackScrollSynchronizer = __webpack_require__(75);
+var _stackScrollSynchronizer = __webpack_require__(76);
 
 Object.defineProperty(exports, 'stackScrollSynchronizer', {
   enumerable: true,
@@ -5517,7 +5538,7 @@ Object.defineProperty(exports, 'stackScrollSynchronizer', {
   }
 });
 
-var _stackImagePositionSynchronizer = __webpack_require__(76);
+var _stackImagePositionSynchronizer = __webpack_require__(77);
 
 Object.defineProperty(exports, 'stackImagePositionSynchronizer', {
   enumerable: true,
@@ -5526,7 +5547,7 @@ Object.defineProperty(exports, 'stackImagePositionSynchronizer', {
   }
 });
 
-var _stackImagePositionOffsetSynchronizer = __webpack_require__(77);
+var _stackImagePositionOffsetSynchronizer = __webpack_require__(78);
 
 Object.defineProperty(exports, 'stackImagePositionOffsetSynchronizer', {
   enumerable: true,
@@ -5535,7 +5556,7 @@ Object.defineProperty(exports, 'stackImagePositionOffsetSynchronizer', {
   }
 });
 
-var _stackImageIndexSynchronizer = __webpack_require__(78);
+var _stackImageIndexSynchronizer = __webpack_require__(79);
 
 Object.defineProperty(exports, 'stackImageIndexSynchronizer', {
   enumerable: true,
@@ -5544,7 +5565,7 @@ Object.defineProperty(exports, 'stackImageIndexSynchronizer', {
   }
 });
 
-var _panZoomSynchronizer = __webpack_require__(79);
+var _panZoomSynchronizer = __webpack_require__(80);
 
 Object.defineProperty(exports, 'panZoomSynchronizer', {
   enumerable: true,
@@ -5619,7 +5640,7 @@ Object.defineProperty(exports, 'toolColors', {
   }
 });
 
-var _timeSeriesSpecificStateManager = __webpack_require__(80);
+var _timeSeriesSpecificStateManager = __webpack_require__(81);
 
 Object.defineProperty(exports, 'addTimeSeriesStateManager', {
   enumerable: true,
@@ -5643,7 +5664,7 @@ Object.defineProperty(exports, 'textStyle', {
   }
 });
 
-var _stackSpecificStateManager = __webpack_require__(81);
+var _stackSpecificStateManager = __webpack_require__(82);
 
 Object.defineProperty(exports, 'stackSpecificStateManager', {
   enumerable: true,
@@ -5688,7 +5709,7 @@ Object.defineProperty(exports, 'globalImageIdSpecificToolStateManager', {
   }
 });
 
-var _frameOfReferenceStateManager = __webpack_require__(82);
+var _frameOfReferenceStateManager = __webpack_require__(83);
 
 Object.defineProperty(exports, 'newFrameOfReferenceSpecificToolStateManager', {
   enumerable: true,
@@ -5703,7 +5724,7 @@ Object.defineProperty(exports, 'globalFrameOfReferenceSpecificToolStateManager',
   }
 });
 
-var _appState = __webpack_require__(83);
+var _appState = __webpack_require__(84);
 
 Object.defineProperty(exports, 'appState', {
   enumerable: true,
@@ -5712,7 +5733,7 @@ Object.defineProperty(exports, 'appState', {
   }
 });
 
-var _stackScrollKeyboard = __webpack_require__(84);
+var _stackScrollKeyboard = __webpack_require__(85);
 
 Object.defineProperty(exports, 'stackScrollKeyboard', {
   enumerable: true,
@@ -5721,7 +5742,7 @@ Object.defineProperty(exports, 'stackScrollKeyboard', {
   }
 });
 
-var _stackScroll = __webpack_require__(44);
+var _stackScroll = __webpack_require__(45);
 
 Object.defineProperty(exports, 'stackScroll', {
   enumerable: true,
@@ -5748,7 +5769,7 @@ Object.defineProperty(exports, 'stackScrollMultiTouch', {
   }
 });
 
-var _stackPrefetch = __webpack_require__(85);
+var _stackPrefetch = __webpack_require__(86);
 
 Object.defineProperty(exports, 'stackPrefetch', {
   enumerable: true,
@@ -5757,7 +5778,7 @@ Object.defineProperty(exports, 'stackPrefetch', {
   }
 });
 
-var _scrollIndicator = __webpack_require__(86);
+var _scrollIndicator = __webpack_require__(87);
 
 Object.defineProperty(exports, 'scrollIndicator', {
   enumerable: true,
@@ -5766,7 +5787,7 @@ Object.defineProperty(exports, 'scrollIndicator', {
   }
 });
 
-var _stackRenderers = __webpack_require__(87);
+var _stackRenderers = __webpack_require__(88);
 
 Object.defineProperty(exports, 'stackRenderers', {
   enumerable: true,
@@ -5775,7 +5796,7 @@ Object.defineProperty(exports, 'stackRenderers', {
   }
 });
 
-var _playClip = __webpack_require__(89);
+var _playClip = __webpack_require__(90);
 
 Object.defineProperty(exports, 'playClip', {
   enumerable: true,
@@ -5862,7 +5883,7 @@ Object.defineProperty(exports, 'moveNewHandleTouch', {
   }
 });
 
-var _touchMoveAllHandles = __webpack_require__(51);
+var _touchMoveAllHandles = __webpack_require__(52);
 
 Object.defineProperty(exports, 'touchMoveAllHandles', {
   enumerable: true,
@@ -5871,7 +5892,7 @@ Object.defineProperty(exports, 'touchMoveAllHandles', {
   }
 });
 
-var _touchMoveHandle = __webpack_require__(52);
+var _touchMoveHandle = __webpack_require__(53);
 
 Object.defineProperty(exports, 'touchMoveHandle', {
   enumerable: true,
@@ -5880,7 +5901,7 @@ Object.defineProperty(exports, 'touchMoveHandle', {
   }
 });
 
-var _keyboardInput = __webpack_require__(90);
+var _keyboardInput = __webpack_require__(91);
 
 Object.defineProperty(exports, 'keyboardInput', {
   enumerable: true,
@@ -5889,7 +5910,7 @@ Object.defineProperty(exports, 'keyboardInput', {
   }
 });
 
-var _mouseInput = __webpack_require__(91);
+var _mouseInput = __webpack_require__(92);
 
 Object.defineProperty(exports, 'mouseInput', {
   enumerable: true,
@@ -5898,7 +5919,7 @@ Object.defineProperty(exports, 'mouseInput', {
   }
 });
 
-var _mouseWheelInput = __webpack_require__(92);
+var _mouseWheelInput = __webpack_require__(93);
 
 Object.defineProperty(exports, 'mouseWheelInput', {
   enumerable: true,
@@ -5907,7 +5928,7 @@ Object.defineProperty(exports, 'mouseWheelInput', {
   }
 });
 
-var _preventGhostClick = __webpack_require__(53);
+var _preventGhostClick = __webpack_require__(54);
 
 Object.defineProperty(exports, 'preventGhostClick', {
   enumerable: true,
@@ -5916,7 +5937,7 @@ Object.defineProperty(exports, 'preventGhostClick', {
   }
 });
 
-var _touchInput = __webpack_require__(93);
+var _touchInput = __webpack_require__(94);
 
 Object.defineProperty(exports, 'touchInput', {
   enumerable: true,
@@ -5925,7 +5946,7 @@ Object.defineProperty(exports, 'touchInput', {
   }
 });
 
-var _angleTool = __webpack_require__(94);
+var _angleTool = __webpack_require__(95);
 
 Object.defineProperty(exports, 'angle', {
   enumerable: true,
@@ -5940,7 +5961,7 @@ Object.defineProperty(exports, 'angleTouch', {
   }
 });
 
-var _arrowAnnotate = __webpack_require__(95);
+var _arrowAnnotate = __webpack_require__(96);
 
 Object.defineProperty(exports, 'arrowAnnotate', {
   enumerable: true,
@@ -5955,7 +5976,7 @@ Object.defineProperty(exports, 'arrowAnnotateTouch', {
   }
 });
 
-var _crosshairs = __webpack_require__(96);
+var _crosshairs = __webpack_require__(97);
 
 Object.defineProperty(exports, 'crosshairs', {
   enumerable: true,
@@ -5979,7 +6000,7 @@ Object.defineProperty(exports, 'displayTool', {
   }
 });
 
-var _doubleTapTool = __webpack_require__(54);
+var _doubleTapTool = __webpack_require__(55);
 
 Object.defineProperty(exports, 'doubleTapTool', {
   enumerable: true,
@@ -5988,7 +6009,7 @@ Object.defineProperty(exports, 'doubleTapTool', {
   }
 });
 
-var _doubleTapZoom = __webpack_require__(97);
+var _doubleTapZoom = __webpack_require__(98);
 
 Object.defineProperty(exports, 'doubleTapZoom', {
   enumerable: true,
@@ -5997,7 +6018,7 @@ Object.defineProperty(exports, 'doubleTapZoom', {
   }
 });
 
-var _dragProbe = __webpack_require__(98);
+var _dragProbe = __webpack_require__(99);
 
 Object.defineProperty(exports, 'dragProbe', {
   enumerable: true,
@@ -6012,7 +6033,7 @@ Object.defineProperty(exports, 'dragProbeTouch', {
   }
 });
 
-var _ellipticalRoi = __webpack_require__(99);
+var _ellipticalRoi = __webpack_require__(100);
 
 Object.defineProperty(exports, 'ellipticalRoi', {
   enumerable: true,
@@ -6027,7 +6048,7 @@ Object.defineProperty(exports, 'ellipticalRoiTouch', {
   }
 });
 
-var _freehand = __webpack_require__(100);
+var _freehand = __webpack_require__(101);
 
 Object.defineProperty(exports, 'freehand', {
   enumerable: true,
@@ -6036,7 +6057,7 @@ Object.defineProperty(exports, 'freehand', {
   }
 });
 
-var _highlight = __webpack_require__(105);
+var _highlight = __webpack_require__(106);
 
 Object.defineProperty(exports, 'highlight', {
   enumerable: true,
@@ -6051,7 +6072,7 @@ Object.defineProperty(exports, 'highlightTouch', {
   }
 });
 
-var _imageStats = __webpack_require__(106);
+var _imageStats = __webpack_require__(107);
 
 Object.defineProperty(exports, 'imageStats', {
   enumerable: true,
@@ -6060,7 +6081,7 @@ Object.defineProperty(exports, 'imageStats', {
   }
 });
 
-var _keyboardTool = __webpack_require__(50);
+var _keyboardTool = __webpack_require__(51);
 
 Object.defineProperty(exports, 'keyboardTool', {
   enumerable: true,
@@ -6069,7 +6090,7 @@ Object.defineProperty(exports, 'keyboardTool', {
   }
 });
 
-var _length = __webpack_require__(107);
+var _length = __webpack_require__(108);
 
 Object.defineProperty(exports, 'length', {
   enumerable: true,
@@ -6084,7 +6105,7 @@ Object.defineProperty(exports, 'lengthTouch', {
   }
 });
 
-var _magnify = __webpack_require__(108);
+var _magnify = __webpack_require__(109);
 
 Object.defineProperty(exports, 'magnify', {
   enumerable: true,
@@ -6099,7 +6120,7 @@ Object.defineProperty(exports, 'magnifyTouchDrag', {
   }
 });
 
-var _mouseButtonRectangleTool = __webpack_require__(55);
+var _mouseButtonRectangleTool = __webpack_require__(56);
 
 Object.defineProperty(exports, 'mouseButtonRectangleTool', {
   enumerable: true,
@@ -6135,7 +6156,7 @@ Object.defineProperty(exports, 'multiTouchDragTool', {
   }
 });
 
-var _orientationMarkers = __webpack_require__(109);
+var _orientationMarkers = __webpack_require__(110);
 
 Object.defineProperty(exports, 'orientationMarkers', {
   enumerable: true,
@@ -6144,7 +6165,7 @@ Object.defineProperty(exports, 'orientationMarkers', {
   }
 });
 
-var _pan = __webpack_require__(110);
+var _pan = __webpack_require__(111);
 
 Object.defineProperty(exports, 'pan', {
   enumerable: true,
@@ -6159,7 +6180,7 @@ Object.defineProperty(exports, 'panTouchDrag', {
   }
 });
 
-var _panMultiTouch = __webpack_require__(111);
+var _panMultiTouch = __webpack_require__(112);
 
 Object.defineProperty(exports, 'panMultiTouch', {
   enumerable: true,
@@ -6168,7 +6189,7 @@ Object.defineProperty(exports, 'panMultiTouch', {
   }
 });
 
-var _probe = __webpack_require__(112);
+var _probe = __webpack_require__(113);
 
 Object.defineProperty(exports, 'probe', {
   enumerable: true,
@@ -6183,7 +6204,7 @@ Object.defineProperty(exports, 'probeTouch', {
   }
 });
 
-var _rectangleRoi = __webpack_require__(113);
+var _rectangleRoi = __webpack_require__(114);
 
 Object.defineProperty(exports, 'rectangleRoi', {
   enumerable: true,
@@ -6198,7 +6219,7 @@ Object.defineProperty(exports, 'rectangleRoiTouch', {
   }
 });
 
-var _rotate = __webpack_require__(114);
+var _rotate = __webpack_require__(115);
 
 Object.defineProperty(exports, 'rotate', {
   enumerable: true,
@@ -6213,7 +6234,7 @@ Object.defineProperty(exports, 'rotateTouchDrag', {
   }
 });
 
-var _rotateTouch = __webpack_require__(115);
+var _rotateTouch = __webpack_require__(116);
 
 Object.defineProperty(exports, 'rotateTouch', {
   enumerable: true,
@@ -6222,7 +6243,7 @@ Object.defineProperty(exports, 'rotateTouch', {
   }
 });
 
-var _saveAs = __webpack_require__(116);
+var _saveAs = __webpack_require__(117);
 
 Object.defineProperty(exports, 'saveAs', {
   enumerable: true,
@@ -6231,7 +6252,7 @@ Object.defineProperty(exports, 'saveAs', {
   }
 });
 
-var _seedAnnotate = __webpack_require__(117);
+var _seedAnnotate = __webpack_require__(118);
 
 Object.defineProperty(exports, 'seedAnnotate', {
   enumerable: true,
@@ -6246,7 +6267,7 @@ Object.defineProperty(exports, 'seedAnnotateTouch', {
   }
 });
 
-var _simpleAngle = __webpack_require__(118);
+var _simpleAngle = __webpack_require__(119);
 
 Object.defineProperty(exports, 'simpleAngle', {
   enumerable: true,
@@ -6270,7 +6291,7 @@ Object.defineProperty(exports, 'simpleMouseButtonTool', {
   }
 });
 
-var _textMarker = __webpack_require__(119);
+var _textMarker = __webpack_require__(120);
 
 Object.defineProperty(exports, 'textMarker', {
   enumerable: true,
@@ -6294,7 +6315,7 @@ Object.defineProperty(exports, 'touchDragTool', {
   }
 });
 
-var _touchPinchTool = __webpack_require__(56);
+var _touchPinchTool = __webpack_require__(57);
 
 Object.defineProperty(exports, 'touchPinchTool', {
   enumerable: true,
@@ -6312,7 +6333,7 @@ Object.defineProperty(exports, 'touchTool', {
   }
 });
 
-var _wwwc = __webpack_require__(120);
+var _wwwc = __webpack_require__(121);
 
 Object.defineProperty(exports, 'wwwc', {
   enumerable: true,
@@ -6327,7 +6348,7 @@ Object.defineProperty(exports, 'wwwcTouchDrag', {
   }
 });
 
-var _wwwcRegion = __webpack_require__(121);
+var _wwwcRegion = __webpack_require__(122);
 
 Object.defineProperty(exports, 'wwwcRegion', {
   enumerable: true,
@@ -6342,7 +6363,7 @@ Object.defineProperty(exports, 'wwwcRegionTouch', {
   }
 });
 
-var _zoom = __webpack_require__(122);
+var _zoom = __webpack_require__(123);
 
 Object.defineProperty(exports, 'zoom', {
   enumerable: true,
@@ -6369,7 +6390,7 @@ Object.defineProperty(exports, 'zoomTouchDrag', {
   }
 });
 
-var _brush = __webpack_require__(123);
+var _brush = __webpack_require__(124);
 
 Object.defineProperty(exports, 'brush', {
   enumerable: true,
@@ -6378,7 +6399,7 @@ Object.defineProperty(exports, 'brush', {
   }
 });
 
-var _adaptiveBrush = __webpack_require__(124);
+var _adaptiveBrush = __webpack_require__(125);
 
 Object.defineProperty(exports, 'adaptiveBrush', {
   enumerable: true,
@@ -6387,7 +6408,7 @@ Object.defineProperty(exports, 'adaptiveBrush', {
   }
 });
 
-var _index3 = __webpack_require__(125);
+var _index3 = __webpack_require__(126);
 
 Object.defineProperty(exports, 'regionsThreshold', {
   enumerable: true,
@@ -6420,7 +6441,7 @@ Object.defineProperty(exports, 'regionsUndo', {
   }
 });
 
-var _version = __webpack_require__(130);
+var _version = __webpack_require__(131);
 
 Object.defineProperty(exports, 'version', {
   enumerable: true,
@@ -6432,13 +6453,13 @@ Object.defineProperty(exports, 'version', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_62__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_63__;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6448,15 +6469,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _calculateReferenceLine = __webpack_require__(39);
+var _calculateReferenceLine = __webpack_require__(40);
 
 var _calculateReferenceLine2 = _interopRequireDefault(_calculateReferenceLine);
 
-var _referenceLinesTool = __webpack_require__(64);
+var _referenceLinesTool = __webpack_require__(65);
 
 var _referenceLinesTool2 = _interopRequireDefault(_referenceLinesTool);
 
-var _renderActiveReferenceLine = __webpack_require__(40);
+var _renderActiveReferenceLine = __webpack_require__(41);
 
 var _renderActiveReferenceLine2 = _interopRequireDefault(_renderActiveReferenceLine);
 
@@ -6471,7 +6492,7 @@ var referenceLines = {
 exports.default = referenceLines;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6485,7 +6506,7 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _renderActiveReferenceLine = __webpack_require__(40);
+var _renderActiveReferenceLine = __webpack_require__(41);
 
 var _renderActiveReferenceLine2 = _interopRequireDefault(_renderActiveReferenceLine);
 
@@ -6557,7 +6578,7 @@ var tool = {
 exports.default = tool;
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6600,7 +6621,7 @@ exports.default = function (vector) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6624,7 +6645,7 @@ exports.default = function (string) {
 };
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6644,17 +6665,17 @@ var _drawHandles = __webpack_require__(8);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _setContextToDisplayFontSize = __webpack_require__(42);
+var _setContextToDisplayFontSize = __webpack_require__(43);
 
 var _setContextToDisplayFontSize2 = _interopRequireDefault(_setContextToDisplayFontSize);
 
 var _toolState = __webpack_require__(1);
 
-var _measurementManager = __webpack_require__(68);
+var _measurementManager = __webpack_require__(69);
 
 var _measurementManager2 = _interopRequireDefault(_measurementManager);
 
-var _lineSampleMeasurement = __webpack_require__(69);
+var _lineSampleMeasurement = __webpack_require__(70);
 
 var _lineSampleMeasurement2 = _interopRequireDefault(_lineSampleMeasurement);
 
@@ -6773,7 +6794,7 @@ var probeTool4D = (0, _mouseButtonTool2.default)({
 exports.default = probeTool4D;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6827,7 +6848,7 @@ var manager = new MeasurementManager();
 exports.default = manager;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6858,7 +6879,7 @@ var _triggerEvent2 = _interopRequireDefault(_triggerEvent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6956,7 +6977,7 @@ var timeSeriesPlayer = {
 exports.default = timeSeriesPlayer;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7085,7 +7106,7 @@ exports.timeSeriesScrollWheel = timeSeriesScrollWheel;
 exports.timeSeriesScrollTouchDrag = timeSeriesScrollTouchDrag;
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7122,7 +7143,7 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7145,7 +7166,7 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7442,7 +7463,7 @@ function Synchronizer(event, handler) {
 exports.default = Synchronizer;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7523,7 +7544,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7613,7 +7634,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7706,7 +7727,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7783,7 +7804,7 @@ var _loadHandlerManager2 = _interopRequireDefault(_loadHandlerManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7820,7 +7841,7 @@ exports.default = function (synchronizer, sourceElement, targetElement) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7910,7 +7931,7 @@ exports.addTimeSeriesStateManager = addTimeSeriesStateManager;
 exports.newTimeSeriesSpecificToolStateManager = newTimeSeriesSpecificToolStateManager;
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8022,7 +8043,7 @@ exports.newStackSpecificToolStateManager = newStackSpecificToolStateManager;
 exports.addStackStateManager = addStackStateManager;
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8124,7 +8145,7 @@ exports.newFrameOfReferenceSpecificToolStateManager = newFrameOfReferenceSpecifi
 exports.globalFrameOfReferenceSpecificToolStateManager = globalFrameOfReferenceSpecificToolStateManager;
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8214,7 +8235,7 @@ var appState = {
 exports.default = appState;
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8228,7 +8249,7 @@ var _scroll = __webpack_require__(30);
 
 var _scroll2 = _interopRequireDefault(_scroll);
 
-var _keyboardTool = __webpack_require__(50);
+var _keyboardTool = __webpack_require__(51);
 
 var _keyboardTool2 = _interopRequireDefault(_keyboardTool);
 
@@ -8261,7 +8282,7 @@ var stackScrollKeyboard = (0, _keyboardTool2.default)(keyDownCallback);
 exports.default = stackScrollKeyboard;
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8618,7 +8639,7 @@ var stackPrefetch = {
 exports.default = stackPrefetch;
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8704,7 +8725,7 @@ scrollIndicator.setConfiguration(configuration);
 exports.default = scrollIndicator;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8714,7 +8735,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _fusionRenderer = __webpack_require__(88);
+var _fusionRenderer = __webpack_require__(89);
 
 var _fusionRenderer2 = _interopRequireDefault(_fusionRenderer);
 
@@ -8727,7 +8748,7 @@ stackRenderers.FusionRenderer = _fusionRenderer2.default;
 exports.default = stackRenderers;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8837,7 +8858,7 @@ var FusionRenderer = function () {
 exports.default = FusionRenderer;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9126,7 +9147,7 @@ exports.playClip = playClip;
 exports.stopClip = stopClip;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9208,7 +9229,7 @@ var keyboardInput = {
 exports.default = keyboardInput;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9533,7 +9554,7 @@ var mouseInput = {
 exports.default = mouseInput;
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9639,7 +9660,7 @@ var mouseWheelInput = {
 exports.default = mouseWheelInput;
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9659,7 +9680,7 @@ var _pauseEvent = __webpack_require__(33);
 
 var _pauseEvent2 = _interopRequireDefault(_pauseEvent);
 
-var _preventGhostClick = __webpack_require__(53);
+var _preventGhostClick = __webpack_require__(54);
 
 var _preventGhostClick2 = _interopRequireDefault(_preventGhostClick);
 
@@ -10159,7 +10180,7 @@ var touchInput = {
 exports.default = touchInput;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10379,7 +10400,7 @@ exports.angle = angle;
 exports.angleTouch = angleTouch;
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10420,7 +10441,7 @@ var _drawHandles = __webpack_require__(8);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawArrow = __webpack_require__(48);
+var _drawArrow = __webpack_require__(49);
 
 var _drawArrow2 = _interopRequireDefault(_drawArrow);
 
@@ -10910,7 +10931,7 @@ exports.arrowAnnotate = arrowAnnotate;
 exports.arrowAnnotateTouch = arrowAnnotateTouch;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11140,7 +11161,7 @@ exports.crosshairs = crosshairs;
 exports.crosshairsTouch = crosshairsTouch;
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11152,7 +11173,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _doubleTapTool = __webpack_require__(54);
+var _doubleTapTool = __webpack_require__(55);
 
 var _doubleTapTool2 = _interopRequireDefault(_doubleTapTool);
 
@@ -11179,7 +11200,7 @@ doubleTapZoom.strategy = fitToWindowStrategy;
 exports.default = doubleTapZoom;
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11456,7 +11477,7 @@ exports.dragProbe = dragProbe;
 exports.dragProbeTouch = dragProbeTouch;
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11493,7 +11514,7 @@ var _drawTextBox = __webpack_require__(5);
 
 var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 
-var _drawEllipse = __webpack_require__(46);
+var _drawEllipse = __webpack_require__(47);
 
 var _drawEllipse2 = _interopRequireDefault(_drawEllipse);
 
@@ -11501,13 +11522,17 @@ var _pointInEllipse = __webpack_require__(32);
 
 var _pointInEllipse2 = _interopRequireDefault(_pointInEllipse);
 
-var _calculateEllipseStatistics = __webpack_require__(49);
+var _calculateEllipseStatistics = __webpack_require__(50);
 
 var _calculateEllipseStatistics2 = _interopRequireDefault(_calculateEllipseStatistics);
 
 var _calculateSUV = __webpack_require__(16);
 
 var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
+
+var _numberWithCommas = __webpack_require__(39);
+
+var _numberWithCommas2 = _interopRequireDefault(_numberWithCommas);
 
 var _toolState = __webpack_require__(1);
 
@@ -11586,15 +11611,6 @@ function pointNearTool(element, data, coords) {
 
 function pointNearToolTouch(element, data, coords) {
   return pointNearEllipse(element, data, coords, 25);
-}
-
-function numberWithCommas(x) {
-  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  var parts = x.toString().split('.');
-
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  return parts.join('.');
 }
 
 function onImageRendered(e, eventData) {
@@ -11764,16 +11780,16 @@ function onImageRendered(e, eventData) {
       }
 
       // Create a line of text to display the mean and any units that were specified (i.e. HU)
-      var meanText = 'Mean: ' + numberWithCommas(meanStdDev.mean.toFixed(2)) + moSuffix;
+      var meanText = 'Mean: ' + (0, _numberWithCommas2.default)(meanStdDev.mean.toFixed(2)) + moSuffix;
       // Create a line of text to display the standard deviation and any units that were specified (i.e. HU)
-      var stdDevText = 'StdDev: ' + numberWithCommas(meanStdDev.stdDev.toFixed(2)) + moSuffix;
+      var stdDevText = 'StdDev: ' + (0, _numberWithCommas2.default)(meanStdDev.stdDev.toFixed(2)) + moSuffix;
 
       // If this image has SUV values to display, concatenate them to the text line
       if (meanStdDevSUV && meanStdDevSUV.mean !== undefined) {
         var SUVtext = ' SUV: ';
 
-        meanText += SUVtext + numberWithCommas(meanStdDevSUV.mean.toFixed(2));
-        stdDevText += SUVtext + numberWithCommas(meanStdDevSUV.stdDev.toFixed(2));
+        meanText += SUVtext + (0, _numberWithCommas2.default)(meanStdDevSUV.mean.toFixed(2));
+        stdDevText += SUVtext + (0, _numberWithCommas2.default)(meanStdDevSUV.stdDev.toFixed(2));
       }
 
       // Add these text lines to the array to be displayed in the textbox
@@ -11793,7 +11809,7 @@ function onImageRendered(e, eventData) {
       }
 
       // Create a line of text to display the area and its units
-      var areaText = 'Area: ' + numberWithCommas(area.toFixed(2)) + suffix;
+      var areaText = 'Area: ' + (0, _numberWithCommas2.default)(area.toFixed(2)) + suffix;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);
@@ -11921,7 +11937,7 @@ exports.ellipticalRoi = ellipticalRoi;
 exports.ellipticalRoiTouch = ellipticalRoiTouch;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11958,15 +11974,15 @@ var _pointInsideBoundingBox = __webpack_require__(15);
 
 var _pointInsideBoundingBox2 = _interopRequireDefault(_pointInsideBoundingBox);
 
-var _freeHandArea = __webpack_require__(101);
+var _freeHandArea = __webpack_require__(102);
 
 var _freeHandArea2 = _interopRequireDefault(_freeHandArea);
 
-var _calculateFreehandStatistics = __webpack_require__(102);
+var _calculateFreehandStatistics = __webpack_require__(103);
 
 var _calculateFreehandStatistics2 = _interopRequireDefault(_calculateFreehandStatistics);
 
-var _freeHandIntersect = __webpack_require__(104);
+var _freeHandIntersect = __webpack_require__(105);
 
 var _calculateSUV = __webpack_require__(16);
 
@@ -11975,6 +11991,10 @@ var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
 var _isMouseButtonEnabled = __webpack_require__(2);
 
 var _isMouseButtonEnabled2 = _interopRequireDefault(_isMouseButtonEnabled);
+
+var _numberWithCommas = __webpack_require__(39);
+
+var _numberWithCommas2 = _interopRequireDefault(_numberWithCommas);
 
 var _toolState = __webpack_require__(1);
 
@@ -12431,15 +12451,6 @@ function mouseDownCallback(e, eventData) {
 
 // /////// END ACTIVE TOOL ///////
 
-function numberWithCommas(x) {
-  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  var parts = x.toString().split('.');
-
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  return parts.join('.');
-}
-
 // /////// BEGIN IMAGE RENDERING ///////
 function onImageRendered(e) {
   var eventData = e.detail;
@@ -12639,16 +12650,16 @@ function onImageRendered(e) {
       }
 
       // Create a line of text to display the mean and any units that were specified (i.e. HU)
-      var meanText = 'Mean: ' + numberWithCommas(meanStdDev.mean.toFixed(2)) + moSuffix;
+      var meanText = 'Mean: ' + (0, _numberWithCommas2.default)(meanStdDev.mean.toFixed(2)) + moSuffix;
       // Create a line of text to display the standard deviation and any units that were specified (i.e. HU)
-      var stdDevText = 'StdDev: ' + numberWithCommas(meanStdDev.stdDev.toFixed(2)) + moSuffix;
+      var stdDevText = 'StdDev: ' + (0, _numberWithCommas2.default)(meanStdDev.stdDev.toFixed(2)) + moSuffix;
 
       // If this image has SUV values to display, concatenate them to the text line
       if (meanStdDevSUV && meanStdDevSUV.mean !== undefined) {
         var SUVtext = ' SUV: ';
 
-        meanText += SUVtext + numberWithCommas(meanStdDevSUV.mean.toFixed(2));
-        stdDevText += SUVtext + numberWithCommas(meanStdDevSUV.stdDev.toFixed(2));
+        meanText += SUVtext + (0, _numberWithCommas2.default)(meanStdDevSUV.mean.toFixed(2));
+        stdDevText += SUVtext + (0, _numberWithCommas2.default)(meanStdDevSUV.stdDev.toFixed(2));
       }
 
       // Add these text lines to the array to be displayed in the textbox
@@ -12668,7 +12679,7 @@ function onImageRendered(e) {
       }
 
       // Create a line of text to display the area and its units
-      var areaText = 'Area: ' + numberWithCommas(area.toFixed(2)) + suffix;
+      var areaText = 'Area: ' + (0, _numberWithCommas2.default)(area.toFixed(2)) + suffix;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);
@@ -12841,7 +12852,7 @@ var freehand = {
 exports.freehand = freehand;
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12866,7 +12877,7 @@ exports.default = function (dataHandles, scaling) {
 };
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12920,14 +12931,14 @@ exports.default = function (sp, boundingBox, dataHandles) {
   };
 };
 
-var _pointInFreehandROI = __webpack_require__(103);
+var _pointInFreehandROI = __webpack_require__(104);
 
 var _pointInFreehandROI2 = _interopRequireDefault(_pointInFreehandROI);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13005,7 +13016,7 @@ function lineSegmentAtPoint(point, lp1, lp2) {
 }
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13195,7 +13206,7 @@ exports.freeHandIntersectEnd = freeHandIntersectEnd;
 exports.freeHandIntersectModify = freeHandIntersectModify;
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13208,7 +13219,7 @@ exports.highlightTouch = exports.highlight = undefined;
 
 var _externalModules = __webpack_require__(0);
 
-var _mouseButtonRectangleTool = __webpack_require__(55);
+var _mouseButtonRectangleTool = __webpack_require__(56);
 
 var _mouseButtonRectangleTool2 = _interopRequireDefault(_mouseButtonRectangleTool);
 
@@ -13399,7 +13410,7 @@ exports.highlight = highlight;
 exports.highlightTouch = highlightTouch;
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13447,7 +13458,7 @@ var imageStats = (0, _displayTool2.default)(onImageRendered);
 exports.default = imageStats;
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13729,7 +13740,7 @@ exports.length = length;
 exports.lengthTouch = lengthTouch;
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13989,7 +14000,7 @@ exports.magnify = magnify;
 exports.magnifyTouchDrag = magnifyTouchDrag;
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14001,7 +14012,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _externalModules = __webpack_require__(0);
 
-var _index = __webpack_require__(41);
+var _index = __webpack_require__(42);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -14121,7 +14132,7 @@ var orientationMarkers = (0, _displayTool2.default)(onImageRendered);
 exports.default = orientationMarkers;
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14190,7 +14201,7 @@ exports.pan = pan;
 exports.panTouchDrag = panTouchDrag;
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14233,7 +14244,7 @@ panMultiTouch.setConfiguration(configuration);
 exports.default = panMultiTouch;
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14408,7 +14419,7 @@ exports.probe = probe;
 exports.probeTouch = probeTouch;
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14448,6 +14459,10 @@ var _drawTextBox2 = _interopRequireDefault(_drawTextBox);
 var _calculateSUV = __webpack_require__(16);
 
 var _calculateSUV2 = _interopRequireDefault(_calculateSUV);
+
+var _numberWithCommas = __webpack_require__(39);
+
+var _numberWithCommas2 = _interopRequireDefault(_numberWithCommas);
 
 var _toolState = __webpack_require__(1);
 
@@ -14544,15 +14559,6 @@ function calculateMeanStdDev(sp, ellipse) {
     variance: variance,
     stdDev: Math.sqrt(variance)
   };
-}
-
-function numberWithCommas(x) {
-  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  var parts = x.toString().split('.');
-
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  return parts.join('.');
 }
 
 function onImageRendered(e, eventData) {
@@ -14722,16 +14728,16 @@ function onImageRendered(e, eventData) {
       }
 
       // Create a line of text to display the mean and any units that were specified (i.e. HU)
-      var meanText = 'Mean: ' + numberWithCommas(meanStdDev.mean.toFixed(2)) + moSuffix;
+      var meanText = 'Mean: ' + (0, _numberWithCommas2.default)(meanStdDev.mean.toFixed(2)) + moSuffix;
       // Create a line of text to display the standard deviation and any units that were specified (i.e. HU)
-      var stdDevText = 'StdDev: ' + numberWithCommas(meanStdDev.stdDev.toFixed(2)) + moSuffix;
+      var stdDevText = 'StdDev: ' + (0, _numberWithCommas2.default)(meanStdDev.stdDev.toFixed(2)) + moSuffix;
 
       // If this image has SUV values to display, concatenate them to the text line
       if (meanStdDevSUV && meanStdDevSUV.mean !== undefined) {
         var SUVtext = ' SUV: ';
 
-        meanText += SUVtext + numberWithCommas(meanStdDevSUV.mean.toFixed(2));
-        stdDevText += SUVtext + numberWithCommas(meanStdDevSUV.stdDev.toFixed(2));
+        meanText += SUVtext + (0, _numberWithCommas2.default)(meanStdDevSUV.mean.toFixed(2));
+        stdDevText += SUVtext + (0, _numberWithCommas2.default)(meanStdDevSUV.stdDev.toFixed(2));
       }
 
       // Add these text lines to the array to be displayed in the textbox
@@ -14751,7 +14757,7 @@ function onImageRendered(e, eventData) {
       }
 
       // Create a line of text to display the area and its units
-      var areaText = 'Area: ' + numberWithCommas(area.toFixed(2)) + suffix;
+      var areaText = 'Area: ' + (0, _numberWithCommas2.default)(area.toFixed(2)) + suffix;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);
@@ -14879,7 +14885,7 @@ exports.rectangleRoi = rectangleRoi;
 exports.rectangleRoiTouch = rectangleRoiTouch;
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14983,7 +14989,7 @@ exports.rotate = rotate;
 exports.rotateTouchDrag = rotateTouchDrag;
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15019,7 +15025,7 @@ var rotateTouch = {
 exports.default = rotateTouch;
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15063,7 +15069,7 @@ exports.default = function (element, filename, mimetype) {
 var _externalModules = __webpack_require__(0);
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15112,7 +15118,7 @@ var _drawHandles = __webpack_require__(8);
 
 var _drawHandles2 = _interopRequireDefault(_drawHandles);
 
-var _drawCircle = __webpack_require__(47);
+var _drawCircle = __webpack_require__(48);
 
 var _drawCircle2 = _interopRequireDefault(_drawCircle);
 
@@ -15554,7 +15560,7 @@ exports.seedAnnotate = seedAnnotate;
 exports.seedAnnotateTouch = seedAnnotateTouch;
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15995,7 +16001,7 @@ exports.simpleAngle = simpleAngle;
 exports.simpleAngleTouch = simpleAngleTouch;
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16326,7 +16332,7 @@ exports.textMarker = textMarker;
 exports.textMarkerTouch = textMarkerTouch;
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16436,7 +16442,7 @@ exports.wwwc = wwwc;
 exports.wwwcTouchDrag = wwwcTouchDrag;
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16459,7 +16465,7 @@ var _toolColors2 = _interopRequireDefault(_toolColors);
 
 var _toolState = __webpack_require__(1);
 
-var _getLuminance = __webpack_require__(45);
+var _getLuminance = __webpack_require__(46);
 
 var _getLuminance2 = _interopRequireDefault(_getLuminance);
 
@@ -16837,7 +16843,7 @@ exports.wwwcRegion = wwwcRegion;
 exports.wwwcRegionTouch = wwwcRegionTouch;
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16862,7 +16868,7 @@ var _mouseWheelTool = __webpack_require__(20);
 
 var _mouseWheelTool2 = _interopRequireDefault(_mouseWheelTool);
 
-var _touchPinchTool = __webpack_require__(56);
+var _touchPinchTool = __webpack_require__(57);
 
 var _touchPinchTool2 = _interopRequireDefault(_touchPinchTool);
 
@@ -17160,7 +17166,7 @@ exports.zoomTouchPinch = zoomTouchPinch;
 exports.zoomTouchDrag = zoomTouchDrag;
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17175,15 +17181,15 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _brushTool = __webpack_require__(57);
+var _brushTool = __webpack_require__(58);
 
 var _brushTool2 = _interopRequireDefault(_brushTool);
 
-var _getCircle = __webpack_require__(58);
+var _getCircle = __webpack_require__(59);
 
 var _getCircle2 = _interopRequireDefault(_getCircle);
 
-var _drawBrush = __webpack_require__(59);
+var _drawBrush = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17295,7 +17301,7 @@ brush.setConfiguration(configuration);
 exports.brush = brush;
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17310,15 +17316,15 @@ var _externalModules = __webpack_require__(0);
 
 var _toolState = __webpack_require__(1);
 
-var _brushTool = __webpack_require__(57);
+var _brushTool = __webpack_require__(58);
 
 var _brushTool2 = _interopRequireDefault(_brushTool);
 
-var _getCircle = __webpack_require__(58);
+var _getCircle = __webpack_require__(59);
 
 var _getCircle2 = _interopRequireDefault(_getCircle);
 
-var _drawBrush = __webpack_require__(59);
+var _drawBrush = __webpack_require__(60);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17549,7 +17555,7 @@ adaptiveBrush.setConfiguration(configuration);
 exports.adaptiveBrush = adaptiveBrush;
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17568,7 +17574,7 @@ Object.defineProperty(exports, 'regionsThreshold', {
   }
 });
 
-var _grow = __webpack_require__(126);
+var _grow = __webpack_require__(127);
 
 Object.defineProperty(exports, 'regionsGrow', {
   enumerable: true,
@@ -17577,7 +17583,7 @@ Object.defineProperty(exports, 'regionsGrow', {
   }
 });
 
-var _draw = __webpack_require__(127);
+var _draw = __webpack_require__(128);
 
 Object.defineProperty(exports, 'regionsDraw', {
   enumerable: true,
@@ -17586,7 +17592,7 @@ Object.defineProperty(exports, 'regionsDraw', {
   }
 });
 
-var _score = __webpack_require__(128);
+var _score = __webpack_require__(129);
 
 Object.defineProperty(exports, 'regionsScore', {
   enumerable: true,
@@ -17595,7 +17601,7 @@ Object.defineProperty(exports, 'regionsScore', {
   }
 });
 
-var _undo = __webpack_require__(129);
+var _undo = __webpack_require__(130);
 
 Object.defineProperty(exports, 'regionsUndo', {
   enumerable: true,
@@ -17607,7 +17613,7 @@ Object.defineProperty(exports, 'regionsUndo', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17777,7 +17783,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18018,7 +18024,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18036,7 +18042,7 @@ var _externalModules = __webpack_require__(0);
 
 var _thresholding = __webpack_require__(26);
 
-var _constants = __webpack_require__(60);
+var _constants = __webpack_require__(61);
 
 var _toolState = __webpack_require__(1);
 
@@ -18340,7 +18346,7 @@ function score() {
 exports.default = score;
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18384,7 +18390,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
