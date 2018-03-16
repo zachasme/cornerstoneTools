@@ -1,4 +1,4 @@
-export function numberWithCommas (x) {
+export default function numberWithCommas (x) {
   return x.toString();
   /*
   // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript

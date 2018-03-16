@@ -3526,7 +3526,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.numberWithCommas = numberWithCommas;
+exports.default = numberWithCommas;
 function numberWithCommas(x) {
   return x.toString();
   /*
