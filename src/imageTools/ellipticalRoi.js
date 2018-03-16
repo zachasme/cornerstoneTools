@@ -9,6 +9,7 @@ import drawEllipse from '../util/drawEllipse.js';
 import pointInEllipse from '../util/pointInEllipse.js';
 import calculateEllipseStatistics from '../util/calculateEllipseStatistics.js';
 import calculateSUV from '../util/calculateSUV.js';
+import numberWithCommas from '../util/numberWithCommas.js';
 import { getToolState } from '../stateManagement/toolState.js';
 
 const toolType = 'ellipticalRoi';
@@ -84,15 +85,6 @@ function pointNearTool (element, data, coords) {
 
 function pointNearToolTouch (element, data, coords) {
   return pointNearEllipse(element, data, coords, 25);
-}
-
-function numberWithCommas (x) {
-  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  const parts = x.toString().split('.');
-
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  return parts.join('.');
 }
 
 function onImageRendered (e, eventData) {

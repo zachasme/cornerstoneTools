@@ -10,6 +10,7 @@ import calculateFreehandStatistics from '../util/calculateFreehandStatistics.js'
 import { freeHandIntersect, freeHandIntersectEnd, freeHandIntersectModify } from '../util/freeHandIntersect.js';
 import calculateSUV from '../util/calculateSUV.js';
 import isMouseButtonEnabled from '../util/isMouseButtonEnabled.js';
+import numberWithCommas from '../util/numberWithCommas.js';
 import { addToolState, getToolState } from '../stateManagement/toolState.js';
 
 const toolType = 'freehand';
@@ -461,15 +462,6 @@ function mouseDownCallback (e, eventData) {
 }
 
 // /////// END ACTIVE TOOL ///////
-
-function numberWithCommas (x) {
-  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  const parts = x.toString().split('.');
-
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  return parts.join('.');
-}
 
 // /////// BEGIN IMAGE RENDERING ///////
 function onImageRendered (e) {

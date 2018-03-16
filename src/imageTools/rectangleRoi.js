@@ -6,6 +6,7 @@ import toolColors from '../stateManagement/toolColors.js';
 import drawHandles from '../manipulators/drawHandles.js';
 import drawTextBox from '../util/drawTextBox.js';
 import calculateSUV from '../util/calculateSUV.js';
+import numberWithCommas from '../util/numberWithCommas.js';
 import { getToolState } from '../stateManagement/toolState.js';
 
 const toolType = 'rectangleRoi';
@@ -100,15 +101,6 @@ function calculateMeanStdDev (sp, ellipse) {
     variance,
     stdDev: Math.sqrt(variance)
   };
-}
-
-function numberWithCommas (x) {
-  // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-  const parts = x.toString().split('.');
-
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  return parts.join('.');
 }
 
 function onImageRendered (e, eventData) {
