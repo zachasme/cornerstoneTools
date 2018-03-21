@@ -1,4 +1,4 @@
-/*! cornerstone-tools - 1.1.0 - 2018-03-16 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
+/*! cornerstone-tools - 1.1.0 - 2018-03-21 | (c) 2017 Chris Hafey | https://github.com/chafey/cornerstoneTools */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("cornerstone-math"));
@@ -11802,14 +11802,14 @@ function onImageRendered(e, eventData) {
       // Determine the area suffix based on the pixel spacing in the image.
       // If pixel spacing is present, use millimeters. Otherwise, use pixels.
       // This uses Char code 178 for a superscript 2
-      var suffix = ' mm' + String.fromCharCode(178);
+      var suffix = ' cm' + String.fromCharCode(178);
 
       if (!rowPixelSpacing || !colPixelSpacing) {
         suffix = ' pixels' + String.fromCharCode(178);
       }
 
       // Create a line of text to display the area and its units
-      var areaText = 'Area: ' + (0, _numberWithCommas2.default)(area.toFixed(2)) + suffix;
+      var areaText = 'Area: ' + (0, _numberWithCommas2.default)((area / 100).toFixed(2)) + suffix;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);
@@ -12672,14 +12672,14 @@ function onImageRendered(e) {
       // Determine the area suffix based on the pixel spacing in the image.
       // If pixel spacing is present, use millimeters. Otherwise, use pixels.
       // This uses Char code 178 for a superscript 2
-      var suffix = ' mm' + String.fromCharCode(178);
+      var suffix = ' cm' + String.fromCharCode(178);
 
       if (!rowPixelSpacing || !colPixelSpacing) {
         suffix = ' pixels' + String.fromCharCode(178);
       }
 
       // Create a line of text to display the area and its units
-      var areaText = 'Area: ' + (0, _numberWithCommas2.default)(area.toFixed(2)) + suffix;
+      var areaText = 'Area: ' + (0, _numberWithCommas2.default)((area / 100).toFixed(2)) + suffix;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);
@@ -14750,14 +14750,14 @@ function onImageRendered(e, eventData) {
       // Determine the area suffix based on the pixel spacing in the image.
       // If pixel spacing is present, use millimeters. Otherwise, use pixels.
       // This uses Char code 178 for a superscript 2
-      var suffix = ' mm' + String.fromCharCode(178);
+      var suffix = ' cm' + String.fromCharCode(178);
 
       if (!rowPixelSpacing || !colPixelSpacing) {
         suffix = ' pixels' + String.fromCharCode(178);
       }
 
       // Create a line of text to display the area and its units
-      var areaText = 'Area: ' + (0, _numberWithCommas2.default)(area.toFixed(2)) + suffix;
+      var areaText = 'Area: ' + (0, _numberWithCommas2.default)((area / 100).toFixed(2)) + suffix;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);

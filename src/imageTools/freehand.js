@@ -684,14 +684,14 @@ function onImageRendered (e) {
       // Determine the area suffix based on the pixel spacing in the image.
       // If pixel spacing is present, use millimeters. Otherwise, use pixels.
       // This uses Char code 178 for a superscript 2
-      let suffix = ` mm${String.fromCharCode(178)}`;
+      let suffix = ` cm${String.fromCharCode(178)}`;
 
       if (!rowPixelSpacing || !colPixelSpacing) {
         suffix = ` pixels${String.fromCharCode(178)}`;
       }
 
       // Create a line of text to display the area and its units
-      const areaText = `Area: ${numberWithCommas(area.toFixed(2))}${suffix}`;
+      const areaText = `Area: ${numberWithCommas((area / 100).toFixed(2))}${suffix}`;
 
       // Add this text line to the array to be displayed in the textbox
       textLines.push(areaText);
